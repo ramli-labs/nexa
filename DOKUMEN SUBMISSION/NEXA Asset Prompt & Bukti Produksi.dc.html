@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+html,body{margin:0;background:#F4F7FB;color:#101820;font-family:Manrope,system-ui,sans-serif}
+a{color:#0B6E8F}a:hover{color:#0A8F6E}
+@media print{body{background:#fff}}
+</style>
+</helmet>
+
+<div style="max-width:960px;margin:0 auto;padding:0 clamp(18px,4vw,44px) 80px">
+
+  <header style="padding:clamp(40px,6vw,76px) 0 26px;border-bottom:2px solid #101820">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#0B6E8F">DOKUMEN SUBMISSION · 05</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#5B6B7C">REV 1.0 · 14 SEP 2026</div>
+    </div>
+    <h1 style="font-family:Orbitron,sans-serif;font-weight:800;font-size:clamp(26px,4.4vw,46px);line-height:1.1;margin:18px 0 0;letter-spacing:.01em">Asset Prompt &amp; Bukti Produksi</h1>
+    <p style="font-size:clamp(14px,1.6vw,17px);line-height:1.65;color:#33424F;max-width:680px;margin:14px 0 0;text-wrap:pretty">Dokumentasi lengkap prompt untuk setiap aset visual dan audio NEXA, beserta bukti metode produksi. Disusun agar panitia dapat memverifikasi asal-usul setiap aset, dan agar tim mana pun dapat memproduksi ulang aset yang sama.</p>
+  </header>
+
+  <section style="padding:30px 0 0">
+    <div style="padding:22px 24px;border-radius:14px;background:#E8F4EE;border:1px solid #0A8F6E">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.24em;color:#0A6B52;margin-bottom:10px">PERNYATAAN METODE PRODUKSI</div>
+      <div style="font-size:14.5px;line-height:1.7;color:#16302A;text-wrap:pretty"><strong>Seluruh aset visual dan audio dalam NEXA dihasilkan dari kode</strong> — SVG, CSS, dan Web Audio API yang ditulis tangan. <strong>Tidak ada satu pun gambar hasil AI generatif, foto stok, atau ilustrasi pihak ketiga</strong> di dalam aplikasi yang dikumpulkan. Prompt di dokumen ini berfungsi sebagai <em>spesifikasi desain</em>: (a) bukti bahwa setiap aset dirancang secara sadar, bukan kebetulan; dan (b) bekal jika tim di masa depan ingin memproduksi versi ilustrasi dari aset yang sama. Satu-satunya aset eksternal adalah logo institusi resmi dan font ber-lisensi OFL, yang dirinci di dokumen Asset Attribution.</div>
+    </div>
+  </section>
+
+  <section style="padding:34px 0 0">
+    <h2 style="font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(18px,2.6vw,26px);margin:0 0 8px">Style Suffix Wajib</h2>
+    <p style="font-size:14px;line-height:1.65;color:#33424F;max-width:660px;margin:0 0 14px;text-wrap:pretty">Setiap prompt di dokumen ini <strong>harus</strong> diakhiri dengan blok berikut agar hasilnya konsisten dengan identitas NEXA. Tanpa suffix ini, gaya akan menyimpang.</p>
+    <pre style="margin:0;padding:18px 20px;border-radius:12px;background:#101820;overflow-x:auto"><code style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.75;color:#9FE9FF;white-space:pre-wrap">{{ styleSuffix }}</code></pre>
+    <div style="margin-top:12px;padding:16px 18px;border-radius:12px;background:#FFF3E0;border:1px solid #D99A2B">
+      <div style="font-family:Orbitron,sans-serif;font-size:9.5px;letter-spacing:.22em;color:#8A5E10;margin-bottom:8px">NEGATIVE PROMPT (BERLAKU UNTUK SEMUA ASET)</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7;color:#4A3512">{{ negative }}</div>
+    </div>
+  </section>
+
+  <section style="padding:38px 0 0">
+    <h2 style="font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(18px,2.6vw,26px);margin:0 0 6px">A · Karakter</h2>
+    <p style="font-size:13.5px;color:#5B6B7C;margin:0 0 18px">Empat karakter, 18 varian. Cast mengikuti naskah final: NARA-01 (asisten AI), ORION (AI kota), KAIA (mentor manusia), Delegasi Regulator.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ characters }}" as="a" hint-placeholder-count="4">
+        <div style="border:1px solid #C9D6E2;border-radius:14px;overflow:hidden;background:#fff">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:baseline;padding:16px 20px;background:#F0F5FA;border-bottom:1px solid #C9D6E2">
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#0B6E8F">{{ a.id }}</span>
+              <span style="font-family:Orbitron,sans-serif;font-weight:700;font-size:15px">{{ a.name }}</span>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#5B6B7C">{{ a.spec }}</span>
+          </div>
+          <div style="padding:18px 20px">
+            <div style="font-family:Orbitron,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#5B6B7C;margin-bottom:9px">PROMPT</div>
+            <pre style="margin:0 0 14px;padding:15px 16px;border-radius:10px;background:#101820;overflow-x:auto"><code style="font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.75;color:#DCE6F1;white-space:pre-wrap">{{ a.prompt }}</code></pre>
+            <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+              <div>
+                <div style="font-family:Orbitron,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#5B6B7C;margin-bottom:6px">VARIAN</div>
+                <div style="font-size:13px;line-height:1.6;color:#33424F">{{ a.variants }}</div>
+              </div>
+              <div>
+                <div style="font-family:Orbitron,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#5B6B7C;margin-bottom:6px">STATUS DI BUILD</div>
+                <div style="font-size:13px;line-height:1.6;color:#0A6B52;font-weight:600">{{ a.status }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:38px 0 0">
+    <h2 style="font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(18px,2.6vw,26px);margin:0 0 6px">B · Environment</h2>
+    <p style="font-size:13.5px;color:#5B6B7C;margin:0 0 18px">Enam scene. Empat di antaranya sudah aktif di build sebagai lapisan latar per modul.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ environments }}" as="e" hint-placeholder-count="6">
+        <div style="border:1px solid #C9D6E2;border-radius:14px;background:#fff;padding:18px 20px">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+            <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#0B6E8F">{{ e.id }}</span>
+              <span style="font-weight:700;font-size:15px">{{ e.name }}</span>
+            </div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:{{ e.statusColor }}">{{ e.status }}</span>
+          </div>
+          <pre style="margin:0;padding:15px 16px;border-radius:10px;background:#101820;overflow-x:auto"><code style="font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.75;color:#DCE6F1;white-space:pre-wrap">{{ e.prompt }}</code></pre>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:38px 0 0">
+    <h2 style="font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(18px,2.6vw,26px);margin:0 0 6px">C · UI, Ikon &amp; Efek</h2>
+    <p style="font-size:13.5px;color:#5B6B7C;margin:0 0 18px">Aset UI tidak memakai gambar sama sekali — didefinisikan sebagai token dan state. Prompt di sini berbentuk spesifikasi implementasi.</p>
+    <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <sc-for list="{{ ui }}" as="u" hint-placeholder-count="6">
+        <div style="border:1px solid #C9D6E2;border-radius:14px;background:#fff;padding:18px 20px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#0B6E8F;margin-bottom:5px">{{ u.id }}</div>
+          <div style="font-weight:700;font-size:14.5px;margin-bottom:10px">{{ u.name }}</div>
+          <div style="font-size:13px;line-height:1.65;color:#33424F;text-wrap:pretty">{{ u.spec }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:38px 0 0">
+    <h2 style="font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(18px,2.6vw,26px);margin:0 0 6px">D · Audio</h2>
+    <p style="font-size:13.5px;color:#5B6B7C;margin:0 0 18px">Semua bunyi disintesis runtime lewat Web Audio API — tidak ada file audio di dalam paket. Prompt di bawah adalah brief jika suatu saat direkam ulang oleh komposer.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ audio }}" as="a" hint-placeholder-count="4">
+        <div style="border:1px solid #C9D6E2;border-radius:14px;background:#fff;padding:18px 20px">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+            <div style="font-weight:700;font-size:15px">{{ a.name }}</div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#5B6B7C">{{ a.spec }}</span>
+          </div>
+          <pre style="margin:0;padding:15px 16px;border-radius:10px;background:#101820;overflow-x:auto"><code style="font-family:'JetBrains Mono',monospace;font-size:11.5px;line-height:1.75;color:#DCE6F1;white-space:pre-wrap">{{ a.prompt }}</code></pre>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="padding:38px 0 0">
+    <h2 style="font-family:Orbitron,sans-serif;font-weight:700;font-size:clamp(18px,2.6vw,26px);margin:0 0 14px">E · Jejak Bukti (Audit Trail)</h2>
+    <div style="border:1px solid #C9D6E2;border-radius:14px;overflow:hidden;background:#fff">
+      <sc-for list="{{ trail }}" as="t" hint-placeholder-count="7">
+        <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.4fr);gap:14px;padding:14px 20px;border-bottom:1px solid #E4EBF2">
+          <code style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#0B6E8F;word-break:break-all">{{ t.path }}</code>
+          <div style="font-size:13px;line-height:1.6;color:#33424F;text-wrap:pretty">{{ t.what }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:18px;padding:18px 20px;border-radius:12px;background:#F0F5FA;border:1px solid #C9D6E2">
+      <div style="font-family:Orbitron,sans-serif;font-size:9.5px;letter-spacing:.22em;color:#5B6B7C;margin-bottom:9px">CARA MEMVERIFIKASI</div>
+      <div style="font-size:13.5px;line-height:1.7;color:#33424F;text-wrap:pretty">Buka <code style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#0B6E8F">assets/js/nexa-visuals.js</code> — seluruh geometri karakter, environment, dan ikon terlihat sebagai koordinat SVG di dalam kode, dan seluruh bunyi sebagai definisi osilator. Tidak ada referensi ke file gambar atau audio eksternal di seluruh aplikasi; pencarian <code style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#0B6E8F">.png .jpg .mp3 .wav</code> hanya menemukan empat logo institusi resmi.</div>
+    </div>
+  </section>
+
+  <footer style="margin-top:40px;padding-top:22px;border-top:2px solid #101820;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center">
+    <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.22em;color:#5B6B7C">NEXA · ASSET PROMPT &amp; BUKTI PRODUKSI</div>
+    <div style="font-size:12.5px;color:#5B6B7C">Festival Biru Putih 2026 · Dokumen 05 dari 05</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      styleSuffix: [
+        'GAYA WAJIB (tempel di akhir setiap prompt):',
+        'semi-flat vector illustration, clean 2px outlines, limited palette of five colours,',
+        'deep navy #071426 background, signal cyan #17D9FF and AI violet #7657FF accents,',
+        'single cool rim light from upper-left at 35 degrees, no texture, no noise, no gloss,',
+        'governance-console mood: serious, hopeful, institutional — not military, not dystopian,',
+        'flat matte surfaces with emissive data elements, centred composition, generous negative space,',
+        'suitable for an Indonesian junior-high-school educational game, safe for classroom display'
+      ].join('\n'),
+      negative: 'photorealistic, 3D render, dramatic lens flare, heavy gradient background, chrome, neon cyberpunk clutter, weapons, blood, surveillance-state menace, robot villain, stereotyped ethnic costume, emoji, watermark, text overlay, extra fingers, distorted face, gore, celebrity likeness',
+
+      characters: [
+        {
+          id: 'CH-01', name: 'NARA-01 — Asisten AI', spec: 'SVG 512×640 · 5 state · ≤40 KB',
+          variants: 'idle · thinking · warning · success · overload',
+          status: 'AKTIF — prosedural di kit',
+          prompt: 'A non-humanoid artificial-intelligence core as a game character portrait:\na luminous octahedron suspended inside three concentric orbital rings,\nbright solid core at the centre, thin data particles drifting inward,\nno face, no limbs, no chassis — emotion expressed only through light intensity,\nrotation speed, ring spacing, and particle density.\nVariant "thinking": rings spin fast, seven particles converge on the core.\nVariant "warning": amber-to-coral accents, two rings only, tight pulse.\nVariant "overload": four rings, coral core, twelve particles, unstable jitter.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'CH-02', name: 'KAIA — Mentor manusia (Bu Arka)', spec: 'SVG 512×640 · 5 ekspresi · ≤40 KB',
+          variants: 'neutral · explaining · questioning · proud · concerned',
+          status: 'AKTIF — prosedural di kit',
+          prompt: 'Bust portrait of an Indonesian woman in her forties, senior public-policy researcher:\nmodern batik shirt whose motif is geometric diamonds echoing the interface grid,\nthin rectangular glasses, hair tied back with two loose strands,\na slim glowing data slate held low at her side, tilted fourteen degrees.\nWarm but firm — she asks for reasoning, not for correct answers.\nExpression is carried by eyebrows, mouth curve, and a two-degree head tilt only.\nShoulders-up framing, facing three-quarters to the right, breathing idle.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'CH-03', name: 'Warga — 3 varian', spec: 'SVG 384×480 · 3 × 4 varian · ≤22 KB',
+          variants: 'student / worker / elder × hopeful · confused · protest · relieved',
+          status: 'AKTIF — prosedural di kit',
+          prompt: 'Three citizen silhouettes representing the people affected by an AI policy decision:\n(1) a student with a backpack strap and one earbud,\n(2) an informal worker with a cap and a courier bag,\n(3) an elderly person with a head covering and a walking cane.\nSolid single-colour bodies with two accent colours each, minimal interior detail,\nno facial features — posture and arm position carry the emotion:\nhopeful = arm relaxed down, confused = hand raised to chin,\nprotest = arm raised high, relieved = both arms lowered, shoulders dropped.\nSlow one-degree sway to show they are alive.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'CH-04', name: 'Delegasi Regulator', spec: 'SVG 512×640 · 4 ekspresi · ≤35 KB',
+          variants: 'formal · skeptical · pressing · acknowledging',
+          status: 'AKTIF — prosedural di kit',
+          prompt: 'Bust portrait of a formal institutional delegate — not a villain:\ndark blazer, a violet lanyard with an ID card, a slim tablet held at chest height,\nneat short hair, flat neutral mouth, calm unblinking gaze.\nRepresents institutional pressure — efficiency targets, budget, political deadlines.\nExpression range is deliberately narrow: formal, skeptical (one eyebrow raised),\npressing (both brows lowered, mouth compressed), acknowledging (faint nod, soft mouth).\nFrontal framing, violet rim light, colder than the mentor character.\n+ STYLE SUFFIX'
+        }
+      ],
+
+      environments: [
+        {
+          id: 'ENV-HUB', name: 'Orbital Lab — Hub', status: 'PROSEDURAL', statusColor: '#0A6B52',
+          prompt: 'Interior of a small orbital research station serving as the game hub:\na wide curved window looking down at a slowly rotating Earth rendered as contour lines,\nfour docking corridors radiating from the centre, low control consoles at left and right,\ncyan god-rays falling from the window, forty slow dust motes drifting upward,\nno crew, no clutter — the room is calm, waiting for the player.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'ENV-FUTURE', name: 'Ruang Simulasi (Modul Smart School)', status: 'AKTIF DI BUILD', statusColor: '#0B6E8F',
+          prompt: 'A dark simulation room with a holographic city projected above a low round table:\nfourteen translucent violet towers of varying heights rising from the table surface,\nvolumetric violet haze, the only light source is the table itself from below,\nfour-percent flicker on the hologram, empty chairs implied but not drawn.\nThe city silhouette must read as reconfigurable — it changes with the player sliders.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'ENV-WORK', name: 'Lantai Kerja (Modul Future Work)', status: 'AKTIF DI BUILD', statusColor: '#0B6E8F',
+          prompt: 'An open workshop floor where humans and machines work side by side:\na human workbench with hand tools at the left, a robotic arm on a rail at the right,\na twelve-slot allocation board glowing softly in the centre,\nwarm 5200K daylight from above, soft bloom, no haze — the brightest room in the game,\noptimistic and ordinary, like a vocational school workshop in 2045.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'ENV-SOCIAL', name: 'Ruang Dampak (Modul AI City)', status: 'AKTIF DI BUILD', statusColor: '#0B6E8F',
+          prompt: 'A balcony overlooking a night city, seen from behind a thin railing:\nnine apartment blocks at varying depths, each window a small amber rectangle,\nsome windows lit and some dark — the lit ratio is data, not decoration,\namber city fog, faint twinkle, no vehicles, no people, no signage.\nQuiet and reflective: this is where the player sees who was affected.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'ENV-CONST', name: 'Ruang Konstitusi (Modul 4)', status: 'AKTIF DI BUILD', statusColor: '#0B6E8F',
+          prompt: 'A minimal futuristic council chamber:\nsix tall columns of light standing in a row behind a round table,\neach column dark until its principle is chosen, then lit from the floor up,\nfocused overhead light, high contrast, absolutely no particles,\nthe quietest and most formal room in the game — it should feel heavy.\n+ STYLE SUFFIX'
+        },
+        {
+          id: 'ENV-ENDING', name: 'Proyeksi 2060 — Ending', status: 'PROSEDURAL', statusColor: '#0A6B52',
+          prompt: 'A wide matte of a city in 2060, twelve buildings with rooftop green terraces,\nseen at eye level from a slight distance, no foreground objects.\nOne base image, five colour gradings: balanced utopia (green-cyan, clear),\ntechnocratic (cold cyan, sterile), stagnant (desaturated grey), fractured (split warm/cool),\nsoft collapse (dim amber with drifting embers). Grading only — geometry identical.\n+ STYLE SUFFIX'
+        }
+      ],
+
+      ui: [
+        { id: 'UI-BTN', name: 'Button — 6 state', spec: 'Pill radius 999px. Primary: gradient cyan→violet, teks navy #071426, glow 0 0 24px rgba(23,217,255,.35). Hover naik 1px + glow +30%. Pressed turun 1px, scale .985. Focus-visible outline 2px #35F2A1 offset 2px. Disabled opacity .42. Loading: tiga titik berdenyut, lebar dikunci. Tinggi sentuh minimum 48px.' },
+        { id: 'UI-ICON', name: 'Icon set — 23 ikon', spec: 'Grid 24px, stroke 1.75px, sudut bulat 2px, tanpa fill, warna dari currentColor. Navigasi 6 · modul 4 · sistem 7 · media 6. Digambar sebagai path data di dalam kit, bukan file gambar.' },
+        { id: 'UI-LOAD', name: 'Loading — 3 tingkat', spec: 'Boot: logo + progress bar tipis, maksimum 1.4 s. Transisi: cincin orbit menutup-membuka 600 ms. Skeleton: blok shimmer cyan 8%, durasi 1.6 s linear.' },
+        { id: 'UI-NOTIF', name: 'Notification — 4 tone', spec: 'Toast sudut kanan atas, auto-dismiss 3.5 s, ikon 20px + judul + satu baris. Tone: info cyan, sukses hijau, peringatan amber, kritis coral. Consequence popup: modal tengah, backdrop blur 10px + gelap 62%.' },
+        { id: 'UI-PROG', name: 'Progress — 4 tipe', spec: 'Mission pathway (4 simpul + rel 3px) · Future Balance (4 bar + count-up 620 ms + chip delta) · Work allocation (12 slot kotak) · Constitution (6 pilar terisi vertikal).' },
+        { id: 'FX-ALL', name: 'Special effect — 5 efek', spec: 'Hologram (scanline + chromatic offset 0.5px + jitter 1px/4 s) · Scanning (garis cahaya 900 ms, cubic-bezier(.4,0,.2,1)) · AI processing (inti berdenyut + 3 cincin + 7 titik data) · Transition (3 tipe bermakna) · Particle (dust 40 / burst 18 / ember 24). Hanya transform dan opacity; semua mati pada prefers-reduced-motion.' }
+      ],
+
+      audio: [
+        {
+          name: 'Background music — 6 scene', spec: 'Loop seamless · mono 96 kbps',
+          prompt: 'Ambient electronic score for an educational policy-design game, Indonesian secondary school:\nhub = slow pad with a patient arpeggio, 68 BPM, curious and calm;\nfuture/work modules = light rhythmic pulse, 84 BPM, encouraging but never tense;\nsocial module = soft piano over thin strings, 62 BPM, reflective;\nconstitution = low drone with synthetic choir, almost no rhythm, weighty;\nending = one theme in five balances (bright / cold / sparse / fractured / dim).\nNo drums on the constitution cue. Nothing triumphant. Nothing ominous.'
+        },
+        {
+          name: 'Sound effect — 14 bunyi', spec: '≤60 ms latency · 64 kbps',
+          prompt: 'System UI sound set for a governance console:\nboot swell 1.2 s rising; scan sweep synced to a 900 ms light pass;\ndelta up/down short pitched tones whose interval scales with the magnitude of change;\nconsequence impact = dull hit with a short reverb tail;\ngate unlock = three ascending notes that feel earned;\npillar light = six distinct hexatonic notes so each principle sounds unique.\nClean, dry, never cartoonish, never alarming enough to startle a classroom.'
+        },
+        {
+          name: 'Interaction sound — 8 mikro', spec: 'Volume −18 dB · ≤40 KB',
+          prompt: 'Micro-interaction sounds, extremely restrained:\nhover tick under 40 ms and throttled; press and release as two separate halves;\nslider step quantised per notch and silenced on fast drags;\ncard select with a soft suction; toast in two notes;\ndisabled tap as a low dull thud that explains refusal without text.\nNothing should be audible over a teacher speaking.'
+        },
+        {
+          name: 'Voice assistant — 34 baris', spec: 'Bahasa Indonesia · subtitle wajib',
+          prompt: 'Indonesian-language voice direction:\nNARA-01 — gender-neutral, medium tempo, two-percent ring modulation so it reads as a system\nwithout losing intelligibility; 18 lines (welcome, per-module instruction, imbalance warning,\ndecision confirmation, closing).\nKAIA — warm, clearly articulated, unhurried; 10 lines (module opener, one reflective question\nper module, final debrief).\nWarga — 4 short reactive lines across three timbres.\nRegulator — 2 lines, flat formal register.\nSemua ID baris dikunci sesuai Design Bible agar rekaman dapat diganti tanpa menyentuh kode.'
+        }
+      ],
+
+      trail: [
+        { path: 'assets/js/nexa-visuals.js', what: 'Sumber tunggal seluruh aset: geometri SVG karakter dan environment, path data 23 ikon, definisi 14 SFX dan 6 BGM sebagai osilator Web Audio. ~40 KB, tanpa dependency.' },
+        { path: 'assets/manifest.json', what: 'Slot pengganti untuk setiap aset. Semua nilai kosong = build memakai aset prosedural. Bukti bahwa tidak ada file gambar/audio yang dimuat.' },
+        { path: 'assets/README.md', what: 'Naming convention, spesifikasi teknis per kategori, dan budget ukuran (total tambahan ≤ 4.7 MB).' },
+        { path: 'assets/characters/**, assets/environments/**', what: 'Struktur folder resmi dengan catatan spesifikasi per subjek. Kosong secara sengaja.' },
+        { path: 'NEXA Asset Kit.dc.html', what: 'Bench verifikasi: setiap state karakter, scene, state tombol, ikon, efek, dan bunyi dapat diuji langsung satu per satu.' },
+        { path: 'NEXA Asset Design Plan.dc.html', what: 'Audit visual dan rencana produksi A–G beserta daftar prioritas tiga tier.' },
+        { path: 'NEXA Game.dc.html', what: 'Build final. Kit dimuat lewat satu baris di helmet; empat modul memakai lapisan environment; umpan balik keputusan memakai scan + particle burst. Logic dan mekanik v2.1 tidak berubah.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

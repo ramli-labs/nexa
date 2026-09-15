@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+html,body{margin:0;background:#050f1d;color:#E7EEF6;font-family:Manrope,system-ui,sans-serif}
+a{color:#17D9FF}a:hover{color:#35F2A1}
+@keyframes ad-scan{0%{transform:translateY(-100%)}100%{transform:translateY(400%)}}
+@keyframes ad-pulse{0%,100%{opacity:.35}50%{opacity:1}}
+@media print{html,body{background:#fff;color:#101820}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#0d2a4a 0%,#050f1d 60%);padding:0 0 80px">
+
+<div style="position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(23,217,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(23,217,255,.05) 1px,transparent 1px);background-size:64px 64px"></div>
+
+<div style="position:relative;max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,40px)">
+
+  <!-- COVER -->
+  <header style="padding:clamp(48px,8vw,96px) 0 clamp(28px,4vw,44px);border-bottom:1px solid rgba(145,164,184,.2)">
+    <div style="display:flex;align-items:center;gap:12px;font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#17D9FF">
+      <span style="width:26px;height:1px;background:#17D9FF"></span>DOKUMEN 05 — ART &amp; ASSET
+    </div>
+    <h1 style="font-family:Orbitron,system-ui,sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,60px);line-height:1.06;letter-spacing:.02em;margin:18px 0 0;background:linear-gradient(90deg,#17D9FF,#7657FF 60%,#35F2A1);-webkit-background-clip:text;background-clip:text;color:transparent">Asset Design Plan</h1>
+    <p style="font-size:clamp(15px,1.7vw,19px);line-height:1.6;color:#C9D4E0;max-width:660px;margin:16px 0 0;text-wrap:pretty">Audit visual dan rencana produksi aset untuk NEXA — dari build fungsional menjadi produk yang terasa selesai. Tidak ada perubahan logic atau mekanik dalam dokumen ini.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
+      <sc-for list="{{ coverTags }}" as="t" hint-placeholder-count="4">
+        <span style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.2em;padding:7px 14px;border-radius:999px;border:1px solid rgba(23,217,255,.4);color:#9FE9FF">{{ t }}</span>
+      </sc-for>
+    </div>
+  </header>
+
+  <!-- 0. AUDIT -->
+  <section style="padding:clamp(40px,6vw,72px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#35F2A1">BAGIAN 0</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 8px;letter-spacing:.02em">Audit Visual</h2>
+
+    <h3 style="font-size:13px;letter-spacing:.2em;font-family:Orbitron,system-ui,sans-serif;color:#91A4B8;margin:30px 0 14px">1 — IDENTITAS VISUAL SAAT INI</h3>
+    <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <sc-for list="{{ identity }}" as="i" hint-placeholder-count="4">
+        <div style="padding:20px;border-radius:18px;background:rgba(7,20,38,.72);border:1px solid rgba(145,164,184,.2)">
+          <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.22em;color:#17D9FF;margin-bottom:10px">{{ i.k }}</div>
+          <div style="font-size:14px;line-height:1.6;color:#DCE6F1;text-wrap:pretty">{{ i.v }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:760px;margin:20px 0 0;text-wrap:pretty"><strong style="color:#F5F8FC">Kesimpulan identitas:</strong> NEXA sudah punya bahasa visual yang konsisten — <em>governance console</em> bertema cyan/violet di atas navy gelap, tipografi teknis, dan grafik yang seluruhnya digambar lewat kode. Identitas ini kuat dan tidak perlu diganti. Yang kurang bukan arah, tapi <em>kedalaman produksi</em>.</p>
+
+    <h3 style="font-size:13px;letter-spacing:.2em;font-family:Orbitron,system-ui,sans-serif;color:#91A4B8;margin:36px 0 14px">2 — MENGAPA MASIH TERASA PROTOTYPE</h3>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ gaps }}" as="g" hint-placeholder-count="7">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:16px 18px;border-radius:14px;background:rgba(255,200,87,.06);border:1px solid rgba(255,200,87,.26)">
+          <span style="font-family:Orbitron,system-ui,sans-serif;font-size:11px;color:#FFC857;letter-spacing:.1em;padding-top:2px">{{ g.n }}</span>
+          <div>
+            <div style="font-weight:700;font-size:14.5px;color:#F5F8FC;margin-bottom:5px">{{ g.t }}</div>
+            <div style="font-size:13.5px;line-height:1.6;color:#C9D4E0;text-wrap:pretty">{{ g.d }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <h3 style="font-size:13px;letter-spacing:.2em;font-family:Orbitron,system-ui,sans-serif;color:#91A4B8;margin:36px 0 14px">3 — APA YANG DIBUTUHKAN</h3>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:760px;margin:0 0 16px;text-wrap:pretty">Tiga pilar, diurutkan berdasarkan dampak per jam kerja. Semuanya realistis untuk web: SVG, CSS, WebP, dan audio terkompresi — tanpa engine 3D, tanpa spritesheet raksasa.</p>
+    <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+      <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="3">
+        <div style="padding:22px;border-radius:18px;background:linear-gradient(180deg,rgba(23,217,255,.08),rgba(7,20,38,.6));border:1px solid rgba(23,217,255,.3)">
+          <div style="font-family:Orbitron,system-ui,sans-serif;font-size:22px;color:#17D9FF">{{ p.n }}</div>
+          <div style="font-weight:700;font-size:15px;margin:10px 0 7px;color:#F5F8FC">{{ p.t }}</div>
+          <div style="font-size:13.5px;line-height:1.6;color:#C9D4E0;text-wrap:pretty">{{ p.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- A. CHARACTER -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#7657FF">BAGIAN A</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">Character Asset</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:740px;margin:0 0 24px;text-wrap:pretty">Empat karakter. Gaya visual tunggal: <strong style="color:#F5F8FC">semi-flat vector, garis 2px, palet terbatas 5 warna per karakter, cahaya rim cyan dari kiri-atas</strong> — dibuat sebagai SVG agar tajam di semua layar dan bisa diberi warna ulang lewat CSS.</p>
+
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <sc-for list="{{ characters }}" as="c" hint-placeholder-count="4">
+        <div style="border-radius:22px;background:rgba(7,20,38,.72);border:1px solid rgba(145,164,184,.22);overflow:hidden">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr);gap:0">
+            <div style="padding:22px 22px 18px;border-bottom:1px solid rgba(145,164,184,.16);display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between">
+              <div>
+                <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.26em;color:{{ c.c }}">{{ c.role }}</div>
+                <div style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(18px,2.4vw,24px);margin-top:8px;color:#F5F8FC">{{ c.name }}</div>
+              </div>
+              <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.16em;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:6px 12px">{{ c.id }}</div>
+            </div>
+            <div style="padding:20px 22px 24px;display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))">
+              <div>
+                <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#91A4B8;margin-bottom:8px">KONSEP DESAIN</div>
+                <div style="font-size:13.5px;line-height:1.6;color:#DCE6F1;text-wrap:pretty">{{ c.concept }}</div>
+              </div>
+              <div>
+                <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#91A4B8;margin-bottom:8px">EKSPRESI</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  <sc-for list="{{ c.expr }}" as="e" hint-placeholder-count="5">
+                    <span style="font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(245,248,252,.06);border:1px solid rgba(145,164,184,.26);color:#DCE6F1">{{ e }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <div>
+                <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#91A4B8;margin-bottom:8px">POSE</div>
+                <div style="display:flex;flex-wrap:wrap;gap:6px">
+                  <sc-for list="{{ c.pose }}" as="p" hint-placeholder-count="3">
+                    <span style="font-size:12px;padding:4px 10px;border-radius:999px;background:rgba(23,217,255,.07);border:1px solid rgba(23,217,255,.28);color:#9FE9FF">{{ p }}</span>
+                  </sc-for>
+                </div>
+              </div>
+              <div>
+                <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#91A4B8;margin-bottom:8px">SPESIFIKASI</div>
+                <div style="font-size:12.5px;line-height:1.7;color:#C9D4E0;font-variant-numeric:tabular-nums">{{ c.spec }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="margin-top:18px;padding:18px 20px;border-radius:16px;background:rgba(53,242,161,.07);border:1px solid rgba(53,242,161,.3)">
+      <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.24em;color:#35F2A1;margin-bottom:9px">ATURAN PRODUKSI KARAKTER</div>
+      <div style="font-size:13.5px;line-height:1.7;color:#DCE6F1;text-wrap:pretty">Setiap karakter dikirim sebagai <strong style="color:#F5F8FC">satu file SVG per ekspresi</strong> (bukan spritesheet), <code style="font-family:ui-monospace,monospace;font-size:12.5px;color:#9FE9FF">viewBox="0 0 512 640"</code>, maksimum 40&nbsp;KB setelah SVGO. Portrait bust dipakai di dialog bar; full-body hanya untuk NEXA di layar opening dan ending. Warna kulit/pakaian memakai <code style="font-family:ui-monospace,monospace;font-size:12.5px;color:#9FE9FF">currentColor</code> + CSS custom property agar bisa diberi tint sesuai kondisi Future Balance.</div>
+    </div>
+  </section>
+
+  <!-- B. ENVIRONMENT -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#17D9FF">BAGIAN B</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">Environment Asset</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:740px;margin:0 0 22px;text-wrap:pretty">Strategi: <strong style="color:#F5F8FC">satu background matte per modul</strong> (WebP, layer terpisah untuk parallax) + atmosfer dari CSS. Tidak ada environment 3D real-time.</p>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ environments }}" as="e" hint-placeholder-count="6">
+        <div style="padding:20px 22px;border-radius:18px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);border-left:3px solid {{ e.c }}">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between;margin-bottom:10px">
+            <div style="font-weight:700;font-size:16px;color:#F5F8FC">{{ e.name }}</div>
+            <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.18em;color:#91A4B8">{{ e.where }}</div>
+          </div>
+          <div style="font-size:13.5px;line-height:1.65;color:#DCE6F1;text-wrap:pretty;margin-bottom:12px">{{ e.desc }}</div>
+          <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));padding-top:12px;border-top:1px solid rgba(145,164,184,.14)">
+            <div><span style="font-family:Orbitron,system-ui,sans-serif;font-size:9px;letter-spacing:.18em;color:#91A4B8">LAYER</span><div style="font-size:12.5px;line-height:1.6;color:#C9D4E0;margin-top:5px">{{ e.layers }}</div></div>
+            <div><span style="font-family:Orbitron,system-ui,sans-serif;font-size:9px;letter-spacing:.18em;color:#91A4B8">ATMOSFER</span><div style="font-size:12.5px;line-height:1.6;color:#C9D4E0;margin-top:5px">{{ e.atmo }}</div></div>
+            <div><span style="font-family:Orbitron,system-ui,sans-serif;font-size:9px;letter-spacing:.18em;color:#91A4B8">SPEK</span><div style="font-size:12.5px;line-height:1.6;color:#C9D4E0;margin-top:5px;font-variant-numeric:tabular-nums">{{ e.spec }}</div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:16px;display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <sc-for list="{{ props }}" as="p" hint-placeholder-count="4">
+        <div style="padding:18px;border-radius:16px;background:rgba(118,87,255,.07);border:1px solid rgba(118,87,255,.3)">
+          <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.2em;color:#B7A6FF;margin-bottom:8px">OBJEK PENDUKUNG</div>
+          <div style="font-weight:600;font-size:14.5px;color:#F5F8FC;margin-bottom:6px">{{ p.t }}</div>
+          <div style="font-size:13px;line-height:1.6;color:#C9D4E0;text-wrap:pretty">{{ p.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- C. UI -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#35F2A1">BAGIAN C</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">UI Asset</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:740px;margin:0 0 22px;text-wrap:pretty">UI NEXA tetap <strong style="color:#F5F8FC">code-only</strong> — tidak ada gambar tombol. Yang diproduksi adalah <em>token</em>, <em>state</em>, dan satu icon set SVG.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ uiGroups }}" as="u" hint-placeholder-count="7">
+        <div style="border-radius:18px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);padding:20px 22px">
+          <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+            <div style="font-family:Orbitron,system-ui,sans-serif;font-size:13.5px;letter-spacing:.1em;color:{{ u.c }}">{{ u.t }}</div>
+            <div style="font-size:12px;color:#91A4B8">{{ u.sub }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ u.items }}" as="it" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start">
+                <span style="width:5px;height:5px;border-radius:50%;background:{{ u.c }};margin-top:7px"></span>
+                <div style="font-size:13.5px;line-height:1.6;color:#DCE6F1;text-wrap:pretty">{{ it }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- D. SPECIAL EFFECT -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#FFC857">BAGIAN D</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">Special Effect</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:740px;margin:0 0 22px;text-wrap:pretty">Semua efek hormat pada <code style="font-family:ui-monospace,monospace;font-size:12.5px;color:#9FE9FF">prefers-reduced-motion</code> dan hanya menganimasikan <code style="font-family:ui-monospace,monospace;font-size:12.5px;color:#9FE9FF">transform</code>/<code style="font-family:ui-monospace,monospace;font-size:12.5px;color:#9FE9FF">opacity</code>. Budget: maksimum 3 efek aktif bersamaan, total ≤ 4&nbsp;ms per frame di laptop sekolah.</p>
+    <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <sc-for list="{{ effects }}" as="f" hint-placeholder-count="5">
+        <div style="position:relative;overflow:hidden;padding:20px;border-radius:18px;background:rgba(7,20,38,.75);border:1px solid rgba(23,217,255,.26)">
+          <div style="position:absolute;left:0;right:0;top:0;height:18%;background:linear-gradient(to bottom,transparent,rgba(23,217,255,.14),transparent);animation:ad-scan 5s linear infinite;pointer-events:none"></div>
+          <div style="position:relative">
+            <div style="font-family:Orbitron,system-ui,sans-serif;font-size:12.5px;letter-spacing:.12em;color:#17D9FF">{{ f.t }}</div>
+            <div style="font-size:13.5px;line-height:1.65;color:#DCE6F1;margin:10px 0 12px;text-wrap:pretty">{{ f.d }}</div>
+            <div style="font-size:12px;line-height:1.6;color:#91A4B8;padding-top:10px;border-top:1px solid rgba(145,164,184,.16)"><strong style="color:#C9D4E0">Teknik:</strong> {{ f.tech }}</div>
+            <div style="font-size:12px;line-height:1.6;color:#91A4B8;margin-top:5px"><strong style="color:#C9D4E0">Dipakai di:</strong> {{ f.use }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- E. AUDIO -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#7657FF">BAGIAN E</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">Audio Asset</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:740px;margin:0 0 22px;text-wrap:pretty">Format: <strong style="color:#F5F8FC">.webm (Opus) sebagai utama, .m4a sebagai fallback Safari</strong>. Total budget audio ≤ 3&nbsp;MB agar paket offline tetap ringan. BGM mono 96&nbsp;kbps, SFX 64&nbsp;kbps, voice 80&nbsp;kbps.</p>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ audio }}" as="a" hint-placeholder-count="4">
+        <div style="border-radius:18px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);padding:20px 22px">
+          <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between;margin-bottom:14px">
+            <div style="font-family:Orbitron,system-ui,sans-serif;font-size:13.5px;letter-spacing:.1em;color:{{ a.c }}">{{ a.t }}</div>
+            <div style="font-family:Orbitron,system-ui,sans-serif;font-size:9.5px;letter-spacing:.18em;color:#91A4B8">{{ a.meta }}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:7px">
+            <sc-for list="{{ a.items }}" as="it" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:minmax(0,190px) 1fr;gap:14px;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(145,164,184,.1)">
+                <code style="font-family:ui-monospace,monospace;font-size:12px;color:#9FE9FF;word-break:break-all">{{ it.id }}</code>
+                <div style="font-size:13px;line-height:1.6;color:#DCE6F1;text-wrap:pretty">{{ it.d }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- F. STYLE GUIDE -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#17D9FF">BAGIAN F</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">Art Style Guide</h2>
+
+    <h3 style="font-size:12.5px;letter-spacing:.2em;font-family:Orbitron,system-ui,sans-serif;color:#91A4B8;margin:26px 0 14px">COLOR PALETTE</h3>
+    <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+      <sc-for list="{{ palette }}" as="p" hint-placeholder-count="8">
+        <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(145,164,184,.22);background:rgba(7,20,38,.6)">
+          <div style="height:64px;background:{{ p.hex }};box-shadow:inset 0 -1px 0 rgba(0,0,0,.25)"></div>
+          <div style="padding:13px 14px">
+            <div style="font-weight:700;font-size:13px;color:#F5F8FC">{{ p.name }}</div>
+            <code style="font-family:ui-monospace,monospace;font-size:11.5px;color:#9FE9FF">{{ p.hex }}</code>
+            <div style="font-size:12px;line-height:1.5;color:#91A4B8;margin-top:6px;text-wrap:pretty">{{ p.use }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <h3 style="font-size:12.5px;letter-spacing:.2em;font-family:Orbitron,system-ui,sans-serif;color:#91A4B8;margin:34px 0 14px">TYPOGRAPHY</h3>
+    <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div style="padding:22px;border-radius:18px;background:rgba(7,20,38,.72);border:1px solid rgba(23,217,255,.3)">
+        <div style="font-family:Orbitron,system-ui,sans-serif;font-weight:800;font-size:34px;letter-spacing:.12em;color:#17D9FF">NEXA</div>
+        <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.24em;color:#91A4B8;margin-top:12px">DISPLAY / HUD — ORBITRON</div>
+        <div style="font-size:13px;line-height:1.65;color:#C9D4E0;margin-top:10px;text-wrap:pretty">Judul layar, label HUD, angka meter, nama modul. Selalu <em>uppercase</em>, letter-spacing .1–.38em, weight 700–800. Tidak pernah untuk paragraf.</div>
+      </div>
+      <div style="padding:22px;border-radius:18px;background:rgba(7,20,38,.72);border:1px solid rgba(53,242,161,.3)">
+        <div style="font-size:30px;font-weight:700;color:#35F2A1">Aa Bb 2045</div>
+        <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.24em;color:#91A4B8;margin-top:12px">BODY / UI — MANROPE</div>
+        <div style="font-size:13px;line-height:1.65;color:#C9D4E0;margin-top:10px;text-wrap:pretty">Ganti Inter (generik, terlalu sering dipakai) dengan Manrope: geometris-humanis, angka jelas, lisensi OFL. Body 15–17px, line-height 1.6, <code style="font-family:ui-monospace,monospace;font-size:12px;color:#9FE9FF">text-wrap:pretty</code>.</div>
+      </div>
+      <div style="padding:22px;border-radius:18px;background:rgba(7,20,38,.72);border:1px solid rgba(145,164,184,.26)">
+        <code style="font-family:ui-monospace,monospace;font-size:24px;color:#DCE6F1">AI_CORE:0.72</code>
+        <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.24em;color:#91A4B8;margin-top:12px">MONO / DATA — JETBRAINS MONO</div>
+        <div style="font-size:13px;line-height:1.65;color:#C9D4E0;margin-top:10px;text-wrap:pretty">Log sistem, ID keputusan, telemetri. Memberi kesan konsol tanpa mengorbankan keterbacaan teks utama.</div>
+      </div>
+    </div>
+
+    <div style="display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:24px">
+      <sc-for list="{{ styleBlocks }}" as="s" hint-placeholder-count="3">
+        <div style="padding:22px;border-radius:18px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2)">
+          <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.22em;color:#FFC857;margin-bottom:10px">{{ s.t }}</div>
+          <div style="font-size:13.5px;line-height:1.7;color:#DCE6F1;text-wrap:pretty">{{ s.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+
+    <h3 style="font-size:12.5px;letter-spacing:.2em;font-family:Orbitron,system-ui,sans-serif;color:#91A4B8;margin:34px 0 14px">REFERENSI PROFESIONAL</h3>
+    <div style="display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <sc-for list="{{ refs }}" as="r" hint-placeholder-count="6">
+        <div style="padding:18px;border-radius:16px;background:rgba(118,87,255,.07);border:1px solid rgba(118,87,255,.28)">
+          <div style="font-weight:700;font-size:14.5px;color:#F5F8FC">{{ r.n }}</div>
+          <div style="font-size:12.5px;line-height:1.6;color:#C9D4E0;margin-top:7px;text-wrap:pretty">{{ r.d }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- G. PRIORITY -->
+  <section style="padding:clamp(44px,6vw,76px) 0 0">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10.5px;letter-spacing:.34em;color:#35F2A1">BAGIAN G</div>
+    <h2 style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,36px);margin:12px 0 10px;letter-spacing:.02em">Priority List</h2>
+    <p style="font-size:14.5px;line-height:1.7;color:#C9D4E0;max-width:740px;margin:0 0 22px;text-wrap:pretty">Estimasi jam adalah beban desain+implementasi untuk satu orang. Tier 1 saja sudah mengangkat NEXA dari "prototype" ke "produk".</p>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <sc-for list="{{ tiers }}" as="t" hint-placeholder-count="3">
+        <div style="border-radius:20px;background:rgba(7,20,38,.72);border:1px solid {{ t.border }};overflow:hidden">
+          <div style="padding:18px 22px;background:{{ t.bg }};display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between">
+            <div>
+              <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.26em;color:{{ t.c }}">TIER {{ t.n }}</div>
+              <div style="font-family:Orbitron,system-ui,sans-serif;font-weight:700;font-size:clamp(16px,2.2vw,21px);margin-top:7px;color:#F5F8FC">{{ t.t }}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:Orbitron,system-ui,sans-serif;font-size:19px;color:{{ t.c }}">{{ t.hours }}</div>
+              <div style="font-size:11px;letter-spacing:.14em;color:#91A4B8">ESTIMASI</div>
+            </div>
+          </div>
+          <div style="padding:16px 22px 22px;display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ t.items }}" as="it" hint-placeholder-count="6">
+              <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(145,164,184,.12)">
+                <span style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;color:{{ t.c }};letter-spacing:.1em">{{ it.tag }}</span>
+                <div style="font-size:13.5px;line-height:1.6;color:#DCE6F1;text-wrap:pretty">{{ it.d }}</div>
+                <span style="font-size:11.5px;color:#91A4B8;white-space:nowrap;font-variant-numeric:tabular-nums">{{ it.h }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <footer style="margin-top:clamp(44px,6vw,72px);padding-top:26px;border-top:1px solid rgba(145,164,184,.2);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center">
+    <div style="font-family:Orbitron,system-ui,sans-serif;font-size:10px;letter-spacing:.24em;color:#91A4B8">NEXA — ASSET DESIGN PLAN — REV 1.0</div>
+    <div style="font-size:12.5px;color:#91A4B8">Logic dan mekanik v2.1 tidak diubah oleh dokumen ini.</div>
+  </footer>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      coverTags: ["Audit", "7 Kategori Aset", "Style Guide", "3 Tier Prioritas"],
+
+      identity: [
+        { k: "TEMA", v: "Governance console tahun 2045 — pemain memegang panel kendali kebijakan AI, bukan senjata. Nada: serius, optimis, institusional." },
+        { k: "PALET", v: "Navy gelap #071426 sebagai dasar, cyan #17D9FF sebagai aksi, violet #7657FF sebagai AI, hijau #35F2A1 sebagai konfirmasi, amber #FFC857 sebagai peringatan." },
+        { k: "TIPOGRAFI", v: "Orbitron untuk display/HUD + Inter untuk body. Orbitron sudah tepat; Inter adalah titik lemah — netral tapi generik." },
+        { k: "GRAFIK", v: "100% digambar lewat kode: SVG radar, gradient, grid overlay, glow. Tidak ada satu pun raster. Konsisten dan ringan, tapi datar." }
+      ],
+
+      gaps: [
+        { n: "01", t: "Tidak ada wajah", d: "Empat suara narasi (NEXA, Mentor, Warga, Regulator) hanya berupa teks. Tanpa portrait, dialog terasa seperti tooltip, bukan percakapan — ini penyebab terbesar kesan prototype." },
+        { n: "02", t: "Semua layar memakai latar yang sama", d: "Empat modul berbeda topik tapi identik secara visual. Pemain tidak merasa berpindah tempat, jadi tidak ada rasa progres spasial." },
+        { n: "03", t: "State tombol belum lengkap", d: "Hover ada, tetapi pressed, disabled, loading, dan focus-ring yang konsisten belum. Antarmuka terasa kaku saat disentuh." },
+        { n: "04", t: "Feedback keputusan terlalu instan", d: "Angka Future Balance berubah seketika tanpa animasi hitung, tanpa partikel, tanpa suara. Momen paling penting dalam game justru paling sepi." },
+        { n: "05", t: "Transisi antar layar keras", d: "Pergantian modul memakai fade seragam. Tidak ada bahasa transisi yang memberi arti (masuk lab vs keluar lab vs membuka konsekuensi)." },
+        { n: "06", t: "Ikon memakai glyph teks", d: "Beberapa label memakai huruf atau bentuk sederhana sebagai ikon. Tidak ada icon set yang koheren dengan stroke dan grid yang sama." },
+        { n: "07", t: "Loading dan empty state belum didesain", d: "Spinner generik dan layar kosong tanpa pesan. Detail inilah yang membedakan produk jadi dari demo." }
+      ],
+
+      pillars: [
+        { n: "01", t: "Wajah dan tempat", d: "Character portrait SVG + background matte per modul. Memberi identitas dan rasa perjalanan — dampak tertinggi." },
+        { n: "02", t: "Kedalaman antarmuka", d: "Icon set, state lengkap, skeleton loader, toast, meter beranimasi. Membuat setiap sentuhan terasa dijawab." },
+        { n: "03", t: "Momen dan suara", d: "VFX konsekuensi, transisi bermakna, BGM adaptif, SFX mikro. Mengubah data menjadi pengalaman." }
+      ],
+
+      characters: [
+        {
+          id: "CH-01", role: "AI ASSISTANT — PROTAGONIS SISTEM", name: "NEXA", c: "#17D9FF",
+          concept: "Bukan robot humanoid. Sebuah inti geometris — oktahedron bercahaya di dalam cincin orbit — yang bahasa tubuhnya adalah rotasi, jarak antar cincin, dan denyut inti. Netral secara gender dan budaya, sehingga tidak ada murid yang merasa terwakili berlebihan atau tersisih.",
+          expr: ["Idle tenang", "Menjelaskan", "Memperingatkan", "Menyetujui", "Kelebihan beban"],
+          pose: ["Inti terpusat", "Miring memutar", "Cincin terbuka lebar"],
+          spec: "SVG, 512×640, ≤40 KB/ekspresi · 5 ekspresi · 1 full-body untuk opening · animasi CSS rotasi + pulse"
+        },
+        {
+          id: "CH-02", role: "MENTOR — PEMANDU PEDAGOGIS", name: "Bu Arka", c: "#35F2A1",
+          concept: "Perempuan Indonesia usia 40-an, kepala peneliti kebijakan. Kemeja batik modern dengan motif geometris yang menggema pada grid UI, kacamata tipis, papan data di tangan. Hangat tapi tegas — dia menuntut alasan, bukan jawaban benar.",
+          expr: ["Netral hangat", "Menjelaskan", "Menantang", "Bangga", "Prihatin"],
+          pose: ["Bust 3/4 menghadap kanan", "Tangan menunjuk data", "Lengan terlipat"],
+          spec: "SVG, 512×640, ≤40 KB/ekspresi · 5 ekspresi · bust only · dipakai di dialog bar & debrief"
+        },
+        {
+          id: "CH-03", role: "STAKEHOLDER — SUARA MASYARAKAT", name: "Warga (3 varian)", c: "#FFC857",
+          concept: "Tiga silhouette berwarna solid dengan detail minimal: pelajar (tas, earbud), pekerja informal (topi, tas kurir), lansia (kerudung/peci, tongkat). Mereka muncul saat konsekuensi keputusan menyentuh kelompok tertentu — membuat abstraksi 'dampak sosial' punya wujud.",
+          expr: ["Harapan", "Bingung", "Protes", "Lega"],
+          pose: ["Setengah badan", "Memegang perangkat", "Mengangkat tangan"],
+          spec: "SVG, 384×480, ≤22 KB/varian · 3 karakter × 4 ekspresi · silhouette + 2 warna aksen"
+        },
+        {
+          id: "CH-04", role: "ANTAGONIS STRUKTURAL — PENGUJI PRINSIP", name: "Delegasi Regulator", c: "#7657FF",
+          concept: "Bukan penjahat. Figur formal dengan blazer, lanyard, dan tablet — mewakili tekanan institusi: efisiensi, anggaran, tenggat politik. Hadir di Modul 4 (Konstitusi AI) untuk menekan pemain agar berkompromi pada prinsip.",
+          expr: ["Formal datar", "Skeptis", "Menekan", "Mengakui"],
+          pose: ["Bust frontal", "Menyerahkan dokumen"],
+          spec: "SVG, 512×640, ≤35 KB/ekspresi · 4 ekspresi · bust only · aksen violet"
+        }
+      ],
+
+      environments: [
+        { name: "Orbital Lab — Hub Utama", where: "Hub / peta modul", c: "#17D9FF", desc: "Interior stasiun orbit: lengkung jendela besar menghadap Bumi, empat dermaga modul memancar dari pusat. Bumi berotasi sangat lambat sebagai penanda waktu pasif. Ini rumah pemain — harus paling megah.", layers: "sky+Bumi / struktur jendela / interior depan / partikel debu", atmo: "God-ray cyan dari jendela, vignette 18%, dust drift 40 partikel", spec: "WebP 2400×1350 per layer, ≤180 KB total · parallax 4 layer" },
+        { name: "Modul 1 — Ruang Simulasi Masa Depan", where: "Future Balance", c: "#7657FF", desc: "Ruang gelap dengan proyeksi kota hologram di tengah meja. Kota berubah bentuk mengikuti slider pemain — dense tower saat inovasi tinggi, kanopi hijau saat keberlanjutan tinggi.", layers: "backplate ruang / meja proyeksi / hologram kota (SVG dinamis)", atmo: "Volumetric haze violet, cahaya bawah dari meja, flicker 4%", spec: "WebP 2000×1125 ≤110 KB + hologram SVG ≤60 KB" },
+        { name: "Modul 2 — Lantai Kerja & Keterampilan", where: "Work allocation", c: "#35F2A1", desc: "Ruang terbuka bergaya workshop: meja kerja manusia di kiri, lengan robotik di kanan, papan alokasi 12 unit di tengah. Pencahayaan siang, paling terang dari semua modul — nada optimis.", layers: "backplate workshop / peralatan tengah / foreground bokeh", atmo: "Daylight hangat 5200K, bloom lembut, tanpa haze", spec: "WebP 2000×1125 ≤120 KB · parallax 3 layer" },
+        { name: "Modul 3 — Ruang Dampak Sosial", where: "Consequence", c: "#FFC857", desc: "Balkon menghadap kota malam. Jendela-jendela apartemen menyala/mati mengikuti konsekuensi keputusan — visualisasi dampak tanpa satu pun angka.", layers: "skyline jauh / gedung dekat (jendela = SVG grid) / railing", atmo: "Kabut kota amber, rain sheen opsional, light twinkle", spec: "WebP 2000×1125 ≤110 KB + window-grid SVG ≤30 KB" },
+        { name: "Modul 4 — Ruang Konstitusi", where: "Constitution (gated)", c: "#E7EEF6", desc: "Ruang sidang minimalis, meja bundar, enam pilar cahaya mewakili enam prinsip. Setiap prinsip yang dipilih menyalakan satu pilar. Paling sunyi dan paling formal — menandai bobot keputusan akhir.", layers: "backplate ruang / meja / 6 pilar cahaya (CSS)", atmo: "Cahaya atas terfokus, kontras tinggi, tanpa partikel", spec: "WebP 2000×1125 ≤100 KB · pilar murni CSS" },
+        { name: "Ending — Proyeksi 2060", where: "5 ending", c: "#35F2A1", desc: "Satu matte dasar dengan lima varian grading (utopia seimbang, teknokratis, stagnan, terpecah, kolaps ringan). Hemat produksi: satu gambar, lima look lewat CSS filter + overlay.", layers: "matte kota 2060 / overlay grading / teks ending", atmo: "Grading per ending: hue-rotate + saturate + overlay warna", spec: "WebP 2400×1350 ≤160 KB · 5 varian dari 1 file" }
+      ],
+
+      props: [
+        { t: "Data slate", d: "Papan tipis bercahaya yang dibawa Mentor; muncul juga sebagai frame kartu keputusan. SVG, 3 ukuran." },
+        { t: "Kubus arsip keputusan", d: "Blok kecil yang bertumpuk tiap kali pemain memutuskan — jadi log visual di sisi hub. SVG + CSS stack." },
+        { t: "Pilar prinsip", d: "Enam kolom cahaya di Modul 4; menyala progresif. Murni CSS gradient + box-shadow." },
+        { t: "Bumi orbital", d: "Piringan Bumi bergaya bergaris kontur, rotasi 240 detik. SVG ≤45 KB, satu-satunya elemen animasi lambat di hub." }
+      ],
+
+      uiGroups: [
+        { t: "BUTTON", c: "#17D9FF", sub: "3 varian × 6 state, tinggi sentuh minimum 48px", items: [
+          "Primary — pill gradient cyan→violet, teks navy #071426, shadow glow 0 0 24px rgba(23,217,255,.35).",
+          "Secondary — transparan, border 1px hijau/abu, teks warna border.",
+          "Ghost/tersier — tanpa border, hanya teks abu, dipakai untuk 'Lewati' dan 'Kembali'.",
+          "State wajib: default, hover (naik 1px + glow +30%), pressed (turun 1px, glow −40%, scale .985), focus-visible (outline 2px #35F2A1 offset 2px), disabled (opacity .38, cursor not-allowed), loading (teks diganti tiga titik berdenyut, lebar tombol dikunci agar layout tidak bergeser)."
+        ]},
+        { t: "ICON SET", c: "#35F2A1", sub: "24 ikon, grid 24px, stroke 1.75px, sudut bulat 2px", items: [
+          "Navigasi: home-lab, back, forward, close, menu, expand.",
+          "Modul: balance-scale, work-grid, society-pulse, constitution-pillar.",
+          "Sistem: save, continue, reset, info, warning, check, lock (gate Modul 4), unlock.",
+          "Media: sound-on, sound-off, voice, subtitle, play, pause.",
+          "Dikirim sebagai satu SVG sprite (<symbol id>) ≤18 KB, diwarnai lewat currentColor."
+        ]},
+        { t: "LOADING ANIMATION", c: "#7657FF", sub: "tiga tingkat, tidak pernah spinner generik", items: [
+          "Boot (sekali, ≤1.4s): logo NEXA dengan letter-spacing menyempit + progress bar tipis, teks status 'MENGHUBUNGKAN ORBITAL LAB'.",
+          "Transisi modul (≤600ms): cincin orbit menutup lalu membuka — reuse bentuk logo, tidak butuh aset baru.",
+          "Skeleton: kartu dan meter muncul sebagai blok shimmer cyan 8% sebelum data siap — mencegah kesan 'halaman patah'."
+        ]},
+        { t: "NOTIFICATION", c: "#FFC857", sub: "toast + modal, satu bahasa visual", items: [
+          "Toast (sudut kanan atas, 3.5s auto-dismiss): 4 tone — info cyan, sukses hijau, peringatan amber, kritis merah #FF6B6B. Ikon 20px + judul + baris pendek.",
+          "Consequence popup (modal tengah): header tone, delta angka beranimasi, dua baris penjelasan, satu tombol lanjut. Backdrop blur 10px + gelap 62%.",
+          "Inline hint: baris kecil di bawah kontrol, muncul saat pemain ragu >6 detik. Tidak mengganggu, bisa dimatikan."
+        ]},
+        { t: "PROGRESS BAR & METER", c: "#17D9FF", sub: "empat tipe", items: [
+          "Mission pathway (header): 4 simpul + rel 3px, simpul aktif berdenyut, selesai terisi hijau.",
+          "Future Balance meter: bar bertumpuk 4 dimensi, angka menghitung (count-up 500ms ease-out), delta muncul sebagai chip '+3' yang naik lalu memudar.",
+          "Work allocation: 12 slot kotak, terisi saat dialokasikan, sisa slot berkedip lembut jika masih ada.",
+          "Constitution: 6 pilar, terisi vertikal dari bawah."
+        ]},
+        { t: "CARD INTERFACE", c: "#35F2A1", sub: "satu anatomi, empat ukuran", items: [
+          "Anatomi tetap: eyebrow Orbitron 10px · judul 15–17px · isi 13.5px · footer aksi. Radius 18px, border 1px rgba(145,164,184,.2), background rgba(7,20,38,.72), backdrop-blur 10px.",
+          "Ukuran: S (chip keputusan), M (kartu opsi), L (panel modul), XL (ending summary).",
+          "State terpilih: border menjadi warna modul + inner glow; state terkunci: overlay gelap + ikon lock."
+        ]},
+        { t: "DASHBOARD ELEMENT", c: "#7657FF", sub: "hub + debrief", items: [
+          "Hub tile modul: 4 kartu L dengan nomor besar, status (terkunci/berjalan/selesai), dan ring progres.",
+          "Decision log: daftar ringkas keputusan pemain dengan ID mono dan delta — bahan diskusi guru setelah bermain.",
+          "Ending summary: radar 4 dimensi + tabel keputusan + satu paragraf refleksi, siap di-screenshot untuk penilaian kelas."
+        ]}
+      ],
+
+      effects: [
+        { t: "HOLOGRAM EFFECT", d: "Proyeksi kota dan portrait NEXA tampil sebagai hologram: scanline halus, chromatic offset 0.5px, tepi memudar, jitter 1px setiap 4 detik.", tech: "SVG + 2 pseudo-element (repeating-linear-gradient scanline, mix-blend-mode:screen) + keyframe translateY", use: "Modul 1, portrait NEXA, ending projection" },
+        { t: "SCANNING ANIMATION", d: "Garis cahaya melintas dari atas ke bawah saat sistem 'membaca' keputusan pemain, berhenti dengan kilatan singkat di tepi bawah.", tech: "Satu div absolute, gradient tipis, animation 900ms cubic-bezier(.4,0,.2,1), will-change:transform", use: "Sebelum consequence popup, saat submit alokasi kerja" },
+        { t: "AI PROCESSING EFFECT", d: "Saat NEXA berpikir: inti berdenyut, 3 cincin berputar dengan kecepatan berbeda, dan 5–7 titik data bergerak ke arah inti.", tech: "React.createElement di renderVals agar state animasi bertahan lintas re-render; transform-only", use: "Setiap jeda sebelum respons NEXA, boot screen" },
+        { t: "TRANSITION EFFECT", d: "Tiga transisi bermakna, bukan satu fade: masuk modul = cincin menutup-membuka (600ms); keluar ke hub = zoom-out + blur ringan (450ms); membuka konsekuensi = iris wipe dari titik klik (500ms).", tech: "clip-path circle() dengan variabel posisi klik, opacity+scale; fallback fade jika reduced-motion", use: "Semua perpindahan layar" },
+        { t: "PARTICLE EFFECT", d: "Tiga preset hemat: dust drift hub (40 partikel), impact burst konsekuensi (18 partikel, 700ms sekali pakai), ember ending kolaps (24 partikel). Tidak ada partikel terus-menerus di layar bacaan.", tech: "Satu canvas 2D berbagi, requestAnimationFrame dihentikan saat tab tidak aktif; partikel hub pakai CSS jika canvas tidak tersedia", use: "Hub, consequence, ending" }
+      ],
+
+      audio: [
+        { t: "BACKGROUND MUSIC", c: "#7657FF", meta: "5 trek · loop seamless · ≤1.4 MB total", items: [
+          { id: "bgm_hub_orbital", d: "Ambient pad + arpeggio pelan, 68 BPM, loop 90s. Nada penasaran dan tenang." },
+          { id: "bgm_module_design", d: "Pulse ritmis ringan untuk Modul 1–2, 84 BPM, loop 75s. Mendorong tanpa menegangkan." },
+          { id: "bgm_module_social", d: "Lebih lembut, piano + strings tipis untuk Modul 3, 62 BPM, loop 80s." },
+          { id: "bgm_constitution", d: "Drone rendah + choir sintetis, hampir tanpa ritme — menandai keseriusan Modul 4." },
+          { id: "bgm_ending_var", d: "Satu tema, 5 mix (cerah/dingin/sepi/pecah/gelap) dipilih sesuai ending. Hemat: satu komposisi, lima balance." }
+        ]},
+        { t: "SOUND EFFECT (SISTEM)", c: "#17D9FF", meta: "12 SFX · ≤60 ms latency · ≤420 KB", items: [
+          { id: "sfx_boot_online", d: "Sistem menyala — swell naik 1.2s, sekali di boot." },
+          { id: "sfx_scan_sweep", d: "Sapuan pemindaian, sinkron dengan scanning animation." },
+          { id: "sfx_delta_up / down", d: "Nada naik/turun pendek saat Future Balance berubah; pitch mengikuti besar delta." },
+          { id: "sfx_consequence_hit", d: "Impact tumpul + tail reverb saat popup konsekuensi terbuka." },
+          { id: "sfx_unlock_gate", d: "Kunci terbuka untuk Modul 4 — tiga nada naik, terasa sebagai pencapaian." },
+          { id: "sfx_pillar_light", d: "Pilar prinsip menyala; nada berbeda per pilar (heksatonik) agar 6 pilihan terasa unik." },
+          { id: "sfx_ending_reveal", d: "Reveal panjang 2s dengan tail, satu per sesi." }
+        ]},
+        { t: "INTERACTION SOUND", c: "#35F2A1", meta: "8 SFX mikro · ≤40 KB masing-masing · volume −18 dB", items: [
+          { id: "ui_hover", d: "Tik sangat halus, ≤40 ms. Di-throttle agar tidak menumpuk saat kursor bergerak cepat." },
+          { id: "ui_press / ui_release", d: "Klik dua bagian — memberi bobot fisik pada tombol." },
+          { id: "ui_slider_step", d: "Tik terkuantisasi per langkah slider; berhenti otomatis saat digeser cepat." },
+          { id: "ui_card_select", d: "Nada lembut + sedikit 'suction' saat kartu opsi dipilih." },
+          { id: "ui_toast_in", d: "Nada dua not pendek, tone berbeda untuk sukses/peringatan." },
+          { id: "ui_nav_transition", d: "Whoosh tipis menemani transisi layar; panjang mengikuti durasi transisi." },
+          { id: "ui_disabled_tap", d: "Bunyi tumpul rendah saat menyentuh elemen terkunci — menjelaskan tanpa teks." }
+        ]},
+        { t: "VOICE ASSISTANT", c: "#FFC857", meta: "Bahasa Indonesia · ~34 baris · subtitle wajib · ≤1.1 MB", items: [
+          { id: "vo_nexa_*", d: "Suara NEXA: netral, tempo sedang, sedikit processing (ring modulation halus 2%) agar terdengar sebagai sistem tanpa kehilangan kejelasan. 18 baris: sambutan, instruksi tiap modul, peringatan ketidakseimbangan, konfirmasi keputusan, penutup." },
+          { id: "vo_mentor_*", d: "Bu Arka: hangat, artikulasi jelas, 10 baris — pembuka modul, satu pertanyaan reflektif per modul, debrief akhir." },
+          { id: "vo_citizen_*", d: "Warga: 4 baris pendek reaksi dampak, direkam 3 timbre berbeda." },
+          { id: "vo_regulator_*", d: "Regulator: 2 baris tekanan di Modul 4, nada formal datar." },
+          { id: "CATATAN PRODUKSI", d: "ID baris dikunci sesuai Design Bible agar dapat diganti tanpa menyentuh kode. Jika rekaman manusia belum tersedia, subtitle + SFX tetap membuat game utuh — voice adalah Tier 3, bukan blocker." }
+        ]}
+      ],
+
+      palette: [
+        { name: "Deep Orbit", hex: "#071426", use: "Latar utama seluruh aplikasi" },
+        { name: "Hull Navy", hex: "#0D2A4A", use: "Gradient atas, panel terangkat" },
+        { name: "Signal Cyan", hex: "#17D9FF", use: "Aksi utama, tautan, highlight data" },
+        { name: "AI Violet", hex: "#7657FF", use: "Segala hal milik AI: hologram, processing" },
+        { name: "Verify Green", hex: "#35F2A1", use: "Konfirmasi, progres selesai, focus ring" },
+        { name: "Caution Amber", hex: "#FFC857", use: "Peringatan, dampak sosial, trade-off" },
+        { name: "Critical Coral", hex: "#FF6B6B", use: "Hanya untuk konsekuensi berat — maksimum 1 elemen per layar" },
+        { name: "Ink", hex: "#F5F8FC", use: "Teks utama, kontras 14:1 di atas Deep Orbit" }
+      ],
+
+      styleBlocks: [
+        { t: "LIGHTING", d: "Satu sumber cahaya konsisten: kiri-atas 35°, dingin (6500K). Semua glow adalah box-shadow/drop-shadow dengan warna aksen pada opacity 25–40% — tidak pernah putih murni. Vignette 14–18% di setiap layar penuh untuk memusatkan perhatian. Bayangan selalu lebih gelap dari latar, bukan hitam pekat." },
+        { t: "MATERIAL STYLE", d: "Tiga material saja: (1) Glass — panel semi-transparan rgba(7,20,38,.72) + blur 10px + border 1px terang; (2) Emissive — permukaan bercahaya untuk data dan aksi, tanpa tekstur; (3) Matte — background dan silhouette karakter, tanpa gloss. Tidak ada skeuomorphism, tidak ada bevel, tidak ada noise texture di atas teks." },
+        { t: "MOTION", d: "Durasi: mikro 120ms, komponen 240ms, layar 450–600ms. Easing: cubic-bezier(.4,0,.2,1) untuk masuk, (.4,0,1,1) untuk keluar. Hanya transform dan opacity. Semua di bawah prefers-reduced-motion turun menjadi cross-fade 120ms." }
+      ],
+
+      refs: [
+        { n: "Mini Motorways", d: "Cara mengomunikasikan sistem kompleks lewat bentuk geometris bersih dan feedback halus — acuan utama kejelasan." },
+        { n: "Papers, Please", d: "Keputusan moral yang terasa berat lewat UI dokumen dan konsekuensi yang dinamai, bukan skor." },
+        { n: "Reigns", d: "Empat meter keseimbangan sebagai inti permainan — acuan langsung untuk Future Balance." },
+        { n: "Observation / Tacoma", d: "Bahasa visual antarmuka AI: hologram, scanline, tipografi teknis yang tetap terbaca." },
+        { n: "Linear (app)", d: "Disiplin state tombol, toast, dan keyboard focus — acuan kualitas UI, bukan gaya." },
+        { n: "Stripe Docs", d: "Hierarki tipografi dan kerapatan informasi untuk layar penjelasan dan debrief guru." }
+      ],
+
+      tiers: [
+        { n: "1", t: "Mandatory — wajib sebelum submit", c: "#35F2A1", border: "rgba(53,242,161,.4)", bg: "rgba(53,242,161,.08)", hours: "26–34 jam", items: [
+          { tag: "A", d: "NEXA 5 ekspresi + Bu Arka 5 ekspresi (SVG portrait)", h: "10 j" },
+          { tag: "B", d: "Background matte 4 modul + hub (WebP, parallax 3 layer)", h: "8 j" },
+          { tag: "C", d: "Icon set 24 ikon (SVG sprite) + state tombol lengkap", h: "6 j" },
+          { tag: "C", d: "Count-up meter + delta chip + skeleton loader", h: "4 j" },
+          { tag: "D", d: "Scanning animation + transisi bermakna (3 tipe)", h: "3 j" },
+          { tag: "E", d: "12 SFX sistem + 8 SFX interaksi", h: "3 j" }
+        ]},
+        { n: "2", t: "Important — mengangkat ke kelas produk", c: "#17D9FF", border: "rgba(23,217,255,.4)", bg: "rgba(23,217,255,.08)", hours: "20–26 jam", items: [
+          { tag: "A", d: "Warga 3 varian × 4 ekspresi + Regulator 4 ekspresi", h: "7 j" },
+          { tag: "B", d: "Hologram kota dinamis Modul 1 + window-grid Modul 3", h: "5 j" },
+          { tag: "D", d: "Hologram effect, AI processing effect, particle 3 preset", h: "5 j" },
+          { tag: "E", d: "5 trek BGM dengan crossfade adaptif per modul", h: "4 j" },
+          { tag: "C", d: "Decision log + ending summary siap-screenshot untuk guru", h: "3 j" },
+          { tag: "F", d: "Ganti Inter → Manrope, tambah JetBrains Mono untuk data", h: "1 j" }
+        ]},
+        { n: "3", t: "Optional premium — jika waktu tersisa", c: "#FFC857", border: "rgba(255,200,87,.4)", bg: "rgba(255,200,87,.08)", hours: "18–24 jam", items: [
+          { tag: "E", d: "Voice-over Bahasa Indonesia 34 baris (rekaman manusia)", h: "9 j" },
+          { tag: "B", d: "Ending 2060 dengan 5 grading + ember particle", h: "4 j" },
+          { tag: "D", d: "Iris wipe dari titik klik + chromatic transition antar modul", h: "3 j" },
+          { tag: "C", d: "Mode kontras tinggi + tema terang untuk proyektor kelas", h: "4 j" },
+          { tag: "A", d: "Idle micro-animation karakter (kedip, napas) saat dialog diam", h: "3 j" }
+        ]}
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

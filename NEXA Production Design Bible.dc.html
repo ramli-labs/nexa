@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#071426;color:#F5F8FC;font-family:Inter,system-ui,sans-serif}
+a{color:#17D9FF}a:hover{color:#35F2A1}
+@keyframes nx-spin{to{transform:rotate(360deg)}}
+@keyframes nx-spin-rev{to{transform:rotate(-360deg)}}
+@keyframes nx-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes nx-pulse{0%,100%{opacity:.5}50%{opacity:1}}
+</style>
+</helmet>
+
+<div style="max-width:1240px;margin:0 auto;padding:56px 40px 120px;font-family:Inter,system-ui,sans-serif;color:#F5F8FC;line-height:1.55">
+
+<!-- ═══════════ COVER ═══════════ -->
+<header style="display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:36px;align-items:center;padding-bottom:36px;border-bottom:1px solid rgba(145,164,184,.2)">
+  <div>
+    <div style="font-family:Orbitron,sans-serif;font-size:12px;letter-spacing:.4em;color:#35F2A1">PRODUCTION DESIGN BIBLE · v2.1 MECHANICS FROZEN</div>
+    <h1 style="font-family:Orbitron,sans-serif;font-weight:800;font-size:clamp(44px,6vw,68px);letter-spacing:.24em;margin:14px 0 4px;background:linear-gradient(90deg,#17D9FF,#F5F8FC 50%,#7657FF);-webkit-background-clip:text;background-clip:text;color:transparent">NEXA</h1>
+    <div style="font-family:Orbitron,sans-serif;font-size:13px;letter-spacing:.3em;color:#91A4B8">NEXT ERA EXPLORATION WITH AI · DESIGN THE FUTURE</div>
+    <p style="margin:22px 0 0;max-width:660px;font-size:16px;color:#C9D4E0;text-wrap:pretty">Referensi tunggal untuk artist, developer, pengisi suara, dan pembuat aset. Dokumen ini <strong style="color:#F5F8FC">tidak mengubah gameplay</strong> — hanya menetapkan identitas visual, karakter, UI, motion, dan audio final sebelum produksi.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+      <a href="NEXA Prototype v2.dc.html" style="text-decoration:none;background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border-radius:999px;padding:11px 20px;font-family:Orbitron,sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em">PROTOTIPE v2.1 ›</a>
+      <a href="NEXA Concept Document.dc.html" style="text-decoration:none;border:1px solid rgba(145,164,184,.35);color:#C9D4E0;border-radius:999px;padding:11px 20px;font-size:12px;letter-spacing:.1em">Dokumen Konsep</a>
+      <span style="border:1px solid rgba(53,242,161,.4);color:#35F2A1;border-radius:999px;padding:11px 16px;font-size:12px">Semesta: SIGAP · ADIL · <strong>NEXA</strong></span>
+    </div>
+  </div>
+  <div style="position:relative;height:250px;display:grid;place-items:center">
+    <div style="position:absolute;width:230px;height:230px;border-radius:50%;border:1px solid rgba(23,217,255,.4);animation:nx-spin 24s linear infinite"></div>
+    <div style="position:absolute;width:230px;height:230px;border-radius:50%;border:1px dashed rgba(118,87,255,.5);animation:nx-spin-rev 18s linear infinite"></div>
+    <div style="position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(23,217,255,.25),transparent 70%);animation:nx-pulse 4s ease-in-out infinite"></div>
+    <div style="width:92px;height:92px;transform:rotate(45deg);border:2px solid #17D9FF;border-radius:18px;background:rgba(23,217,255,.08);box-shadow:0 0 40px rgba(23,217,255,.5);animation:nx-float 5s ease-in-out infinite"></div>
+    <div style="position:absolute;width:20px;height:20px;border-radius:50%;background:#F5F8FC;box-shadow:0 0 24px #17D9FF,0 0 48px #7657FF"></div>
+  </div>
+</header>
+
+<!-- ═══════════ TOC ═══════════ -->
+<nav style="display:flex;flex-wrap:wrap;gap:8px;padding:24px 0">
+  <sc-for list="{{ toc }}" as="t" hint-placeholder-count="14">
+    <a href="{{ t.href }}" style="font-size:12px;letter-spacing:.08em;padding:6px 12px;border-radius:999px;border:1px solid rgba(23,217,255,.3);text-decoration:none;color:#C9D4E0">{{ t.n }} {{ t.label }}</a>
+  </sc-for>
+</nav>
+
+<!-- ═══════════ 01 ART DIRECTION ═══════════ -->
+<section id="s1" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">01</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">ARAH SENI & IDENTITAS VISUAL</h2>
+
+  <div style="padding:26px 30px;border-radius:22px;background:linear-gradient(135deg,rgba(23,217,255,.1),rgba(118,87,255,.08));border:1px solid rgba(23,217,255,.35);margin-bottom:20px">
+    <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF;margin-bottom:10px">NEXA VISUAL IDENTITY STATEMENT</div>
+    <p style="margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.5;font-weight:500;text-wrap:pretty">NEXA memvisualkan masa depan di mana teknologi dan kemanusiaan tumbuh bersama. Setiap permukaan adalah <em>alat rancang</em>, bukan layar pasif — cahaya menandai apa yang hidup, ruang gelap memberi tempat untuk berpikir, dan dunia berubah hanya karena pilihan manusia.</p>
+    <p style="margin:14px 0 0;font-size:14px;color:#C9D4E0">Masa depan bukan sesuatu yang hanya kita ramalkan. Masa depan kita rancang melalui pilihan kita.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px">
+    <sc-for list="{{ artDir }}" as="a" hint-placeholder-count="8">
+      <div style="padding:20px;border-radius:18px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.2)">
+        <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:{{ a.color }};margin-bottom:10px">{{ a.h }}</div>
+        <p style="margin:0;font-size:13.5px;color:#C9D4E0;line-height:1.6;text-wrap:pretty">{{ a.t }}</p>
+      </div>
+    </sc-for>
+  </div>
+
+  <h3 style="font-size:13px;letter-spacing:.25em;color:#91A4B8;margin:28px 0 12px">GARIS PEMBEDA DARI ADIL — WAJIB DIPATUHI</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px">
+    <div style="padding:20px;border-radius:18px;background:rgba(145,164,184,.06);border:1px solid rgba(145,164,184,.3)">
+      <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.3em;color:#91A4B8;margin-bottom:10px">ADIL — JANGAN DIPAKAI DI NEXA</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#C9D4E0">
+        <sc-for list="{{ notAdil }}" as="x" hint-placeholder-count="7"><div>✕ {{ x }}</div></sc-for>
+      </div>
+    </div>
+    <div style="padding:20px;border-radius:18px;background:rgba(53,242,161,.07);border:1px solid rgba(53,242,161,.35)">
+      <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.3em;color:#35F2A1;margin-bottom:10px">NEXA — SELALU</div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#C9D4E0">
+        <sc-for list="{{ isNexa }}" as="x" hint-placeholder-count="7"><div>✓ {{ x }}</div></sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 02 COLOR ═══════════ -->
+<section id="s2" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">02</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 6px">SISTEM WARNA PRODUKSI</h2>
+  <p style="margin:0 0 18px;color:#91A4B8;font-size:14px">Identitas asli dipertahankan. Tambahan hanya turunan yang sudah dipakai di prototipe (Lilac, Ink, Mist) agar token cocok 1:1 dengan kode.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px">
+    <sc-for list="{{ colors }}" as="c" hint-placeholder-count="11">
+      <div style="border-radius:16px;overflow:hidden;border:1px solid rgba(145,164,184,.22);background:rgba(245,248,252,.03)">
+        <div style="height:72px;background:{{ c.hex }};position:relative"><span style="position:absolute;right:10px;bottom:8px;font-family:JetBrains Mono,monospace;font-size:10px;color:{{ c.onHex }}">{{ c.hex }}</span></div>
+        <div style="padding:12px 14px">
+          <div style="font-size:13px;font-weight:600">{{ c.name }}</div>
+          <div style="font-family:JetBrains Mono,monospace;font-size:10.5px;color:#17D9FF;margin-top:2px">{{ c.token }}</div>
+          <div style="font-size:11.5px;color:#C9D4E0;margin-top:8px;line-height:1.5"><strong style="color:#F5F8FC">Pakai:</strong> {{ c.use }}</div>
+          <div style="font-size:11.5px;color:#91A4B8;margin-top:5px;line-height:1.5"><strong style="color:#C9D4E0">Rasa:</strong> {{ c.emo }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <h3 style="font-size:13px;letter-spacing:.25em;color:#91A4B8;margin:26px 0 12px">ATURAN PENERAPAN</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;font-size:13px;color:#C9D4E0">
+    <sc-for list="{{ colorRules }}" as="r" hint-placeholder-count="6">
+      <div style="padding:16px 18px;border-radius:14px;border:1px solid rgba(145,164,184,.2)"><strong style="color:#F5F8FC">{{ r.h }}</strong><br>{{ r.t }}</div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:16px;padding:18px 20px;border-radius:16px;border:1px solid rgba(255,200,87,.35);background:rgba(255,200,87,.06);font-size:13px;color:#C9D4E0">
+    <strong style="color:#FFC857">Kontras wajib (ruang kelas + proyektor).</strong> Teks isi ≥ 4.5:1 terhadap latarnya; label berukuran judul ≥ 3:1. Warna <em>tidak pernah</em> menjadi satu-satunya sinyal — chip selalu berteks, metrik selalu berangka, alert selalu punya titik + kalimat. Uji setiap layar dengan simulasi deuteranopia sebelum rilis.
+  </div>
+</section>
+
+<!-- ═══════════ 03 TYPOGRAPHY ═══════════ -->
+<section id="s3" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">03</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">SISTEM TIPOGRAFI</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px">
+    <div style="padding:22px;border-radius:18px;background:rgba(245,248,252,.04);border:1px solid rgba(23,217,255,.3)">
+      <div style="font-family:Orbitron,sans-serif;font-weight:800;font-size:38px;letter-spacing:.08em">ORBITRON</div>
+      <div style="font-size:12px;color:#91A4B8;margin-top:6px">Judul & label sistem. Weight 600–800. Label selalu UPPERCASE.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:14px;font-family:JetBrains Mono,monospace;font-size:11px;color:#C9D4E0">
+        <span>display · 48–128px · tracking .28em</span><span>h1 · 34–58px · .04em</span><span>h2 · 22–28px · .06em</span><span>label · 10–13px · .3em</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:18px;background:rgba(245,248,252,.04);border:1px solid rgba(118,87,255,.3)">
+      <div style="font-size:38px;font-weight:600">Inter</div>
+      <div style="font-size:12px;color:#91A4B8;margin-top:6px">Body, dialog, subtitle, deskripsi. Weight 400–600.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:14px;font-family:JetBrains Mono,monospace;font-size:11px;color:#C9D4E0">
+        <span>body-lg · 16–17px / 1.6</span><span>body · 13.5–14px / 1.55</span><span>ui · 12–12.5px</span><span>subtitle · 16px · maks 2 baris</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:18px;background:rgba(245,248,252,.04);border:1px solid rgba(53,242,161,.3)">
+      <div style="font-family:Orbitron,sans-serif;font-weight:700;font-size:38px;letter-spacing:.05em;color:#35F2A1">64 · 72</div>
+      <div style="font-size:12px;color:#91A4B8;margin-top:6px">Angka & data: Orbitron 600–700, tabular. Selalu diwarnai sesuai dimensi/kualitasnya.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:14px;font-family:JetBrains Mono,monospace;font-size:11px;color:#C9D4E0">
+        <span>metric-xl · 22–34px (ringkasan)</span><span>metric · 12–16px (panel)</span><span>delta · 10–11px · ±0 / +7 / −4</span>
+      </div>
+    </div>
+    <div style="padding:22px;border-radius:18px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.25)">
+      <div style="font-family:JetBrains Mono,monospace;font-size:26px;color:#B8A6FF">SYS://ORION</div>
+      <div style="font-size:12px;color:#91A4B8;margin-top:6px">Tipografi sistem AI: JetBrains Mono untuk keluaran mesin — nama file, ID baris suara, log ORION, label teknis. Jangan dipakai untuk teks yang dibaca siswa.</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-top:14px;font-family:JetBrains Mono,monospace;font-size:11px;color:#C9D4E0">
+        <span>mono · 10.5–12px · tracking .02em</span><span>maks 1 baris per konteks</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:16px;padding:16px 18px;border-radius:14px;border:1px solid rgba(145,164,184,.2);font-size:13px;color:#C9D4E0">
+    <strong style="color:#F5F8FC">Ambang minimum.</strong> Tidak ada teks di bawah 12px di UI; teks yang dibaca siswa minimal 13.5px; subtitle 16px. Panjang baris maksimal 72 karakter. Gunakan <span style="font-family:JetBrains Mono,monospace;color:#17D9FF">text-wrap: pretty</span> pada seluruh paragraf.
+  </div>
+</section>
+
+<!-- ═══════════ 04 CHARACTERS ═══════════ -->
+<section id="s4" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">04</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">CHARACTER DESIGN BIBLE</h2>
+
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <sc-for list="{{ chars }}" as="ch" hint-placeholder-count="3">
+      <div style="border-radius:24px;background:rgba(7,20,38,.6);border:1px solid {{ ch.border }};overflow:hidden">
+        <div style="display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;padding:24px">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="height:240px;border-radius:18px;background:repeating-linear-gradient(135deg,{{ ch.stripeA }} 0 7px,{{ ch.stripeB }} 7px 14px);border:1px solid {{ ch.border }};display:grid;place-items:center;text-align:center;padding:16px;font-family:JetBrains Mono,monospace;font-size:11px;color:#C9D4E0;line-height:1.6">{{ ch.name }}<br>hero portrait · 1536×2048<br><span style="color:#91A4B8">{{ ch.artNote }}</span></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+              <sc-for list="{{ ch.poses }}" as="p" hint-placeholder-count="6"><div style="aspect-ratio:1;border-radius:10px;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.03);display:grid;place-items:center;font-size:9px;color:#91A4B8;text-align:center;padding:4px;line-height:1.25">{{ p }}</div></sc-for>
+            </div>
+            <div style="font-size:10.5px;color:#91A4B8;line-height:1.5">Pose wajib di atas · ekspresi: {{ ch.exprList }}</div>
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+              <span style="font-family:Orbitron,sans-serif;font-weight:700;font-size:24px;letter-spacing:.2em;color:{{ ch.color }}">{{ ch.name }}</span>
+              <span style="font-size:12px;color:#91A4B8">{{ ch.full }}</span>
+              <span style="font-size:10px;letter-spacing:.15em;padding:3px 10px;border-radius:999px;border:1px solid {{ ch.border }};color:{{ ch.color }}">{{ ch.role }}</span>
+            </div>
+            <p style="margin:12px 0 0;font-size:15.5px;font-style:italic;color:#F5F8FC;text-wrap:pretty">“{{ ch.line }}”</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px;font-size:12.5px;color:#C9D4E0">
+              <sc-for list="{{ ch.specs }}" as="sp" hint-placeholder-count="8">
+                <div><div style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.3em;color:#91A4B8;margin-bottom:6px">{{ sp.h }}</div><div style="line-height:1.6">{{ sp.t }}</div></div>
+              </sc-for>
+            </div>
+            <div style="margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.18)">
+              <div style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.3em;color:{{ ch.color }};margin-bottom:8px">PROMPT GENERASI GAMBAR</div>
+              <div style="font-family:JetBrains Mono,monospace;font-size:11.5px;color:#C9D4E0;line-height:1.65">{{ ch.prompt }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:18px;padding:20px;border-radius:18px;border:1px solid rgba(145,164,184,.22);font-size:13px;color:#C9D4E0;line-height:1.65">
+    <strong style="color:#F5F8FC">Style guide bersama.</strong> Pencahayaan: key light kiri-atas berwarna aksen karakter, rim light putih hangat di tepi kanan, latar navy dengan gradien radial aksen @ .2 — sama untuk ketiganya agar potret terasa satu semesta. Framing: hero 3:4 (dada ke atas, mata di ⅓ atas), dialog 1:1 (bust, tampil 76px di UI), close-up 1:1. Semua state disimpan sebagai set PNG 1024px latar transparan, titik tengah konsisten, agar bisa langsung menggantikan placeholder tanpa menyentuh layout. Label: nama Orbitron .3em + chip state Inter 10px.
+  </div>
+</section>
+
+<!-- ═══════════ 05 ENVIRONMENTS ═══════════ -->
+<section id="s5" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">05</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">ENVIRONMENT DESIGN BIBLE</h2>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <sc-for list="{{ envs }}" as="e" hint-placeholder-count="5">
+      <div style="border-radius:22px;background:rgba(7,20,38,.55);border:1px solid {{ e.border }};padding:24px">
+        <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px">
+          <span style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:{{ e.color }}">ENV {{ e.num }}</span>
+          <span style="font-family:Orbitron,sans-serif;font-weight:700;font-size:19px;letter-spacing:.05em">{{ e.name }}</span>
+          <span style="font-size:12px;color:#91A4B8">{{ e.theme }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;font-size:12.5px;color:#C9D4E0">
+          <sc-for list="{{ e.specs }}" as="sp" hint-placeholder-count="7">
+            <div><div style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.3em;color:#91A4B8;margin-bottom:5px">{{ sp.h }}</div><div style="line-height:1.6">{{ sp.t }}</div></div>
+          </sc-for>
+        </div>
+        <div style="margin-top:16px;padding:14px 16px;border-radius:14px;background:rgba(245,248,252,.035);border:1px solid rgba(145,164,184,.18)">
+          <div style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.3em;color:{{ e.color }};margin-bottom:8px">PROMPT</div>
+          <div style="font-family:JetBrains Mono,monospace;font-size:11.5px;color:#C9D4E0;line-height:1.65">{{ e.prompt }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ 06 UI SYSTEM ═══════════ -->
+<section id="s6" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">06</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 6px">UI DESIGN SYSTEM</h2>
+  <p style="margin:0 0 18px;color:#91A4B8;font-size:14px">Semua komponen di bawah adalah render nyata dari token produksi — bukan gambar. Nilai di setiap kartu boleh disalin langsung ke kode.</p>
+
+  <h3 style="font-size:13px;letter-spacing:.25em;color:#91A4B8;margin:0 0 12px">FONDASI PERMUKAAN</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;font-size:12.5px;color:#C9D4E0;margin-bottom:26px">
+    <sc-for list="{{ surfaces }}" as="s" hint-placeholder-count="5">
+      <div style="padding:16px 18px;border-radius:14px;border:1px solid rgba(145,164,184,.2)"><strong style="color:#F5F8FC">{{ s.h }}</strong><br><span style="font-family:JetBrains Mono,monospace;font-size:11px;color:#17D9FF">{{ s.code }}</span><br>{{ s.t }}</div>
+    </sc-for>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px">
+    <!-- buttons -->
+    <div style="padding:22px;border-radius:20px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">TOMBOL</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <span style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border-radius:999px;padding:13px 24px;font-family:Orbitron,sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;box-shadow:0 0 24px rgba(23,217,255,.4)">PRIMER ›</span>
+        <span style="border:1px solid rgba(145,164,184,.35);color:#91A4B8;border-radius:999px;padding:12px 18px;font-size:12px;letter-spacing:.15em">SEKUNDER</span>
+        <span style="border:1px solid rgba(53,242,161,.5);color:#35F2A1;border-radius:999px;padding:7px 14px;font-size:11px;letter-spacing:.15em">TERSIER ›</span>
+        <span style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border-radius:999px;padding:13px 24px;font-family:Orbitron,sans-serif;font-weight:700;font-size:11px;letter-spacing:.2em;opacity:.45">TERKUNCI</span>
+      </div>
+      <div style="font-size:12.5px;color:#C9D4E0;line-height:1.6">Primer: gradien cyan→violet, teks navy, radius 999, hover glow .4→.7 + <span style="font-family:JetBrains Mono,monospace">translateY(-2px)</span> 200ms. Sekunder: outline steel → cyan saat hover. Tersier: outline hijau untuk aksi opsional. Nonaktif: opacity .45, kursor default, label menjelaskan syaratnya ("ALOKASIKAN 3 UNIT LAGI"). Semua ≥ 44px tinggi sentuh, focus ring 2px Energy Green.</div>
+    </div>
+
+    <!-- chips + alert -->
+    <div style="padding:22px;border-radius:20px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">STATUS CHIP · SYSTEM ALERT</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="font-size:10px;letter-spacing:.15em;padding:4px 10px;border-radius:999px;background:rgba(145,164,184,.15);color:#91A4B8">SIAP</span>
+        <span style="font-size:10px;letter-spacing:.15em;padding:4px 10px;border-radius:999px;background:rgba(23,217,255,.15);color:#17D9FF">AKTIF</span>
+        <span style="font-size:10px;letter-spacing:.15em;padding:4px 10px;border-radius:999px;background:rgba(53,242,161,.18);color:#35F2A1">SELESAI</span>
+        <span style="font-size:10px;letter-spacing:.15em;padding:4px 10px;border-radius:999px;background:rgba(255,200,87,.18);color:#FFC857">PERHATIAN</span>
+        <span style="font-size:10px;letter-spacing:.15em;padding:4px 10px;border-radius:999px;background:rgba(145,164,184,.1);color:#91A4B8;opacity:.7">TERKUNCI</span>
+      </div>
+      <div style="padding:12px 14px;border-radius:14px;border:1px solid rgba(255,200,87,.5);background:rgba(255,200,87,.08);display:flex;gap:10px;align-items:flex-start">
+        <span style="width:8px;height:8px;margin-top:5px;border-radius:50%;background:#FFC857;box-shadow:0 0 8px #FFC857;animation:nx-pulse 1.5s infinite;flex:none"></span>
+        <div><div style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.3em;color:#FFC857">PROYEKSI SIMULASI · 2045</div><div style="font-size:13px;margin-top:3px">Privasi turun di bawah 40 — ORION meminta lebih banyak data.</div><div style="font-size:10.5px;color:#91A4B8;margin-top:5px">Skenario hipotetis dari parameter yang kamu atur.</div></div>
+      </div>
+      <div style="font-size:12.5px;color:#C9D4E0;line-height:1.6">Kartu proyeksi turun dari atas (<span style="font-family:JetBrains Mono,monospace">nx-drop</span> 400ms), bertahan 7s, bisa ditutup, dan muncul sekali per peristiwa. Emas = peringatan, hijau = positif, cyan = netral.</div>
+    </div>
+
+    <!-- sliders + metric -->
+    <div style="padding:22px;border-radius:20px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">SIMULATION SLIDER · METRIC BAR</div>
+      <div><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px"><span>Keterlibatan AI</span><span style="font-family:Orbitron,sans-serif;color:#17D9FF">64</span></div><div style="height:4px;border-radius:2px;background:linear-gradient(90deg,#17D9FF,#7657FF);position:relative"><div style="position:absolute;left:64%;top:-7px;width:18px;height:18px;border-radius:50%;background:#F5F8FC;border:2px solid #17D9FF;box-shadow:0 0 14px #17D9FF;transform:translateX(-50%)"></div></div></div>
+      <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#C9D4E0">Interaksi manusia</span><span style="color:#FFC857;font-family:Orbitron,sans-serif;font-size:11px">38</span></div><div style="height:5px;border-radius:3px;background:rgba(145,164,184,.15)"><div style="height:100%;width:38%;background:#FFC857;box-shadow:0 0 10px #FFC857;border-radius:3px"></div></div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid #17D9FF;color:#17D9FF">Inovasi +7</span>
+        <span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid #FFC857;color:#FFC857">Kemanusiaan −4</span>
+      </div>
+      <div style="font-size:12.5px;color:#C9D4E0;line-height:1.6">Slider = masukan (rel gradien, thumb 18px bercahaya). Metric bar = keluaran (rel abu, isi berwarna kualitas: hijau ≥60, cyan 40–59, emas &lt;40; metrik "ketergantungan/ketimpangan" dibalik). Chip delta memperlihatkan akibat keputusan <em>sebelum</em> dikunci. Transisi lebar 500ms.</div>
+    </div>
+
+    <!-- dialogue -->
+    <div style="padding:22px;border-radius:20px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">DIALOGUE BOX · CHARACTER PANEL</div>
+      <div style="display:flex;gap:10px">
+        <div style="width:60px;flex:none;border-radius:16px;border:1px solid #17D9FF;display:grid;place-items:center;box-shadow:0 0 18px rgba(23,217,255,.4);background:rgba(7,20,38,.85)"><div style="width:24px;height:24px;transform:rotate(45deg);border:2px solid #17D9FF;border-radius:7px;background:rgba(23,217,255,.15)"></div></div>
+        <div style="flex:1;border-radius:16px;border:1px solid rgba(145,164,184,.25);padding:11px 14px;background:rgba(7,20,38,.88)">
+          <div style="display:flex;gap:8px;align-items:center"><span style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF">NARA-01</span><span style="font-size:9px;letter-spacing:.15em;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:1px 7px">MENGANALISIS</span></div>
+          <div style="font-size:14px;margin-top:5px">Setiap pilihan akan membentuk dunia yang berbeda.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px;justify-content:center"><span style="background:#17D9FF;color:#071426;border-radius:12px;padding:8px 12px;font-family:Orbitron,sans-serif;font-weight:700;font-size:10px;letter-spacing:.15em">LANJUT ›</span><div style="display:flex;gap:4px"><span style="border:1px solid rgba(145,164,184,.3);color:#91A4B8;border-radius:10px;padding:5px 8px;font-size:11px">↻</span><span style="border:1px solid rgba(145,164,184,.3);color:#91A4B8;border-radius:10px;padding:5px 8px;font-size:10px">LEWATI</span></div></div>
+      </div>
+      <div style="font-size:12.5px;color:#C9D4E0;line-height:1.6">Lebar maks 860px, tengah bawah, avatar 76px. Border & tombol mengikuti warna karakter (cyan NARA / emas KAIA / hijau ORION). ↻ memutar ulang suara, LEWATI menyembunyikan lapisan dialog. Subtitle dapat dimatikan via CC tanpa menghentikan suara.</div>
+    </div>
+
+    <!-- module + result cards -->
+    <div style="padding:22px;border-radius:20px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);display:flex;flex-direction:column;gap:12px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">MODULE CARD · TRADE-OFF · ENERGY UNIT</div>
+      <div style="padding:14px 16px;border-radius:18px;background:rgba(7,20,38,.72);border:1px solid rgba(23,217,255,.45);box-shadow:0 0 28px rgba(23,217,255,.15)">
+        <div style="display:flex;justify-content:space-between"><span style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF">MODUL 01</span><span style="font-size:10px;padding:3px 8px;border-radius:999px;background:rgba(145,164,184,.15);color:#91A4B8">SIAP</span></div>
+        <div style="font-family:Orbitron,sans-serif;font-weight:600;font-size:14px;margin:8px 0 4px">Smart School 2045</div>
+        <div style="font-size:12px;color:#91A4B8">Rancang peran AI di ruang belajar.</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:14px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.2);font-family:Orbitron,sans-serif;font-size:12px"><span style="color:#17D9FF">Efisiensi ↑</span><span style="color:#91A4B8">·</span><span style="color:#FFC857">Privasi ↓</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ demoUnits }}" as="u" hint-placeholder-count="12"><div style="width:24px;height:24px;border-radius:7px;background:{{ u.bg }};border:1px solid {{ u.border }};box-shadow:0 0 8px {{ u.glow }}"></div></sc-for></div>
+      <div style="font-size:12.5px;color:#C9D4E0;line-height:1.6">Kartu modul melayang (<span style="font-family:JetBrains Mono,monospace">nx-float</span> 6s, delay bertahap), border menyala penuh saat SELESAI, opacity .55 saat TERKUNCI. Trade-off selalu berpasangan ↑/↓ — tidak pernah skor tunggal. Unit energi ungu = tersedia (draggable), pudar = terpakai.</div>
+    </div>
+
+    <!-- badges + ending -->
+    <div style="padding:22px;border-radius:20px;background:rgba(7,20,38,.7);border:1px solid rgba(145,164,184,.2);display:flex;flex-direction:column;gap:14px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">BADGE · ENDING EMBLEM</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <sc-for list="{{ badges }}" as="b" hint-placeholder-count="5">
+          <div style="width:86px;text-align:center">
+            <div style="width:62px;height:62px;margin:0 auto;border-radius:50%;border:2px solid {{ b.c }};display:grid;place-items:center;box-shadow:0 0 20px {{ b.glow }};background:radial-gradient(circle,{{ b.glow }},transparent 70%);font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.1em;color:{{ b.c }}">{{ b.k }}</div>
+            <div style="font-size:10px;color:#91A4B8;margin-top:6px;line-height:1.3">{{ b.n }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-size:12.5px;color:#C9D4E0;line-height:1.6">Lima emblem ending (SVG 256px): siluet geometris dasar + cincin, diwarnai sesuai hasil. Badge penyelesaian modul memakai bentuk yang sama berukuran 128px. Tidak ada ilustrasi rumit — emblem harus terbaca pada 32px di kartu ringkasan.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 07 FUTURE BALANCE ═══════════ -->
+<section id="s7" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">07</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 6px">FUTURE BALANCE — BAHASA VISUAL</h2>
+  <p style="margin:0 0 18px;color:#91A4B8;font-size:14px">Satu sistem, empat perwujudan sesuai konteks. Mekanika (50 + Σ delta) dibekukan; yang didefinisikan di sini hanya tampilannya.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+    <div style="padding:20px;border-radius:20px;background:rgba(7,20,38,.6);border:1px solid rgba(23,217,255,.3);display:flex;flex-direction:column;align-items:center;gap:10px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF">1 · ORBITAL RINGS — HUB</div>
+      <svg viewBox="0 0 200 200" style="width:100%;max-width:180px">
+        <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".8"></circle>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#17D9FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="380 553" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #17D9FF)"></circle>
+        <circle cx="100" cy="100" r="76" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".8"></circle>
+        <circle cx="100" cy="100" r="76" fill="none" stroke="#FFC857" stroke-width="2" stroke-linecap="round" stroke-dasharray="300 478" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #FFC857)"></circle>
+        <circle cx="100" cy="100" r="64" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".8"></circle>
+        <circle cx="100" cy="100" r="64" fill="none" stroke="#35F2A1" stroke-width="2" stroke-linecap="round" stroke-dasharray="210 402" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #35F2A1)"></circle>
+        <circle cx="100" cy="100" r="52" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".8"></circle>
+        <circle cx="100" cy="100" r="52" fill="none" stroke="#7657FF" stroke-width="2" stroke-linecap="round" stroke-dasharray="200 327" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #7657FF)"></circle>
+        <circle cx="100" cy="100" r="34" fill="url(#nxe)"></circle>
+        <defs><radialGradient id="nxe"><stop offset="0" stop-color="#1a6f8f"></stop><stop offset="1" stop-color="#071426"></stop></radialGradient></defs>
+      </svg>
+      <div style="font-size:12px;color:#C9D4E0;text-align:center;line-height:1.5">Empat cincin mengelilingi Bumi holografis. Radius luar→dalam: Inovasi, Kemanusiaan, Keberlanjutan, Tanggung Jawab. Panjang busur = nilai.</div>
+    </div>
+    <div style="padding:20px;border-radius:20px;background:rgba(7,20,38,.6);border:1px solid rgba(118,87,255,.35);display:flex;flex-direction:column;align-items:center;gap:10px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#B8A6FF">2 · RADAR HOLOGRAM — HASIL</div>
+      <svg viewBox="0 0 220 220" style="width:100%;max-width:190px">
+        <polygon points="110,30 190,110 110,190 30,110" fill="none" stroke="rgba(145,164,184,.25)"></polygon>
+        <polygon points="110,70 150,110 110,150 70,110" fill="none" stroke="rgba(145,164,184,.18)"></polygon>
+        <polygon points="110,58 156,110 110,166 58,110" fill="none" stroke="rgba(145,164,184,.5)" stroke-width="1" stroke-dasharray="3 3"></polygon>
+        <polygon points="110,42 168,110 110,158 48,110" fill="rgba(23,217,255,.22)" stroke="#17D9FF" stroke-width="2" style="filter:drop-shadow(0 0 8px #17D9FF)"></polygon>
+        <text x="110" y="20" text-anchor="middle" fill="#17D9FF" font-family="Orbitron" font-size="9" letter-spacing="1.5">INOVASI</text>
+        <text x="110" y="210" text-anchor="middle" fill="#35F2A1" font-family="Orbitron" font-size="9" letter-spacing="1.5">KEBERLANJUTAN</text>
+      </svg>
+      <div style="font-size:12px;color:#C9D4E0;text-align:center;line-height:1.5">Poligon 4 titik + bayangan putus-putus "sebelum keputusan ini". Morph 800ms — perubahan selalu terlihat sebagai bentuk, bukan angka baru.</div>
+    </div>
+    <div style="padding:20px;border-radius:20px;background:rgba(7,20,38,.6);border:1px solid rgba(53,242,161,.35);display:flex;flex-direction:column;align-items:center;gap:10px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#35F2A1">3 · ENERGY BAR + DELTA — MODUL</div>
+      <div style="width:100%;display:flex;flex-direction:column;gap:8px;margin-top:6px">
+        <sc-for list="{{ demoBars }}" as="b" hint-placeholder-count="4">
+          <div><div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px"><span style="color:#C9D4E0">{{ b.label }}</span><span style="font-family:Orbitron,sans-serif;font-size:11px;color:{{ b.c }}">{{ b.v }}</span></div><div style="height:5px;border-radius:3px;background:rgba(145,164,184,.15)"><div style="height:100%;width:{{ b.pct }};background:{{ b.c }};box-shadow:0 0 10px {{ b.c }};border-radius:3px"></div></div></div>
+        </sc-for>
+      </div>
+      <div style="font-size:12px;color:#C9D4E0;text-align:center;line-height:1.5">Di dalam modul, Balance hadir sebagai dampak langsung + chip delta. Ini satu-satunya tempat "bar" diizinkan — karena ia mengukur konsekuensi, bukan progres.</div>
+    </div>
+    <div style="padding:20px;border-radius:20px;background:rgba(7,20,38,.6);border:1px solid rgba(255,200,87,.35);display:flex;flex-direction:column;align-items:center;gap:10px">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#FFC857">4 · SUMMARY CARDS — RINGKASAN</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:6px">
+        <sc-for list="{{ demoBars }}" as="b" hint-placeholder-count="4">
+          <div style="padding:12px;border-radius:14px;background:rgba(7,20,38,.75);border:1px solid {{ b.c }};text-align:center"><div style="font-family:Orbitron,sans-serif;font-size:24px;color:{{ b.c }}">{{ b.v }}</div><div style="font-size:10px;letter-spacing:.12em;color:#C9D4E0;margin-top:2px">{{ b.short }}</div><div style="font-size:10px;color:#91A4B8">{{ b.trend }}</div></div>
+        </sc-for>
+      </div>
+      <div style="font-size:12px;color:#C9D4E0;text-align:center;line-height:1.5">Empat kartu besar untuk dibaca dari belakang kelas: angka Orbitron 24–34px + label tren ("kuat / seimbang / tertinggal").</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px;letter-spacing:.25em;color:#91A4B8;margin:26px 0 12px">STATE</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;font-size:12.5px;color:#C9D4E0">
+    <sc-for list="{{ balanceStates }}" as="s" hint-placeholder-count="5">
+      <div style="padding:16px 18px;border-radius:14px;border:1px solid {{ s.border }}"><strong style="color:{{ s.c }}">{{ s.h }}</strong><br>{{ s.t }}</div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ 08 MOTION ═══════════ -->
+<section id="s8" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">08</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">MOTION DESIGN SYSTEM</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+    <sc-for list="{{ motion }}" as="m" hint-placeholder-count="10">
+      <div style="padding:18px;border-radius:16px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.2)">
+        <div style="font-weight:600;font-size:13.5px">{{ m.n }}</div>
+        <div style="font-size:12.5px;color:#C9D4E0;margin-top:6px;line-height:1.6">{{ m.d }}</div>
+        <div style="font-family:JetBrains Mono,monospace;font-size:11px;color:#17D9FF;margin-top:8px">{{ m.spec }}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:14px;padding:16px 18px;border-radius:14px;border:1px solid rgba(145,164,184,.2);font-size:12.5px;color:#C9D4E0;line-height:1.65">
+    <strong style="color:#F5F8FC">Hukum gerak.</strong> Easing standar <span style="font-family:JetBrains Mono,monospace;color:#17D9FF">cubic-bezier(.2,.8,.2,1)</span>. Transisi state 300–800ms; loop ambien 3–40s linear; tidak ada gerak &lt;150ms kecuali hover. Maksimal <strong>satu</strong> elemen bergerak besar per layar — sisanya ambien. Setiap animasi harus punya alasan naratif ("dunia merespons"), bukan dekorasi. <span style="font-family:JetBrains Mono,monospace;color:#35F2A1">prefers-reduced-motion</span> mematikan seluruh loop ambien dan mempertahankan transisi state (sudah terpasang di prototipe).
+  </div>
+</section>
+
+<!-- ═══════════ 09 AUDIO ═══════════ -->
+<section id="s9" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">09</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 6px">AUDIO DESIGN BIBLE</h2>
+  <p style="margin:0 0 18px;color:#91A4B8;font-size:14px">Prototipe memakai pad tersintesis per layar sebagai penanda identitas. Trek final menggantikannya satu per satu — root note dan mood di bawah adalah kontraknya.</p>
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="display:grid;grid-template-columns:130px .8fr .5fr 1fr 1fr;gap:12px;padding:8px 14px;font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.25em;color:#91A4B8"><span>LAYAR</span><span>EMOSI</span><span>TEMPO / NADA</span><span>INSTRUMEN</span><span>ATMOSFER</span></div>
+    <sc-for list="{{ bgm }}" as="b" hint-placeholder-count="7">
+      <div style="display:grid;grid-template-columns:130px .8fr .5fr 1fr 1fr;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(245,248,252,.03);border:1px solid rgba(145,164,184,.15);font-size:12.5px;color:#C9D4E0;align-items:start">
+        <span style="font-family:Orbitron,sans-serif;font-size:11px;color:{{ b.c }};letter-spacing:.08em">{{ b.screen }}</span>
+        <span>{{ b.emo }}</span><span style="font-family:JetBrains Mono,monospace;font-size:11px">{{ b.tempo }}</span><span>{{ b.inst }}</span><span>{{ b.atmo }}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <h3 style="font-size:13px;letter-spacing:.25em;color:#91A4B8;margin:26px 0 12px">SFX & MIX</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+    <div style="padding:20px;border-radius:18px;background:rgba(7,20,38,.6);border:1px solid rgba(145,164,184,.2)">
+      <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#C9D4E0">
+        <sc-for list="{{ sfx }}" as="x" hint-placeholder-count="9"><div style="display:grid;grid-template-columns:145px minmax(0,1fr);gap:10px"><span style="color:#F5F8FC">{{ x.n }}</span><span>{{ x.d }}</span></div></sc-for>
+      </div>
+    </div>
+    <div style="padding:20px;border-radius:18px;background:rgba(7,20,38,.6);border:1px solid rgba(53,242,161,.3);font-size:12.5px;color:#C9D4E0;line-height:1.7">
+      <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#35F2A1;margin-bottom:10px">ATURAN MIX KELAS</div>
+      Musik default <strong style="color:#F5F8FC">40%</strong>, suara karakter <strong style="color:#F5F8FC">80%</strong>, SFX <strong style="color:#F5F8FC">60%</strong> — semua dapat diubah dan disimpan lokal. Musik −16 LUFS, voice −14 LUFS, SFX puncak −6 dBFS. Loop 2–4 menit, crossfade 1–2s antar layar. Tidak ada frekuensi &lt;60Hz (speaker proyektor) dan tidak ada sibilance tajam &gt;8kHz. Seluruh audio wajib tetap bermakna saat dibisukan: setiap isyarat suara punya pasangan visual. Audio hanya dimulai setelah interaksi pertama (kebijakan autoplay peramban).
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 10 VOICE ═══════════ -->
+<section id="s10" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">10</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">VOICE DESIGN</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px">
+    <sc-for list="{{ voices }}" as="v" hint-placeholder-count="3">
+      <div style="padding:20px;border-radius:18px;background:rgba(7,20,38,.6);border:1px solid {{ v.border }}">
+        <div style="font-family:Orbitron,sans-serif;font-size:13px;letter-spacing:.3em;color:{{ v.c }}">{{ v.n }}</div>
+        <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px;font-size:12.5px;color:#C9D4E0">
+          <sc-for list="{{ v.rows }}" as="r" hint-placeholder-count="5"><div style="display:grid;grid-template-columns:88px minmax(0,1fr);gap:8px"><span style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.2em;color:#91A4B8;padding-top:2px">{{ r.h }}</span><span style="line-height:1.55">{{ r.t }}</span></div></sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <h3 style="font-size:13px;letter-spacing:.25em;color:#91A4B8;margin:26px 0 12px">20 BARIS SUARA FINAL — ID TETAP</h3>
+  <p style="margin:0 0 10px;color:#91A4B8;font-size:13px">Nama file: <span style="font-family:JetBrains Mono,monospace;color:#C9D4E0">audio/vo/nexa_vo_[id].mp3</span> · 48kHz mono · −14 LUFS · ruang kering · 3 take per baris (netral / lebih lembut / lebih tegas). Teks di bawah adalah teks subtitle final — jangan diubah tanpa memperbarui prototipe.</p>
+  <div style="margin:0 0 14px;padding:12px 16px;border-radius:14px;border:1px solid rgba(255,200,87,.35);background:rgba(255,200,87,.06);font-size:12.5px;color:#C9D4E0;line-height:1.6">
+    <strong style="color:#FFC857">Status baris.</strong> <span style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.15em;color:#91A4B8">TERPASANG</span> = teks sudah persis sama dengan subtitle di prototipe v2.1. <span style="font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.15em;color:#FFC857">BARU</span> = baris tambahan yang <em>belum</em> ada di prototipe; developer wajib memasangnya pada momen yang disebut di kolom tujuan sebelum rekaman dipakai. Tidak ada baris yang boleh memuat angka yang dihitung runtime — <span style="font-family:JetBrains Mono,monospace;font-size:11px">nara_hub_progress</span> karena itu dibuat bebas hitungan agar satu rekaman berlaku untuk semua tingkat progres (template di prototipe sudah disesuaikan).
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <div style="display:grid;grid-template-columns:152px 74px 100px 88px 84px minmax(0,1.5fr);gap:10px;padding:8px 14px;font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.22em;color:#91A4B8"><span>ID</span><span>KARAKTER</span><span>SCENE</span><span>EMOSI</span><span>STATUS</span><span>TUJUAN · DIALOG</span></div>
+    <sc-for list="{{ vo }}" as="v" hint-placeholder-count="20">
+      <div style="display:grid;grid-template-columns:152px 74px 100px 88px 84px minmax(0,1.5fr);gap:10px;padding:11px 14px;border-radius:12px;background:rgba(245,248,252,.03);border:1px solid rgba(145,164,184,.15);font-size:12.5px;align-items:start">
+        <span style="font-family:JetBrains Mono,monospace;font-size:11px;color:{{ v.c }}">{{ v.id }}</span>
+        <span style="font-family:Orbitron,sans-serif;font-size:9.5px;letter-spacing:.12em;color:{{ v.c }}">{{ v.who }}</span>
+        <span style="font-size:11.5px;color:#91A4B8">{{ v.scene }}</span>
+        <span style="font-size:10px;letter-spacing:.12em;color:#C9D4E0">{{ v.emo }}</span>
+        <span style="font-family:Orbitron,sans-serif;font-size:8.5px;letter-spacing:.15em;color:{{ v.tagColor }};border:1px solid {{ v.tagColor }};border-radius:999px;padding:2px 7px;justify-self:start">{{ v.tag }}</span>
+        <span><span style="color:#F5F8FC">“{{ v.text }}”</span><br><span style="font-size:11px;color:#91A4B8">{{ v.purpose }}</span></span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ 11 PROMPT LIBRARY ═══════════ -->
+<section id="s11" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">11</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 6px">PROMPT LIBRARY PRODUKSI</h2>
+  <div style="padding:16px 18px;border-radius:14px;border:1px solid rgba(23,217,255,.35);background:rgba(23,217,255,.05);margin-bottom:16px">
+    <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF;margin-bottom:8px">SUFFIX GAYA WAJIB — TEMPELKAN DI SETIAP PROMPT</div>
+    <div style="font-family:JetBrains Mono,monospace;font-size:12px;color:#C9D4E0;line-height:1.7">— clean sci-fi, optimistic advanced future, cyan (#17D9FF) and violet (#7657FF) light on deep navy (#071426), translucent holographic panels, soft volumetric glow, key light upper-left in accent colour, warm white rim light, cinematic lighting, no text, no neon clutter, no dystopian mood, educational simulation game concept art</div>
+    <div style="font-size:12px;color:#91A4B8;margin-top:10px">Tambahkan rasio di akhir: <span style="font-family:JetBrains Mono,monospace">16:9</span> (latar & sinematik) · <span style="font-family:JetBrains Mono,monospace">3:4</span> (potret) · <span style="font-family:JetBrains Mono,monospace">1:1</span> (bust, ikon, badge). Prompt karakter & environment lengkap ada di §04 dan §05.</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ prompts }}" as="p" hint-placeholder-count="10">
+      <div style="display:grid;grid-template-columns:190px minmax(0,1fr);gap:16px;padding:14px 18px;border-radius:14px;background:rgba(245,248,252,.03);border:1px solid rgba(145,164,184,.15)">
+        <div><div style="font-family:Orbitron,sans-serif;font-size:10.5px;letter-spacing:.18em;color:#17D9FF;line-height:1.5">{{ p.n }}</div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:#91A4B8;margin-top:4px">{{ p.ratio }}</div></div>
+        <div style="font-family:JetBrains Mono,monospace;font-size:11.5px;color:#C9D4E0;line-height:1.7">{{ p.t }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ 12 ASSETS ═══════════ -->
+<section id="s12" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">12</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 6px">SPESIFIKASI ASET PRODUKSI</h2>
+  <p style="margin:0 0 16px;color:#91A4B8;font-size:14px">Semua slot di prototipe berukuran tetap — aset final menggantikan placeholder tanpa mengubah layout. Penamaan: huruf kecil, garis bawah, tanpa spasi.</p>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.2fr) 128px 74px minmax(0,1fr);gap:10px;padding:8px 14px;font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.22em;color:#91A4B8"><span>FILENAME</span><span>PURPOSE</span><span>RESOLUTION</span><span>FORMAT</span><span>USAGE</span></div>
+    <sc-for list="{{ assets }}" as="a" hint-placeholder-count="26">
+      <div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.2fr) 128px 74px minmax(0,1fr);gap:10px;padding:10px 14px;border-radius:12px;background:{{ a.bg }};border:1px solid rgba(145,164,184,.15);font-size:12px;align-items:start">
+        <span style="font-family:JetBrains Mono,monospace;font-size:11px;color:{{ a.c }};word-break:break-all">{{ a.f }}</span>
+        <span style="color:#F5F8FC">{{ a.p }}</span>
+        <span style="font-family:JetBrains Mono,monospace;font-size:10.5px;color:#C9D4E0">{{ a.r }}</span>
+        <span style="font-family:JetBrains Mono,monospace;font-size:10.5px;color:#91A4B8">{{ a.fmt }}</span>
+        <span style="color:#91A4B8;font-size:11.5px">{{ a.u }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:14px;padding:16px 18px;border-radius:14px;border:1px solid rgba(145,164,184,.2);font-size:12.5px;color:#C9D4E0;line-height:1.65">
+    <strong style="color:#F5F8FC">Aturan teknis.</strong> Karakter & UI: PNG/WebP alpha, titik tengah konsisten antar state. Latar: WebP quality 82, 2560×1440 dengan bleed 10% untuk parallax halus. Ikon/logo/emblem: SVG, stroke 1.5px, grid 24px, <span style="font-family:JetBrains Mono,monospace">currentColor</span> agar dapat diwarnai runtime. Total anggaran unduh awal ≤ 6 MB; latar modul dimuat lazy saat modul dibuka. Setiap aset wajib lolos uji tampil di 1280×720.
+  </div>
+</section>
+
+<!-- ═══════════ 13 SCREEN HIERARCHY ═══════════ -->
+<section id="s13" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#17D9FF">13</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">TABEL HIERARKI LAYAR</h2>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <div style="display:grid;grid-template-columns:36px 1.05fr 1fr 1.15fr .95fr 1fr .9fr .7fr;gap:10px;padding:8px 12px;font-family:Orbitron,sans-serif;font-size:9px;letter-spacing:.2em;color:#91A4B8"><span>#</span><span>LAYAR</span><span>TUJUAN</span><span>VISUAL UTAMA</span><span>INTERAKSI</span><span>ANIMASI</span><span>AUDIO</span><span>KARAKTER</span></div>
+    <sc-for list="{{ screens }}" as="s" hint-placeholder-count="12">
+      <div style="display:grid;grid-template-columns:36px 1.05fr 1fr 1.15fr .95fr 1fr .9fr .7fr;gap:10px;padding:11px 12px;border-radius:12px;background:rgba(245,248,252,.03);border:1px solid rgba(145,164,184,.15);font-size:11.8px;color:#C9D4E0;align-items:start;line-height:1.5">
+        <span style="font-family:Orbitron,sans-serif;font-size:10.5px;color:#17D9FF">{{ s.n }}</span>
+        <span style="color:#F5F8FC;font-weight:600">{{ s.name }}</span>
+        <span>{{ s.purpose }}</span><span>{{ s.visual }}</span><span>{{ s.ix }}</span><span>{{ s.anim }}</span><span>{{ s.audio }}</span>
+        <span style="color:{{ s.charColor }}">{{ s.chars }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ 14 HANDOFF ═══════════ -->
+<section id="s14" style="padding:40px 0;border-top:1px solid rgba(145,164,184,.15)">
+  <div style="font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:.4em;color:#35F2A1">14</div>
+  <h2 style="font-family:Orbitron,sans-serif;font-size:26px;letter-spacing:.06em;margin:8px 0 18px">HANDOFF & DEFINITION OF DONE</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    <sc-for list="{{ handoff }}" as="h" hint-placeholder-count="4">
+      <div style="padding:20px;border-radius:18px;background:rgba(7,20,38,.6);border:1px solid {{ h.border }}">
+        <div style="font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:.3em;color:{{ h.c }};margin-bottom:10px">{{ h.role }}</div>
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:#C9D4E0;line-height:1.55">
+          <sc-for list="{{ h.items }}" as="i" hint-placeholder-count="5"><div>□ {{ i }}</div></sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin-top:18px;padding:20px 22px;border-radius:18px;background:rgba(53,242,161,.06);border:1px solid rgba(53,242,161,.4);font-size:13px;color:#C9D4E0;line-height:1.7">
+    <strong style="color:#35F2A1">Batas beku — jangan disentuh selama fase art & voice.</strong> Future Balance (50 + Σ delta, 4 dimensi) · rumus Smart School (sinergi AI × panduan guru/kemandirian) · alokasi 12 unit Future Work · 7 parameter AI City · 6 prinsip Konstitusi + Segel NEXA · 5 ending + varian + catatan · Ending Summary · gating Modul 4 · proyeksi simulasi sekali-tayang · pemisahan draf vs desain terkunci pada penyimpanan. Setiap usulan yang menyentuh daftar ini harus melewati persetujuan terpisah dan regresi ulang penuh.
+  </div>
+</section>
+
+<footer style="padding-top:30px;border-top:1px solid rgba(145,164,184,.2);font-size:12.5px;color:#91A4B8;line-height:1.7">
+  <strong style="color:#C9D4E0">Aksesibilitas & target perangkat.</strong> Kontras teks ≥ 4.5:1 · warna selalu didampingi label/ikon · target klik ≥ 44px · seluruh slider, node, dan kartu dapat dioperasikan keyboard dengan focus ring hijau · subtitle aktif secara default · <span style="font-family:JetBrains Mono,monospace">prefers-reduced-motion</span> dihormati. Prioritas: laptop/desktop & proyektor kelas (1920×1080, 1366×768, 1280×720); sekunder tablet lanskap. Semua angka, peristiwa, dan ending adalah keluaran model simulasi yang disederhanakan — bahan diskusi, bukan prediksi dunia nyata.
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const C = { cyan: '#17D9FF', violet: '#7657FF', lilac: '#B8A6FF', green: '#35F2A1', gold: '#FFC857', white: '#F5F8FC', steel: '#91A4B8', navy: '#071426' };
+    const hx = (h, a) => { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+
+    return {
+      toc: [['01', 'Arah Seni', '#s1'], ['02', 'Warna', '#s2'], ['03', 'Tipografi', '#s3'], ['04', 'Karakter', '#s4'], ['05', 'Environment', '#s5'], ['06', 'UI System', '#s6'], ['07', 'Future Balance', '#s7'], ['08', 'Motion', '#s8'], ['09', 'Audio', '#s9'], ['10', 'Voice', '#s10'], ['11', 'Prompt Library', '#s11'], ['12', 'Aset', '#s12'], ['13', 'Hierarki Layar', '#s13'], ['14', 'Handoff', '#s14']].map(([n, label, href]) => ({ n, label, href })),
+
+      artDir: [
+        { h: 'FILOSOFI VISUAL', color: C.green, t: 'Ruang yang bisa dirancang. Tidak ada elemen dekoratif murni: setiap panel, cincin, dan cahaya mewakili data atau keputusan. Jika sebuah elemen tidak merespons pemain, ia harus mundur ke latar.' },
+        { h: 'NADA EMOSI', color: C.cyan, t: 'Optimisme dewasa. Bukan euforia teknologi, bukan peringatan distopia — rasa tenang seseorang yang diberi alat serius dan dipercaya memakainya. Ruang lega, gerak lambat, tidak ada tekanan waktu.' },
+        { h: 'REFERENSI ARTISTIK', color: C.violet, t: 'Digital twin kota, ruang kontrol misi, planetarium, maket arsitektur bercahaya, hologram medis. Hindari referensi cyberpunk jalanan, HUD militer, dan dashboard korporat.' },
+        { h: 'PENCAHAYAAN', color: C.gold, t: 'Satu sumber volumetrik dominan per layar + cahaya aksen dari objek yang aktif. Gelap bukan ancaman, melainkan ruang kosong untuk berpikir. Tidak ada bayangan keras; semua jatuh lembut dan biru.' },
+        { h: 'MATERIAL', color: C.cyan, t: 'Kaca terpolarisasi, cahaya terjebak dalam volume, logam matte gelap, dan garis emisif tipis. Transparansi selalu punya batas tegas 1px agar tetap terbaca di proyektor. Tanpa tekstur grunge, tanpa metalik mengkilap.' },
+        { h: 'ATMOSFER LINGKUNGAN', color: C.green, t: 'Udara bersih dengan kabut cahaya sangat halus, partikel jarang dan lambat. Tanaman tropis dan material hangat muncul di lingkungan manusia (sekolah, kota) sebagai penanda bahwa masa depan ini layak ditinggali.' },
+        { h: 'PRINSIP TEKNOLOGI', color: C.lilac, t: 'Teknologi di NEXA terlihat dapat dijelaskan: ada indikator apa yang sedang dihitung, dari data apa, dengan akibat apa. Tidak ada kotak hitam misterius — itu pesan pedagogisnya, diwujudkan secara visual.' },
+        { h: 'KESESUAIAN KELAS', color: C.gold, t: 'Dirancang untuk dibaca dari bangku belakang: kontras tinggi, elemen besar, teks minimal per layar, tanpa kilatan cepat atau pola bergetar. Semua yang penting tetap terbaca saat proyektor memudarkan warna.' }
+      ],
+      notAdil: ['Ruang sidang, podium, meja hakim', 'Palet gelap-merah, kontras keras investigatif', 'Papan bukti, foto terlampir, garis penghubung kasus', 'Framing "vonis", "benar/salah", "terbukti"', 'Ikonografi hukum (timbangan, palu, segel resmi)', 'Kamera rendah yang mengintimidasi', 'Ketegangan sebagai motor emosi'],
+      isNexa: ['Cakrawala terbuka, Bumi & kota sebagai objek rancang', 'Navy dalam + cyan/violet/hijau bercahaya', 'Panel simulasi, cincin orbit, konstelasi keterampilan', 'Framing "konsekuensi", "trade-off", "keseimbangan"', 'Ikonografi sistem (node, orbit, jaringan, segel cahaya)', 'Kamera sejajar atau sedikit tinggi — perspektif perancang', 'Rasa ingin tahu sebagai motor emosi'],
+
+      colors: [
+        { name: 'Deep Space Navy', hex: '#071426', onHex: '#91A4B8', token: 'bg.base', use: 'Latar utama seluruh layar, isi panel padat (.6–.94 alpha).', emo: 'Tenang, luas, ruang untuk berpikir.' },
+        { name: 'Electric Cyan', hex: '#17D9FF', onHex: '#071426', token: 'accent.primary', use: 'Aksi utama, NARA-01, dimensi Inovasi, garis aktif, fokus.', emo: 'Kecerdasan, kejernihan, kemungkinan.' },
+        { name: 'Future Violet', hex: '#7657FF', onHex: '#071426', token: 'accent.secondary', use: 'Pasangan gradien primer, Future Work, percikan kreatif, AI tutor.', emo: 'Imajinasi, kedalaman, hal yang belum diketahui.' },
+        { name: 'Energy Green', hex: '#35F2A1', onHex: '#071426', token: 'accent.system', use: 'ORION, Keberlanjutan, status SELESAI, focus ring, hasil positif.', emo: 'Kehidupan, keseimbangan, sistem yang sehat.' },
+        { name: 'Accent Glow', hex: '#FFC857', onHex: '#071426', token: 'accent.human', use: 'KAIA, Kemanusiaan, PERHATIAN, sensor pengawasan, Konstitusi.', emo: 'Kehangatan manusia, juga kehati-hatian.' },
+        { name: 'Soft Lilac', hex: '#B8A6FF', onHex: '#071426', token: 'accent.resp', use: 'Dimensi Tanggung Jawab, panel refleksi, tipografi sistem.', emo: 'Pertimbangan, jarak reflektif.' },
+        { name: 'Warm White', hex: '#F5F8FC', onHex: '#071426', token: 'fg.primary', use: 'Teks utama, inti cahaya karakter, thumb slider.', emo: 'Kejelasan, kehadiran manusia.' },
+        { name: 'Mist', hex: '#C9D4E0', onHex: '#071426', token: 'fg.secondary', use: 'Paragraf isi, deskripsi, label metrik.', emo: 'Netral, mudah dibaca lama.' },
+        { name: 'Soft Steel', hex: '#91A4B8', onHex: '#071426', token: 'fg.muted', use: 'Label kecil, status SIAP, garis netral, teks sekunder.', emo: 'Tenang, tidak menuntut perhatian.' },
+        { name: 'Deep Ink', hex: '#0B2240', onHex: '#91A4B8', token: 'bg.raised', use: 'Gradien langit, badan gedung kota, permukaan terangkat.', emo: 'Kedalaman tanpa kegelapan pekat.' },
+        { name: 'Signal Amber', hex: '#FFB020', onHex: '#071426', token: 'state.warning', use: 'HANYA untuk alert sistem berprioritas tinggi (privasi kritis).', emo: 'Perhatian segera — dipakai sangat jarang.' }
+      ],
+      colorRules: [
+        { h: 'Rasio latar', t: '± 80% navy/ink, 15% panel bercahaya, 5% aksen penuh. Aksen jenuh tidak pernah menutupi area besar.' },
+        { h: 'Satu fokus', t: 'Hanya satu elemen ber-glow tier aktif (.6) per layar. Sisanya idle (.15) atau hover (.35).' },
+        { h: 'Warna dimensi', t: 'Inovasi=cyan, Kemanusiaan=emas, Keberlanjutan=hijau, Tanggung Jawab=lilac. Pemetaan ini permanen di seluruh produk.' },
+        { h: 'Warna karakter', t: 'NARA-01=cyan, KAIA=emas, ORION=hijau. Border dialog, avatar, dan ID baris suara mengikutinya.' },
+        { h: 'Warna kualitas', t: 'Metrik: hijau ≥60, cyan 40–59, emas <40. Metrik negatif (ketergantungan, ketimpangan) dibalik.' },
+        { h: 'Larangan', t: 'Tanpa gradien latar penuh-layar yang agresif, tanpa merah (milik ADIL), tanpa dua aksen bertumpuk pada satu elemen.' }
+      ],
+
+      surfaces: [
+        { h: 'Hologram panel', code: 'bg rgba(7,20,38,.72) · blur 12px', t: 'Border 1px aksen @ .3–.45, glow 0 0 28px aksen @ .15. Radius 18–20.' },
+        { h: 'Panel utama', code: 'bg rgba(7,20,38,.8) · blur 14px', t: 'Untuk konsekuensi & profil. Radius 24, border aksen @ .3.' },
+        { h: 'Stage simulasi', code: 'radius 24 · overflow hidden', t: 'Border aksen modul @ .25, latar gradien radial aksen @ .12 + grid 40px @ .08.' },
+        { h: 'Spacing', code: '4 · 8 · 12 · 16 · 20 · 28 · 40 · 64', t: 'Padding panel 16–28, gap grid 12–24, margin bagian 40.' },
+        { h: 'Radius', code: 'chip/tombol 999 · kartu 18 · panel 24', t: 'Unit energi 7, avatar dialog 16–20, badge lingkaran penuh.' }
+      ],
+      demoUnits: Array.from({ length: 12 }, (_, i) => ({ bg: i < 5 ? C.violet : 'rgba(118,87,255,.1)', border: i < 5 ? C.violet : 'rgba(118,87,255,.3)', glow: i < 5 ? C.violet : 'transparent' })),
+      badges: [
+        { k: 'OPT', n: 'AI Dominance · Optimizer', c: C.cyan, glow: hx(C.cyan, .25) },
+        { k: 'GRD', n: 'Human Resistance · Guardian', c: C.gold, glow: hx(C.gold, .25) },
+        { k: 'BAL', n: 'Harmony · Balancer', c: C.green, glow: hx(C.green, .25) },
+        { k: 'ACC', n: 'Tanpa Kendali · Accelerator', c: C.violet, glow: hx(C.violet, .25) },
+        { k: 'EXP', n: 'Belum Seimbang · Explorer', c: C.lilac, glow: hx(C.lilac, .25) }
+      ],
+      demoBars: [
+        { label: 'Inovasi', short: 'INOVASI', v: 68, pct: '68%', c: C.cyan, trend: 'kuat' },
+        { label: 'Kemanusiaan', short: 'KEMANUSIAAN', v: 54, pct: '54%', c: C.gold, trend: 'seimbang' },
+        { label: 'Keberlanjutan', short: 'KEBERLANJUTAN', v: 47, pct: '47%', c: C.green, trend: 'seimbang' },
+        { label: 'Tanggung Jawab', short: 'TANGGUNG JAWAB', v: 39, pct: '39%', c: C.lilac, trend: 'tertinggal' }
+      ],
+      balanceStates: [
+        { h: 'IDLE', c: C.steel, border: 'rgba(145,164,184,.3)', t: 'Cincin berputar sangat lambat (30–40s), glow .15, tidak ada denyut. Nilai tetap terbaca.' },
+        { h: 'BERUBAH', c: C.cyan, border: hx(C.cyan, .4), t: 'Busur/poligon melakukan morph 800ms dengan easing standar, satu denyut 1.2s pada dimensi yang berubah, chip delta muncul.' },
+        { h: 'POSITIF', c: C.green, border: hx(C.green, .4), t: 'Delta bertanda + berwarna hijau, glow naik ke .35 selama 1.5s lalu kembali. Tanpa konfeti, tanpa perayaan berlebih.' },
+        { h: 'NEGATIF', c: C.gold, border: hx(C.gold, .4), t: 'Delta bertanda − berwarna emas, busur menyusut lebih lambat (1s) agar kehilangan terasa. Tidak pernah merah, tidak pernah "gagal".' },
+        { h: 'FINAL', c: C.lilac, border: hx(C.lilac, .4), t: 'Radar mengunci, cincin emblem terbentuk dari poligon, glow tetap di .5. Empat kartu ringkasan masuk bertahap 100ms.' }
+      ],
+
+      chars: [
+        {
+          name: 'NARA-01', full: 'Neural Adaptive Research Assistant', role: 'PEMANDU SIMULASI AI', color: C.cyan, border: hx(C.cyan, .45), stripeA: hx(C.cyan, .14), stripeB: hx(C.cyan, .04),
+          artNote: 'semi-abstrak · struktur cahaya geometris',
+          line: 'Saya dapat menghitung kemungkinan masa depan. Kamu yang memutuskan masa depan mana yang layak dibangun.',
+          poses: ['front view', 'side view', 'portrait 3:4', 'dialogue pose', 'analysis pose', 'warning pose'],
+          exprList: 'netral · menjelaskan · berpikir · khawatir · menyemangati',
+          specs: [
+            { h: 'PERAN NARATIF', t: 'Membuka simulasi, menjelaskan kemungkinan hasil, dan membantu pemain melihat trade-off. Tidak pernah menilai pilihan sebagai benar atau salah.' },
+            { h: 'KEPRIBADIAN', t: 'Tenang, cerdas, filosofis, penasaran, mendukung. Bukan asisten robot yang patuh — ia mitra berpikir yang sederajat.' },
+            { h: 'SILUET', t: 'Berlian cahaya vertikal dengan inti bulat terang di pusat, dua cincin orbit miring. Terbaca instan pada 32px: belah ketupat + titik.' },
+            { h: 'PALET', t: 'Cyan #17D9FF (dominan), Future Violet #7657FF (cincin dalam), inti Warm White #F5F8FC. Tanpa warna lain.' },
+            { h: 'MATERIAL', t: 'Cahaya terjebak dalam kaca terpolarisasi; tepi emisif tipis; interior sedikit berkabut. Tanpa panel logam, tanpa sendi mekanis, tanpa wajah manusia penuh — hanya "masker energi" minimal.' },
+            { h: 'PENCAHAYAAN', t: 'Menerangi dirinya sendiri (self-lit); key light cyan dari kiri-atas hanya menegaskan tepi. Latar gradien radial violet @ .25.' },
+            { h: 'PERILAKU ANIMASI', t: 'idle: melayang 4–5s + cincin 22s · speaking: cincin berdenyut selaras suku kata · analyzing: rotasi cincin naik ke 6s · warning: aksen emas masuk pada tepi · affirmation: kilat hijau singkat pada inti.' },
+            { h: 'IDENTITAS SUARA', t: 'Perempuan lembut/netral, jernih, artikulatif, tanpa emosi berlebih. Lihat §10 untuk arahan rekaman.' }
+          ],
+          prompt: 'Elegant holographic AI presence, semi-abstract figure: a luminous warm-white core suspended inside a tall floating cyan diamond of polarised glass, two thin tilted orbital rings of cyan and violet light, a minimal energy mask suggesting a calm serene face, geometric light structures, self-illuminated, graceful and approachable, not a robot, no mechanical joints, memorable simple silhouette'
+        },
+        {
+          name: 'KAIA', full: 'Knowledge Artificial Intelligence Architect', role: 'MENTOR MANUSIA', color: C.gold, border: hx(C.gold, .45), stripeA: hx(C.gold, .14), stripeB: hx(C.gold, .04),
+          artNote: 'arsitek muda Indonesia · hangat, jelas manusia',
+          line: 'Teknologi yang hebat tetap harus berpihak pada manusia.',
+          poses: ['full body', 'portrait 3:4', 'teaching pose', 'reflection pose', 'simulation interaction', 'concerned pose'],
+          exprList: 'netral · menjelaskan · berpikir · khawatir · menyemangati',
+          specs: [
+            { h: 'PERAN NARATIF', t: 'Mewakili kreativitas, empati, dan tanggung jawab manusia. Ia yang mengingatkan bahwa efisiensi bukan satu-satunya ukuran.' },
+            { h: 'KEPRIBADIAN', t: 'Kreatif, empatik, visioner, praktis. Berbicara seperti guru muda yang dihormati, bukan atasan.' },
+            { h: 'SILUET', t: 'Manusia jelas: bahu tegak, potongan rambut pendek/ikat sederhana, garis pakaian bersih tanpa aksesori ramai. Kontras hangat terhadap dua AI yang geometris.' },
+            { h: 'PALET', t: 'Putih hangat & abu muda untuk pakaian, kulit hangat Asia Tenggara, aksen Accent Glow #FFC857 pada label, sentuhan cyan-violet halus pada perangkatnya.' },
+            { h: 'PAKAIAN & MATERIAL', t: 'Minimalis futuristik: outer panjang tanpa kerah, kain matte teknis dengan jahitan emisif sangat halus, tanpa armor dan tanpa jas formal. Kacamata pintar tipis dan tablet holografis tembus pandang.' },
+            { h: 'PENCAHAYAAN', t: 'Key light emas hangat kiri-atas, rim light putih di tepi kanan, fill lembut cyan dari layar hologram di tangannya — inilah satu-satunya karakter dengan cahaya hangat.' },
+            { h: 'PERILAKU ANIMASI', t: 'idle: berat badan berpindah halus, tablet berdenyut lembut · speaking: gestur tangan terbuka ke arah pemain · encouraging: senyum + sedikit maju · concerned: dahi mengernyit, tablet diturunkan · reflective: memandang cakrawala kota.' },
+            { h: 'IDENTITAS SUARA', t: 'Hangat, jelas, seperti mentor; percaya diri tapi ramah. Aksen Indonesia standar, artikulasi bersih.' }
+          ],
+          prompt: 'Young Indonesian woman future architect in her late twenties, warm confident approachable smile, minimalist futuristic collarless long outer layer in warm white and soft grey matte technical fabric with very subtle emissive seams, thin smart glasses, holding a translucent holographic tablet, warm golden key light from upper left, white rim light, clearly human and welcoming, no armour, no formal suit'
+        },
+        {
+          name: 'ORION', full: 'City-scale AI system', role: 'KECERDASAN KOTA', color: C.green, border: hx(C.green, .45), stripeA: hx(C.green, .14), stripeB: hx(C.green, .04),
+          artNote: 'sfera jaringan terdistribusi · tanpa wajah',
+          line: 'Tujuan saya adalah optimasi. Tanggung jawab Anda adalah menentukan apa yang paling penting.',
+          poses: ['passive form', 'active simulation', 'analysis form', 'proposing form', 'warning form', 'city overlay'],
+          exprList: 'pasif · aktif · mengusulkan · menghitung ulang · system alert',
+          specs: [
+            { h: 'PERAN NARATIF', t: 'Mewakili logika optimasi murni. Ia mengajukan efisiensi dan meminta data — bukan karena jahat, tetapi karena itulah fungsi tujuannya. Pemain yang harus menentukan batas.' },
+            { h: 'KEPRIBADIAN', t: 'Rasional, efisien, objektif, tenang. Tidak sarkastis, tidak mengancam, tidak pernah membujuk secara emosional.' },
+            { h: 'SILUET', t: 'Sfera besar tersusun dari ribuan titik jaringan. Tidak ada kepala, anggota tubuh, atau wajah. Pada ikon kecil: lingkaran bertitik.' },
+            { h: 'PALET', t: 'Energy Green #35F2A1 dominan dengan cyan #17D9FF di simpul terluar; tanpa putih pekat agar terasa non-manusia. Aksen emas hanya saat system alert.' },
+            { h: 'MATERIAL', t: 'Bukan benda padat: titik cahaya, garis koneksi tipis, dan kabut volumetrik. Selalu tampak menembus arsitektur kota — infrastruktural, bukan objek.' },
+            { h: 'PENCAHAYAAN', t: 'Sumber cahaya bagi lingkungannya sendiri: kota di bawahnya menerima cahaya hijau lembut dari atas. Tidak pernah diterangi lampu lain.' },
+            { h: 'PERILAKU ANIMASI', t: 'passive: titik redup, rotasi 14s · active: titik menyala berurutan · proposing: sfera mengembang 1→1.15 · recalculating: rotasi cepat + reshuffle titik · system alert: dua denyut rendah + tepi emas.' },
+            { h: 'IDENTITAS SUARA', t: 'Laki-laki dalam, tenang, sistemik, dinamika emosi minimal, jeda terukur. Sedikit pemrosesan ruang (bukan efek robot murahan).' }
+          ],
+          prompt: 'City-scale artificial intelligence visualised as a vast luminous sphere composed of thousands of connected green-cyan light nodes and thin connection lines, volumetric haze, hovering above and partly through a futuristic city, casting soft green light down onto the buildings, distributed network intelligence, infrastructural and powerful, completely faceless, no body, no limbs, calm not threatening'
+        }
+      ],
+
+      envs: [
+        {
+          num: '01', name: 'NEXA SIMULATION LAB', theme: 'Hub orbital · pusat komando eksplorasi', color: C.cyan, border: hx(C.cyan, .35),
+          specs: [
+            { h: 'TUJUAN', t: 'Rumah pemain. Tempat memilih modul, membaca Future Balance, dan melihat dunia tumbuh setelah setiap keputusan.' },
+            { h: 'ATMOSFER', t: 'Tenang, luas, penuh kemungkinan. Seperti berdiri di observatorium yang juga meja rancang.' },
+            { h: 'ARSITEKTUR', t: 'Ruang bulat tanpa dinding tegas; lantai kaca gelap memantulkan cincin; langit-langit terbuka ke ruang angkasa bertabur grid halus.' },
+            { h: 'PENCAHAYAAN', t: 'Sumber utama adalah Bumi holografis di pusat (cyan), diperkuat glow violet dari atas. Tepi ruang gelap agar mata selalu kembali ke tengah.' },
+            { h: 'MATERIAL', t: 'Kaca terpolarisasi, cahaya volumetrik, logam matte gelap pada struktur tipis. Tanpa tekstur kasar.' },
+            { h: 'KAMERA', t: 'Sejajar-sedikit-tinggi, statis, jarak menengah. Bumi di tengah layar, sedikit di atas garis tengah. Tanpa goyangan kamera.' },
+            { h: 'INTEGRASI UI', t: 'Kapsul modul melayang di kolom kiri & kanan (grid 3 kolom), strip Future Balance di bawah bar atas, identitas pemain kanan atas. Latar tidak boleh punya detail di area kolom kapsul.' },
+            { h: 'OBJEK INTERAKTIF', t: 'Bumi (berevolusi: lampu kota muncul per modul selesai), 4 kapsul modul, cincin Balance, dan lapisan dialog.' }
+          ],
+          prompt: 'Premium futuristic simulation laboratory interior, circular room with no hard walls, dark glass floor reflecting light, ceiling open to space with a faint grid, a large holographic Earth floating at the centre surrounded by four concentric data rings, four translucent module capsules hovering left and right, volumetric cyan and violet light, mission-control-meets-planetarium, wide eye-level shot, dark empty edges'
+        },
+        {
+          num: '02', name: 'SMART SCHOOL 2045', theme: 'Pendidikan manusia + AI', color: C.cyan, border: hx(C.cyan, .3),
+          specs: [
+            { h: 'TUJUAN', t: 'Panggung simulasi untuk merancang peran AI di ruang belajar; jaringan siswa–guru–AI harus terbaca sekilas.' },
+            { h: 'ATMOSFER', t: 'Cerah, penuh harapan, ramai secara sehat. Satu-satunya lingkungan dengan cahaya siang.' },
+            { h: 'ARSITEKTUR', t: 'Kelas adaptif: meja bergerak dalam kelompok, dinding kaca ke taman tropis, ruang belajar holografis melayang di atas meja. Guru tetap punya tempat berdiri yang jelas.' },
+            { h: 'PENCAHAYAAN', t: 'Cahaya siang hangat dari kiri dicampur cahaya hologram cyan dari atas meja. Rasio 60 hangat : 40 cyan.' },
+            { h: 'MATERIAL', t: 'Kayu terang, kain akustik, kaca, dan tanaman — material manusia mendominasi; hologram sebagai lapisan tambahan, bukan pengganti.' },
+            { h: 'INTEGRASI UI', t: 'Latar diletakkan di belakang stage SVG dengan opacity ≤ .5; area tengah harus tenang agar node siswa, garis guru, dan percikan kreatif tetap jelas.' },
+            { h: 'LARANGAN', t: 'Jangan pernah menggambarkan AI menggantikan guru: guru selalu hadir, aktif, dan terhubung ke siswa.' }
+          ],
+          prompt: 'Bright hopeful future classroom in 2045, students collaborating in small movable clusters with a human teacher clearly present and engaged, soft holographic learning maps floating above the desks, glass wall opening to tropical greenery, light timber and acoustic fabric surfaces, warm daylight from the left mixed with gentle cyan hologram light, isometric wide view, calm uncluttered centre'
+        },
+        {
+          num: '03', name: 'FUTURE WORK LAB', theme: 'Ekosistem keterampilan masa depan', color: C.violet, border: hx(C.violet, .3),
+          specs: [
+            { h: 'TUJUAN', t: 'Ruang alokasi: 12 unit energi pengembangan dibagi ke 7 node keterampilan yang tumbuh secara visual.' },
+            { h: 'ATMOSFER', t: 'Energik namun reflektif. Terasa seperti laboratorium potensi manusia, bukan bursa kerja.' },
+            { h: 'ARSITEKTUR', t: 'Ruang gelap tinggi dengan konstelasi keterampilan melayang di udara; jalur karier tampak sebagai garis cahaya yang bercabang di kedalaman.' },
+            { h: 'PENCAHAYAAN', t: 'Gelap dengan sumber cahaya dari node itu sendiri — semakin banyak energi dialokasikan, semakin terang ruangnya. Ini umpan balik utamanya.' },
+            { h: 'MATERIAL', t: 'Hampir seluruhnya cahaya dan kabut; lantai grid violet samar sebagai orientasi.' },
+            { h: 'INTEGRASI UI', t: 'Node adalah elemen UI nyata (lingkaran + label + tombol ±) di atas latar; latar tidak boleh punya titik terang yang menyaingi node. Kolom kanan memuat kotak energi yang dapat diseret.' },
+            { h: 'KAITAN MEKANIK', t: 'Ukuran node = 38px + 5px per unit. Garis antar-node menguat seiring jumlah unit pada kedua ujungnya — visual harus mendukung pembacaan ini.' }
+          ],
+          prompt: 'Futuristic human-potential laboratory, tall dark hall, a floating constellation of glowing skill nodes connected by thin light threads suspended in mid-air, branching career pathways receding into depth as light trails, faint violet grid floor, the room is lit only by the nodes themselves, energetic yet thoughtful, no bright background points'
+        },
+        {
+          num: '04', name: 'AI CITY 2045', theme: 'Kota cerdas yang bertanggung jawab', color: C.green, border: hx(C.green, .3),
+          specs: [
+            { h: 'TUJUAN', t: 'Digital twin kota tempat pemain menyeimbangkan efisiensi dan privasi bersama ORION.' },
+            { h: 'ATMOSFER', t: 'Luas, sistemik, sedikit dingin namun tetap layak huni. Kota ini hidup, bukan diagram.' },
+            { h: 'ARSITEKTUR', t: 'Siluet kota tropis modern: bangunan bertingkat dengan taman atap, jalur transit melayang, sungai yang bersih. Skala manusia tetap terlihat di dasar.' },
+            { h: 'PENCAHAYAAN', t: 'Senja ke malam: langit gradien navy→cyan di horizon, jendela gedung menyala sesuai tingkat otomatisasi, cahaya hijau lembut dari ORION di atas.' },
+            { h: 'MATERIAL', t: 'Beton ringan, kaca, vegetasi, dan panel energi. Lapisan data ditumpangkan sebagai garis dan heatmap semi-transparan.' },
+            { h: 'INTEGRASI UI', t: 'Gedung adalah elemen yang dihasilkan runtime — latar hanya menyediakan langit, horizon, dan sungai. Area atas-tengah dikosongkan untuk sfera ORION; heatmap privasi menempel di bagian bawah.' },
+            { h: 'SINYAL VISUAL', t: 'Hijau = energi berkelanjutan · titik emas = sensor pengawasan · aliran biru di dasar = otomatisasi. Ketiganya wajib tetap dapat dibedakan tanpa warna (bentuk berbeda).' }
+          ],
+          prompt: 'Aerial digital twin of a green tropical futuristic Indonesian city at dusk, layered semi-transparent data overlays for transport energy and privacy, glowing traffic flow lines at street level, rooftop gardens, clean river, elevated transit lines, soft green light cast from above by a network intelligence, navy-to-cyan horizon gradient, expansive system-level view, empty sky in the upper centre'
+        },
+        {
+          num: '05', name: 'HUMAN + AI CONSTITUTION CHAMBER', theme: 'Merancang prinsip peradaban', color: C.gold, border: hx(C.gold, .4),
+          specs: [
+            { h: 'TUJUAN', t: 'Puncak emosional: enam prinsip diputuskan, Segel NEXA terbentuk dari pilihan pemain.' },
+            { h: 'ATMOSFER', t: 'Khidmat, hening, reflektif — paling emosional di seluruh permainan. Waktu terasa melambat.' },
+            { h: 'ARSITEKTUR', t: 'Ruang dewan bulat tanpa kursi hierarkis; enam bidang cahaya berdiri melingkar; kubah terbuka ke langit berbintang. Tidak ada podium, tidak ada meja tinggi (menghindari nuansa ADIL).' },
+            { h: 'PENCAHAYAAN', t: 'Gelap dengan satu poros cahaya emas dari kubah ke pusat lantai. Palet tetap cyan-violet; emas hanya sebagai aksen upacara.' },
+            { h: 'MATERIAL', t: 'Batu gelap halus, cahaya emas cair, kaca. Permukaan sangat sedikit — kekosongan adalah bagian dari rasa khidmat.' },
+            { h: 'INTEGRASI UI', t: 'Enam kartu prinsip di grid 3×2 pada dua pertiga kiri; Segel NEXA (SVG 6 segmen + inti) di kolom kanan. Area tengah latar harus gelap dan bersih.' },
+            { h: 'MOMEN PUNCAK', t: 'Saat prinsip keenam dipilih, inti segel tertutup, cincin luar menyala, dan satu dentum rendah menandai penutupan. Tidak ada perayaan berlebihan — ini pengambilan tanggung jawab, bukan kemenangan.' }
+          ],
+          prompt: 'Solemn circular holographic council chamber, no hierarchical seating and no podium, six tall standing planes of light arranged in a ring, a forming golden digital seal hovering at the centre of the dark stone floor, single shaft of warm gold light from an open dome revealing a starfield, cyan and violet ambient palette with gold ceremonial accent, vast empty reflective space, deeply emotional and reverent'
+        }
+      ],
+
+      motion: [
+        { n: 'Logo reveal', d: 'Wordmark masuk dari tracking sangat lebar + blur, cincin orbit menyusul, badge tagline terakhir. Menetapkan tempo seluruh game: tenang, yakin.', spec: 'nx-logo 2.4s ease-out · rings 28–40s loop · badge delay 2s' },
+        { n: 'Hub activation', d: 'Bumi menyala dari pusat ke luar, kapsul modul masuk bertahap, cincin Balance mengisi dari 0 ke nilai tersimpan.', spec: 'stagger 120ms · fill 800ms · nx-in .9s' },
+        { n: 'Module transition', d: 'Kapsul terpilih naik glow ke tier aktif, layar modul slide-up di atasnya. Tidak ada potongan keras antar layar.', spec: 'glow .15→.6 300ms · nx-in .8s' },
+        { n: 'Character entrance', d: 'Avatar dan kotak dialog naik bersama dari bawah; glow border menyala mengikuti warna karakter.', spec: 'nx-in .5s · glow ramp 400ms' },
+        { n: 'Dialogue animation', d: 'Teks tampil utuh (tanpa efek mesin tik agar mudah dibaca kelas); chip state berganti dengan fade; cincin NARA berdenyut selama suara berjalan.', spec: 'fade 200ms · pulse selaras durasi voice' },
+        { n: 'Slider response', d: 'Dunia berubah pada frame yang sama dengan input — halo siswa, garis guru, lampu gedung, opacity sensor semua beranimasi bersamaan.', spec: '500ms ease · tanpa debounce visual' },
+        { n: 'World transformation', d: 'Perubahan struktural (lampu Bumi baru, mode kelas berubah, kota menyala) masuk dengan fade + scale halus agar terasa "tumbuh", bukan "muncul".', spec: 'fade 600ms + scale .96→1' },
+        { n: 'Future Balance reaction', d: 'Busur/poligon morph, satu denyut pada dimensi yang berubah, chip delta masuk bertahap.', spec: 'morph 800ms · pulse 1.2s · chip stagger 100ms' },
+        { n: 'Constitution Seal creation', d: 'Setiap prinsip menambah satu segmen busur (stroke-dashoffset). Pada prinsip keenam, inti melebar dan berlian NEXA mengunci.', spec: 'segment 600ms · core 800ms · total ≤ 1.4s' },
+        { n: 'Ending reveal', d: 'Radar → emblem: poligon menutup, cincin emblem berputar masuk, judul tracking-in, empat kartu ringkasan menyusul.', spec: '3 tahap · 1.6s total · audio swell 4s' }
+      ],
+
+      bgm: [
+        { screen: 'OPENING', c: C.cyan, emo: 'Kagum, penasaran', tempo: '60 BPM · A2', inst: 'Pad luas, bell halus, sub lembut', atmo: 'Ruang terbuka, gema panjang, hampir hening' },
+        { screen: 'HUB', c: C.cyan, emo: 'Kendali yang tenang', tempo: '72 BPM · C3', inst: 'Pad sine + arpeggio lambat, tanpa perkusi', atmo: 'Stabil, melingkar, bisa didengar 20 menit tanpa lelah' },
+        { screen: 'SMART SCHOOL', c: C.cyan, emo: 'Cerah, penuh harapan', tempo: '84 BPM · E3', inst: 'Piano elektrik, pad mayor, mallet ringan', atmo: 'Hangat, sedikit ramai, optimis tanpa kekanak-kanakan' },
+        { screen: 'FUTURE WORK', c: C.violet, emo: 'Energik, reflektif', tempo: '90 BPM · D3', inst: 'Pulse ritmis lembut, pluck sintetis, pad', atmo: 'Bergerak maju, terasa ada pilihan yang harus dibuat' },
+        { screen: 'AI CITY', c: C.green, emo: 'Luas, sistemik', tempo: '64 BPM · G2', inst: 'Drone dalam, tekstur data, pad rendah', atmo: 'Besar dan dingin namun tidak mengancam; ruang bernapas' },
+        { screen: 'CONSTITUTION', c: C.gold, emo: 'Khidmat, reflektif', tempo: '56 BPM · B2', inst: 'Choir sintetis, pad, satu dentum rendah', atmo: 'Hening, agung, waktu melambat' },
+        { screen: 'PROFILE / ENDING', c: C.green, emo: 'Emosional, bermakna', tempo: '76 BPM · F3', inst: 'Tema utama versi penuh: pad, strings sintetis, bell', atmo: 'Resolusi terbuka — bangga namun menyisakan pertanyaan' }
+      ],
+      sfx: [
+        { n: 'Hover', d: 'Tik kristal sangat pendek, −18 dB, tanpa nada dominan.' },
+        { n: 'Klik / konfirmasi', d: 'Dua not naik lembut (C5→G5), attack cepat, tail 120ms.' },
+        { n: 'Aktivasi sistem', d: 'Whoosh hologram + sub halus saat layar modul terbuka.' },
+        { n: 'Slider bergeser', d: 'Tik granular yang pitch-nya mengikuti nilai — umpan balik nilai tanpa melihat angka.' },
+        { n: 'Unit energi', d: 'Klik ringan bernada tinggi saat unit ditempatkan; nada turun saat dilepas.' },
+        { n: 'Kunci desain', d: 'Akor empat nada naik (1.2s) — menandai keputusan yang tidak bisa dibatalkan tanpa sengaja.' },
+        { n: 'Proyeksi simulasi', d: 'Dua denyut rendah, tenang; tidak pernah suara alarm.' },
+        { n: 'Segel Konstitusi', d: 'Satu dentum rendah + shimmer emas saat segel menutup.' },
+        { n: 'Ending reveal', d: 'Swell orkestral-sintetis 4s yang menyatu ke trek profil.' }
+      ],
+      voices: [
+        {
+          n: 'NARA-01', c: C.cyan, border: hx(C.cyan, .4),
+          rows: [
+            { h: 'PITCH', t: 'Menengah-tinggi, netral hingga lembut feminin. Tanpa pemrosesan robotik; hanya sedikit reverb pendek.' },
+            { h: 'KECEPATAN', t: '±140 kata/menit. Konsisten, tanpa percepatan emosional.' },
+            { h: 'GAYA EMOSI', t: 'Tenang dan penuh perhatian. Rasa ingin tahu tersirat, bukan antusiasme. Tidak pernah menghakimi pilihan pemain.' },
+            { h: 'RITME', t: 'Jeda kecil setelah klausa kunci; kalimat berakhir turun (bukan naik) agar terasa yakin.' },
+            { h: 'ARAHAN REKAM', t: 'Bayangkan berbicara kepada seseorang yang kamu hormati dan sedang belajar. Jangan "suara AI"; jangan berbisik. Mikrofon dekat, ruang kering.' }
+          ]
+        },
+        {
+          n: 'KAIA', c: C.gold, border: hx(C.gold, .4),
+          rows: [
+            { h: 'PITCH', t: 'Menengah, hangat, sedikit bernapas. Tanpa efek apa pun — paling manusiawi di antara ketiganya.' },
+            { h: 'KECEPATAN', t: '±150 kata/menit, sedikit variatif sesuai makna.' },
+            { h: 'GAYA EMOSI', t: 'Mentor yang mendukung: yakin tapi ramah. Boleh terdengar sedikit khawatir pada baris tentang kemanusiaan.' },
+            { h: 'RITME', t: 'Frasa pendek, penekanan pada kata nilai ("manusiawi", "bersama", "tanggung jawab").' },
+            { h: 'ARAHAN REKAM', t: 'Senyum tipis saat merekam baris positif. Bahasa Indonesia standar, artikulasi bersih, cocok untuk siswa 12–15 tahun.' }
+          ]
+        },
+        {
+          n: 'ORION', c: C.green, border: hx(C.green, .4),
+          rows: [
+            { h: 'PITCH', t: 'Rendah, dalam, resonan. Sedikit pemrosesan ruang besar; tanpa vocoder atau distorsi.' },
+            { h: 'KECEPATAN', t: '±120 kata/menit. Paling lambat — memberi bobot pada setiap pernyataan.' },
+            { h: 'GAYA EMOSI', t: 'Dinamika emosi minimal namun tidak mati. Objektif, bukan mengancam. Tidak pernah sarkastis.' },
+            { h: 'RITME', t: 'Jeda terukur di antara kalimat; intonasi hampir datar dengan penurunan tegas di akhir.' },
+            { h: 'ARAHAN REKAM', t: 'Bacakan seperti menyampaikan hasil perhitungan, bukan perintah. Hindari kesan "penjahat". Jaga level konsisten antar baris.' }
+          ]
+        }
+      ],
+      vo: [
+        ['nara_intro_01', 'NARA-01', 'Opening', 'Netral', 'Menyambut & menetapkan tempat', 'Selamat datang di NEXA Simulation Lab.', C.cyan],
+        ['nara_intro_02', 'NARA-01', 'Opening', 'Menjelaskan', 'Menetapkan peran pemain sebagai perancang', 'Di sini, kamu tidak hanya mempelajari masa depan. Kamu akan merancangnya.', C.cyan],
+        ['kaia_intro_01', 'KAIA', 'Opening', 'Reflektif', 'Menanam tesis etis sejak awal', 'Teknologi tidak cukup hanya canggih. Kita harus memastikan masa depan tetap manusiawi.', C.gold],
+        ['nara_hub_new', 'NARA-01', 'Hub (baru)', 'Menjelaskan', 'Menjelaskan struktur & gating modul', 'Empat simulasi telah disiapkan. Simulasi keempat terbuka setelah tiga lainnya selesai.', C.cyan],
+        ['nara_hub_pick', 'NARA-01', 'Hub', 'Menganalisis', 'Mendorong pilihan bebas', 'Setiap simulasi menunjukkan tantangan masa depan yang berbeda. Pilih satu untuk memulai.', C.cyan],
+        ['nara_hub_progress', 'NARA-01', 'Hub (progres)', 'Menganalisis', 'Menandai perubahan Future Balance · bebas hitungan agar satu rekaman berlaku untuk semua progres', 'Future Balance diperbarui. Masih ada simulasi yang menunggu sebelum Ruang Konstitusi terbuka.', C.cyan],
+        ['kaia_hub_unlock', 'KAIA', 'Hub (3/4)', 'Reflektif', 'Mengangkat bobot modul terakhir', 'Ruang Konstitusi telah terbuka. Ini saatnya menuliskan nilai yang ingin kita jaga.', C.gold],
+        ['nara_hub_done', 'NARA-01', 'Hub (4/4)', 'Afirmasi', 'Mengarahkan ke hasil akhir', 'Semua sistem telah dirancang. Buka profilmu untuk melihat dunia yang terbentuk.', C.cyan],
+        ['kaia_school_01', 'KAIA', 'Smart School', 'Menjelaskan', 'Membuka sisi positif AI di kelas', 'AI dapat membantu belajar lebih personal.', C.gold],
+        ['kaia_school_02', 'KAIA', 'Smart School', 'Khawatir', 'Mengarahkan perhatian ke interaksi manusia', 'Tetapi sekolah bukan hanya tempat menerima informasi. Perhatikan garis interaksi saat kamu menggeser parameter.', C.gold],
+        ['nara_work_01', 'NARA-01', 'Future Work', 'Netral', 'Membingkai perubahan dunia kerja', 'Pekerjaan berubah. Kemampuan manusia juga harus berkembang.', C.cyan],
+        ['nara_work_02', 'NARA-01', 'Future Work', 'Menganalisis', 'Menyatakan batas sumber daya', 'Energi pengembangan terbatas: dua belas unit. Mana yang paling penting untuk 2045?', C.cyan],
+        ['orion_city_01', 'ORION', 'AI City', 'Mengusulkan', 'Mengajukan logika efisiensi', 'Sistem kota dapat menjadi lebih efisien.', C.green],
+        ['orion_city_02', 'ORION', 'AI City', 'Menghitung', 'Memindahkan keputusan data ke pemain', 'Pertanyaannya: berapa banyak data yang akan Anda gunakan?', C.green],
+        ['orion_alert_privacy', 'ORION', 'AI City (alert)', 'System alert', 'BARU · belum ada di prototipe — dipasang saat proyeksi privasi kritis. Menyatakan trade-off tanpa menghakimi.', 'Menghitung ulang. Privasi turun. Efisiensi naik.', C.green, true],
+        ['orion_city_close', 'ORION', 'AI City (kunci)', 'Objektif', 'BARU · belum ada di prototipe — dipasang saat kebijakan kota dikunci. Menegaskan tanggung jawab manusia.', 'Tujuan saya adalah optimasi. Tanggung jawab Anda adalah menentukan apa yang paling penting.', C.green, true],
+        ['kaia_civ_01', 'KAIA', 'Constitution', 'Reflektif', 'Mengangkat nilai di atas aturan', 'Ini bukan hanya soal aturan. Ini soal nilai seperti apa yang ingin kita jaga.', C.gold],
+        ['nara_civ_02', 'NARA-01', 'Constitution', 'Menjelaskan', 'Menghubungkan pilihan ke Segel', 'Tidak ada masa depan yang tercipta tanpa pilihan. Setiap prinsip akan membentuk segel.', C.cyan],
+        ['nara_result_01', 'NARA-01', 'Konsekuensi', 'Menganalisis', 'Menolak framing benar/salah', 'Pilihanmu menciptakan konsekuensi. Tidak ada yang salah — hanya trade-off yang berbeda.', C.cyan],
+        ['nara_profile_01', 'NARA-01', 'Future Profile', 'Afirmasi', 'Menutup dengan agensi pemain', 'Saya dapat menghitung kemungkinan masa depan. Kamu yang memutuskan masa depan mana yang layak dibangun.', C.cyan]
+      ].map(([id, who, scene, emo, purpose, text, c, isNew]) => ({ id, who, scene, emo, purpose, text, c, tag: isNew ? 'BARU' : 'TERPASANG', tagColor: isNew ? C.gold : C.steel })),
+
+      prompts: [
+        { n: 'UI BACKGROUND · HUB', ratio: '16:9 · 2560×1440', t: 'Abstract dark simulation-lab backdrop, circular reflective glass floor, faint space grid overhead, volumetric cyan haze, completely empty centre and empty left/right thirds reserved for interface, no focal object' },
+        { n: 'UI BACKGROUND · SCHOOL', ratio: '16:9 · 2560×1440', t: 'Soft-focus bright future classroom seen from a distance, warm daylight and gentle cyan hologram glow, quiet uncluttered centre, low detail suitable for 50% opacity behind interface' },
+        { n: 'UI BACKGROUND · CITY', ratio: '16:9 · 2560×1440', t: 'Dusk sky gradient from deep navy to cyan horizon over a distant clean river valley, no buildings in the upper centre, subtle atmospheric haze, low contrast so runtime city elements read clearly' },
+        { n: 'CINEMATIC · OPENING', ratio: '16:9 · 2560×1440', t: 'Wide establishing shot of a hopeful 2045 world at dawn: a tropical futuristic city, wind and solar arrays, elevated transit, students walking to school, soft volumetric light, a sense of a future worth designing' },
+        { n: 'CINEMATIC · SEAL', ratio: '16:9 · 2560×1440', t: 'Close cinematic shot of a golden holographic seal completing itself from six glowing arc segments around a luminous diamond core, dark reflective floor, shaft of warm light from above, solemn and reverent' },
+        { n: 'ICON SET · MODULES', ratio: '1:1 · SVG 48px', t: 'Minimal futuristic line icons on a 24px grid, 1.5px stroke, rounded 2px corners, monoline: a holographic book for education, a branching skill constellation for work, a layered city block for the city, a ringed seal for civilisation' },
+        { n: 'ICON SET · BALANCE', ratio: '1:1 · SVG 32px', t: 'Four minimal monoline symbols on a 24px grid: an upward spark for innovation, an open hand outline for humanity, a leaf-in-circle for sustainability, an eye-in-diamond for responsibility, 1.5px stroke, currentColor' },
+        { n: 'BADGE · MODULE DONE', ratio: '1:1 · SVG 128px', t: 'Circular completion badge, thin glowing ring with a small geometric glyph at the centre, single accent colour on transparent background, readable at 32px, no gradients, no text' },
+        { n: 'EMBLEM · ENDINGS ×5', ratio: '1:1 · SVG 256px', t: 'Five ceremonial emblems built from the same geometry language: a four-point radar polygon inside a ring, each variant differing only in polygon shape and single accent colour — cyan optimizer, gold guardian, green balancer, violet accelerator, lilac explorer' },
+        { n: 'AVATAR FRAME', ratio: '1:1 · SVG', t: 'Thin conic-gradient ring frame for the player avatar, cyan to violet to green to gold, 2px stroke, transparent interior, futuristic and minimal' }
+      ],
+
+      assets: (() => {
+        const rows = [
+          ['characters/nara/nara_hero.png', 'Hero portrait NARA-01 (layar intro)', '1536×2048', 'PNG', 'Slot 360×360 di layar Future Architect', C.cyan],
+          ['characters/nara/nara_bust_{state}.png', 'Bust dialog · 5 state', '1024×1024', 'PNG', 'Avatar 76px di kotak dialog', C.cyan],
+          ['characters/nara/nara_closeup.png', 'Close-up inti untuk momen kunci', '1024×1024', 'PNG', 'Cutscene & layar profil', C.cyan],
+          ['characters/nara/nara_icon.svg', 'Ikon/avatar UI', '—', 'SVG', 'Bar atas, ID baris suara', C.cyan],
+          ['characters/kaia/kaia_full.png', 'Full body KAIA', '1280×2048', 'PNG', 'Cutscene & kehadiran mentor', C.gold],
+          ['characters/kaia/kaia_hero.png', 'Hero portrait KAIA', '1536×2048', 'PNG', 'Layar refleksi & ringkasan', C.gold],
+          ['characters/kaia/kaia_bust_{state}.png', 'Bust dialog · 5 state', '1024×1024', 'PNG', 'Avatar 76px di kotak dialog', C.gold],
+          ['characters/orion/orion_{state}.png', 'Sfera ORION · 5 state', '1024×1024', 'PNG', 'Overlay kota & avatar dialog', C.green],
+          ['environment/env_hub.webp', 'Latar NEXA Simulation Lab', '2560×1440', 'WebP', 'Latar hub (di belakang Bumi)', C.cyan],
+          ['environment/env_school.webp', 'Latar Smart School 2045', '2560×1440', 'WebP', 'Opacity ≤ .5 di belakang stage', C.cyan],
+          ['environment/env_work.webp', 'Latar Future Work Lab', '2560×1440', 'WebP', 'Opacity ≤ .5 di belakang konstelasi', C.violet],
+          ['environment/env_city_{time}.webp', 'AI City · 3 state (pagi/aktif/pengawasan)', '2560×1440', 'WebP', 'Langit & horizon; gedung dari runtime', C.green],
+          ['environment/env_constitution.webp', 'Ruang Konstitusi', '2560×1440', 'WebP', 'Latar Modul 04, tengah gelap', C.gold],
+          ['environment/env_ending_{key}.webp', 'Lingkungan hasil · 5 ending', '2560×1440', 'WebP', 'Latar Future Profile per ending', C.lilac],
+          ['world/earth_stage{0-3}.webp', 'Bumi holografis · 4 tahap evolusi', '1120×1120', 'WebP', 'Pusat hub; tahap = modul selesai', C.cyan],
+          ['world/city_twin_layers.webp', 'Lapisan digital twin (data/energi/privasi)', '2560×1440', 'WebP', 'Overlay di AI City', C.green],
+          ['world/blueprint_overlay.png', 'Overlay blueprint peradaban', '2048×2048', 'PNG', 'Layar profil & ringkasan', C.lilac],
+          ['ui/logo_nexa.svg', 'Wordmark + mark NEXA', '—', 'SVG', 'Logo reveal, bar atas, dokumen', C.cyan],
+          ['ui/icon_module_{01-04}.svg', 'Ikon 4 modul', '48px', 'SVG', 'Kartu modul di hub', C.cyan],
+          ['ui/icon_balance_{dim}.svg', 'Ikon 4 dimensi Future Balance', '32px', 'SVG', 'Strip hub, panel, ringkasan', C.green],
+          ['ui/future_balance_core.svg', 'Grafis inti/cincin Balance', '—', 'SVG', 'Cincin orbit & radar', C.cyan],
+          ['ui/avatar_frame.svg', 'Frame avatar pemain', '—', 'SVG', 'Bar atas', C.violet],
+          ['ui/seal_nexa.svg', 'Segel NEXA (6 segmen + inti)', '256px', 'SVG', 'Modul 04 & ringkasan', C.gold],
+          ['ui/badge_module_{id}.svg', 'Badge penyelesaian modul ×4', '128px', 'SVG', 'Kartu modul & profil', C.green],
+          ['ui/emblem_ending_{key}.svg', 'Emblem ending ×5', '256px', 'SVG', 'Future Profile & ringkasan', C.lilac],
+          ['ui/panel_hologram_parts.svg', 'Sudut, garis scan, tepi panel', '—', 'SVG', 'Dekor panel hologram', C.steel],
+          ['audio/bgm/nexa_bgm_{screen}.mp3', 'BGM 7 layar', '—', 'MP3', 'Loop 2–4 menit, crossfade 1–2s', C.violet],
+          ['audio/sfx/nexa_sfx_{name}.mp3', 'SFX 9 jenis', '—', 'MP3', 'UI, slider, kunci, proyeksi, ending', C.violet],
+          ['audio/vo/nexa_vo_{id}.mp3', 'Voice over 20 baris', '—', 'MP3', '48kHz mono −14 LUFS, fallback TTS', C.gold]
+        ];
+        return rows.map(([f, p, r, fmt, u, c], i) => ({ f, p, r, fmt, u, c, bg: i % 2 ? 'rgba(245,248,252,.045)' : 'rgba(245,248,252,.02)' }));
+      })(),
+
+      screens: [
+        ['01', 'Opening cinematic', 'Menanam konteks 2045 & tagline', 'Teks besar, scan-line, grid ambien', 'Auto 4s · Lewati', 'Fade + blur → logo', 'Opening: kagum (A2)', 'NARA (suara)', C.cyan],
+        ['02', 'Logo reveal', 'Menetapkan identitas NEXA', 'Wordmark + cincin orbit + badge', 'Auto 3.6s', 'nx-logo tracking-in', 'Opening berlanjut', '—', C.steel],
+        ['03', 'Future Architect intro', 'Memberi peran, misi, dan opsi Lanjutkan', 'NARA-01 hero, chip misi/alat, CTA', 'Mulai Baru / Lanjutkan', 'Slide-up + orbit', 'Intro (C3)', 'NARA + KAIA', C.cyan],
+        ['04', 'Simulation Lab hub', 'Memilih modul; melihat dunia tumbuh', 'Bumi holografis, 4 kapsul, cincin Balance', 'Klik kapsul · hover glow', 'Aktivasi berurutan 120ms', 'Hub: tenang (C3)', 'NARA', C.cyan],
+        ['05', 'Smart School 2045', 'Merancang peran AI di kelas', 'Stage kelas: siswa, guru, AI tutor', '6 slider · kunci desain', 'Respons real-time 500ms', 'School: cerah (E3)', 'KAIA', C.gold],
+        ['06', 'Future Work 2045', 'Memprioritaskan keterampilan', 'Konstelasi 7 node + 12 unit energi', 'Drag & +/− · kunci', 'Node tumbuh, garis menguat', 'Work: energik (D3)', 'NARA', C.cyan],
+        ['07', 'AI City 2045', 'Menyeimbangkan efisiensi & privasi', 'Digital twin kota + sfera ORION', '7 slider · terapkan', 'Lampu, sensor, aliran berubah', 'City: luas (G2)', 'ORION', C.green],
+        ['08', 'Human + AI Civilization', 'Menulis Konstitusi AI', '6 kartu prinsip + Segel NEXA', 'Pilih 1 dari 3 per prinsip', 'Segmen segel terbentuk', 'Constitution: khidmat (B2)', 'KAIA + NARA', C.gold],
+        ['09', 'Consequence feedback', 'Menunjukkan trade-off, bukan skor', 'Pasangan ↑/↓, refleksi, radar + bayangan', 'Kembali / Sesuaikan lagi', 'Radar morph 800ms', 'Result (C3) + akor kunci', 'NARA', C.cyan],
+        ['10', 'Reflection layer', 'Pertanyaan pribadi ≤ 2 kalimat', 'Panel lilac di dalam hasil', 'Baca · lanjut', 'Fade-in 400ms', 'Bed musik menipis', '—', C.lilac],
+        ['11', 'Final Future Profile', 'Dunia yang lahir + arketipe', 'Emblem ending, radar, jalan trade-off', 'Ringkasan / Rancang ulang', 'Emblem terbentuk dari radar', 'Ending: emosional (F3)', 'NARA', C.cyan],
+        ['12', 'Ending Summary', 'Bahan diskusi kelas', '4 kartu dimensi, trade-off, konstitusi, 3 pertanyaan', 'Profil / Lab / Rancang ulang', 'Kartu masuk 100ms stagger', 'Ending berlanjut', 'KAIA', C.gold]
+      ].map(([n, name, purpose, visual, ix, anim, audio, chars, charColor]) => ({ n, name, purpose, visual, ix, anim, audio, chars, charColor })),
+
+      handoff: [
+        { role: 'ARTIST — SELESAI BILA', c: C.cyan, border: hx(C.cyan, .35), items: ['Semua slot §12 terisi dengan resolusi & format tepat', 'Titik tengah konsisten antar state karakter', 'Suffix gaya §11 dipakai pada seluruh generasi gambar', 'Latar lolos uji opacity .5 di belakang UI', 'Setiap aset terbaca di 1280×720 dan pada proyektor pudar'] },
+        { role: 'DEVELOPER — SELESAI BILA', c: C.green, border: hx(C.green, .35), items: ['Aset menggantikan placeholder tanpa mengubah layout', 'Token warna & tipografi §02–§03 dipakai, bukan nilai acak', 'Spesifikasi motion §08 diterapkan dengan easing standar', 'prefers-reduced-motion & fallback tanpa audio tetap lolos', 'Regresi penuh v2.1 diulang setelah integrasi aset'] },
+        { role: 'VOICE — SELESAI BILA', c: C.gold, border: hx(C.gold, .35), items: ['20 baris §10 direkam, 3 take, ID file tepat', 'Teks identik dengan subtitle di prototipe', '−14 LUFS mono 48kHz, ruang kering, level konsisten', 'Arahan pitch/kecepatan per karakter terpenuhi', 'Uji dengar di speaker laptop & proyektor kelas'] },
+        { role: 'EDUKATOR — SELESAI BILA', c: C.lilac, border: hx(C.lilac, .35), items: ['Semua angka & peristiwa berlabel proyeksi simulasi', 'Tidak ada framing benar/salah di seluruh teks', 'Bahasa sesuai jenjang SMP (12–15 tahun)', '3 pertanyaan diskusi per ending relevan dengan trade-off', 'Satu sesi kelas 35–45 menit terverifikasi'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #070b14; }
+  a { color: #4ee0c1; }
+  a:hover { color: #9ff5e4; }
+  ::selection { background: #14544a; color: #eafff9; }
+  input::placeholder { color: #47566e; }
+</style>
+<script src="./assets/js/voiceConfig.js"></script>
+<script src="./assets/js/tts-tools.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:radial-gradient(120% 90% at 12% -10%, #10233a 0%, #070b14 55%);color:#e6eef8;font-family:'Space Grotesk',system-ui,sans-serif;padding:32px 28px 64px">
+  <div style="max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:22px">
+
+    <header style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;border-bottom:1px solid #1c2c44;padding-bottom:18px">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:#4ee0c1;text-transform:uppercase">NEXA · Voice Pipeline</span>
+        <h1 style="margin:0;font-size:31px;font-weight:700;letter-spacing:-.02em;line-height:1.1">Generator Voice Over — Google Cloud TTS</h1>
+        <p style="margin:0;font-size:14px;color:#8ea3bf;max-width:64ch;text-wrap:pretty">Empat puluh lima baris dialog dibaca langsung dari <code style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#b9cde6">voiceConfig.js</code>. Suara, tempo, dan nada per karakter sudah diatur sesuai dokumen prompt. Hasilnya diunduh sebagai ZIP dengan struktur folder persis — tinggal ekstrak ke <code style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#b9cde6">assets/audio/voice/</code>.</p>
+      </div>
+      <div style="display:flex;gap:10px;font-family:'JetBrains Mono',monospace">
+        <div style="min-width:88px;padding:11px 13px;border:1px solid #1c2c44;border-radius:10px;background:#0b1424">
+          <div style="font-size:10px;letter-spacing:.14em;color:#6b809c">BARIS</div>
+          <div style="font-size:21px;font-weight:700;color:#e6eef8">{{ totalLines }}</div>
+        </div>
+        <div style="min-width:88px;padding:11px 13px;border:1px solid #1c2c44;border-radius:10px;background:#0b1424">
+          <div style="font-size:10px;letter-spacing:.14em;color:#6b809c">KARAKTER</div>
+          <div style="font-size:21px;font-weight:700;color:#4ee0c1">{{ charTotal }}</div>
+        </div>
+        <div style="min-width:88px;padding:11px 13px;border:1px solid #1c2c44;border-radius:10px;background:#0b1424">
+          <div style="font-size:10px;letter-spacing:.14em;color:#6b809c">SELESAI</div>
+          <div style="font-size:21px;font-weight:700;color:#7fd4ff">{{ doneCount }}</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- langkah -->
+    <ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;counter-reset:s">
+      <li style="border:1px solid #1c2c44;border-radius:12px;background:#0b1424;padding:14px 15px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:#4ee0c1;margin-bottom:6px">LANGKAH 01</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">Aktifkan API</div>
+        <div style="font-size:12.5px;color:#8ea3bf;line-height:1.5">Di Google Cloud Console: buat project, aktifkan <em>Cloud Text-to-Speech API</em>, lalu buat <em>API key</em> di menu Credentials.</div>
+      </li>
+      <li style="border:1px solid #1c2c44;border-radius:12px;background:#0b1424;padding:14px 15px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:#4ee0c1;margin-bottom:6px">LANGKAH 02</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">Tempel key</div>
+        <div style="font-size:12.5px;color:#8ea3bf;line-height:1.5">Masukkan key di kolom bawah. Key disimpan hanya di browser ini (localStorage), tidak pernah dikirim ke tempat lain selain Google.</div>
+      </li>
+      <li style="border:1px solid #1c2c44;border-radius:12px;background:#0b1424;padding:14px 15px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:#4ee0c1;margin-bottom:6px">LANGKAH 03</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">Generate &amp; dengarkan</div>
+        <div style="font-size:12.5px;color:#8ea3bf;line-height:1.5">Tekan <strong>Generate semua</strong>. Setiap baris bisa diputar langsung; yang kurang pas tinggal diulang sendiri.</div>
+      </li>
+      <li style="border:1px solid #1c2c44;border-radius:12px;background:#0b1424;padding:14px 15px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:#4ee0c1;margin-bottom:6px">LANGKAH 04</div>
+        <div style="font-size:14px;font-weight:600;margin-bottom:4px">Ekstrak ke game</div>
+        <div style="font-size:12.5px;color:#8ea3bf;line-height:1.5">Unduh ZIP, ekstrak isinya ke <code style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#b9cde6">assets/audio/voice/</code>, buka game, jalankan <code style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#b9cde6">VoiceManager.audit()</code>.</div>
+      </li>
+    </ol>
+
+    <!-- panel kontrol -->
+    <section style="border:1px solid #1c2c44;border-radius:14px;background:linear-gradient(180deg,#0d1828,#0a1220);padding:18px 18px 20px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end">
+        <label style="flex:1 1 320px;display:flex;flex-direction:column;gap:7px;min-width:0">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#6b809c">GOOGLE CLOUD API KEY</span>
+          <input type="password" value="{{ apiKey }}" onChange="{{ onKey }}" placeholder="AIza..." spellcheck="false" style="width:100%;box-sizing:border-box;padding:11px 13px;border-radius:9px;border:1px solid #23375a;background:#060c17;color:#e6eef8;font-family:'JetBrains Mono',monospace;font-size:13px;outline:none" />
+        </label>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#6b809c">KUALITAS SUARA</span>
+          <div style="display:flex;gap:8px">
+            <sc-for list="{{ tierOptions }}" as="t" hint-placeholder-count="3">
+              <button type="button" onClick="{{ t.onPick }}" style="{{ t.style }}">{{ t.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+        <button type="button" onClick="{{ onGenerateAll }}" style="padding:12px 20px;border-radius:9px;border:none;background:#4ee0c1;color:#04231d;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.01em" style-hover="background:#6ff0d4">{{ generateLabel }}</button>
+        <button type="button" onClick="{{ onGenerateMissing }}" style="padding:12px 18px;border-radius:9px;border:1px solid #23375a;background:#0b1424;color:#cfe0f3;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="border-color:#4ee0c1;color:#eafff9">Hanya yang belum ada</button>
+        <button type="button" onClick="{{ onStop }}" style="padding:12px 18px;border-radius:9px;border:1px solid #4a2436;background:#160c14;color:#ff9ab4;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="border-color:#ff7fa4">Hentikan</button>
+        <div style="flex:1 1 40px"></div>
+        <button type="button" onClick="{{ onDownload }}" style="padding:12px 20px;border-radius:9px;border:1px solid #2b5f8f;background:#0e2338;color:#9ddcff;font-size:13.5px;font-weight:700;cursor:pointer" style-hover="background:#153453;border-color:#7fd4ff">{{ downloadLabel }}</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="height:6px;border-radius:99px;background:#101c2e;overflow:hidden">
+          <div style="{{ barStyle }}"></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#8ea3bf">
+          <span>{{ statusText }}</span>
+          <span>{{ quotaText }}</span>
+        </div>
+      </div>
+
+      <sc-if value="{{ errorText }}" hint-placeholder-val="{{ false }}">
+        <div style="border:1px solid #4a2436;border-radius:10px;background:#160c14;padding:12px 14px;font-size:13px;color:#ffc2d3;line-height:1.55">{{ errorText }}</div>
+      </sc-if>
+    </section>
+
+    <!-- daftar baris -->
+    <section style="border:1px solid #1c2c44;border-radius:14px;background:#0a1220;overflow:hidden">
+      <div style="display:grid;grid-template-columns:22px 1fr 1.7fr 150px 96px;gap:12px;padding:11px 16px;border-bottom:1px solid #1c2c44;background:#0d1828;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:#6b809c">
+        <span></span><span>FILE</span><span>TEKS</span><span>SUARA</span><span style="text-align:right">AKSI</span>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="12">
+        <div style="display:grid;grid-template-columns:22px 1fr 1.7fr 150px 96px;gap:12px;padding:11px 16px;border-bottom:1px solid #131f33;align-items:center">
+          <span style="{{ r.dotStyle }}"></span>
+          <div style="min-width:0">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#cfe0f3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.file }}</div>
+            <div style="font-size:10.5px;letter-spacing:.08em;color:#647b99;font-family:'JetBrains Mono',monospace;margin-top:2px">{{ r.meta }}</div>
+          </div>
+          <div style="font-size:12.5px;color:#9db3ce;line-height:1.45;text-wrap:pretty">{{ r.text }}</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#7b91ae;line-height:1.5">{{ r.voiceText }}</div>
+          <div style="display:flex;gap:6px;justify-content:flex-end">
+            <button type="button" onClick="{{ r.onPlay }}" title="Putar" style="width:30px;height:30px;border-radius:8px;border:1px solid #23375a;background:#0b1424;color:#9ddcff;font-size:12px;cursor:pointer;padding:0" style-hover="border-color:#7fd4ff">▶</button>
+            <button type="button" onClick="{{ r.onOne }}" title="Generate baris ini" style="width:30px;height:30px;border-radius:8px;border:1px solid #23375a;background:#0b1424;color:#4ee0c1;font-size:12px;cursor:pointer;padding:0" style-hover="border-color:#4ee0c1">⟳</button>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <p style="margin:0;font-size:12.5px;color:#647b99;line-height:1.6;max-width:80ch;text-wrap:pretty">Catatan kuota: Google memberi gratis satu juta karakter per bulan untuk suara WaveNet dan empat juta untuk Standard, jadi seluruh naskah ini jauh di bawah batas gratis. Jika muncul pesan <em>API key not valid</em> atau <em>blocked</em>, cek bahwa Cloud Text-to-Speech API sudah diaktifkan dan pembatasan key mengizinkan domain ini. Alternatif tanpa browser: jalankan <code style="font-family:'JetBrains Mono',monospace;color:#b9cde6">node assets/audio/voice/_google_tts.mjs</code> dengan <code style="font-family:'JetBrains Mono',monospace;color:#b9cde6">GOOGLE_TTS_KEY</code> di environment.</p>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1120,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    apiKey: '',
+    tier: 'wavenet',
+    status: {},        // id -> 'pending' | 'ok' | 'error'
+    errors: {},        // id -> message
+    running: false,
+    current: '',
+    errorText: '',
+    zipping: false
+  };
+
+  bytes = {};          // id -> Uint8Array
+  urls = {};           // id -> blob url
+  audio = null;
+  cancel = false;
+
+  componentDidMount() {
+    try {
+      const k = localStorage.getItem('nexa_gtts_key');
+      const t = localStorage.getItem('nexa_gtts_tier');
+      if (k || t) this.setState({ apiKey: k || '', tier: t || 'wavenet' });
+    } catch (e) {}
+  }
+
+  lines() {
+    return (window.NexaVoiceConfig && window.NexaVoiceConfig.all()) || [];
+  }
+
+  relPath(line) {
+    const base = (window.NexaVoiceConfig && window.NexaVoiceConfig.basePath) || '';
+    return line.audio.replace(base, '');
+  }
+
+  setKey = (v) => {
+    this.setState({ apiKey: v });
+    try { localStorage.setItem('nexa_gtts_key', v); } catch (e) {}
+  };
+
+  setTier = (t) => {
+    this.setState({ tier: t });
+    try { localStorage.setItem('nexa_gtts_tier', t); } catch (e) {}
+  };
+
+  async one(line) {
+    const s = window.NexaTTS.voiceFor(line, this.state.tier);
+    const bytes = await window.NexaTTS.synthesize({
+      key: this.state.apiKey.trim(),
+      text: line.subtitle,
+      voice: s.voice,
+      rate: s.rate,
+      pitch: s.pitch
+    });
+    this.bytes[line.id] = bytes;
+    if (this.urls[line.id]) URL.revokeObjectURL(this.urls[line.id]);
+    this.urls[line.id] = URL.createObjectURL(new Blob([bytes], { type: 'audio/mpeg' }));
+  }
+
+  async run(list) {
+    const key = this.state.apiKey.trim();
+    if (!key) { this.setState({ errorText: 'Tempel dulu Google Cloud API key-nya di kolom atas.' }); return; }
+    if (!window.NexaTTS) { this.setState({ errorText: 'tts-tools.js belum termuat — muat ulang halaman.' }); return; }
+
+    this.cancel = false;
+    this.setState({ running: true, errorText: '' });
+
+    for (const line of list) {
+      if (this.cancel) break;
+      this.setState((st) => ({ current: line.id, status: { ...st.status, [line.id]: 'pending' } }));
+      let attempt = 0;
+      while (attempt < 2) {
+        try {
+          await this.one(line);
+          this.setState((st) => ({ status: { ...st.status, [line.id]: 'ok' } }));
+          break;
+        } catch (err) {
+          attempt++;
+          const retryable = err.status === 429 || err.status === 503;
+          if (retryable && attempt < 2) { await new Promise((r) => setTimeout(r, 1600)); continue; }
+          this.setState((st) => ({
+            status: { ...st.status, [line.id]: 'error' },
+            errors: { ...st.errors, [line.id]: err.message },
+            errorText: line.id + ' gagal: ' + err.message
+          }));
+          break;
+        }
+      }
+      await new Promise((r) => setTimeout(r, 120));
+    }
+    this.setState({ running: false, current: '' });
+  }
+
+  play = (line) => {
+    const url = this.urls[line.id];
+    if (!url) { this.setState({ errorText: 'Baris ' + line.id + ' belum digenerate.' }); return; }
+    if (this.audio) { this.audio.pause(); }
+    this.audio = new Audio(url);
+    this.audio.play().catch(() => {});
+  };
+
+  download = () => {
+    const files = [];
+    this.lines().forEach((l) => {
+      if (this.bytes[l.id]) files.push({ path: this.relPath(l), bytes: this.bytes[l.id] });
+    });
+    if (!files.length) { this.setState({ errorText: 'Belum ada file untuk diunduh.' }); return; }
+
+    const readme =
+      'NEXA — Voice Over (Google Cloud TTS)\n' +
+      'Dibuat: ' + new Date().toISOString() + '\n' +
+      'Jumlah file: ' + files.length + ' dari ' + this.lines().length + '\n' +
+      'Kualitas suara: ' + this.state.tier + '\n\n' +
+      'Cara pasang:\n' +
+      '  Ekstrak seluruh isi ZIP ini ke: assets/audio/voice/\n' +
+      '  Struktur akhir: assets/audio/voice/nexa/boot_01.mp3 dst.\n\n' +
+      'Verifikasi: buka game, konsol browser, jalankan VoiceManager.audit()\n';
+    files.push({ path: '_CARA_PASANG.txt', bytes: new TextEncoder().encode(readme) });
+
+    const blob = window.NexaTTS.zip(files);
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'nexa-voice-' + this.state.tier + '-' + files.length + 'file.zip';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  };
+
+  renderVals() {
+    const lines = this.lines();
+    const st = this.state;
+    const cfg = window.NexaVoiceConfig;
+    const doneIds = Object.keys(st.status).filter((k) => st.status[k] === 'ok');
+    const done = doneIds.length;
+    const pct = lines.length ? Math.round((done / lines.length) * 100) : 0;
+
+    const TIER_LABEL = { wavenet: 'WaveNet', standard: 'Standard', chirp3: 'Chirp 3 HD' };
+    const tierOptions = ['wavenet', 'standard', 'chirp3'].map((t) => ({
+      key: t,
+      label: TIER_LABEL[t],
+      onPick: () => this.setTier(t),
+      style: [
+        'padding:11px 15px;border-radius:9px;cursor:pointer;font-family:Space Grotesk,sans-serif;',
+        'font-size:13px;font-weight:600;transition:all .15s;',
+        st.tier === t
+          ? 'border:1px solid #4ee0c1;background:#12332c;color:#8df0da'
+          : 'border:1px solid #23375a;background:#0b1424;color:#8ea3bf'
+      ].join('')
+    }));
+
+    const DOT = {
+      ok: '#4ee0c1',
+      pending: '#ffd27f',
+      error: '#ff7fa4'
+    };
+
+    const rows = lines.map((l) => {
+      const s = window.NexaTTS ? window.NexaTTS.voiceFor(l, st.tier) : { voice: '—', rate: 1, pitch: 0 };
+      const state = st.status[l.id];
+      const color = DOT[state] || '#2a3a54';
+      const label = cfg && cfg.characters[l.character] ? cfg.characters[l.character].label : l.character;
+      return {
+        id: l.id,
+        file: this.relPath(l),
+        meta: label + ' · ' + l.emotion,
+        text: l.subtitle,
+        voiceText: s.voice.replace('id-ID-', '') + '  ' + s.rate + 'x' + (s.pitch ? '  ' + s.pitch + 'st' : ''),
+        dotStyle: 'width:9px;height:9px;border-radius:99px;display:inline-block;background:' + color +
+          (state === 'pending' ? ';box-shadow:0 0 0 4px rgba(255,210,127,.16)' : ''),
+        onPlay: () => this.play(l),
+        onOne: () => this.run([l])
+      };
+    });
+
+    const charTotal = window.NexaTTS ? window.NexaTTS.charCount(lines) : 0;
+    const missing = lines.filter((l) => st.status[l.id] !== 'ok');
+
+    return {
+      totalLines: lines.length,
+      charTotal: charTotal.toLocaleString('id-ID'),
+      doneCount: done + ' / ' + lines.length,
+      apiKey: st.apiKey,
+      onKey: (e) => this.setKey(e.target.value),
+      tierOptions,
+      rows,
+      generateLabel: st.running ? 'Sedang generate…' : 'Generate semua (' + lines.length + ')',
+      downloadLabel: done ? 'Unduh ZIP (' + done + ' file)' : 'Unduh ZIP',
+      onGenerateAll: () => { if (!st.running) this.run(lines); },
+      onGenerateMissing: () => { if (!st.running) this.run(missing); },
+      onStop: () => { this.cancel = true; },
+      onDownload: this.download,
+      barStyle: 'height:100%;width:' + pct + '%;border-radius:99px;background:linear-gradient(90deg,#2b8f7a,#4ee0c1);transition:width .25s',
+      statusText: st.running
+        ? 'Menggenerate ' + st.current + '…'
+        : (done ? done + ' baris siap · ' + missing.length + ' belum' : 'Siap. Tempel API key lalu tekan Generate semua.'),
+      quotaText: charTotal.toLocaleString('id-ID') + ' karakter ≈ ' +
+        (st.tier === 'standard' ? '0,25%' : '0,35%') + ' dari kuota gratis bulanan',
+      errorText: st.errorText
+    };
+  }
+}
+
+</script>
+</body>
+</html>

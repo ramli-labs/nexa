@@ -1,5 +1,5 @@
 // GENERATED from dc-runtime/src/*.ts — do not edit. Rebuild with `cd dc-runtime && bun run build`.
-// NEXA: satu-satunya perubahan manual = REACT_URL & REACT_DOM_URL diarahkan ke salinan lokal di js/vendor/ (bukan unpkg) agar gim tidak bergantung CDN. Hash SRI tetap sama.
+// NEXA: perubahan manual = (1) REACT_URL & REACT_DOM_URL ke salinan lokal js/vendor/ (hash SRI sama); (2) tidak mengambil ulang index.html saat dibuka lewat file://; (3) template boleh dibungkus <template id="nexa-dc">; (4) URL CDN Babel dihapus (tidak dipakai).
 "use strict";
 (() => {
   var __defProp = Object.defineProperty;
@@ -23,7 +23,8 @@
 
   // src/parse.ts
   function parseDcDocument(doc) {
-    const dc = doc.querySelector("x-dc");
+    const tpl = doc.querySelector("template#nexa-dc");   // NEXA: template dibungkus <template>
+    const dc = doc.querySelector("x-dc") || (tpl && tpl.content.querySelector("x-dc"));
     if (!dc) return null;
     const scriptEl = doc.querySelector("script[data-dc-script]");
     const { props, preview } = parseDataProps(
@@ -156,14 +157,14 @@
     runtime.markFetched(rootName);
     runtime.setRootName(rootName);
     runtime.adoptParsed(rootName, parsed);
-    if (!window.__resources) {
+    if (!window.__resources && location.protocol !== "file:") {   // NEXA: file:// tidak bisa fetch; template dari DOM sudah cukup
       fetch(location.href).then((res) => res.ok ? res.text() : "").then((t) => {
         const raw = t ? parseDcText(t) : null;
         if (raw?.template) runtime.updateHtml(rootName, raw.template);
       }).catch(() => {
       });
     }
-    const dc = doc.querySelector("x-dc");
+    const dc = doc.querySelector("x-dc") || doc.querySelector("template#nexa-dc");   // NEXA
     const hostEl = doc.createElement("div");
     hostEl.id = "dc-root";
     dc.replaceWith(hostEl);
@@ -1145,7 +1146,7 @@
   var REACT_SRI = "sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z";
   var REACT_DOM_URL = "./js/vendor/react-dom.production.min.js";
   var REACT_DOM_SRI = "sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1";
-  var BABEL_URL = "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js";
+  var BABEL_URL = "";   // NEXA: Babel tidak dipakai (tidak ada x-import .jsx); URL CDN dihapus
   var BABEL_SRI = "sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y";
   function cdnScriptFor(url, sri) {
     const res = window.__resources;

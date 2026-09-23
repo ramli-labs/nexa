@@ -24,7 +24,12 @@
   <link rel="apple-touch-icon" href="assets/images/icon-192.png">
   <link rel="stylesheet" href="css/main.css">
 
-  <!-- Mesin template: memuat React dari js/vendor/, lalu merender template x-dc di body. JANGAN tulis tag x-dc di komentar mana pun: runtime mencarinya dengan regex pada teks mentah. -->
+  <!-- Mesin template: merender template x-dc di body memakai React di atas. JANGAN tulis tag x-dc di komentar mana pun: runtime mencarinya dengan regex pada teks mentah.
+       Template dibungkus <template> supaya browser tidak memproses SVG berisi {{ }} (sumber error console). -->
+  <!-- React dimuat sebagai skrip biasa (tanpa SRI/CORS) supaya gim tetap jalan saat index.html
+       dibuka langsung dari berkas (file://) di Chrome, Edge, dan Safari. -->
+  <script src="js/vendor/react.production.min.js"></script>
+  <script src="js/vendor/react-dom.production.min.js"></script>
   <script src="js/vendor/dc-runtime.js"></script>
   <!-- Visual, suara, musik latar -->
   <script defer src="js/nexa-visuals.js"></script>
@@ -35,6 +40,7 @@
   <script defer src="js/offline.js"></script>
 </head>
 <body>
+<template id="nexa-dc">
 <x-dc>
 
 <div style="position:relative;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 50% 120%,#0d2a4a 0%,#071426 55%);color:#F5F8FC" onClick="{{ armAudio }}">
@@ -307,7 +313,7 @@
 <div style="position:fixed;left:0;right:0;top:112px;z-index:19;display:flex;justify-content:center;padding:0 24px;pointer-events:none">
 <div role="status" style="pointer-events:auto;width:min(600px,100%);display:flex;gap:14px;align-items:flex-start;padding:14px 18px;border-radius:18px;background:rgba(7,20,38,.96);border:1px solid {{ event.color }};box-shadow:0 0 34px {{ event.glow }};backdrop-filter:blur(14px);animation:nx-drop .4s ease both">
   <div style="width:10px;height:10px;margin-top:6px;border-radius:50%;background:{{ event.color }};box-shadow:0 0 10px {{ event.color }};animation:nx-pulse 1.4s infinite;flex:none"></div>
-  <div style="width:54px;height:66px;flex:none;border-radius:13px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.07);border:1px solid {{ event.glow }}" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" from="./js/nexa-visuals.js" variant="{{ event.citVariant }}" expression="{{ event.citExpr }}" size="60" hint-size="60px,66px"></x-import></div>
+  <div style="width:54px;height:66px;flex:none;border-radius:13px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.07);border:1px solid {{ event.glow }}" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" variant="{{ event.citVariant }}" expression="{{ event.citExpr }}" size="60" hint-size="60px,66px"></x-import></div>
   <div style="flex:1;min-width:0">
     <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:{{ event.color }}">PROYEKSI SIMULASI · 2045</div>
     <div style="font-weight:600;font-size:14px;margin-top:4px">{{ event.title }}</div>
@@ -387,7 +393,7 @@
 <!-- ══════ 05 SMART SCHOOL ══════ -->
 <sc-if value="{{ isSchool }}" hint-placeholder-val="{{ false }}">
 <div style="padding:18px 20px 170px;animation:nx-in .7s ease both;position:relative" data-screen-label="05 Smart School 2045">
-  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="future" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
+  <x-import component-from-global-scope="nexa-scene" name="future" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
   <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
     <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:0;letter-spacing:.05em">MODUL 01 · SMART SCHOOL 2045</h2><span style="font-size:12.5px;color:#91A4B8">Geser parameter — kelas berubah langsung</span></div>
@@ -472,7 +478,7 @@
 <!-- ══════ 06 AI CITY ══════ -->
 <sc-if value="{{ isCity }}" hint-placeholder-val="{{ false }}">
 <div style="padding:18px 20px 170px;animation:nx-in .7s ease both;position:relative" data-screen-label="06 AI City 2045">
-  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="social" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
+  <x-import component-from-global-scope="nexa-scene" name="social" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
   <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
     <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:0;letter-spacing:.05em">MODUL 02 · AI CITY 2045</h2><span style="font-size:12.5px;color:#91A4B8">Rancang kota bersama ORION</span></div>
@@ -529,7 +535,7 @@
 <!-- ══════ 07 FUTURE WORK ══════ -->
 <sc-if value="{{ isWork }}" hint-placeholder-val="{{ false }}">
 <div style="padding:18px 20px 170px;animation:nx-in .7s ease both;position:relative" data-screen-label="07 Future Work 2045">
-  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="work" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
+  <x-import component-from-global-scope="nexa-scene" name="work" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
   <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
     <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column">
       <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:0;letter-spacing:.05em">MODUL 03 · FUTURE WORK 2045</h2><span style="font-size:12.5px;color:#91A4B8">Seret unit energi — atau pakai + / −</span></div>
@@ -582,7 +588,7 @@
 <!-- ══════ 08 CONSTITUTION ══════ -->
 <sc-if value="{{ isCiv }}" hint-placeholder-val="{{ false }}">
 <div style="padding:18px 20px 170px;animation:nx-in .7s ease both;background:radial-gradient(ellipse at 50% 0%,rgba(255,200,87,.1),transparent 45%);position:relative" data-screen-label="08 Human + AI Civilization">
-  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="constitution" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none"></x-import>
+  <x-import component-from-global-scope="nexa-scene" name="constitution" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none"></x-import>
   <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
     <div style="flex:1 1 520px;min-width:0">
       <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.34em;color:#FFC857">MODUL 04 · RUANG KONSTITUSI</div>
@@ -605,7 +611,7 @@
     </div>
     <div style="flex:1 1 280px;max-width:360px;display:flex;flex-direction:column;gap:12px;min-width:0">
       <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(184,166,255,.3);padding:14px 16px;display:flex;gap:12px;align-items:center">
-        <div style="width:72px;height:88px;flex:none;border-radius:14px;overflow:hidden;display:grid;place-items:start center;background:rgba(184,166,255,.07)"><x-import component-from-global-scope="regulator-avatar" from="./js/nexa-visuals.js" expression="{{ regExpr }}" size="78" hint-size="78px,88px"></x-import></div>
+        <div style="width:72px;height:88px;flex:none;border-radius:14px;overflow:hidden;display:grid;place-items:start center;background:rgba(184,166,255,.07)"><x-import component-from-global-scope="regulator-avatar" expression="{{ regExpr }}" size="78" hint-size="78px,88px"></x-import></div>
         <div style="flex:1;min-width:0">
           <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.28em;color:#B8A6FF">DELEGASI REGULATOR</div>
           <div style="font-size:12.5px;color:#C9D4E0;line-height:1.5;margin-top:6px;text-wrap:pretty">{{ regLine }}</div>
@@ -666,7 +672,7 @@
         <div style="display:flex;flex-direction:column;gap:8px">
           <sc-for list="{{ resultCitizens }}" as="c" hint-placeholder-count="3">
             <div style="display:flex;gap:12px;align-items:center;padding:9px 13px;border-radius:15px;background:{{ c.bg }};border:1px solid {{ c.border }}">
-              <div style="width:44px;height:54px;flex:none;border-radius:11px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.06)" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" from="./js/nexa-visuals.js" variant="{{ c.variant }}" expression="{{ c.expr }}" size="48" hint-size="48px,54px"></x-import></div>
+              <div style="width:44px;height:54px;flex:none;border-radius:11px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.06)" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" variant="{{ c.variant }}" expression="{{ c.expr }}" size="48" hint-size="48px,54px"></x-import></div>
               <div style="flex:1;min-width:0">
                 <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;letter-spacing:.24em;color:{{ c.color }}">{{ c.role }}</div>
                 <div style="font-size:12.5px;line-height:1.5;color:#E4ECF5;margin-top:3px;text-wrap:pretty">“{{ c.text }}”</div>
@@ -783,7 +789,7 @@
       <div style="display:flex;flex-wrap:wrap;gap:10px">
         <sc-for list="{{ endingCitizens }}" as="c" hint-placeholder-count="3">
           <div style="flex:1 1 240px;min-width:0;display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:15px;background:{{ c.bg }};border:1px solid {{ c.border }}">
-            <div style="width:50px;height:62px;flex:none;border-radius:12px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.06)" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" from="./js/nexa-visuals.js" variant="{{ c.variant }}" expression="{{ c.expr }}" size="54" hint-size="54px,62px"></x-import></div>
+            <div style="width:50px;height:62px;flex:none;border-radius:12px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.06)" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" variant="{{ c.variant }}" expression="{{ c.expr }}" size="54" hint-size="54px,62px"></x-import></div>
             <div style="flex:1;min-width:0">
               <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;letter-spacing:.24em;color:{{ c.color }}">{{ c.role }}</div>
               <div style="font-size:12.5px;line-height:1.5;color:#E4ECF5;margin-top:3px;text-wrap:pretty">“{{ c.text }}”</div>
@@ -841,9 +847,9 @@
 <div class="nx-dlg-wrap" style="position:fixed;left:0;right:0;bottom:16px;z-index:22;display:flex;justify-content:center;padding:0 20px;pointer-events:none">
 <div class="nx-dlg" style="pointer-events:auto;width:min(880px,100%);display:flex;align-items:stretch;gap:11px;animation:nx-in .5s ease both">
   <div class="nx-dlg-ava" style="width:72px;flex:none;border-radius:20px;background:rgba(7,20,38,.9);border:1px solid {{ dlg.color }};display:grid;place-items:center;box-shadow:0 0 24px {{ dlg.glow }};overflow:hidden">
-    <sc-if value="{{ dlg.isNara }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="nexa-avatar" from="./js/nexa-visuals.js" state="{{ dlg.nexaState }}" size="64" hint-size="64px,64px"></x-import></sc-if>
+    <sc-if value="{{ dlg.isNara }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="nexa-avatar" state="{{ dlg.nexaState }}" size="64" hint-size="64px,64px"></x-import></sc-if>
     <sc-if value="{{ dlg.isOrion }}" hint-placeholder-val="{{ false }}"><div style="width:36px;height:36px;border-radius:50%;border:1px solid #35F2A1;background-image:radial-gradient(circle,#35F2A1 1.5px,transparent 2px);background-size:10px 10px;animation:nx-spin 10s linear infinite;box-shadow:0 0 18px rgba(53,242,161,.6)"></div></sc-if>
-    <sc-if value="{{ dlg.isKaia }}" hint-placeholder-val="{{ false }}"><div style="width:72px;align-self:end;display:grid;place-items:end center;overflow:hidden"><x-import component-from-global-scope="mentor-avatar" from="./js/nexa-visuals.js" expression="{{ dlg.mentorExpr }}" size="78" hint-size="78px,88px"></x-import></div></sc-if>
+    <sc-if value="{{ dlg.isKaia }}" hint-placeholder-val="{{ false }}"><div style="width:72px;align-self:end;display:grid;place-items:end center;overflow:hidden"><x-import component-from-global-scope="mentor-avatar" expression="{{ dlg.mentorExpr }}" size="78" hint-size="78px,88px"></x-import></div></sc-if>
   </div>
   <div class="nx-dlg-text" style="flex:1;min-width:0;border-radius:20px;background:rgba(7,20,38,.93);border:1px solid rgba(145,164,184,.28);backdrop-filter:blur(14px);padding:12px 17px;display:flex;flex-direction:column;justify-content:center;gap:5px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.28em;color:{{ dlg.color }}">{{ dlg.name }}</span><span style="font-size:10px;letter-spacing:.12em;color:#91A4B8;padding:2px 8px;border:1px solid rgba(145,164,184,.3);border-radius:999px">{{ dlg.state }}</span><span title="{{ voTitle }}" style="display:flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.2em;color:{{ voColor }};padding:2px 8px;border:1px solid {{ voBorder }};border-radius:999px"><span style="width:5px;height:5px;border-radius:50%;background:{{ voColor }}"></span>{{ voBadge }}</span></div>
@@ -862,6 +868,7 @@
 
 </div>
 </x-dc>
+</template>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   SAVE_KEY = 'nexa_save_v2';
@@ -1535,8 +1542,12 @@ class Component extends DCLogic {
       copyLabel: S.copied ? 'TERSALIN ✓' : 'SALIN RINGKASAN UNTUK GURU',
       copySummary: () => {
         const txt = `NEXA — Profil Future Architect\nHasil: ${E.title} (${E.archetype})\nInovasi ${bal.inov} · Kemanusiaan ${bal.human} · Keberlanjutan ${bal.sust} · Tanggung Jawab ${bal.resp}\nModul selesai: ${doneCount}/4\n\nRefleksi 1: ${S.reflectA || '-'}\nRefleksi 2: ${S.reflectB || '-'}`;
-        try { navigator.clipboard.writeText(txt); } catch (e) { }
-        this.setState({ copied: true }); this.sfx('click'); this.toast('Ringkasan disalin ke papan klip.', C.green);
+        // Clipboard API bisa ditolak (izin, file://, browser lama): coba cara lama, dan beri tahu jujur bila gagal.
+        const legacy = () => { try { const ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return ok; } catch (e) { return false; } };
+        const done = ok => { this.setState({ copied: ok }); this.toast(ok ? 'Ringkasan disalin ke papan klip.' : 'Browser menolak menyalin otomatis. Tulis ulang jawabanmu atau minta bantuan guru.', ok ? C.green : C.gold); };
+        this.sfx('click');
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(() => done(true), () => done(legacy()));
+        else done(legacy());
       },
       // dialogue
       showDialogue: D.show, dlg: D.dlg,

@@ -722,7 +722,7 @@
   }
 
   /* Optional: auto-load the manifest if present, then repaint mounted assets. */
-  Assets.load('assets/asset-registry.json').then(function (m) {
+  (location.protocol === 'file:' ? Promise.resolve({}) : Assets.load('assets/asset-registry.json')).then(function (m) {   // file://: fetch diblokir browser, registri toh kosong
     if (!Object.keys(m).length) return;
     document.querySelectorAll('nexa-avatar,mentor-avatar,citizen-avatar,regulator-avatar,nexa-icon,nexa-scene')
       .forEach(function (n) { if (n.shadowRoot) n.connectedCallback && n.connectedCallback(); });

@@ -15,3 +15,11 @@ Thumbs.db
 
 # Pratinjau BGM lokal (tidak di-commit)
 pratinjau-bgm/
+
+# Paket ZIP lomba (dibuat tools/buat-zip-lomba.py)
+dist/
+
+# Alat uji lokal (tools/uji-main.js)
+node_modules/
+package.json
+package-lock.json

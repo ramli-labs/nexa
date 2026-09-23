@@ -37,7 +37,7 @@ jobs:
         run: |
           set -e
           mkdir -p _site
-          cp index.html manifest.json .nojekyll _site/
+          cp index.html game.html manifest.json .nojekyll _site/   # game.html = pengalih alamat lama
           cp -r css js assets _site/
           echo "--- isi yang akan dipublikasikan ---"
           find _site -maxdepth 2 | sort

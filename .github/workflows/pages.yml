@@ -37,8 +37,10 @@ jobs:
         run: |
           set -e
           mkdir -p _site
-          cp index.html game.html manifest.json .nojekyll _site/   # game.html = pengalih alamat lama
+          cp index.html game.html manifest.json service-worker.js .nojekyll _site/   # game.html = pengalih alamat lama
           cp -r css js assets _site/
+          # Offline: isi daftar cache & versi (ID commit) di service worker
+          python3 tools/siapkan-offline.py _site "${GITHUB_SHA::7}"
           echo "--- isi yang akan dipublikasikan ---"
           find _site -maxdepth 2 | sort
 

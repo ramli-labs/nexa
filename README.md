@@ -4,7 +4,7 @@
 
 > Tagline: **"Design the Future."**
 
-Teknologi: **HTML/CSS/JS statis**. Tidak ada build step, backend, atau dependensi CDN (React dimuat dari salinan lokal di `js/vendor/`). Progres dan jawaban refleksi tersimpan **hanya di perangkat pemain** (LocalStorage). Satu sesi kelas ± 40 menit.
+Teknologi: **HTML/CSS/JS statis**. Tidak ada build step, backend, atau dependensi CDN (React dimuat dari salinan lokal di `js/vendor/`). **Bisa dimainkan tanpa internet** setelah dibuka sekali (PWA, lihat [Offline](#offline)). Progres dan jawaban refleksi tersimpan **hanya di perangkat pemain** (LocalStorage). Satu sesi kelas ± 40 menit.
 
 ---
 
@@ -42,7 +42,8 @@ Audio baru bisa diputar setelah ada satu interaksi pengguna (kebijakan autoplay 
 2. Sekali saja di GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
    Setelah itu workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) jalan otomatis setiap ada push. Workflow ini:
    - menjalankan `tools/cek-audio.py`, dan build gagal kalau ada audio yang hilang atau yatim;
-   - hanya mengunggah berkas aplikasi (`index.html`, `game.html`, `manifest.json`, `css/`, `js/`, `assets/`). Folder `docs/` dan `tools/` tidak ikut.
+   - hanya mengunggah berkas aplikasi (`index.html`, `game.html`, `manifest.json`, `service-worker.js`, `css/`, `js/`, `assets/`). Folder `docs/` dan `tools/` tidak ikut;
+   - mengisi daftar cache offline dan versinya (ID commit) lewat `tools/siapkan-offline.py`.
 3. Situs tersedia di `https://ramli-labs.github.io/nexa/`.
 
 > Selama Source masih **"Deploy from a branch"**, seluruh isi repo tetap disajikan apa adanya dan langkah deploy di workflow akan gagal. Semua path di proyek ini relatif, jadi kedua cara sama-sama bisa menampilkan gim.
@@ -57,6 +58,7 @@ nexa/
 │                               #   + logika gim (class Component di <script data-dc-script>)
 ├── game.html                   # Pengalih alamat lama (…/game.html → …/)
 ├── manifest.json               # PWA manifest (ikon, warna)
+├── service-worker.js           # Cache offline (daftar berkas & versi diisi workflow)
 ├── css/
 │   └── main.css                # Gaya global: reset, animasi nx-*, slider, fokus, reduced-motion
 ├── js/
@@ -65,6 +67,7 @@ nexa/
 │   ├── voice-manager.js        # Pemutar suara + subtitle per kata + fallback tanpa audio
 │   ├── bgm.js                  # Musik latar prosedural: pad + progresi akor pelan per suasana layar
 │   ├── tata-letak.js           # Ruang bawah layar mengikuti tinggi kotak dialog
+│   ├── offline.js              # Mendaftarkan service-worker.js
 │   └── vendor/
 │       ├── dc-runtime.js       # Mesin template (berkas hasil generate, jangan diedit)
 │       ├── react.production.min.js
@@ -82,6 +85,7 @@ nexa/
 │   └── audio.md                # Suara per tokoh, pemilihan suara & QA, naskah lengkap 78 baris
 ├── tools/
 │   ├── buat-suara.py           # Generator suara (edge-tts + ffmpeg) dari naskah di voice-config.js
+│   ├── siapkan-offline.py      # Dipakai workflow: isi daftar cache & versi di service-worker.js
 │   └── cek-audio.py            # Cek voice-config.js ↔ berkas audio ↔ pemakaian di index.html
 └── .github/workflows/pages.yml # Deploy ke GitHub Pages
 ```
@@ -94,6 +98,15 @@ nexa/
 - Gaya per elemen memang ditulis inline. Hanya gaya global yang dipisah ke `css/main.css`.
 
 ---
+
+## Offline
+
+Setelah NEXA dibuka sekali saat online, seluruh situs (±6,7 MB, termasuk semua suara) tersimpan di browser. Gim tetap bisa dimainkan kalau Wi-Fi sekolah putus di tengah kelas.
+
+- **Kode** (HTML/JS/CSS) diambil dari jaringan dulu, jadi saat online pemain selalu mendapat versi terbaru. Saat offline, kode diambil dari cache.
+- **Audio dan gambar** diambil dari cache dulu, supaya cepat dan hemat kuota.
+- **Tidak ada nomor versi yang perlu dinaikkan manual.** Workflow deploy mengisi `service-worker.js` dengan daftar semua berkas dan versi = ID commit. Setiap deploy membuat cache baru, dan cache lama terhapus otomatis di perangkat pemain.
+- Di server lokal (`python3 -m http.server`), service worker tidak menyimpan cache apa pun, jadi tidak mengganggu pengembangan.
 
 ## Penyimpanan (LocalStorage)
 

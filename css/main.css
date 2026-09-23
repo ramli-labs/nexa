@@ -18,3 +18,29 @@ button{font-family:inherit}
 button:focus-visible,textarea:focus-visible{outline:2px solid #35F2A1;outline-offset:2px}
 textarea{font-family:inherit}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* ── Ruang bawah mengikuti tinggi kotak dialog (diukur js/tata-letak.js) ── */
+html.nx-has-dlg [data-screen-label]{padding-bottom:calc(var(--nx-dlg-h,110px) + 40px)!important}
+
+/* ── HP (≤640px): header satu baris, bar atas ringkas, kotak dialog ringkas ── */
+@media (max-width:640px){
+  .nx-inst{padding:6px 12px!important;gap:10px!important;flex-wrap:nowrap!important}
+  .nx-inst>img{height:30px!important}
+  .nx-inst>div{gap:10px!important;flex-wrap:nowrap!important}
+  .nx-inst>div img{height:16px!important}
+
+  .nx-tools{gap:6px!important}
+  .nx-tools>button{width:34px!important;height:34px!important;padding:0!important}
+  .nx-chip{padding:3px!important}
+  .nx-chip-text{display:none}
+
+  .nx-dlg-wrap{bottom:8px!important;padding:0 8px!important}
+  /* satu panel utuh: tanpa celah tembus pandang; avatar (hiasan) disembunyikan, nama & warna tokoh tetap di teks */
+  .nx-dlg{display:flex!important;flex-direction:column;gap:6px!important;padding:6px;border-radius:16px;background:#071426;border:1px solid rgba(145,164,184,.28);box-shadow:0 -6px 24px rgba(0,0,0,.45)}
+  .nx-dlg-ava{display:none!important}
+  .nx-dlg-text{padding:6px 8px 2px!important;border:none!important;background:transparent!important;backdrop-filter:none!important;gap:3px!important;max-height:34vh;overflow-y:auto}
+  .nx-dlg-line{font-size:14px!important;line-height:1.45!important}
+  .nx-dlg-btns{flex-direction:row!important}
+  .nx-dlg-btns>button{flex:2;min-height:38px!important}
+  .nx-dlg-sub{flex:1.4}
+}

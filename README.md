@@ -74,7 +74,8 @@ nexa/
 │       └── react-dom.production.min.js
 ├── assets/
 │   ├── asset-registry.json     # Titik ganti aset: isi path untuk menimpa gambar/audio bawaan
-│   ├── images/                 # favicon.svg, icon-192/512/maskable-512.png, logo-*.png (header institusi)
+│   ├── images/                 # favicon.svg, icon-192/512/maskable-512.png, logo-*.png (header institusi),
+│   │                           #   og-nexa.jpg (gambar pratinjau tautan 1200×630)
 │   └── audio/voice/
 │       ├── nexa/               # NARA-01, 31 berkas (edge-tts)
 │       ├── mentor/             # KAIA, 8 berkas (ElevenLabs asli)
@@ -138,3 +139,4 @@ Setelah NEXA dibuka sekali saat online, seluruh situs (±6,7 MB, termasuk semua 
 - Diuji di Chromium versi terkini dengan satu kali main penuh dari Opening sampai Refleksi, tanpa error JavaScript maupun berkas 404. Peringatan console `<line> attribute x2: Expected length, "{{ ... }}"` saat halaman dimuat itu normal: muncul sekilas sebelum template SVG terisi.
 - Responsif dari HP (360 px) sampai desktop. Di layar ≤640 px, header logo menjadi satu baris, chip profil diringkas, dan kotak dialog menjadi panel ringkas di bawah layar. Ruang bawah setiap layar mengikuti tinggi dialog (`js/tata-letak.js`), jadi tidak ada tombol yang tertutup.
 - Menghormati `prefers-reduced-motion`.
+- Pratinjau tautan (WhatsApp, Facebook, X) memakai tag Open Graph di `index.html`, dengan URL absolut `https://ramli-labs.github.io/nexa/`. Kalau alamat situs pindah, ubah `og:url` dan `og:image`.

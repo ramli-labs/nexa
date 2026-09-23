@@ -1,0 +1,66 @@
+# ============================================================
+# NEXA: publikasi ke GitHub Pages
+#
+# Yang di-upload HANYA berkas aplikasi. Folder `docs/` dan `tools/`
+# sengaja TIDAK ikut.
+#
+# Sekali saja di GitHub: Settings > Pages > Build and deployment >
+# Source: "GitHub Actions". Selama Source masih "Deploy from a branch",
+# seluruh isi repo tetap disajikan dan pengecualian ini TIDAK berlaku.
+# ============================================================
+name: Deploy NEXA ke GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cek konsistensi audio
+        run: python3 tools/cek-audio.py
+
+      - name: Susun isi situs
+        run: |
+          set -e
+          mkdir -p _site
+          cp index.html manifest.json .nojekyll _site/
+          cp -r css js assets _site/
+          echo "--- isi yang akan dipublikasikan ---"
+          find _site -maxdepth 2 | sort
+
+      - name: Pastikan docs/ dan tools/ tidak ikut
+        run: |
+          set -e
+          if [ -d _site/docs ] || [ -d _site/tools ]; then
+            echo "GAGAL: folder docs/ atau tools/ ikut ter-upload."
+            exit 1
+          fi
+          echo "OK: hanya berkas aplikasi yang dipublikasikan."
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

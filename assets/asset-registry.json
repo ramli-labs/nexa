@@ -1,0 +1,173 @@
+{
+  "_readme": "Setiap nilai kosong = pakai gambar prosedural bawaan (built-in). Isi dengan path file untuk mengganti aset. Tidak ada perubahan kode yang diperlukan.",
+  "characters": {
+    "nexa": {
+      "idle": "",
+      "thinking": "",
+      "warning": "",
+      "success": "",
+      "overload": ""
+    },
+    "mentor": {
+      "neutral": "",
+      "explaining": "",
+      "questioning": "",
+      "proud": "",
+      "concerned": ""
+    },
+    "citizen": {
+      "student": {
+        "hopeful": "",
+        "confused": "",
+        "protest": "",
+        "relieved": ""
+      },
+      "worker": {
+        "hopeful": "",
+        "confused": "",
+        "protest": "",
+        "relieved": ""
+      },
+      "elder": {
+        "hopeful": "",
+        "confused": "",
+        "protest": "",
+        "relieved": ""
+      }
+    },
+    "regulator": {
+      "formal": "",
+      "skeptical": "",
+      "pressing": "",
+      "acknowledging": ""
+    }
+  },
+  "environments": {
+    "hub": {
+      "plate": ""
+    },
+    "future": {
+      "plate": ""
+    },
+    "work": {
+      "plate": ""
+    },
+    "social": {
+      "plate": ""
+    },
+    "constitution": {
+      "plate": ""
+    },
+    "ending": {
+      "plate": ""
+    }
+  },
+  "icons": {},
+  "audio": {
+    "bgm": {
+      "hub": "",
+      "future": "",
+      "work": "",
+      "social": "",
+      "constitution": "",
+      "ending": ""
+    },
+    "sfx": {
+      "click": "",
+      "hover": "",
+      "press": "",
+      "scan": "",
+      "decision": "",
+      "unlock": "",
+      "warning": "",
+      "success": "",
+      "delta_up": "",
+      "delta_dn": "",
+      "toast": "",
+      "disabled": "",
+      "boot": "",
+      "pillar": ""
+    },
+    "voice": {
+      "nexa_intro_01": "",
+      "nexa_intro_02": "",
+      "nexa_hub_01": "",
+      "nexa_hub_02": "",
+      "nexa_hub_progress_01": "",
+      "nexa_hub_complete_01": "",
+      "nexa_module_school_01": "",
+      "nexa_module_city_01": "",
+      "nexa_module_work_01": "",
+      "nexa_module_work_02": "",
+      "nexa_module_future_01": "",
+      "nexa_decision_01": "",
+      "nexa_ending_01": "",
+      "nexa_ending_02": "",
+      "nexa_event_s1": "",
+      "nexa_event_s2": "",
+      "nexa_event_s3": "",
+      "nexa_event_s4": "",
+      "nexa_event_c1": "",
+      "nexa_event_c2": "",
+      "nexa_event_c3": "",
+      "nexa_event_c4": "",
+      "nexa_event_c5": "",
+      "nexa_event_w1": "",
+      "nexa_event_w2": "",
+      "nexa_event_w3": "",
+      "nexa_event_w4": "",
+      "nexa_tutorial_1": "",
+      "nexa_tutorial_2": "",
+      "nexa_tutorial_3": "",
+      "nexa_tutorial_4": "",
+      "mentor_intro": "",
+      "mentor_explanation": "",
+      "mentor_explanation_02": "",
+      "mentor_explanation_03": "",
+      "mentor_reflection": "",
+      "mentor_reflection_02": "",
+      "mentor_unlock": "",
+      "mentor_debrief": "",
+      "orion_offer_01": "",
+      "orion_offer_02": "",
+      "citizen_school_student_hi": "",
+      "citizen_school_student_lo": "",
+      "citizen_school_worker_hi": "",
+      "citizen_school_worker_lo": "",
+      "citizen_school_elder_hi": "",
+      "citizen_school_elder_lo": "",
+      "citizen_city_elder_hi": "",
+      "citizen_city_elder_lo": "",
+      "citizen_city_worker_hi": "",
+      "citizen_city_worker_lo": "",
+      "citizen_city_student_hi": "",
+      "citizen_city_student_lo": "",
+      "citizen_work_worker_hi": "",
+      "citizen_work_worker_lo": "",
+      "citizen_work_student_hi": "",
+      "citizen_work_student_lo": "",
+      "citizen_work_elder_hi": "",
+      "citizen_work_elder_lo": "",
+      "citizen_civ_student_hi": "",
+      "citizen_civ_student_lo": "",
+      "citizen_civ_elder_hi": "",
+      "citizen_civ_elder_lo": "",
+      "citizen_civ_worker_hi": "",
+      "citizen_civ_worker_lo": "",
+      "citizen_ending_student_hi": "",
+      "citizen_ending_student_lo": "",
+      "citizen_ending_worker_hi": "",
+      "citizen_ending_worker_lo": "",
+      "citizen_ending_elder_hi": "",
+      "citizen_ending_elder_lo": "",
+      "regulator_wait": "",
+      "regulator_count_1": "",
+      "regulator_count_2": "",
+      "regulator_count_3": "",
+      "regulator_count_4": "",
+      "regulator_count_5": "",
+      "regulator_ready": ""
+    }
+  },
+  "_voice_readme": "Kosongkan untuk memakai path default di js/voice-config.js. Isi dengan URL/path lain hanya jika ingin menimpa satu baris tertentu."
+}

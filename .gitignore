@@ -1,0 +1,17 @@
+# Hasil build lokal workflow Pages
+_site/
+
+# Berkas sistem
+.DS_Store
+Thumbs.db
+
+# Master rekaman mentah (hanya mp3/webm final yang di-commit)
+*.wav
+*.aif
+*.aiff
+
+# Berkas antara generator suara
+*.tmp.wav
+
+# Pratinjau BGM lokal (tidak di-commit)
+pratinjau-bgm/

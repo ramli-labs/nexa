@@ -1,16 +1,1544 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>NEXA — Navigating the Future with AI</title>
-<link rel="icon" href="assets/logo-kemendikdasmen.png" />
-<style>
-  html, body { margin: 0; height: 100%; background: #071426; }
-  iframe { display: block; width: 100%; height: 100%; border: 0; }
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="NEXA — Navigating the Future with AI. Gim edukasi literasi AI untuk siswa SMP: rancang sekolah, kota, dunia kerja, dan konstitusi tahun 2045.">
+  <meta name="theme-color" content="#071426">
+  <title>NEXA — Navigating the Future with AI</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/icon-192.png">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Mesin template: memuat React dari js/vendor/, lalu merender template x-dc di body. JANGAN tulis tag x-dc di komentar mana pun: runtime mencarinya dengan regex pada teks mentah. -->
+  <script src="js/vendor/dc-runtime.js"></script>
+  <!-- Visual, suara, musik latar -->
+  <script defer src="js/nexa-visuals.js"></script>
+  <script defer src="js/voice-config.js"></script>
+  <script defer src="js/voice-manager.js"></script>
+  <script defer src="js/bgm.js"></script>
 </head>
 <body>
-<iframe src="game.html" title="NEXA — gim edukasi literasi AI" allow="autoplay"></iframe>
+<x-dc>
+
+<div style="position:relative;min-height:100vh;overflow-x:hidden;background:radial-gradient(ellipse at 50% 120%,#0d2a4a 0%,#071426 55%);color:#F5F8FC" onClick="{{ armAudio }}">
+
+<div style="position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(23,217,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(23,217,255,.06) 1px,transparent 1px);background-size:64px 64px;animation:nx-grid 12s linear infinite;mask-image:linear-gradient(to bottom,transparent,black 30%,black 70%,transparent)"></div>
+<div style="position:fixed;left:50%;top:-20%;width:70vw;height:50vh;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse,rgba(118,87,255,.22),transparent 70%)"></div>
+
+<!-- ══════ HEADER INSTITUSIONAL ══════ -->
+<sc-if value="{{ headerFull }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;z-index:25;background:#FFFFFF;border-bottom:1px solid rgba(7,20,38,.1);box-shadow:0 2px 10px rgba(7,20,38,.14)">
+  <div style="max-width:1500px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <img src="assets/images/logo-kemendikdasmen.png" alt="Kementerian Pendidikan Dasar dan Menengah" style="height:56px;width:auto;display:block;flex:none">
+    <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+      <img src="assets/images/logo-pendidikan-bermutu.png" alt="Pendidikan Bermutu Untuk Semua" style="height:34px;width:auto;display:block">
+      <img src="assets/images/logo-ramah.png" alt="Kemendikdasmen RAMAH" style="height:34px;width:auto;display:block">
+      <img src="assets/images/logo-sobat-smp.png" alt="Sobat SMP" style="height:38px;width:auto;display:block">
+    </div>
+  </div>
+</div>
+</sc-if>
+<sc-if value="{{ headerCompact }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:25;background:#FFFFFF;border-bottom:1px solid rgba(7,20,38,.1);box-shadow:0 1px 6px rgba(7,20,38,.12)">
+  <div style="max-width:1500px;margin:0 auto;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <img src="assets/images/logo-kemendikdasmen.png" alt="Kementerian Pendidikan Dasar dan Menengah" style="height:36px;width:auto;display:block;flex:none">
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <img src="assets/images/logo-pendidikan-bermutu.png" alt="Pendidikan Bermutu Untuk Semua" style="height:20px;width:auto;display:block">
+      <img src="assets/images/logo-ramah.png" alt="Kemendikdasmen RAMAH" style="height:20px;width:auto;display:block">
+      <img src="assets/images/logo-sobat-smp.png" alt="Sobat SMP" style="height:23px;width:auto;display:block">
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 01 OPENING ══════ -->
+<sc-if value="{{ isOpening }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;min-height:calc(100vh - 92px);display:grid;place-items:center;padding:30px 24px;animation:nx-in 1.2s ease both" data-screen-label="01 Opening">
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none"><div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(23,217,255,.08) 50%,transparent 55%);animation:nx-scan 5s linear infinite"></div></div>
+  <div style="text-align:center;max-width:880px;position:relative">
+    <div style="position:relative;display:inline-grid;place-items:center;margin-bottom:6px">
+      <div style="position:absolute;width:min(320px,60vw);height:min(320px,60vw);border-radius:50%;border:1px solid rgba(23,217,255,.2);animation:nx-spin 40s linear infinite"></div>
+      <div style="position:absolute;width:min(240px,46vw);height:min(240px,46vw);border-radius:50%;border:1px dashed rgba(118,87,255,.35);animation:nx-spin-rev 28s linear infinite"></div>
+      <div style="font-family:Orbitron,Bahnschrift,'DIN Alternate',system-ui,sans-serif;font-weight:800;font-size:clamp(52px,11vw,120px);letter-spacing:.28em;background:linear-gradient(90deg,#17D9FF,#F5F8FC 50%,#7657FF);-webkit-background-clip:text;background-clip:text;color:transparent;animation:nx-logo 2.4s ease-out both;padding-left:.28em">NEXA</div>
+    </div>
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:clamp(10px,1.6vw,13px);letter-spacing:.3em;color:#91A4B8;animation:nx-in 1s .8s ease both">NAVIGATING THE FUTURE WITH AI</div>
+    <div style="display:inline-block;margin-top:18px;padding:8px 22px;border:1px solid rgba(53,242,161,.5);border-radius:999px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.28em;color:#35F2A1;animation:nx-in 1s 1.1s ease both">DESIGN THE FUTURE</div>
+    <p style="font-size:clamp(15px,1.7vw,20px);line-height:1.55;color:#C9D4E0;margin:26px auto 0;max-width:680px;text-wrap:pretty;animation:nx-in 1s 1.3s ease both">Tahun 2045. Kecerdasan buatan hadir di sekolah, pekerjaan, kota, dan keputusan manusia. Kamu adalah <strong style="color:#F5F8FC">Future Architect</strong> — dan masa depan dirancang oleh pilihanmu.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;animation:nx-in 1s 1.5s ease both">
+      <button onClick="{{ toObjective }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:17px 38px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:14px;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 30px rgba(23,217,255,.45);min-height:52px" style-hover="box-shadow:0 0 44px rgba(23,217,255,.8);transform:translateY(-2px)">MULAI ›</button>
+      <sc-if value="{{ hasSave }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ continueSave }}" style="background:transparent;color:#35F2A1;border:1px solid rgba(53,242,161,.5);border-radius:999px;padding:16px 28px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:600;font-size:13px;letter-spacing:.18em;cursor:pointer;min-height:52px" style-hover="background:rgba(53,242,161,.1)">LANJUTKAN · {{ saveDone }}/4 ›</button>
+      </sc-if>
+      <button onClick="{{ toTutorial }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.35);border-radius:999px;padding:16px 24px;font-size:13px;letter-spacing:.12em;cursor:pointer;min-height:52px" style-hover="border-color:#17D9FF;color:#17D9FF">CARA BERMAIN</button>
+    </div>
+    <div style="font-size:12px;color:#91A4B8;margin-top:26px;letter-spacing:.05em">Gim edukasi literasi AI · SMP · 1 sesi kelas ± 40 menit</div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 02 LEARNING OBJECTIVE ══════ -->
+<sc-if value="{{ isObjective }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;min-height:calc(100vh - 92px);display:grid;place-items:center;padding:36px 24px 176px;animation:nx-in .8s ease both" data-screen-label="02 Tujuan Pembelajaran">
+  <div style="width:min(1180px,100%);display:flex;gap:30px;align-items:flex-start;justify-content:center;flex-wrap:wrap">
+   <div style="flex:1 1 560px;min-width:0">
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.38em;color:#17D9FF">TUJUAN PEMBELAJARAN</div>
+    <h1 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,40px);margin:12px 0 10px;letter-spacing:.04em;line-height:1.15">Apa yang akan kamu pelajari</h1>
+    <p style="font-size:clamp(14px,1.4vw,17px);color:#C9D4E0;max-width:700px;margin:0 0 26px;line-height:1.6;text-wrap:pretty">NEXA bukan kuis. Kamu merancang sistem masa depan, melihat akibatnya, lalu menimbang mana yang layak dibangun. Tidak ada jawaban benar — yang ada adalah konsekuensi.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px">
+      <sc-for list="{{ objectives }}" as="o" hint-placeholder-count="4">
+        <div style="flex:1 1 220px;padding:20px;border-radius:18px;background:rgba(7,20,38,.7);border:1px solid {{ o.border }};backdrop-filter:blur(10px)">
+          <div style="width:38px;height:38px;border-radius:11px;border:1px solid {{ o.c }};display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:13px;color:{{ o.c }};background:{{ o.bg }}">{{ o.n }}</div>
+          <div style="font-weight:600;font-size:15px;margin:12px 0 6px">{{ o.h }}</div>
+          <div style="font-size:13px;color:#C9D4E0;line-height:1.55;text-wrap:pretty">{{ o.t }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:20px;padding:18px 20px;border-radius:18px;background:rgba(53,242,161,.07);border:1px solid rgba(53,242,161,.32)">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#35F2A1;margin-bottom:8px">JALUR MISI</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:#C9D4E0">
+        <sc-for list="{{ pathway }}" as="p" hint-placeholder-count="6">
+          <span style="display:flex;align-items:center;gap:10px"><span style="padding:6px 12px;border-radius:999px;border:1px solid {{ p.border }};color:{{ p.c }};font-size:12px">{{ p.label }}</span><span style="color:#4a5a6e">{{ p.sep }}</span></span>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
+      <button onClick="{{ toTutorial }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:16px 32px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 26px rgba(23,217,255,.4);min-height:52px" style-hover="box-shadow:0 0 40px rgba(23,217,255,.7)">CARA BERMAIN ›</button>
+      <button onClick="{{ startNew }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:15px 24px;font-size:12.5px;letter-spacing:.12em;cursor:pointer;min-height:52px" style-hover="color:#17D9FF;border-color:#17D9FF">LEWATI KE LAB</button>
+    </div>
+   </div>
+   <aside style="flex:0 1 250px;display:flex;flex-direction:column;align-items:center;gap:16px">
+     <div style="position:relative;width:250px;height:290px;display:grid;place-items:center;border-radius:24px;background:radial-gradient(70% 60% at 50% 42%,rgba(23,217,255,.13),rgba(7,20,38,0) 72%);border:1px solid rgba(145,164,184,.16)">
+       <sc-if value="{{ dlg.isKaia }}" hint-placeholder-val="{{ false }}">
+         <mentor-avatar size="212" expression="{{ dlg.mentorExpr }}"></mentor-avatar>
+       </sc-if>
+       <sc-if value="{{ dlg.isNara }}" hint-placeholder-val="{{ true }}">
+         <nexa-avatar size="196" state="{{ dlg.nexaState }}"></nexa-avatar>
+       </sc-if>
+     </div>
+     <div style="text-align:center">
+       <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.26em;color:{{ dlg.color }}">{{ dlg.name }}</div>
+       <div style="font-size:11.5px;color:#7d8fa6;letter-spacing:.08em;margin-top:5px">{{ dlg.state }}</div>
+     </div>
+   </aside>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 03 TUTORIAL ══════ -->
+<sc-if value="{{ isTutorial }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;min-height:calc(100vh - 92px);display:grid;place-items:center;padding:30px 24px;animation:nx-in .8s ease both" data-screen-label="03 Tutorial">
+  <div style="width:min(980px,100%)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px">
+      <div>
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.38em;color:#35F2A1">CARA BERMAIN</div>
+        <h1 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(20px,2.6vw,30px);margin:10px 0 0;letter-spacing:.04em">{{ tut.title }}</h1>
+      </div>
+      <div style="display:flex;gap:6px">
+        <sc-for list="{{ tutDots }}" as="d" hint-placeholder-count="4"><span style="width:{{ d.w }};height:8px;border-radius:999px;background:{{ d.bg }};transition:all .3s"></span></sc-for>
+      </div>
+    </div>
+    <p style="font-size:clamp(14px,1.35vw,16.5px);color:#C9D4E0;line-height:1.6;margin:14px 0 22px;max-width:720px;text-wrap:pretty">{{ tut.body }}</p>
+
+    <div style="padding:24px;border-radius:22px;background:rgba(7,20,38,.72);border:1px solid rgba(23,217,255,.3);backdrop-filter:blur(12px);min-height:230px;display:grid;place-items:center">
+      <!-- step 1: slider demo -->
+      <sc-if value="{{ tut.isSlider }}" hint-placeholder-val="{{ true }}">
+      <div style="width:100%;display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+        <div style="flex:1 1 260px;display:grid;place-items:center;min-height:170px">
+          <div style="position:relative;width:150px;height:150px;display:grid;place-items:center">
+            <div style="position:absolute;width:{{ demoHalo }};height:{{ demoHalo }};border-radius:50%;background:rgba(23,217,255,.18);transition:all .4s"></div>
+            <div style="position:absolute;width:56px;height:56px;border-radius:50%;background:{{ demoFill }};border:2px solid #F5F8FC;transition:background .4s"></div>
+            <div style="position:absolute;bottom:-4px;font-size:11px;color:#91A4B8">1 siswa</div>
+          </div>
+        </div>
+        <div style="flex:1 1 280px">
+          <label style="display:block"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span>Keterlibatan AI</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:#17D9FF">{{ demoVal }}</span></div><input class="nx" type="range" min="0" max="100" value="{{ demoVal }}" onChange="{{ setDemo }}" aria-label="Demo keterlibatan AI"></label>
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-size:11.5px;padding:4px 10px;border-radius:999px;border:1px solid #17D9FF;color:#17D9FF">Inovasi {{ demoD1 }}</span>
+            <span style="font-size:11.5px;padding:4px 10px;border-radius:999px;border:1px solid #FFC857;color:#FFC857">Kemanusiaan {{ demoD2 }}</span>
+          </div>
+          <div style="font-size:12.5px;color:#91A4B8;margin-top:12px;line-height:1.55">Geser — lingkaran cahaya di sebelah adalah dukungan AI pada seorang siswa. Chip di atas memperlihatkan akibatnya sebelum kamu mengunci.</div>
+        </div>
+      </div>
+      </sc-if>
+      <!-- step 2: allocation demo -->
+      <sc-if value="{{ tut.isAlloc }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;display:flex;flex-wrap:wrap;gap:24px;align-items:center">
+        <div style="flex:1 1 240px;display:grid;place-items:center">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+            <div style="width:{{ demoNode }};height:{{ demoNode }};border-radius:50%;background:radial-gradient(circle,rgba(118,87,255,.55),rgba(118,87,255,.12) 70%);border:1.5px solid #7657FF;box-shadow:0 0 {{ demoNodeGlow }} #7657FF;display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:16px;transition:all .4s cubic-bezier(.2,.8,.2,1)">{{ demoUnits }}</div>
+            <div style="font-size:12px;font-weight:600">Kreativitas</div>
+            <div style="display:flex;gap:8px">
+              <button onClick="{{ demoDec }}" aria-label="Kurangi" style="width:36px;height:36px;border-radius:50%;border:1px solid rgba(145,164,184,.4);background:rgba(7,20,38,.8);color:#F5F8FC;cursor:pointer;font-size:17px;line-height:1">−</button>
+              <button onClick="{{ demoInc }}" aria-label="Tambah" style="width:36px;height:36px;border-radius:50%;border:1px solid #7657FF;background:rgba(7,20,38,.8);color:#B8A6FF;cursor:pointer;font-size:17px;line-height:1">+</button>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1 1 280px">
+          <div style="font-size:12.5px;color:#C9D4E0;margin-bottom:10px">Seret kotak energi ke node, atau tekan + / − (lebih mudah di layar sentuh).</div>
+          <div onDragOver="{{ allowDrop }}" onDrop="{{ demoDrop }}" style="display:flex;gap:7px;flex-wrap:wrap;padding:14px;border-radius:14px;border:1px dashed rgba(118,87,255,.4)">
+            <sc-for list="{{ demoPool }}" as="u" hint-placeholder-count="6"><div draggable="{{ u.drag }}" onDragStart="{{ u.onDragStart }}" style="width:28px;height:28px;border-radius:7px;background:{{ u.bg }};border:1px solid {{ u.border }};box-shadow:0 0 8px {{ u.glow }};cursor:{{ u.cursor }}"></div></sc-for>
+          </div>
+          <div style="font-size:12px;color:#91A4B8;margin-top:10px">Energi selalu terbatas. Menambah satu hal berarti mengurangi yang lain — itulah inti NEXA.</div>
+        </div>
+      </div>
+      </sc-if>
+      <!-- step 3: decision demo -->
+      <sc-if value="{{ tut.isDecision }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;max-width:620px">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#FFC857">CONTOH PRINSIP</div>
+        <div style="font-weight:600;font-size:15px;margin:10px 0 14px">Siapa yang memegang keputusan akhir?</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ demoOpts }}" as="o" hint-placeholder-count="3">
+            <button onClick="{{ o.pick }}" style="text-align:left;font-size:13.5px;line-height:1.45;padding:13px 15px;border-radius:12px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.fg }};cursor:pointer;transition:all .25s;min-height:48px" style-hover="border-color:#F5F8FC">{{ o.label }}</button>
+          </sc-for>
+        </div>
+        <div style="margin-top:14px;font-size:12.5px;color:#C9D4E0;min-height:40px;line-height:1.55">{{ demoOptFeedback }}</div>
+      </div>
+      </sc-if>
+      <!-- step 4: balance demo -->
+      <sc-if value="{{ tut.isBalance }}" hint-placeholder-val="{{ false }}">
+      <div style="width:100%;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:center">
+        <svg viewBox="0 0 220 220" style="flex:0 1 200px;max-width:200px">
+          <polygon points="110,30 190,110 110,190 30,110" fill="none" stroke="rgba(145,164,184,.25)"></polygon>
+          <polygon points="110,70 150,110 110,150 70,110" fill="none" stroke="rgba(145,164,184,.18)"></polygon>
+          <polygon points="110,58 156,110 110,166 58,110" fill="none" stroke="rgba(145,164,184,.5)" stroke-width="1" stroke-dasharray="3 3"></polygon>
+          <polygon points="110,42 168,110 110,158 48,110" fill="rgba(23,217,255,.22)" stroke="#17D9FF" stroke-width="2" style="filter:drop-shadow(0 0 8px #17D9FF)"></polygon>
+          <text x="110" y="20" text-anchor="middle" fill="#17D9FF" font-family="Orbitron" font-size="9" letter-spacing="1.5">INOVASI</text>
+          <text x="110" y="210" text-anchor="middle" fill="#35F2A1" font-family="Orbitron" font-size="9" letter-spacing="1.5">KEBERLANJUTAN</text>
+        </svg>
+        <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ demoDims }}" as="d" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px"><span style="width:9px;height:9px;border-radius:50%;background:{{ d.c }};box-shadow:0 0 8px {{ d.c }};flex:none"></span><span style="color:#F5F8FC;min-width:120px">{{ d.label }}</span><span style="color:#91A4B8;font-size:12px">{{ d.t }}</span></div>
+          </sc-for>
+          <div style="font-size:12.5px;color:#91A4B8;margin-top:6px;line-height:1.55">Garis putus-putus = keadaan sebelum keputusanmu. Bentuk yang berubah adalah nilai utama permainan ini.</div>
+        </div>
+      </div>
+      </sc-if>
+    </div>
+
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;align-items:center">
+      <button onClick="{{ tutNext }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:16px 32px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:13px;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 26px rgba(23,217,255,.4);min-height:52px" style-hover="box-shadow:0 0 40px rgba(23,217,255,.7)">{{ tut.cta }}</button>
+      <sc-if value="{{ tut.canBack }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ tutBack }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:15px 22px;font-size:12.5px;letter-spacing:.12em;cursor:pointer;min-height:52px" style-hover="color:#17D9FF;border-color:#17D9FF">‹ SEBELUMNYA</button>
+      </sc-if>
+      <button onClick="{{ startNew }}" style="background:transparent;color:#91A4B8;border:none;font-size:12.5px;letter-spacing:.12em;cursor:pointer;text-decoration:underline;min-height:44px" style-hover="color:#17D9FF">Lewati tutorial</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ CHROME ══════ -->
+<sc-if value="{{ inLab }}" hint-placeholder-val="{{ false }}">
+<div style="position:sticky;top:0;z-index:20;background:linear-gradient(to bottom,rgba(7,20,38,.96),rgba(7,20,38,.82));backdrop-filter:blur(10px);border-bottom:1px solid rgba(145,164,184,.16)">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 20px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:14px;min-width:0">
+      <button onClick="{{ toHub }}" title="Kembali ke Lab" style="background:none;border:none;padding:0;cursor:pointer;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:800;font-size:19px;letter-spacing:.3em;background-image:linear-gradient(90deg,#17D9FF,#7657FF);-webkit-background-clip:text;background-clip:text;color:transparent">NEXA</button>
+      <div style="height:18px;width:1px;background:rgba(145,164,184,.3)"></div>
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10.5px;letter-spacing:.28em;color:#91A4B8;white-space:nowrap">{{ screenTitle }}</div>
+    </div>
+    <!-- mission pathway / progress -->
+    <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;order:3;width:100%">
+      <sc-for list="{{ progressSteps }}" as="p" hint-placeholder-count="4">
+        <button onClick="{{ p.open }}" title="{{ p.title }}" style="display:flex;align-items:center;gap:7px;padding:5px 11px 5px 6px;border-radius:999px;border:1px solid {{ p.border }};background:{{ p.bg }};color:{{ p.fg }};cursor:{{ p.cursor }};font-size:11px;letter-spacing:.06em;min-height:32px">
+          <span style="width:18px;height:18px;border-radius:50%;border:1px solid {{ p.dotBorder }};background:{{ p.dotBg }};display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;color:{{ p.dotFg }};flex:none">{{ p.mark }}</span>
+          <span style="white-space:nowrap">{{ p.label }}</span>
+        </button>
+      </sc-for>
+      <div style="flex:1;min-width:60px;height:3px;border-radius:2px;background:rgba(145,164,184,.18);overflow:hidden"><div style="height:100%;width:{{ progressPct }};background:linear-gradient(90deg,#17D9FF,#35F2A1);box-shadow:0 0 10px #35F2A1;transition:width .8s ease"></div></div>
+      <span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;color:#35F2A1;letter-spacing:.1em">{{ progressPct }}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="display:flex;align-items:center;gap:9px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(245,248,252,.05);border:1px solid rgba(145,164,184,.22)">
+        <div style="width:26px;height:26px;border-radius:50%;background:conic-gradient(#17D9FF,#7657FF,#35F2A1,#FFC857,#17D9FF);padding:2px;flex:none"><div style="width:100%;height:100%;border-radius:50%;background:#071426;display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px">FA</div></div>
+        <div><div style="font-size:11.5px;font-weight:600">Future Architect</div><div style="font-size:9.5px;color:#91A4B8;letter-spacing:.08em;white-space:nowrap">{{ doneCount }}/4 MODUL · {{ badgeCount }} LENCANA</div></div>
+      </div>
+      <button onClick="{{ toggleMute }}" title="Bunyikan / bisukan" aria-label="Suara" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.04);color:#91A4B8;cursor:pointer;font-size:14px" style-hover="border-color:#17D9FF;color:#17D9FF">{{ muteGlyph }}</button>
+      <button onClick="{{ toggleSubs }}" title="Subtitle" style="height:38px;padding:0 12px;border-radius:999px;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.04);color:{{ subsColor }};cursor:pointer;font-size:11px;letter-spacing:.14em" style-hover="border-color:#17D9FF">CC</button>
+      <button onClick="{{ toggleSettings }}" title="Pengaturan" aria-label="Pengaturan" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.04);color:#91A4B8;cursor:pointer;font-size:15px" style-hover="border-color:#17D9FF;color:#17D9FF">⚙</button>
+      <button onClick="{{ toProfile }}" title="Future Profile" aria-label="Profil" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.04);color:#91A4B8;cursor:pointer;font-size:14px" style-hover="border-color:#17D9FF;color:#17D9FF">◈</button>
+    </div>
+  </div>
+</div>
+<sc-if value="{{ settingsOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;right:18px;top:96px;z-index:30;width:290px;padding:18px 20px;border-radius:18px;background:rgba(7,20,38,.95);border:1px solid rgba(23,217,255,.35);backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:14px;animation:nx-drop .3s ease both;box-shadow:0 12px 40px rgba(0,0,0,.5)">
+  <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF">AUDIO & AKSESIBILITAS</div>
+  <label style="display:block"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:7px"><span>Musik</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:#17D9FF">{{ musicPct }}</span></div><input class="nx" type="range" min="0" max="100" value="{{ musicPct }}" onChange="{{ setMusic }}" aria-label="Volume musik"></label>
+  <label style="display:block"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:7px"><span>Suara karakter</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:#17D9FF">{{ voicePct }}</span></div><input class="nx" type="range" min="0" max="100" value="{{ voicePct }}" onChange="{{ setVoice }}" aria-label="Volume suara"></label>
+  <label style="display:block"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:7px"><span>Efek suara</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:#17D9FF">{{ sfxPct }}</span></div><input class="nx" type="range" min="0" max="100" value="{{ sfxPct }}" onChange="{{ setSfx }}" aria-label="Volume efek"></label>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button onClick="{{ toggleMute }}" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(145,164,184,.3);background:transparent;color:#F5F8FC;font-size:12px;cursor:pointer;min-height:42px">{{ muteLabel }}</button>
+    <button onClick="{{ toggleSubs }}" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(145,164,184,.3);background:transparent;color:#F5F8FC;font-size:12px;cursor:pointer;min-height:42px">{{ subsLabel }}</button>
+  </div>
+  <button onClick="{{ toTutorial }}" style="padding:10px;border-radius:10px;border:1px solid rgba(53,242,161,.4);background:transparent;color:#35F2A1;font-size:12px;cursor:pointer;min-height:42px">Buka cara bermain</button>
+  <div style="font-size:11px;color:#91A4B8;line-height:1.5">Suara karakter memakai sintesis suara peramban sebagai pengganti rekaman final. Musik & efek disintesis langsung — tanpa berkas eksternal.</div>
+</div>
+</sc-if>
+</sc-if>
+
+<!-- ══════ FEEDBACK TOAST ══════ -->
+<sc-if value="{{ hasFeedback }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position:fixed;left:0;right:0;bottom:132px;z-index:18;display:flex;justify-content:center;padding:0 24px;pointer-events:none">
+  <div style="pointer-events:auto;max-width:620px;display:flex;gap:10px;align-items:center;padding:10px 16px;border-radius:999px;background:rgba(7,20,38,.94);border:1px solid {{ feedback.color }};box-shadow:0 0 24px {{ feedback.glow }};font-size:13px;color:#F5F8FC;animation:nx-in .3s ease both">
+    <span style="width:8px;height:8px;border-radius:50%;background:{{ feedback.color }};box-shadow:0 0 8px {{ feedback.color }};flex:none"></span>
+    <span>{{ feedback.text }}</span>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ WORLD EVENT ══════ -->
+<sc-if value="{{ hasEvent }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:0;right:0;top:112px;z-index:19;display:flex;justify-content:center;padding:0 24px;pointer-events:none">
+<div role="status" style="pointer-events:auto;width:min(600px,100%);display:flex;gap:14px;align-items:flex-start;padding:14px 18px;border-radius:18px;background:rgba(7,20,38,.96);border:1px solid {{ event.color }};box-shadow:0 0 34px {{ event.glow }};backdrop-filter:blur(14px);animation:nx-drop .4s ease both">
+  <div style="width:10px;height:10px;margin-top:6px;border-radius:50%;background:{{ event.color }};box-shadow:0 0 10px {{ event.color }};animation:nx-pulse 1.4s infinite;flex:none"></div>
+  <div style="width:54px;height:66px;flex:none;border-radius:13px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.07);border:1px solid {{ event.glow }}" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" from="./js/nexa-visuals.js" variant="{{ event.citVariant }}" expression="{{ event.citExpr }}" size="60" hint-size="60px,66px"></x-import></div>
+  <div style="flex:1;min-width:0">
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:{{ event.color }}">PROYEKSI SIMULASI · 2045</div>
+    <div style="font-weight:600;font-size:14px;margin-top:4px">{{ event.title }}</div>
+    <div style="font-size:13px;color:#C9D4E0;margin-top:3px;line-height:1.5">{{ event.text }}</div>
+    <div style="font-size:10.5px;color:#91A4B8;margin-top:6px;line-height:1.4">Skenario hipotetis yang dihitung dari parameter yang kamu atur — bukan data dunia nyata.</div>
+  </div>
+  <button onClick="{{ closeEvent }}" aria-label="Tutup" style="background:transparent;border:1px solid rgba(145,164,184,.3);color:#91A4B8;border-radius:8px;width:30px;height:30px;cursor:pointer;flex:none">×</button>
+</div>
+</div>
+</sc-if>
+
+<!-- ══════ 04 HUB ══════ -->
+<sc-if value="{{ isHub }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;padding:24px 20px 170px;animation:nx-in .9s ease both" data-screen-label="04 Orbital Lab Hub">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;max-width:1400px;margin:0 auto 10px">
+    <div>
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.32em;color:#35F2A1">NEXA ORBITAL LAB</div>
+      <div style="font-size:12.5px;color:#91A4B8;max-width:300px;line-height:1.5;margin-top:6px">Bumi 2045 · dunia ini berubah mengikuti desainmu. Pilih satu simulasi.</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:9px 15px;border-radius:999px;background:rgba(7,20,38,.65);border:1px solid rgba(145,164,184,.2);backdrop-filter:blur(10px);flex-wrap:wrap">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;letter-spacing:.3em;color:#91A4B8">FUTURE BALANCE</div>
+      <sc-for list="{{ balanceList }}" as="b" hint-placeholder-count="4">
+        <div style="display:flex;align-items:center;gap:6px;font-size:11.5px" title="{{ b.label }}"><span style="width:8px;height:8px;border-radius:50%;background:{{ b.color }};box-shadow:0 0 8px {{ b.color }}"></span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:{{ b.color }}">{{ b.value }}</span></div>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:center;max-width:1400px;margin:0 auto">
+    <div style="flex:1 1 230px;max-width:300px;display:flex;flex-direction:column;gap:16px;min-width:0">
+      <sc-for list="{{ modulesLeft }}" as="m" hint-placeholder-count="2">
+        <button onClick="{{ m.open }}" style="text-align:left;padding:15px 17px;border-radius:18px;background:rgba(7,20,38,.74);backdrop-filter:blur(12px);border:1px solid {{ m.border }};box-shadow:0 0 28px {{ m.glow }};color:#F5F8FC;cursor:{{ m.cursor }};opacity:{{ m.opacity }};animation:nx-float 6s ease-in-out infinite;animation-delay:{{ m.delay }};transition:box-shadow .3s" style-hover="box-shadow:0 0 44px {{ m.glowHover }}">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.28em;color:{{ m.color }}">MODUL {{ m.num }}</span><span style="font-size:10px;letter-spacing:.12em;padding:3px 9px;border-radius:999px;background:{{ m.chipBg }};color:{{ m.chipFg }};white-space:nowrap">{{ m.status }}</span></div>
+          <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:600;font-size:14px;margin:9px 0 6px;line-height:1.3">{{ m.name }}</div>
+          <div style="font-size:12.5px;color:#91A4B8;line-height:1.45">{{ m.desc }}</div>
+          <sc-if value="{{ m.earned }}" hint-placeholder-val="{{ false }}"><div style="margin-top:10px;display:inline-flex;align-items:center;gap:7px;font-size:10.5px;color:#35F2A1"><span style="width:20px;height:20px;border-radius:50%;border:1.5px solid #35F2A1;display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:8px">✓</span>LENCANA DIPEROLEH</div></sc-if>
+        </button>
+      </sc-for>
+    </div>
+
+    <div style="flex:0 1 440px;min-width:260px;position:relative;aspect-ratio:1;display:grid;place-items:center">
+      <div style="position:absolute;inset:-10%;border-radius:50%;background:radial-gradient(circle,rgba(23,217,255,.16),transparent 60%);animation:nx-pulse 5s ease-in-out infinite"></div>
+      <svg viewBox="0 0 200 200" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">
+        <circle cx="100" cy="100" r="96" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".6"></circle>
+        <circle cx="100" cy="100" r="96" fill="none" stroke="#17D9FF" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="{{ ringInov }} 603" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #17D9FF);transition:stroke-dasharray .8s ease"></circle>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".6"></circle>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#FFC857" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="{{ ringHuman }} 553" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #FFC857);transition:stroke-dasharray .8s ease"></circle>
+        <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".6"></circle>
+        <circle cx="100" cy="100" r="80" fill="none" stroke="#35F2A1" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="{{ ringSust }} 503" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #35F2A1);transition:stroke-dasharray .8s ease"></circle>
+        <circle cx="100" cy="100" r="72" fill="none" stroke="rgba(145,164,184,.15)" stroke-width=".6"></circle>
+        <circle cx="100" cy="100" r="72" fill="none" stroke="#7657FF" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="{{ ringResp }} 452" transform="rotate(-90 100 100)" style="filter:drop-shadow(0 0 4px #7657FF);transition:stroke-dasharray .8s ease"></circle>
+      </svg>
+      <div style="position:relative;width:56%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#1a6f8f 0%,#0b2f52 45%,#071426 100%);box-shadow:0 0 60px rgba(23,217,255,.35),inset -30px -20px 60px rgba(0,0,0,.6),inset 8px 8px 30px rgba(23,217,255,.25);overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(23,217,255,.25) 0 1px,transparent 1px 14%),repeating-linear-gradient(90deg,rgba(23,217,255,.25) 0 1px,transparent 1px 12.5%);border-radius:50%;animation:nx-grid 6s linear infinite;opacity:.7"></div>
+        <div style="position:absolute;left:22%;top:30%;width:34%;height:22%;border-radius:50% 40% 60% 50%;background:rgba(53,242,161,.35);filter:blur(4px)"></div>
+        <div style="position:absolute;left:58%;top:52%;width:22%;height:18%;border-radius:60% 50% 40% 50%;background:rgba(53,242,161,.3);filter:blur(4px)"></div>
+        <sc-for list="{{ earthLights }}" as="l" hint-placeholder-count="0">
+          <div style="position:absolute;left:{{ l.x }};top:{{ l.y }};width:6px;height:6px;border-radius:50%;background:#F5F8FC;box-shadow:0 0 12px {{ l.c }},0 0 24px {{ l.c }};animation:nx-pulse 2.4s ease-in-out infinite"></div>
+        </sc-for>
+      </div>
+      <div style="position:absolute;bottom:8px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9.5px;letter-spacing:.28em;color:#91A4B8;white-space:nowrap">BUMI · 2045 · {{ worldStateLabel }}</div>
+    </div>
+
+    <div style="flex:1 1 230px;max-width:300px;display:flex;flex-direction:column;gap:16px;min-width:0">
+      <sc-for list="{{ modulesRight }}" as="m" hint-placeholder-count="2">
+        <button onClick="{{ m.open }}" style="text-align:left;padding:15px 17px;border-radius:18px;background:rgba(7,20,38,.74);backdrop-filter:blur(12px);border:1px solid {{ m.border }};box-shadow:0 0 28px {{ m.glow }};color:#F5F8FC;cursor:{{ m.cursor }};opacity:{{ m.opacity }};animation:nx-float 6s ease-in-out infinite;animation-delay:{{ m.delay }};transition:box-shadow .3s" style-hover="box-shadow:0 0 44px {{ m.glowHover }}">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.28em;color:{{ m.color }}">MODUL {{ m.num }}</span><span style="font-size:10px;letter-spacing:.12em;padding:3px 9px;border-radius:999px;background:{{ m.chipBg }};color:{{ m.chipFg }};white-space:nowrap">{{ m.status }}</span></div>
+          <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:600;font-size:14px;margin:9px 0 6px;line-height:1.3">{{ m.name }}</div>
+          <div style="font-size:12.5px;color:#91A4B8;line-height:1.45">{{ m.desc }}</div>
+          <sc-if value="{{ m.earned }}" hint-placeholder-val="{{ false }}"><div style="margin-top:10px;display:inline-flex;align-items:center;gap:7px;font-size:10.5px;color:#35F2A1"><span style="width:20px;height:20px;border-radius:50%;border:1.5px solid #35F2A1;display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:8px">✓</span>LENCANA DIPEROLEH</div></sc-if>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 05 SMART SCHOOL ══════ -->
+<sc-if value="{{ isSchool }}" hint-placeholder-val="{{ false }}">
+<div style="padding:18px 20px 170px;animation:nx-in .7s ease both;position:relative" data-screen-label="05 Smart School 2045">
+  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="future" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
+  <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
+    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:0;letter-spacing:.05em">MODUL 01 · SMART SCHOOL 2045</h2><span style="font-size:12.5px;color:#91A4B8">Geser parameter — kelas berubah langsung</span></div>
+      <div style="margin-top:8px;padding:12px 15px;border-radius:14px;background:rgba(23,217,255,.07);border:1px solid rgba(23,217,255,.28);font-size:13px;color:#C9D4E0;line-height:1.55;text-wrap:pretty"><strong style="color:#17D9FF">Konsep:</strong> AI dapat mempersonalisasi pembelajaran. Tapi hasilnya bergantung pada <em>siapa yang mengarahkan</em> — guru dan kemandirian siswa. AI yang dipandu memperkuat kreativitas; AI yang menggantikan keduanya menciptakan ketergantungan.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(23,217,255,.12);color:#17D9FF;border:1px solid rgba(23,217,255,.3)">● biru = dukungan AI</span>
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(255,200,87,.12);color:#FFC857;border:1px solid rgba(255,200,87,.3)">— kuning = interaksi guru</span>
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(53,242,161,.12);color:#35F2A1;border:1px solid rgba(53,242,161,.3)">— hijau = belajar bersama</span>
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(118,87,255,.14);color:#B8A6FF;border:1px solid rgba(118,87,255,.35)">● ungu = percikan kreatif</span>
+        </div>
+      <div style="position:relative;margin-top:12px;height:min(56vh,440px);min-height:300px;border-radius:22px;border:1px solid rgba(23,217,255,.25);background:radial-gradient(ellipse at 50% 100%,rgba(23,217,255,.12),rgba(7,20,38,.4) 70%);overflow:hidden">
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(23,217,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(23,217,255,.08) 1px,transparent 1px);background-size:40px 40px"></div>
+        <svg viewBox="0 0 600 360" style="position:absolute;left:0;top:14px;width:100%;height:calc(100% - 38px)" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="sc-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17D9FF" stop-opacity=".14"/><stop offset="1" stop-color="#7657FF" stop-opacity=".04"/></linearGradient>
+            <linearGradient id="sc-board" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#17D9FF" stop-opacity=".22"/><stop offset="1" stop-color="#7657FF" stop-opacity=".12"/></linearGradient>
+          </defs>
+          <g>
+            <polygon points="30,356 570,356 486,100 114,100" fill="url(#sc-floor)"></polygon>
+            <path d="M114 100H486M92 156H508M66 220H534M38 292H562" stroke="#17D9FF" stroke-opacity=".12" stroke-width="1"></path>
+            <path d="M114 100 30 356M486 100 570 356M231 100 174 356M369 100 426 356" stroke="#17D9FF" stroke-opacity=".08" stroke-width="1"></path>
+            <path d="M18 100 114 100 114 22 18 44Z" fill="#17D9FF" fill-opacity=".05" stroke="#17D9FF" stroke-opacity=".18"></path>
+            <path d="M582 100 486 100 486 22 582 44Z" fill="#17D9FF" fill-opacity=".05" stroke="#17D9FF" stroke-opacity=".18"></path>
+            <path d="M18 62 114 48M582 62 486 48" stroke="#17D9FF" stroke-opacity=".14"></path>
+            <rect x="166" y="14" width="268" height="60" rx="7" fill="url(#sc-board)" stroke="#17D9FF" stroke-opacity=".42"></rect>
+            <g fill="#17D9FF" fill-opacity="{{ aiOp }}" style="transition:fill-opacity .5s">
+              <rect x="178" y="26" width="96" height="6" rx="3"></rect>
+              <rect x="178" y="38" width="140" height="6" rx="3"></rect>
+              <rect x="178" y="50" width="72" height="6" rx="3"></rect>
+              <rect x="336" y="26" width="86" height="30" rx="4" fill-opacity=".35"></rect>
+            </g>
+            <text x="178" y="12" fill="#17D9FF" fill-opacity=".5" font-family="Orbitron" font-size="8" letter-spacing="2.4">PAPAN HOLO</text>
+            <rect x="268" y="110" width="64" height="10" rx="3" fill="#FFC857" fill-opacity=".2" stroke="#FFC857" stroke-opacity=".45"></rect>
+            <path d="M300 106 300 110" stroke="#FFC857" stroke-opacity=".5" stroke-width="2"></path>
+            <text x="300" y="134" text-anchor="middle" fill="#FFC857" fill-opacity=".8" font-family="Orbitron" font-size="9" letter-spacing="2">GURU</text>
+          </g>
+          <sc-for list="{{ students }}" as="s" hint-placeholder-count="18"><line x1="300" y1="100" x2="{{ s.x }}" y2="{{ s.y }}" stroke="#FFC857" stroke-width="1" stroke-opacity="{{ s.linkOp }}" style="transition:stroke-opacity .5s"></line></sc-for>
+          <sc-for list="{{ peerLinks }}" as="p" hint-placeholder-count="9"><line x1="{{ p.x1 }}" y1="{{ p.y1 }}" x2="{{ p.x2 }}" y2="{{ p.y2 }}" stroke="#35F2A1" stroke-width="1" stroke-opacity="{{ p.op }}" style="transition:stroke-opacity .5s"></line></sc-for>
+          <sc-for list="{{ students }}" as="s" hint-placeholder-count="18">
+            <rect x="{{ s.deskX }}" y="{{ s.deskY }}" width="{{ s.deskW }}" height="7" rx="2.5" fill="#0E2A44" stroke="#17D9FF" stroke-opacity=".3" style="transition:all .5s"></rect>
+            <rect x="{{ s.scrX }}" y="{{ s.scrY }}" width="{{ s.scrW }}" height="4" rx="1.6" fill="{{ s.scrFill }}" fill-opacity="{{ s.scrOp }}" style="transition:all .5s"></rect>
+            <circle cx="{{ s.x }}" cy="{{ s.y }}" r="{{ s.halo }}" fill="#17D9FF" fill-opacity="{{ s.haloOp }}" style="transition:all .5s"></circle>
+            <circle cx="{{ s.x }}" cy="{{ s.y }}" r="{{ s.spark }}" fill="#7657FF" fill-opacity=".9" style="transition:all .5s"></circle>
+            <circle cx="{{ s.x }}" cy="{{ s.y }}" r="9" fill="{{ s.fill }}" stroke="#F5F8FC" stroke-width="1.2" style="transition:fill .5s"></circle>
+          </sc-for>
+          <circle cx="300" cy="96" r="{{ teacherR }}" fill="#FFC857" fill-opacity=".18" style="transition:r .5s"></circle>
+          <circle cx="300" cy="96" r="11" fill="#FFC857" stroke="#F5F8FC" stroke-width="1.5"></circle>
+          <rect x="{{ aiX }}" y="290" width="30" height="30" rx="8" transform="rotate(45 {{ aiCx }} 305)" fill="#7657FF" fill-opacity="{{ aiOp }}" stroke="#17D9FF" stroke-opacity="{{ aiOp }}" style="transition:all .5s"></rect>
+          <text x="{{ aiCx }}" y="345" text-anchor="middle" fill="#B8A6FF" font-family="Orbitron" font-size="9" letter-spacing="2" fill-opacity="{{ aiOp }}">AI TUTOR</text>
+        </svg>
+        
+        <div style="position:absolute;right:14px;bottom:10px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.26em;color:#91A4B8">{{ schoolMode }}</div>
+      </div>
+    </div>
+    <div style="flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(118,87,255,.35);padding:16px 18px;backdrop-filter:blur(12px)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#B8A6FF;margin-bottom:10px">PARAMETER SISTEM</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ schoolParams }}" as="p" hint-placeholder-count="6">
+            <label style="display:block"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span>{{ p.label }}</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:#17D9FF">{{ p.value }}</span></div><input class="nx" type="range" min="0" max="100" value="{{ p.value }}" onChange="{{ p.onChange }}" aria-label="{{ p.label }}"></label>
+          </sc-for>
+        </div>
+      </div>
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(23,217,255,.3);padding:16px 18px;backdrop-filter:blur(12px)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF;margin-bottom:10px">DAMPAK LANGSUNG</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ schoolFeedback }}" as="f" hint-placeholder-count="5">
+            <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#C9D4E0">{{ f.label }}</span><span style="color:{{ f.color }};font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px">{{ f.value }}</span></div><div style="height:5px;border-radius:3px;background:rgba(145,164,184,.15);overflow:hidden"><div style="height:100%;width:{{ f.pct }};background:{{ f.color }};box-shadow:0 0 10px {{ f.color }};transition:width .5s ease"></div></div></div>
+          </sc-for>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(145,164,184,.15);display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ schoolDeltaChips }}" as="d" hint-placeholder-count="4"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid {{ d.color }};color:{{ d.color }};white-space:nowrap;flex:none">{{ d.label }} {{ d.delta }}</span></sc-for>
+        </div>
+      </div>
+      <div style="padding:13px 16px;border-radius:16px;background:rgba(255,200,87,.06);border:1px solid rgba(255,200,87,.28);font-size:12.5px;color:#C9D4E0;line-height:1.55"><strong style="color:#FFC857">Di kehidupan nyata:</strong> {{ schoolRealLife }}</div>
+      <button onClick="{{ finishSchool }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:15px 22px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 24px rgba(23,217,255,.4);min-height:52px" style-hover="box-shadow:0 0 40px rgba(23,217,255,.7)">KUNCI DESAIN SEKOLAH ›</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 06 AI CITY ══════ -->
+<sc-if value="{{ isCity }}" hint-placeholder-val="{{ false }}">
+<div style="padding:18px 20px 170px;animation:nx-in .7s ease both;position:relative" data-screen-label="06 AI City 2045">
+  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="social" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
+  <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
+    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:0;letter-spacing:.05em">MODUL 02 · AI CITY 2045</h2><span style="font-size:12.5px;color:#91A4B8">Rancang kota bersama ORION</span></div>
+      <div style="margin-top:8px;padding:12px 15px;border-radius:14px;background:rgba(53,242,161,.07);border:1px solid rgba(53,242,161,.28);font-size:13px;color:#C9D4E0;line-height:1.55;text-wrap:pretty"><strong style="color:#35F2A1">Konsep:</strong> Sistem AI kota mengoptimalkan apa pun yang kita perintahkan. Semakin banyak data warga yang dipakai, semakin efisien kotanya — dan semakin kecil privasinya. Transparansi adalah yang menjaga kepercayaan.</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px">
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(53,242,161,.12);color:#35F2A1;border:1px solid rgba(53,242,161,.3)">● hijau = energi berkelanjutan</span>
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(255,200,87,.12);color:#FFC857;border:1px solid rgba(255,200,87,.3)">● kuning = sensor pengawasan</span>
+          <span style="font-size:11px;padding:4px 10px;border-radius:999px;background:rgba(23,217,255,.12);color:#17D9FF;border:1px solid rgba(23,217,255,.3)">— biru = otomatisasi</span>
+        </div>
+      <div style="position:relative;margin-top:12px;height:min(56vh,440px);min-height:300px;border-radius:22px;border:1px solid rgba(53,242,161,.25);background:linear-gradient(to bottom,rgba(7,20,38,.2),rgba(23,217,255,.08));overflow:hidden">
+        <div style="position:absolute;left:50%;top:26%;transform:translate(-50%,-50%);width:130px;height:130px;border-radius:50%;background:radial-gradient(circle,rgba(53,242,161,.5),rgba(23,217,255,.15) 50%,transparent 70%);animation:nx-pulse 3s ease-in-out infinite"></div>
+        <div style="position:absolute;left:50%;top:26%;transform:translate(-50%,-50%) scale({{ orionScale }});width:86px;height:86px;border-radius:50%;border:1px solid rgba(53,242,161,.7);animation:nx-spin 14s linear infinite;background-image:radial-gradient(circle,rgba(53,242,161,.9) 1.5px,transparent 2px);background-size:14px 14px;transition:transform .6s"></div>
+        <div style="position:absolute;left:50%;top:calc(26% + 56px);transform:translateX(-50%);font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.26em;color:#35F2A1;white-space:nowrap">ORION · {{ orionState }}</div>
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(255,200,87,.35),transparent 60%);opacity:{{ heatOp }};transition:opacity .6s;pointer-events:none"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:56%;display:flex;align-items:flex-end;gap:4px;padding:0 18px">
+          <sc-for list="{{ buildings }}" as="b" hint-placeholder-count="28">
+            <div style="flex:1;height:{{ b.h }};position:relative;background:linear-gradient(to top,rgba(7,20,38,.9),rgba(11,42,74,.9));border:1px solid rgba(145,164,184,.25);border-bottom:none;border-radius:3px 3px 0 0;box-shadow:0 0 {{ b.glow }} {{ b.c }};transition:box-shadow .6s">
+              <div style="position:absolute;inset:6px 4px;background-image:radial-gradient(circle,{{ b.c }} 1px,transparent 1.6px);background-size:8px 10px;opacity:{{ b.winOp }};transition:opacity .6s"></div>
+              <sc-if value="{{ b.sensor }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:-6px;left:50%;width:5px;height:5px;transform:translateX(-50%);border-radius:50%;background:#FFC857;box-shadow:0 0 8px #FFC857;animation:nx-pulse 1.6s ease-in-out infinite"></div></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:20px;background:repeating-linear-gradient(90deg,#17D9FF 0 22px,transparent 22px 60px);opacity:{{ trafficOp }};mask-image:linear-gradient(90deg,transparent,black 15%,black 85%,transparent);animation:nx-grid 1s linear infinite;background-size:60px 100%;transition:opacity .6s"></div>
+        
+      </div>
+    </div>
+    <div style="flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(53,242,161,.35);padding:16px 18px;backdrop-filter:blur(12px)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#35F2A1;margin-bottom:10px">SISTEM KOTA</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ cityParams }}" as="p" hint-placeholder-count="7">
+            <label style="display:block"><div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px"><span>{{ p.label }}</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:#35F2A1">{{ p.value }}</span></div><input class="nx" type="range" min="0" max="100" value="{{ p.value }}" onChange="{{ p.onChange }}" aria-label="{{ p.label }}"></label>
+          </sc-for>
+        </div>
+      </div>
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(23,217,255,.3);padding:16px 18px;backdrop-filter:blur(12px)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF;margin-bottom:10px">DAMPAK LANGSUNG</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ cityFeedback }}" as="f" hint-placeholder-count="5">
+            <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#C9D4E0">{{ f.label }}</span><span style="color:{{ f.color }};font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px">{{ f.value }}</span></div><div style="height:5px;border-radius:3px;background:rgba(145,164,184,.15);overflow:hidden"><div style="height:100%;width:{{ f.pct }};background:{{ f.color }};box-shadow:0 0 10px {{ f.color }};transition:width .5s ease"></div></div></div>
+          </sc-for>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(145,164,184,.15);display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ cityDeltaChips }}" as="d" hint-placeholder-count="4"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid {{ d.color }};color:{{ d.color }};white-space:nowrap;flex:none">{{ d.label }} {{ d.delta }}</span></sc-for>
+        </div>
+      </div>
+      <div style="padding:13px 16px;border-radius:16px;background:rgba(255,200,87,.06);border:1px solid rgba(255,200,87,.28);font-size:12.5px;color:#C9D4E0;line-height:1.55"><strong style="color:#FFC857">Di kehidupan nyata:</strong> {{ cityRealLife }}</div>
+      <button onClick="{{ finishCity }}" style="background:linear-gradient(90deg,#35F2A1,#17D9FF);color:#071426;border:none;border-radius:999px;padding:15px 22px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 24px rgba(53,242,161,.4);min-height:52px" style-hover="box-shadow:0 0 40px rgba(53,242,161,.7)">TERAPKAN KEBIJAKAN KOTA ›</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 07 FUTURE WORK ══════ -->
+<sc-if value="{{ isWork }}" hint-placeholder-val="{{ false }}">
+<div style="padding:18px 20px 170px;animation:nx-in .7s ease both;position:relative" data-screen-label="07 Future Work 2045">
+  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="work" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none"></x-import>
+  <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
+    <div style="flex:1 1 460px;min-width:0;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:0;letter-spacing:.05em">MODUL 03 · FUTURE WORK 2045</h2><span style="font-size:12.5px;color:#91A4B8">Seret unit energi — atau pakai + / −</span></div>
+      <div style="margin-top:8px;padding:12px 15px;border-radius:14px;background:rgba(118,87,255,.09);border:1px solid rgba(118,87,255,.3);font-size:13px;color:#C9D4E0;line-height:1.55;text-wrap:pretty"><strong style="color:#B8A6FF">Konsep:</strong> Otomatisasi mengubah banyak pekerjaan. Kamu punya 12 unit energi pengembangan untuk 7 keterampilan — dan tidak cukup untuk semuanya. Keterampilan tersulit digantikan mesin justru yang paling manusiawi.</div>
+      <div style="position:relative;margin-top:12px;height:min(64vh,520px);min-height:470px;flex:none;border-radius:22px;border:1px solid rgba(118,87,255,.3);background:radial-gradient(circle at 50% 50%,rgba(118,87,255,.16),rgba(7,20,38,.3) 70%);overflow:hidden">
+        <div style="position:absolute;inset:34px 20px 74px 20px">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible">
+            <sc-for list="{{ skillLinks }}" as="l" hint-placeholder-count="9"><line x1="{{ l.x1 }}" y1="{{ l.y1 }}" x2="{{ l.x2 }}" y2="{{ l.y2 }}" stroke="#7657FF" stroke-opacity="{{ l.op }}" stroke-width=".3" vector-effect="non-scaling-stroke" style="transition:stroke-opacity .5s"></line></sc-for>
+          </svg>
+          <sc-for list="{{ skills }}" as="s" hint-placeholder-count="7">
+            <div onDragOver="{{ allowDrop }}" onDrop="{{ s.drop }}" style="position:absolute;left:{{ s.x }};top:{{ s.y }};transform:{{ s.tf }};display:flex;flex-direction:column;align-items:center;gap:5px;width:132px">
+              <div style="width:{{ s.size }};height:{{ s.size }};border-radius:50%;background:radial-gradient(circle,{{ s.cA }},{{ s.cB }} 70%);border:1.5px solid {{ s.c }};box-shadow:0 0 {{ s.glow }} {{ s.c }};display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:15px;color:#F5F8FC;transition:all .4s cubic-bezier(.2,.8,.2,1)">{{ s.units }}</div>
+              <div style="font-size:11px;font-weight:600;text-align:center;line-height:1.2;padding:1px 6px;border-radius:6px;background:rgba(7,20,38,.85);white-space:nowrap">{{ s.label }}</div>
+              <div style="display:flex;gap:6px">
+                <button onClick="{{ s.dec }}" aria-label="Kurangi {{ s.label }}" style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(145,164,184,.4);background:rgba(7,20,38,.85);color:#F5F8FC;cursor:pointer;font-size:15px;line-height:1" style-hover="border-color:#17D9FF;color:#17D9FF">−</button>
+                <button onClick="{{ s.inc }}" aria-label="Tambah {{ s.label }}" style="width:30px;height:30px;border-radius:50%;border:1px solid {{ s.c }};background:rgba(7,20,38,.85);color:{{ s.c }};cursor:pointer;font-size:15px;line-height:1" style-hover="background:{{ s.cB }}">+</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="position:absolute;right:14px;bottom:10px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.26em;color:#91A4B8">{{ workMode }}</div>
+      </div>
+    </div>
+    <div style="flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div onDragOver="{{ allowDrop }}" onDrop="{{ dropToPool }}" style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(118,87,255,.35);padding:16px 18px;backdrop-filter:blur(12px)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#B8A6FF">ENERGI PENGEMBANGAN</div><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:13px;color:#F5F8FC">{{ energyLeft }}<span style="color:#91A4B8">/12</span></div></div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px">
+          <sc-for list="{{ energyUnits }}" as="u" hint-placeholder-count="12"><div draggable="{{ u.drag }}" onDragStart="{{ u.onDragStart }}" title="Seret ke keterampilan" style="width:28px;height:28px;border-radius:7px;background:{{ u.bg }};border:1px solid {{ u.border }};box-shadow:0 0 8px {{ u.glow }};cursor:{{ u.cursor }};transition:all .3s"></div></sc-for>
+        </div>
+        <div style="font-size:11.5px;color:#91A4B8;margin-top:10px;line-height:1.5">{{ energyHint }}</div>
+      </div>
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(23,217,255,.3);padding:16px 18px;backdrop-filter:blur(12px)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF;margin-bottom:10px">PETA TENAGA KERJA 2045</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ workFeedback }}" as="f" hint-placeholder-count="5">
+            <div><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#C9D4E0">{{ f.label }}</span><span style="color:{{ f.color }};font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px">{{ f.value }}</span></div><div style="height:5px;border-radius:3px;background:rgba(145,164,184,.15);overflow:hidden"><div style="height:100%;width:{{ f.pct }};background:{{ f.color }};box-shadow:0 0 10px {{ f.color }};transition:width .5s ease"></div></div></div>
+          </sc-for>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(145,164,184,.15);display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ workDeltaChips }}" as="d" hint-placeholder-count="4"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid {{ d.color }};color:{{ d.color }};white-space:nowrap;flex:none">{{ d.label }} {{ d.delta }}</span></sc-for>
+        </div>
+      </div>
+      <div style="padding:13px 16px;border-radius:16px;background:rgba(255,200,87,.06);border:1px solid rgba(255,200,87,.28);font-size:12.5px;color:#C9D4E0;line-height:1.55"><strong style="color:#FFC857">Di kehidupan nyata:</strong> {{ workRealLife }}</div>
+      <button onClick="{{ finishWork }}" disabled="{{ workLockDisabled }}" style="background:linear-gradient(90deg,#7657FF,#17D9FF);color:#071426;border:none;border-radius:999px;padding:15px 22px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;cursor:pointer;opacity:{{ workLockOpacity }};box-shadow:0 0 24px rgba(118,87,255,.4);min-height:52px" style-hover="box-shadow:0 0 40px rgba(118,87,255,.7)">{{ workLockLabel }}</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 08 CONSTITUTION ══════ -->
+<sc-if value="{{ isCiv }}" hint-placeholder-val="{{ false }}">
+<div style="padding:18px 20px 170px;animation:nx-in .7s ease both;background:radial-gradient(ellipse at 50% 0%,rgba(255,200,87,.1),transparent 45%);position:relative" data-screen-label="08 Human + AI Civilization">
+  <x-import component-from-global-scope="nexa-scene" from="./js/nexa-visuals.js" name="constitution" hint-size="100%,100%" style="position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none"></x-import>
+  <div style="max-width:1500px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px;position:relative;z-index:1">
+    <div style="flex:1 1 520px;min-width:0">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.34em;color:#FFC857">MODUL 04 · RUANG KONSTITUSI</div>
+      <h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(17px,2vw,25px);margin:8px 0 4px;letter-spacing:.05em">KONSTITUSI AI NEXA</h2>
+      <div style="font-size:12.5px;color:#91A4B8">Enam prinsip. Pilih satu posisi pada tiap kartu — segel terbentuk dari pilihanmu.</div>
+      <div style="margin-top:10px;padding:12px 15px;border-radius:14px;background:rgba(255,200,87,.07);border:1px solid rgba(255,200,87,.3);font-size:13px;color:#C9D4E0;line-height:1.55;text-wrap:pretty"><strong style="color:#FFC857">Konsep:</strong> Aturan teknologi pada dasarnya adalah pernyataan nilai: siapa bertanggung jawab, siapa memiliki data, dan kapan manusia harus hadir. Inilah yang di dunia nyata disebut tata kelola AI.</div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:14px">
+        <sc-for list="{{ principles }}" as="p" hint-placeholder-count="6">
+          <div style="flex:1 1 240px;min-width:0;border-radius:18px;background:rgba(7,20,38,.72);border:1px solid {{ p.border }};padding:15px;backdrop-filter:blur(10px);box-shadow:0 0 22px {{ p.glow }};transition:all .4s">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.28em;color:#FFC857">PRINSIP {{ p.num }}</span><span style="font-size:10px;color:{{ p.stateColor }}">{{ p.state }}</span></div>
+            <div style="font-weight:600;font-size:13.5px;margin:9px 0 11px;line-height:1.4">{{ p.q }}</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ p.opts }}" as="o" hint-placeholder-count="3">
+                <button onClick="{{ o.pick }}" style="text-align:left;font-size:12.5px;line-height:1.4;padding:10px 12px;border-radius:11px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.fg }};cursor:pointer;transition:all .25s;min-height:44px" style-hover="border-color:#F5F8FC">{{ o.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 280px;max-width:360px;display:flex;flex-direction:column;gap:12px;min-width:0">
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(184,166,255,.3);padding:14px 16px;display:flex;gap:12px;align-items:center">
+        <div style="width:72px;height:88px;flex:none;border-radius:14px;overflow:hidden;display:grid;place-items:start center;background:rgba(184,166,255,.07)"><x-import component-from-global-scope="regulator-avatar" from="./js/nexa-visuals.js" expression="{{ regExpr }}" size="78" hint-size="78px,88px"></x-import></div>
+        <div style="flex:1;min-width:0">
+          <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.28em;color:#B8A6FF">DELEGASI REGULATOR</div>
+          <div style="font-size:12.5px;color:#C9D4E0;line-height:1.5;margin-top:6px;text-wrap:pretty">{{ regLine }}</div>
+        </div>
+        <button onClick="{{ playReg }}" aria-label="Dengarkan Delegasi Regulator" title="Dengarkan" style="flex:none;align-self:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(184,166,255,.45);background:transparent;color:#B8A6FF;font-size:13px;cursor:pointer" style-hover="background:rgba(184,166,255,.12)">▶</button>
+      </div>
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(255,200,87,.35);padding:16px 18px;display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#FFC857">SEGEL NEXA · {{ civPicked }}/6</div>
+        <svg viewBox="0 0 200 200" style="width:min(100%,190px)">
+          <circle cx="100" cy="100" r="92" fill="none" stroke="rgba(145,164,184,.2)" stroke-width="1"></circle>
+          <sc-for list="{{ sealSegs }}" as="s" hint-placeholder-count="6"><path d="{{ s.d }}" fill="none" stroke="{{ s.c }}" stroke-width="12" stroke-linecap="round" stroke-opacity="{{ s.op }}" style="transition:all .6s;filter:drop-shadow(0 0 4px {{ s.c }})"></path></sc-for>
+          <circle cx="100" cy="100" r="{{ sealCoreR }}" fill="none" stroke="#F5F8FC" stroke-width="1.2" stroke-opacity="{{ sealCoreOp }}" style="transition:all .8s"></circle>
+          <rect x="86" y="86" width="28" height="28" rx="6" transform="rotate(45 100 100)" fill="none" stroke="{{ sealCoreColor }}" stroke-width="2" stroke-opacity="{{ sealCoreOp }}" style="transition:all .8s;filter:drop-shadow(0 0 6px {{ sealCoreColor }})"></rect>
+          <text x="100" y="104" text-anchor="middle" fill="#F5F8FC" font-family="Orbitron" font-size="8" letter-spacing="2" fill-opacity="{{ sealCoreOp }}">NEXA</text>
+        </svg>
+        <div style="display:flex;gap:10px;font-size:10.5px;color:#91A4B8;flex-wrap:wrap;justify-content:center"><span><span style="color:#17D9FF">●</span> condong AI</span><span><span style="color:#B8A6FF">●</span> seimbang</span><span><span style="color:#FFC857">●</span> condong manusia</span></div>
+        <div style="font-size:12.5px;line-height:1.5;color:#C9D4E0;text-align:center;text-wrap:pretty">{{ sealReading }}</div>
+      </div>
+      <div style="border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(118,87,255,.35);padding:14px 18px">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#B8A6FF;margin-bottom:8px">DAMPAK KONSTITUSI</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ civDeltaChips }}" as="d" hint-placeholder-count="4"><span style="font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid {{ d.color }};color:{{ d.color }};white-space:nowrap;flex:none">{{ d.label }} {{ d.delta }}</span></sc-for>
+        </div>
+      </div>
+      <button onClick="{{ finishCiv }}" disabled="{{ civLockDisabled }}" style="background:linear-gradient(90deg,#FFC857,#F5F8FC);color:#071426;border:none;border-radius:999px;padding:15px 22px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.2em;cursor:pointer;opacity:{{ civLockOpacity }};box-shadow:0 0 24px rgba(255,200,87,.4);min-height:52px" style-hover="box-shadow:0 0 40px rgba(255,200,87,.8)">{{ civLockLabel }}</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 09 CONSEQUENCE ══════ -->
+<sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+<div style="padding:24px 20px 170px;display:grid;place-items:center;animation:nx-in .8s ease both" data-screen-label="09 Consequence Feedback">
+  <div style="width:min(1060px,100%);display:flex;flex-wrap:wrap;gap:18px">
+    <div style="flex:1 1 420px;min-width:0;border-radius:24px;background:rgba(7,20,38,.82);border:1px solid rgba(23,217,255,.3);padding:22px 26px;backdrop-filter:blur(14px)">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.34em;color:#17D9FF">KONSEKUENSI · {{ resultModuleName }}</div>
+        <div style="display:flex;align-items:center;gap:9px;padding:6px 13px;border-radius:999px;border:1px solid rgba(53,242,161,.45);background:rgba(53,242,161,.08)"><span style="width:22px;height:22px;border-radius:50%;border:1.5px solid #35F2A1;display:grid;place-items:center;font-size:10px;color:#35F2A1">✓</span><span style="font-size:11px;letter-spacing:.1em;color:#35F2A1">LENCANA {{ resultBadge }}</span></div>
+      </div>
+      <h2 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:clamp(15px,1.6vw,21px);margin:12px 0 14px;letter-spacing:.04em;line-height:1.3">Pilihanmu menciptakan konsekuensi berikut.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ tradeoffs }}" as="t" hint-placeholder-count="3">
+          <div style="flex:1 1 220px;display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:14px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.2);flex-wrap:wrap">
+            <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:12px;color:{{ t.upColor }}">{{ t.up }} ↑</div><div style="color:#91A4B8">·</div><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:12px;color:{{ t.downColor }}">{{ t.down }} ↓</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:16px;padding:15px 17px;border-radius:16px;background:rgba(118,87,255,.1);border:1px solid rgba(118,87,255,.35)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#B8A6FF;margin-bottom:7px">REFLEKSI</div>
+        <div style="font-size:clamp(13.5px,1.2vw,15.5px);line-height:1.55;text-wrap:pretty">{{ reflection }}</div>
+      </div>
+      <div style="margin-top:10px;padding:15px 17px;border-radius:16px;background:rgba(53,242,161,.08);border:1px solid rgba(53,242,161,.3)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#35F2A1;margin-bottom:7px">LITERASI AI</div>
+        <div style="font-size:clamp(12.5px,1.1vw,14px);line-height:1.55;color:#C9D4E0;text-wrap:pretty">{{ takeaway }}</div>
+      </div>
+      <div style="margin-top:14px">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8;margin-bottom:9px">SUARA WARGA SIMULASI</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <sc-for list="{{ resultCitizens }}" as="c" hint-placeholder-count="3">
+            <div style="display:flex;gap:12px;align-items:center;padding:9px 13px;border-radius:15px;background:{{ c.bg }};border:1px solid {{ c.border }}">
+              <div style="width:44px;height:54px;flex:none;border-radius:11px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.06)" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" from="./js/nexa-visuals.js" variant="{{ c.variant }}" expression="{{ c.expr }}" size="48" hint-size="48px,54px"></x-import></div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;letter-spacing:.24em;color:{{ c.color }}">{{ c.role }}</div>
+                <div style="font-size:12.5px;line-height:1.5;color:#E4ECF5;margin-top:3px;text-wrap:pretty">“{{ c.text }}”</div>
+              </div>
+              <button onClick="{{ c.play }}" aria-label="Dengarkan kutipan warga" title="Dengarkan" style="flex:none;width:40px;height:40px;border-radius:50%;border:1px solid {{ c.border }};background:transparent;color:{{ c.color }};font-size:12px;cursor:pointer" style-hover="background:rgba(245,248,252,.08)">▶</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+        <button onClick="{{ resultNext }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:14px 24px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;cursor:pointer;min-height:50px">{{ resultNextLabel }}</button>
+        <button onClick="{{ reopenModule }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:14px 20px;font-size:12px;letter-spacing:.12em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">SESUAIKAN LAGI</button>
+      </div>
+    </div>
+    <div style="flex:1 1 250px;max-width:320px;min-width:0;border-radius:24px;background:rgba(7,20,38,.82);border:1px solid rgba(118,87,255,.35);padding:18px;display:flex;flex-direction:column;align-items:center;gap:8px">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8">FUTURE BALANCE</div>
+      <svg viewBox="0 0 220 220" style="width:100%;max-width:220px">
+        <polygon points="110,30 190,110 110,190 30,110" fill="none" stroke="rgba(145,164,184,.25)"></polygon>
+        <polygon points="110,70 150,110 110,150 70,110" fill="none" stroke="rgba(145,164,184,.18)"></polygon>
+        <line x1="110" y1="30" x2="110" y2="190" stroke="rgba(145,164,184,.15)"></line><line x1="30" y1="110" x2="190" y2="110" stroke="rgba(145,164,184,.15)"></line>
+        <polygon points="{{ radarPrevPoints }}" fill="none" stroke="rgba(145,164,184,.5)" stroke-width="1" stroke-dasharray="3 3"></polygon>
+        <polygon points="{{ radarPoints }}" fill="rgba(23,217,255,.22)" stroke="#17D9FF" stroke-width="2" style="filter:drop-shadow(0 0 8px #17D9FF);transition:all .8s ease"></polygon>
+        <text x="110" y="18" text-anchor="middle" fill="#17D9FF" font-family="Orbitron" font-size="9" letter-spacing="1.5">INOVASI</text>
+        <text x="110" y="210" text-anchor="middle" fill="#35F2A1" font-family="Orbitron" font-size="9" letter-spacing="1.5">KEBERLANJUTAN</text>
+        <text x="210" y="106" text-anchor="end" fill="#FFC857" font-family="Orbitron" font-size="8" letter-spacing="1">KEMANUSIAAN</text>
+        <text x="10" y="106" text-anchor="start" fill="#B8A6FF" font-family="Orbitron" font-size="8" letter-spacing="1">TANGGUNG JAWAB</text>
+      </svg>
+      <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+        <sc-for list="{{ balanceList }}" as="b" hint-placeholder-count="4">
+          <div style="display:flex;justify-content:space-between;font-size:12px"><span style="color:#C9D4E0">{{ b.label }}</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:{{ b.color }}">{{ b.value }} <span style="font-size:10px;color:{{ b.deltaColor }}">{{ b.delta }}</span></span></div>
+        </sc-for>
+      </div>
+      <div style="font-size:11px;color:#91A4B8;text-align:center">Garis putus-putus = sebelum keputusan ini</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 10 FUTURE PROFILE ══════ -->
+<sc-if value="{{ isProfile }}" hint-placeholder-val="{{ false }}">
+<div style="padding:24px 20px 170px;display:grid;place-items:center;animation:nx-in 1s ease both;background:radial-gradient(ellipse at 50% 20%,{{ endingGlow }},transparent 55%)" data-screen-label="10 Future Profile">
+  <div style="width:min(1080px,100%);display:flex;flex-wrap:wrap;gap:26px;align-items:center">
+    <div style="flex:1 1 250px;max-width:330px;min-width:0;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="position:relative;width:min(250px,60vw);aspect-ratio:1;display:grid;place-items:center">
+        <div style="position:absolute;inset:0;border-radius:50%;border:1px solid {{ endingColor }};animation:nx-spin 30s linear infinite;opacity:.6"></div>
+        <div style="position:absolute;inset:16px;border-radius:50%;border:1px dashed {{ endingColor }};animation:nx-spin-rev 20s linear infinite;opacity:.5"></div>
+        <svg viewBox="0 0 220 220" style="width:78%">
+          <polygon points="110,30 190,110 110,190 30,110" fill="none" stroke="rgba(145,164,184,.25)"></polygon>
+          <polygon points="{{ radarPoints }}" fill="{{ endingFill }}" stroke="{{ endingColor }}" stroke-width="2" style="filter:drop-shadow(0 0 10px {{ endingColor }})"></polygon>
+        </svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;width:100%">
+        <sc-for list="{{ balanceList }}" as="b" hint-placeholder-count="4">
+          <div style="display:flex;justify-content:space-between;font-size:12.5px"><span style="color:#C9D4E0">{{ b.label }}</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;color:{{ b.color }}">{{ b.value }}</span></div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:4px">
+        <sc-for list="{{ earnedBadges }}" as="b" hint-placeholder-count="4">
+          <div title="{{ b.title }}" style="width:40px;height:40px;border-radius:50%;border:1.5px solid {{ b.c }};display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;color:{{ b.c }};background:radial-gradient(circle,{{ b.glow }},transparent 70%)">{{ b.k }}</div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex:1 1 420px;min-width:0">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.34em;color:{{ endingColor }}">PROFIL ARSITEK MASA DEPAN · {{ doneCount }}/4 MODUL</div>
+      <h1 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:800;font-size:clamp(24px,3.4vw,44px);margin:10px 0 8px;letter-spacing:.04em;line-height:1.1">{{ endingTitle }}</h1>
+      <div style="font-size:13px;color:#91A4B8;letter-spacing:.08em;margin-bottom:14px">ARKETIPE: {{ archetype }} · {{ endingVariant }}</div>
+      <p style="font-size:clamp(14px,1.2vw,16px);line-height:1.6;max-width:620px;margin:0 0 16px;text-wrap:pretty">{{ endingDesc }}</p>
+      <div style="padding:14px 16px;border-radius:16px;background:rgba(245,248,252,.04);border:1px solid rgba(145,164,184,.22);max-width:620px">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8;margin-bottom:6px">JALAN YANG MEMBAWAMU KE SINI</div>
+        <div style="font-size:13.5px;line-height:1.6;color:#C9D4E0;text-wrap:pretty">{{ endingPath }}</div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+        <button onClick="{{ profileNext }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:14px 24px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;cursor:pointer;min-height:50px">{{ profileCta }}</button>
+        <button onClick="{{ restart }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:14px 20px;font-size:12px;letter-spacing:.12em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">RANCANG ULANG</button>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 11 ENDING SUMMARY ══════ -->
+<sc-if value="{{ isSummary }}" hint-placeholder-val="{{ false }}">
+<div style="padding:24px 20px 170px;animation:nx-in 1s ease both" data-screen-label="11 Ending Summary">
+  <div style="width:min(1140px,100%);margin:0 auto">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap"><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.34em;color:{{ endingColor }}">HASIL AKHIR · {{ endingTitle }}</div><span style="font-size:12.5px;color:#91A4B8">Dunia 2045 versi Future Architect ini</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px">
+      <sc-for list="{{ balanceList }}" as="b" hint-placeholder-count="4">
+        <div style="flex:1 1 150px;padding:15px;border-radius:16px;background:rgba(7,20,38,.78);border:1px solid {{ b.color }};text-align:center"><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:clamp(24px,3vw,34px);color:{{ b.color }}">{{ b.value }}</div><div style="font-size:11px;letter-spacing:.12em;color:#C9D4E0;margin-top:2px">{{ b.label }}</div><div style="font-size:11px;color:#91A4B8;margin-top:3px">{{ b.trend }}</div></div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px">
+      <div style="flex:1 1 280px;padding:18px;border-radius:18px;background:rgba(7,20,38,.78);border:1px solid rgba(145,164,184,.22)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:{{ endingColor }};margin-bottom:8px">EVALUASI HASIL</div>
+        <div style="font-size:13.5px;line-height:1.55;color:#C9D4E0;text-wrap:pretty">{{ endingDesc }}</div>
+        <div style="margin-top:12px;display:flex;gap:7px;flex-wrap:wrap">
+          <sc-for list="{{ earnedBadges }}" as="b" hint-placeholder-count="4"><span style="font-size:10.5px;padding:4px 10px;border-radius:999px;border:1px solid {{ b.c }};color:{{ b.c }}">{{ b.title }}</span></sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 280px;padding:18px;border-radius:18px;background:rgba(7,20,38,.78);border:1px solid rgba(23,217,255,.3)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#17D9FF;margin-bottom:8px">TRADE-OFF UTAMA</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <sc-for list="{{ allTradeoffs }}" as="t" hint-placeholder-count="5"><div style="display:flex;gap:8px;align-items:center;font-size:12.5px;flex-wrap:wrap"><span style="font-size:10px;letter-spacing:.1em;color:#91A4B8;min-width:58px">{{ t.mod }}</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;color:{{ t.upColor }}">{{ t.up }} ↑</span><span style="color:#91A4B8">·</span><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;color:{{ t.downColor }}">{{ t.down }} ↓</span></div></sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 280px;padding:18px;border-radius:18px;background:rgba(7,20,38,.78);border:1px solid rgba(255,200,87,.3)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#FFC857;margin-bottom:8px">KONSTITUSI AI NEXA</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <sc-for list="{{ civSummary }}" as="c" hint-placeholder-count="6"><div style="font-size:12.5px;line-height:1.4"><span style="color:{{ c.color }}">●</span> <span style="color:#91A4B8">{{ c.q }}</span> <span style="color:#F5F8FC">{{ c.a }}</span></div></sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:18px;border-radius:18px;background:rgba(7,20,38,.78);border:1px solid rgba(145,164,184,.22)">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#91A4B8;margin-bottom:12px">WARGA 2045 MENANGGAPI DUNIAMU</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <sc-for list="{{ endingCitizens }}" as="c" hint-placeholder-count="3">
+          <div style="flex:1 1 240px;min-width:0;display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:15px;background:{{ c.bg }};border:1px solid {{ c.border }}">
+            <div style="width:50px;height:62px;flex:none;border-radius:12px;overflow:hidden;display:grid;place-items:start center;background:rgba(145,164,184,.06)" aria-hidden="true"><x-import component-from-global-scope="citizen-avatar" from="./js/nexa-visuals.js" variant="{{ c.variant }}" expression="{{ c.expr }}" size="54" hint-size="54px,62px"></x-import></div>
+            <div style="flex:1;min-width:0">
+              <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px;letter-spacing:.24em;color:{{ c.color }}">{{ c.role }}</div>
+              <div style="font-size:12.5px;line-height:1.5;color:#E4ECF5;margin-top:3px;text-wrap:pretty">“{{ c.text }}”</div>
+            </div>
+            <button onClick="{{ c.play }}" aria-label="Dengarkan kutipan warga" title="Dengarkan" style="flex:none;width:40px;height:40px;border-radius:50%;border:1px solid {{ c.border }};background:transparent;color:{{ c.color }};font-size:12px;cursor:pointer" style-hover="background:rgba(245,248,252,.08)">▶</button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px 16px;border-radius:14px;border:1px solid rgba(145,164,184,.22);font-size:12px;color:#91A4B8;line-height:1.5">Semua angka dan peristiwa di NEXA adalah hasil model simulasi yang disederhanakan dari parameter yang kamu atur — bukan prediksi atau data dunia nyata. Gunakan sebagai bahan diskusi, bukan jawaban benar.</div>
+    <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+      <button onClick="{{ toReflection }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:14px 26px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;cursor:pointer;min-height:50px">REFLEKSI & DISKUSI KELAS ›</button>
+      <button onClick="{{ toProfile }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:14px 20px;font-size:12px;letter-spacing:.12em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">‹ PROFIL</button>
+      <button onClick="{{ toHub }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:14px 20px;font-size:12px;letter-spacing:.12em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">KEMBALI KE LAB</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ 12 REFLECTION ══════ -->
+<sc-if value="{{ isReflection }}" hint-placeholder-val="{{ false }}">
+<div style="padding:24px 20px 170px;display:grid;place-items:center;animation:nx-in .9s ease both" data-screen-label="12 Reflection">
+  <div style="width:min(980px,100%)">
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.34em;color:#B8A6FF">REFLEKSI & DISKUSI KELAS</div>
+    <h1 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:clamp(21px,2.8vw,34px);margin:12px 0 8px;letter-spacing:.04em;line-height:1.15">Apa yang kamu bawa dari 2045?</h1>
+    <p style="font-size:14px;color:#C9D4E0;max-width:680px;margin:0 0 22px;line-height:1.6;text-wrap:pretty">Jawabanmu tersimpan di perangkat ini saja. Gunakan sebagai bahan bicara di kelas — tidak ada penilaian benar atau salah.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px">
+      <div style="flex:1 1 300px;min-width:0;padding:20px;border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(118,87,255,.35)">
+        <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.3em;color:#B8A6FF;margin-bottom:12px">PERTANYAAN DISKUSI · {{ endingTitle }}</div>
+        <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:11px;font-size:14px;line-height:1.55;color:#F5F8FC">
+          <sc-for list="{{ discussion }}" as="q" hint-placeholder-count="3"><li style="text-wrap:pretty">{{ q }}</li></sc-for>
+        </ol>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ reflectFields }}" as="f" hint-placeholder-count="2">
+          <div style="padding:18px;border-radius:20px;background:rgba(7,20,38,.78);border:1px solid rgba(23,217,255,.3)">
+            <label style="display:block"><div style="font-size:13px;font-weight:600;margin-bottom:9px;line-height:1.4">{{ f.label }}</div>
+            <textarea value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" rows="3" style="width:100%;box-sizing:border-box;background:rgba(7,20,38,.6);border:1px solid rgba(145,164,184,.3);border-radius:12px;color:#F5F8FC;font-size:13.5px;line-height:1.5;padding:11px 13px;resize:vertical"></textarea></label>
+          </div>
+        </sc-for>
+        <div style="padding:16px 18px;border-radius:18px;background:rgba(53,242,161,.07);border:1px solid rgba(53,242,161,.3);font-size:12.5px;color:#C9D4E0;line-height:1.6"><strong style="color:#35F2A1">Untuk guru:</strong> minta 2–3 siswa membandingkan Future Balance mereka. Pertanyaan pemandu: mengapa dunia yang sama-sama "berhasil" bisa terlihat sangat berbeda?</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:22px;flex-wrap:wrap">
+      <button onClick="{{ copySummary }}" style="background:linear-gradient(90deg,#35F2A1,#17D9FF);color:#071426;border:none;border-radius:999px;padding:14px 26px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;cursor:pointer;min-height:50px">{{ copyLabel }}</button>
+      <button onClick="{{ toSummary }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:14px 20px;font-size:12px;letter-spacing:.12em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">‹ RINGKASAN</button>
+      <button onClick="{{ restart }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:999px;padding:14px 20px;font-size:12px;letter-spacing:.12em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">RANCANG ULANG MASA DEPAN</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ══════ DIALOGUE ══════ -->
+<sc-if value="{{ showDialogue }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:0;right:0;bottom:16px;z-index:22;display:flex;justify-content:center;padding:0 20px;pointer-events:none">
+<div style="pointer-events:auto;width:min(880px,100%);display:flex;align-items:stretch;gap:11px;animation:nx-in .5s ease both">
+  <div style="width:72px;flex:none;border-radius:20px;background:rgba(7,20,38,.9);border:1px solid {{ dlg.color }};display:grid;place-items:center;box-shadow:0 0 24px {{ dlg.glow }};overflow:hidden">
+    <sc-if value="{{ dlg.isNara }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="nexa-avatar" from="./js/nexa-visuals.js" state="{{ dlg.nexaState }}" size="64" hint-size="64px,64px"></x-import></sc-if>
+    <sc-if value="{{ dlg.isOrion }}" hint-placeholder-val="{{ false }}"><div style="width:36px;height:36px;border-radius:50%;border:1px solid #35F2A1;background-image:radial-gradient(circle,#35F2A1 1.5px,transparent 2px);background-size:10px 10px;animation:nx-spin 10s linear infinite;box-shadow:0 0 18px rgba(53,242,161,.6)"></div></sc-if>
+    <sc-if value="{{ dlg.isKaia }}" hint-placeholder-val="{{ false }}"><div style="width:72px;align-self:end;display:grid;place-items:end center;overflow:hidden"><x-import component-from-global-scope="mentor-avatar" from="./js/nexa-visuals.js" expression="{{ dlg.mentorExpr }}" size="78" hint-size="78px,88px"></x-import></div></sc-if>
+  </div>
+  <div style="flex:1;min-width:0;border-radius:20px;background:rgba(7,20,38,.93);border:1px solid rgba(145,164,184,.28);backdrop-filter:blur(14px);padding:12px 17px;display:flex;flex-direction:column;justify-content:center;gap:5px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.28em;color:{{ dlg.color }}">{{ dlg.name }}</span><span style="font-size:10px;letter-spacing:.12em;color:#91A4B8;padding:2px 8px;border:1px solid rgba(145,164,184,.3);border-radius:999px">{{ dlg.state }}</span><span title="{{ voTitle }}" style="display:flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.2em;color:{{ voColor }};padding:2px 8px;border:1px solid {{ voBorder }};border-radius:999px"><span style="width:5px;height:5px;border-radius:50%;background:{{ voColor }}"></span>{{ voBadge }}</span></div>
+    <sc-if value="{{ subsOn }}" hint-placeholder-val="{{ true }}"><div style="font-size:clamp(13.5px,1.15vw,16px);line-height:1.5;text-wrap:pretty"><span>{{ subVisible }}</span><sc-if value="{{ voSpeaking }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:2px;height:1em;margin:0 2px -2px;background:{{ dlg.color }};animation:nx-pulse .7s infinite"></span></sc-if><span style="color:rgba(145,164,184,.4)">{{ subPending }}</span></div></sc-if>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:5px;justify-content:center">
+    <button onClick="{{ nextDlg }}" style="background:{{ dlg.color }};color:#071426;border:none;border-radius:12px;padding:10px 14px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;cursor:pointer;min-height:40px">{{ dlgNextLabel }}</button>
+    <div style="display:flex;gap:5px">
+      <button onClick="{{ replayDlg }}" title="Putar ulang suara" aria-label="Putar ulang" style="flex:1;background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:10px;padding:7px 8px;font-size:12px;cursor:pointer;min-height:36px" style-hover="color:#17D9FF;border-color:#17D9FF">↻</button>
+      <button onClick="{{ skipDlg }}" style="flex:2;background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:10px;padding:7px 10px;font-size:10.5px;letter-spacing:.08em;cursor:pointer;min-height:36px" style-hover="color:#17D9FF;border-color:#17D9FF">LEWATI</button>
+    </div>
+  </div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  SAVE_KEY = 'nexa_save_v2';
+  SETTINGS_KEY = 'nexa_settings_v2';
+  REFLECT_KEY = 'nexa_reflect_v2';
+  C = { cyan: '#17D9FF', violet: '#7657FF', lilac: '#B8A6FF', green: '#35F2A1', gold: '#FFC857', white: '#F5F8FC', steel: '#91A4B8' };
+  DEFAULTS = {
+    school: { ai: 50, guru: 50, personal: 50, mandiri: 50, sosial: 50, kreatif: 50 },
+    city: { pengawasan: 50, transparansi: 50, data: 50, sustain: 50, otomasi: 50, akses: 50, darurat: 50 },
+    work: { tech: 0, kreatif: 0, empati: 0, komunikasi: 0, kritis: 0, adaptif: 0, lifelong: 0 }
+  };
+  freshProgress() {
+    const D = this.DEFAULTS;
+    return {
+      completed: {}, deltas: {}, results: {}, prevBalance: null, result: null, civ: {}, fired: {}, event: null, committed: {},
+      school: Object.assign({}, D.school), city: Object.assign({}, D.city), work: Object.assign({}, D.work),
+      hasSave: false, saveDone: 0, dlgIdx: 0, dlgHidden: false, settingsOpen: false, feedback: null
+    };
+  }
+  state = Object.assign({
+    screen: 'opening', muted: false, subs: true, musicVol: 40, voiceVol: 80, sfxVol: 60,
+    subVisible: '', subPending: null, voSpeaking: false, voSource: null,
+    tutStep: 0, demoVal: 50, demoUnits: 2, demoPick: null, reflectA: '', reflectB: '', copied: false
+  }, {
+    completed: {}, deltas: {}, results: {}, prevBalance: null, result: null, civ: {}, fired: {}, event: null, committed: {},
+    school: { ai: 50, guru: 50, personal: 50, mandiri: 50, sosial: 50, kreatif: 50 },
+    city: { pengawasan: 50, transparansi: 50, data: 50, sustain: 50, otomasi: 50, akses: 50, darurat: 50 },
+    work: { tech: 0, kreatif: 0, empati: 0, komunikasi: 0, kritis: 0, adaptif: 0, lifelong: 0 },
+    hasSave: false, saveDone: 0, dlgIdx: 0, dlgHidden: false, settingsOpen: false, feedback: null
+  });
+  timers = []; audio = null; lastDlgKey = ''; lastScreen = ''; dragKey = null; fbTimer = null;
+
+  componentDidMount() {
+    try {
+      const st = JSON.parse(localStorage.getItem(this.SETTINGS_KEY) || 'null');
+      if (st) this.setState({ muted: !!st.muted, subs: st.subs !== false, musicVol: st.musicVol ?? 40, voiceVol: st.voiceVol ?? 80, sfxVol: st.sfxVol ?? 60 });
+      const rf = JSON.parse(localStorage.getItem(this.REFLECT_KEY) || 'null');
+      if (rf) this.setState({ reflectA: rf.a || '', reflectB: rf.b || '' });
+      const raw = localStorage.getItem(this.SAVE_KEY);
+      if (raw) {
+        const s = JSON.parse(raw), done = Object.keys(s.completed || {}).length;
+        if (done > 0) this.setState({ hasSave: true, saveDone: done }); else localStorage.removeItem(this.SAVE_KEY);
+      }
+    } catch (e) { }
+  }
+  componentWillUnmount() { this.timers.forEach(clearTimeout); clearTimeout(this.fbTimer); if (this.unsubVoice) this.unsubVoice(); if (this.VM) this.VM.stopVoice(); if (this.audio && this.audio.ctx) this.audio.ctx.close(); }
+  componentDidUpdate() {
+    const S = this.state;
+    if (S.screen !== this.lastScreen) {
+      this.lastScreen = S.screen;
+      this.playBgm(S.screen);
+      this.stopAside();   // suara sampingan milik layar lama
+      if (S.event && !['school', 'city', 'work', 'civ'].includes(S.screen)) this.setState({ event: null });
+    }
+    const tutKey = S.screen === 'tutorial' ? 'tut:' + S.tutStep : '';
+    if (tutKey !== this.lastTutKey) { this.lastTutKey = tutKey; if (tutKey) this.sayAside('nexa_tutorial_' + (Math.min(S.tutStep, 3) + 1)); }
+    const v = this.dialogueFor(S);
+    const key = v.show ? S.screen + ':' + S.dlgIdx : '';
+    if (key !== this.lastDlgKey) { this.lastDlgKey = key; if (key) this.speak(v.dlg); else this.stopSpeech(); }
+    try {
+      localStorage.setItem(this.SETTINGS_KEY, JSON.stringify({ muted: S.muted, subs: S.subs, musicVol: S.musicVol, voiceVol: S.voiceVol, sfxVol: S.sfxVol }));
+      localStorage.setItem(this.REFLECT_KEY, JSON.stringify({ a: S.reflectA, b: S.reflectB }));
+      if (Object.keys(S.completed).length > 0) {
+        const D = this.DEFAULTS, K = S.committed;
+        localStorage.setItem(this.SAVE_KEY, JSON.stringify({ completed: S.completed, deltas: S.deltas, results: S.results, fired: S.fired, school: K.school || D.school, city: K.city || D.city, work: K.work || D.work, civ: K.civ || {} }));
+      }
+    } catch (e) { }
+  }
+  resetAll(toScreen) {
+    try { localStorage.removeItem(this.SAVE_KEY); } catch (e) { }
+    this.stopSpeech();
+    this.setState(Object.assign(this.freshProgress(), { screen: toScreen }));
+    this.sfx('click');
+  }
+  go(screen, extra) { this.setState(Object.assign({ screen, dlgIdx: 0, dlgHidden: false, settingsOpen: false }, extra || {})); this.sfx('click'); }
+  clamp(v) { return Math.max(0, Math.min(100, Math.round(v))); }
+  hex(h, a) { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
+  toast(text, color) {
+    clearTimeout(this.fbTimer);
+    this.setState({ feedback: { text, color: color || this.C.cyan, glow: this.hex(color || this.C.cyan, .35) } });
+    this.fbTimer = setTimeout(() => this.setState({ feedback: null }), 2600);
+  }
+
+  // ───────── audio ─────────
+  ensureAudio() {
+    if (this.audio) return this.audio;
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const master = ctx.createGain(); master.connect(ctx.destination);
+      const music = ctx.createGain(); music.connect(master);
+      const sfx = ctx.createGain(); sfx.connect(master);
+      this.audio = { ctx, master, music, sfx, bgm: null };
+      this.applyVolumes(); this.playBgm(this.state.screen);
+    } catch (e) { this.audio = null; }
+    return this.audio;
+  }
+  applyVolumes() {
+    if (!this.audio) return; const S = this.state, t = this.audio.ctx.currentTime;
+    this.audio.master.gain.setTargetAtTime(S.muted ? 0 : 1, t, .05);
+    this.audio.music.gain.setTargetAtTime((S.musicVol / 100) * .35, t, .3);
+    this.audio.sfx.gain.setTargetAtTime((S.sfxVol / 100) * .6, t, .05);
+  }
+  playBgm(screen) {
+    const A = this.audio; if (!A || !window.NexaBGM) return;
+    if (!A.bgm) A.bgm = window.NexaBGM.create(A.ctx, A.music);   // js/bgm.js: pad + progresi akor pelan
+    A.bgm.setScreen(screen);
+  }
+  sfx(kind, val) {
+    const A = this.audio; if (!A || this.state.muted) return;
+    const c = A.ctx, t = c.currentTime;
+    const tone = (f, dur, type, g, at) => {
+      const o = c.createOscillator(), gn = c.createGain();
+      o.type = type || 'sine'; o.frequency.value = f; gn.gain.value = 0;
+      gn.gain.linearRampToValueAtTime(g || .3, t + (at || 0) + .01);
+      gn.gain.exponentialRampToValueAtTime(.0001, t + (at || 0) + dur);
+      o.connect(gn); gn.connect(A.sfx); o.start(t + (at || 0)); o.stop(t + (at || 0) + dur + .05);
+    };
+    if (kind === 'click') { tone(520, .09, 'triangle', .25); tone(780, .12, 'triangle', .2, .07); }
+    else if (kind === 'slider') tone(700 + (val || 50) * 6, .04, 'square', .05);
+    else if (kind === 'unit') tone(980, .07, 'triangle', .18);
+    else if (kind === 'lock') { tone(261.6, 1.2, 'sine', .25); tone(329.6, 1.2, 'sine', .2, .05); tone(392, 1.2, 'sine', .2, .1); tone(523.3, 1.4, 'triangle', .15, .15); }
+    else if (kind === 'event') { tone(180, .35, 'sine', .3); tone(180, .35, 'sine', .3, .45); }
+    else if (kind === 'seal') { tone(130.8, 1.6, 'sine', .3); tone(392, 1.8, 'triangle', .14, .2); }
+    else if (kind === 'ending') [130.8, 164.8, 196, 261.6, 329.6].forEach((f, i) => tone(f, 3.5, 'sine', .18, i * .18));
+  }
+  /* ───────── voice over (aset eksternal + fallback subtitle) ───────── */
+  get VM() { return window.VoiceManager || null; }
+  bindVoice() {
+    const VM = this.VM; if (!VM || this.voiceBound) return;
+    this.voiceBound = true;
+    const S = this.state;
+    VM.setVolume(S.voiceVol / 100).setMuted(!!S.muted).enableSubtitle(S.subs !== false);
+    this.unsubVoice = VM.onSubtitle(p => {
+      if (!p.id) { if (this.curVo) this.setState({ subVisible: '', subPending: null, voSpeaking: false }); return; }   // abaikan berhentinya suara sampingan
+      if (p.id !== this.curVo) return;   // buang payload dari baris yang sudah ditinggalkan
+      this.setState({
+        subVisible: p.visible, subPending: p.full.slice(p.visible.length),
+        voSpeaking: p.speaking && !p.done, voSource: p.source
+      });
+    });
+  }
+  speak(dlg) {
+    const VM = this.VM;
+    if (!dlg || !dlg.text) return;
+    if (!VM || !dlg.vo) {
+      this.curVo = null;
+      this.setState({ subVisible: dlg.text, subPending: '', voSpeaking: false, voSource: 'none' });
+      return;
+    }
+    this.bindVoice();
+    if (VM.state().id) VM.stopVoice();        // bersihkan baris lama sebelum kursor pindah
+    this.curVo = dlg.vo;
+    this.setState({ subVisible: '', subPending: dlg.text, voSpeaking: true });
+    VM.playVoice(dlg.vo);
+    if (dlg.voNext) VM.preload(dlg.voNext);   // lazy: hanya baris berikutnya
+  }
+  stopSpeech() {
+    const VM = this.VM, cur = this.curVo;
+    this.curVo = null;
+    if (VM && cur && VM.state().id === cur) VM.stopVoice();   // suara sampingan dibiarkan selesai
+    this.setState({ subVisible: '', subPending: null, voSpeaking: false });
+  }
+  // Suara sampingan: kartu warga, regulator, peristiwa, tutorial. Tidak memakai kotak dialog;
+  // baris dialog yang sedang diucapkan dihentikan dan teksnya ditampilkan utuh.
+  sayAside(id) {
+    const VM = this.VM;
+    if (!VM || !id) return;
+    this.bindVoice();
+    const talking = this.curVo, full = (this.state.subVisible || '') + (this.state.subPending || '');
+    this.curVo = null;
+    VM.playVoice(id);
+    if (talking) this.setState({ subVisible: full, subPending: '', voSpeaking: false });
+  }
+  stopAside(prefix) {
+    const VM = this.VM, id = VM && VM.state().id;
+    if (id && id !== this.curVo && (!prefix || id.indexOf(prefix) === 0)) VM.stopVoice();
+  }
+
+  // ───────── frozen simulation maths (v2.1) ─────────
+  balanceFrom(deltas) {
+    const out = { inov: 50, human: 50, sust: 50, resp: 50 };
+    Object.values(deltas).forEach(d => { for (const k in out) out[k] += d[k] || 0; });
+    for (const k in out) out[k] = this.clamp(out[k]);
+    return out;
+  }
+  radar(b) { const c = 110, r = 80, p = v => (v / 100) * r; return `${c},${c - p(b.inov)} ${c + p(b.human)},${c} ${c},${c + p(b.sust)} ${c - p(b.resp)},${c}`; }
+  schoolFb(s) {
+    const guidance = (s.guru + s.mandiri) / 200, synergy = s.ai * guidance;
+    return {
+      efisiensi: this.clamp(.45 * s.ai + .3 * s.personal + .25 * s.mandiri),
+      keterlibatan: this.clamp(.35 * s.sosial + .3 * s.kreatif + .2 * s.personal + .15 * s.guru),
+      interaksi: this.clamp(.55 * s.guru + .45 * s.sosial),
+      kreativitas: this.clamp(.5 * s.kreatif + .2 * s.mandiri + .3 * synergy),
+      ketergantungan: this.clamp(s.ai * (1 - .5 * s.mandiri / 100 - .3 * s.guru / 100) + 8)
+    };
+  }
+  schoolDeltas(f, s) { return { inov: (f.efisiensi - 50) * .32 + (f.kreativitas - 50) * .12, human: (f.interaksi - 50) * .32 + (f.keterlibatan - 50) * .12, sust: (f.kreativitas - 50) * .14 + (s.mandiri - 50) * .12, resp: (50 - f.ketergantungan) * .3 + (s.guru - 50) * .08 }; }
+  cityFb(c) {
+    const privasi = this.clamp(100 - (.6 * c.pengawasan + .4 * c.data));
+    return { efisiensi: this.clamp(.4 * c.otomasi + .3 * c.data + .3 * c.pengawasan), keamanan: this.clamp(.5 * c.pengawasan + .3 * c.darurat + .2 * c.data), privasi, keberlanjutan: this.clamp(.7 * c.sustain + .3 * c.otomasi), kepercayaan: this.clamp(.45 * c.transparansi + .35 * privasi + .2 * c.akses) };
+  }
+  cityDeltas(f, c) { return { inov: (f.efisiensi - 50) * .32, human: (f.privasi - 50) * .22 + (c.akses - 50) * .14, sust: (f.keberlanjutan - 50) * .36, resp: (f.kepercayaan - 50) * .3 + (c.transparansi - 50) * .08 }; }
+  workFb(w) {
+    const div = Object.values(w).filter(u => u > 0).length;
+    return {
+      ketahanan: this.clamp(28 + w.adaptif * 6 + w.lifelong * 6 + w.kritis * 3 + div * 3),
+      inovasi: this.clamp(24 + w.tech * 7 + w.kreatif * 6 + w.kritis * 3),
+      ketimpangan: this.clamp(32 + w.tech * 6 - w.komunikasi * 4 - w.empati * 4 - w.lifelong * 3),
+      relevansi: this.clamp(24 + w.empati * 6 + w.komunikasi * 5 + w.kreatif * 4 + w.kritis * 3),
+      otomasi: this.clamp(30 + w.tech * 6 - w.kritis * 5 - w.adaptif * 2)
+    };
+  }
+  workDeltas(f, w) { return { inov: (f.inovasi - 50) * .34, human: (f.relevansi - 50) * .24 + (50 - f.ketimpangan) * .12, sust: (f.ketahanan - 50) * .3, resp: (50 - f.otomasi) * .2 + (w.kritis - 2) * 1.5 }; }
+  civDefs() {
+    const C = this.C, o = (label, d, lean) => ({ label, d, lean, color: lean === 'ai' ? C.cyan : lean === 'bal' ? C.lilac : C.gold });
+    // Posisi tiap sikap digilir per prinsip supaya tidak ada slot yang selalu "jawaban benar".
+    // Permutasi tetap (bukan acak) agar indeks pilihan yang tersimpan selalu menunjuk opsi yang sama.
+    const ORD = { p1: [1, 0, 2], p2: [0, 2, 1], p3: [2, 1, 0], p4: [2, 0, 1], p5: [1, 2, 0], p6: [0, 1, 2] };
+    return [
+      { key: 'p1', q: 'Siapa pemegang keputusan akhir?', opts: [o('AI, karena cepat dan konsisten', { inov: 6, resp: -6, human: -4 }, 'ai'), o('Manusia, dengan analisis dari AI', { resp: 5, human: 4, inov: -1 }, 'bal'), o('Dewan manusia dengan hak veto', { resp: 4, human: 3, inov: -3 }, 'hum')] },
+      { key: 'p2', q: 'Siapa pemilik data pribadi?', opts: [o('Penyedia layanan pengumpul data', { inov: 4, human: -6, resp: -4 }, 'ai'), o('Individu; layanan hanya meminjam', { human: 6, resp: 4, inov: -2 }, 'bal'), o('Negara sebagai pengelola bersama', { resp: 2, human: -1, sust: 2 }, 'hum')] },
+      { key: 'p3', q: 'Keputusan apa yang wajib melibatkan manusia?', opts: [o('Hanya urusan berisiko sangat tinggi', { inov: 5, resp: -4 }, 'ai'), o('Urusan yang menyangkut hak orang', { human: 5, resp: 4 }, 'bal'), o('Semua keputusan publik tanpa kecuali', { human: 3, resp: 3, inov: -5 }, 'hum')] },
+      { key: 'p4', q: 'Kapan AI boleh bertindak sendiri?', opts: [o('Kapan saja, demi efisiensi penuh', { inov: 6, resp: -6, sust: -2 }, 'ai'), o('Dalam batas yang disetujui manusia', { resp: 4, inov: 2 }, 'bal'), o('Hanya dalam keadaan darurat resmi', { human: 2, inov: -4, resp: 2 }, 'hum')] },
+      { key: 'p5', q: 'Seberapa transparan sistem AI harus dijelaskan?', opts: [o('Cukup hasil akhirnya dijelaskan', { inov: 3, resp: -6 }, 'ai'), o('Alasan tiap keputusan dijelaskan', { resp: 6, human: 2 }, 'bal'), o('Kode dan data dibuka sepenuhnya', { resp: 5, human: 2, inov: -2, sust: 1 }, 'hum')] },
+      { key: 'p6', q: 'Apa tanggung jawab manusia saat memakai AI?', opts: [o('Mengikuti rekomendasi AI apa adanya', { inov: 3, resp: -6, human: -3 }, 'ai'), o('Memverifikasi dan menanggung akibat', { resp: 6, human: 3 }, 'bal'), o('Menghindari AI dalam kerja penting', { human: 2, inov: -6, sust: -2 }, 'hum')] }
+    ].map(p => ({ key: p.key, q: p.q, opts: ORD[p.key].map(i => p.opts[i]) }));
+  }
+  civDeltas(civ) { const out = { inov: 0, human: 0, sust: 0, resp: 0 }; this.civDefs().forEach(p => { const i = civ[p.key]; if (i == null) return; const d = p.opts[i].d; for (const k in out) out[k] += d[k] || 0; }); return out; }
+  ending(b, civ) {
+    const C = this.C, all = Object.values(b);
+    const lean = this.civDefs().reduce((a, p) => { const i = civ[p.key]; if (i != null) a[p.opts[i].lean]++; return a; }, { ai: 0, bal: 0, hum: 0 });
+    let e;
+    if (b.resp < 40 && b.inov >= 55) e = { key: 'fragile', title: 'OPTIMASI TANPA KENDALI', color: C.violet, archetype: 'ACCELERATOR', variant: 'Cepat, tapi tak ada yang bertanggung jawab', desc: 'Dunia ini sangat inovatif, tetapi ketika sistem AI keliru, tidak jelas siapa yang harus menjawab. Kepercayaan publik rapuh dan kesalahan menyebar lebih cepat daripada koreksinya.' };
+    else if (b.inov >= 58 && b.human < 46) e = { key: 'dominance', title: 'AI DOMINANCE', color: C.cyan, archetype: 'OPTIMIZER', variant: b.sust >= 58 ? 'Mesin hijau yang efisien' : 'Efisien namun rapuh', desc: 'Teknologi sangat teroptimasi. Sekolah, kota, dan pekerjaan berjalan mulus — tetapi ruang bagi manusia untuk memilih, salah, dan belajar semakin sempit.' };
+    else if (b.human >= 58 && b.inov < 46) e = { key: 'resistance', title: 'HUMAN RESISTANCE', color: C.gold, archetype: 'GUARDIAN', variant: b.resp >= 58 ? 'Terjaga dan akuntabel' : 'Terjaga namun tertutup', desc: 'Kendali manusia tetap kuat dan privasi terjaga. Namun inovasi melambat dan banyak peluang — terutama bagi yang paling membutuhkan — tidak sempat terbuka.' };
+    else if (all.every(v => v >= 55)) e = { key: 'harmony', title: 'HUMAN–AI HARMONY', color: C.green, archetype: 'BALANCER', variant: b.sust >= 65 ? 'Harmoni yang berkelanjutan' : 'Harmoni yang harus dirawat', desc: 'Teknologi mendukung kehidupan manusia, sementara agensi dan tanggung jawab manusia tetap terjaga. Keseimbangan ini tidak otomatis — ia dirancang, dan harus terus dirawat.' };
+    else e = { key: 'uneven', title: 'MASA DEPAN BELUM SEIMBANG', color: C.lilac, archetype: 'EXPLORER', variant: 'Beberapa sistem kuat, yang lain tertinggal', desc: 'Dunia ini berjalan, tetapi belum utuh: beberapa dimensi kuat sementara yang lain tertinggal. Inilah titik awal terbaik untuk bertanya — apa yang ingin kamu ubah lebih dulu?' };
+    const notes = [];
+    if (b.sust < 40) notes.push('Keberlanjutan rendah: kenyamanan hari ini dibayar generasi berikutnya.');
+    if (b.resp >= 70) notes.push('Tanggung jawab tinggi: sistem dapat dijelaskan dan dipertanyakan.');
+    if (lean.ai >= 4) notes.push('Konstitusimu condong memberi otonomi luas pada AI.');
+    if (lean.hum >= 4) notes.push('Konstitusimu menempatkan manusia di hampir setiap keputusan.');
+    e.notes = notes; return e;
+  }
+  fireEvent(id, ev) {
+    if (this.state.fired[id]) return;
+    const C = this.C, scr = this.state.screen;
+    const good = ev.color === C.green || ev.color === C.cyan;
+    const citVariant = { school: 'student', city: 'elder', work: 'worker', civ: 'student' }[scr] || 'student';
+    const citExpr = good ? (ev.color === C.green ? 'relieved' : 'hopeful') : (ev.color === C.gold ? 'protest' : 'confused');
+    this.setState({ event: Object.assign({ glow: this.hex(ev.color, .4), citVariant, citExpr }, ev), fired: Object.assign({}, this.state.fired, { [id]: true }) });
+    this.sfx('event');
+    const vo = 'nexa_event_' + id, line = window.NexaVoiceConfig && window.NexaVoiceConfig.get(vo);
+    this.sayAside(vo);
+    const ms = Math.max(7000, ((line && line.duration) || 0) * 1000 + 1500);   // tetap terbuka selama narasi
+    this.timers.push(setTimeout(() => { if (this.state.event && this.state.event.title === ev.title) this.setState({ event: null }); }, ms));
+  }
+  checkSchoolEvents(f) {
+    const C = this.C;
+    if (f.ketergantungan > 70) this.fireEvent('s1', { color: C.gold, title: 'Server AI sekolah padam dua hari', text: 'Model memproyeksikan sebagian besar siswa kesulitan menyelesaikan tugas tanpa bantuan AI. Guru mengusulkan kembali ke kelas diskusi.' });
+    else if (f.interaksi < 30) this.fireEvent('s2', { color: C.gold, title: 'Survei kesejahteraan siswa', text: 'Dalam simulasi ini siswa melaporkan merasa kesepian di sekolah yang serba otomatis: capaian akademik naik, kebahagiaan turun.' });
+    else if (f.kreativitas > 75) this.fireEvent('s3', { color: C.green, title: 'Karya siswa menang festival nasional', text: 'Proyek gabungan siswa–AI dinilai orisinal: AI membantu, siswa yang mengarahkan.' });
+    else if (f.efisiensi > 78 && f.keterlibatan < 45) this.fireEvent('s4', { color: C.cyan, title: 'Kurikulum selesai lebih cepat', text: 'Efisiensi tertinggi sejauh ini — tetapi model memperkirakan klub dan kegiatan sosial makin sepi peminat.' });
+  }
+  checkCityEvents(f) {
+    const C = this.C;
+    if (f.privasi < 35) this.fireEvent('c1', { color: C.gold, title: 'Protes warga #DataKami', text: 'Warga menuntut tahu data apa yang dipakai ORION. Model memproyeksikan kepercayaan publik turun tajam.' });
+    else if (f.keberlanjutan > 72) this.fireEvent('c2', { color: C.green, title: 'Emisi kota turun tajam', text: 'Jaringan energi cerdas membuat kota jadi contoh nasional dalam proyeksi ini. Beban biaya energi warga ikut turun.' });
+    else if (f.keamanan < 35) this.fireEvent('c3', { color: C.gold, title: 'Banjir bandang: respons lambat', text: 'Sistem darurat kekurangan data dan otomasi. Model memproyeksikan evakuasi tertunda cukup lama.' });
+    else if (f.efisiensi > 78) this.fireEvent('c4', { color: C.cyan, title: 'Waktu tempuh turun drastis', text: 'ORION mengoptimalkan lalu lintas kota. Pertanyaan baru: siapa yang mengaudit keputusannya?' });
+    else if (f.kepercayaan > 75) this.fireEvent('c5', { color: C.green, title: 'Portal transparansi ORION dibuka', text: 'Warga bisa melihat alasan setiap kebijakan otomatis. Dalam simulasi ini partisipasi publik meningkat.' });
+  }
+  checkWorkEvents(f, w) {
+    const C = this.C;
+    if (w.tech >= 5 && w.empati === 0 && w.komunikasi === 0) this.fireEvent('w1', { color: C.gold, title: 'Sulit mencari pemimpin tim', text: 'Model memproyeksikan keahlian teknis melimpah, tetapi kolaborasi dan empati langka — proyek besar tersendat.' });
+    else if (f.ketahanan > 70) this.fireEvent('w2', { color: C.green, title: 'Gelombang otomatisasi baru — pekerja beradaptasi', text: 'Karena budaya belajar seumur hidup, proyeksi menunjukkan mayoritas pekerja berpindah peran dalam waktu singkat.' });
+    else if (f.ketimpangan > 65) this.fireEvent('w3', { color: C.gold, title: 'Jurang keterampilan melebar', text: 'Yang punya akses pelatihan teknologi melesat; yang tidak, tertinggal. Proyeksi ketimpangan meningkat.' });
+    else if (f.inovasi > 72 && f.otomasi > 60) this.fireEvent('w4', { color: C.cyan, title: 'Lonjakan inovasi produk', text: 'Inovasi melaju cepat. Tetapi banyak keputusan produk diserahkan penuh ke AI tanpa tinjauan kritis manusia.' });
+  }
+  complete(id, deltas, result) {
+    if (window.NexaFX) {
+      const panel = document.querySelector('[data-screen-label]');
+      window.NexaFX.scan(panel, { color: '#17D9FF' });
+      window.NexaFX.burst(window.innerWidth / 2, window.innerHeight * .42, { color: '#17D9FF', count: 20 });
+    }
+    const S = this.state, prev = this.balanceFrom(S.deltas), rounded = {};
+    for (const k in deltas) rounded[k] = Math.round(deltas[k]);
+    const src = { school: S.school, city: S.city, work: S.work, civ: S.civ }[id];
+    const committed = Object.assign({}, S.committed, { [id]: JSON.parse(JSON.stringify(src)) });
+    this.setState({ deltas: Object.assign({}, S.deltas, { [id]: rounded }), completed: Object.assign({}, S.completed, { [id]: true }), results: Object.assign({}, S.results, { [id]: result }), committed, prevBalance: prev, result, screen: 'result', dlgIdx: 0, dlgHidden: false, event: null });
+    this.sfx(id === 'civ' ? 'seal' : 'lock');
+  }
+  endingVoices(bal) {
+    const C = this.C;
+    const pick = (v, dim, hi, lo) => {
+      const good = (bal[dim] ?? 50) >= 50;
+      const [expr, text] = good ? hi : lo;
+      const color = expr === 'protest' ? C.gold : expr === 'confused' ? C.steel : C.green;
+      const vo = 'citizen_ending_' + v + '_' + (good ? 'hi' : 'lo');
+      return { variant: v, expr, text, color, border: this.hex(color, .32), bg: this.hex(color, .07), role: { student: 'PELAJAR · 2045', worker: 'PEKERJA · 2045', elder: 'WARGA SENIOR · 2045' }[v], play: () => this.sayAside(vo) };
+    };
+    return [
+      pick('student', 'human', ['hopeful', 'Di duniamu saya masih belajar jadi manusia, bukan hanya pengguna sistem.'], ['confused', 'Semua serba cepat di sini, tapi tidak ada yang menanyakan pendapat saya.']),
+      pick('worker', 'inov', ['relieved', 'Teknologinya maju dan saya ikut naik bersamanya.'], ['protest', 'Kami diminta bertahan tanpa alat dan pelatihan baru.']),
+      pick('elder', 'resp', ['relieved', 'Kalau sistemnya salah, saya tahu harus mengadu ke siapa.'], ['protest', 'Tidak ada yang mau bertanggung jawab atas keputusan mesin.'])
+    ];
+  }
+  citizenVoices(id, bal) {
+    const C = this.C;
+    const V = {
+      school: [
+        { v: 'student', dim: 'human', hi: ['hopeful', 'Gurunya masih mengenal saya, bukan hanya nilai saya.'], lo: ['confused', 'Semua tugas dinilai mesin. Saya tidak tahu harus bertanya ke siapa.'] },
+        { v: 'worker', dim: 'inov', hi: ['relieved', 'Anak saya belajar hal yang tidak saya dapatkan dulu.'], lo: ['confused', 'Sekolahnya aman, tapi rasanya jalan di tempat.'] },
+        { v: 'elder', dim: 'resp', hi: ['relieved', 'Saya bisa melihat alasan di balik tiap penilaian.'], lo: ['protest', 'Kami tidak pernah diberi tahu data anak kami dipakai untuk apa.'] }
+      ],
+      city: [
+        { v: 'elder', dim: 'human', hi: ['relieved', 'Kota ini masih terasa milik kami, bukan milik sistemnya.'], lo: ['protest', 'Saya diawasi sepanjang hari dan tidak pernah dimintai izin.'] },
+        { v: 'worker', dim: 'inov', hi: ['hopeful', 'Perjalanan ke kerja lebih pendek empat puluh menit.'], lo: ['confused', 'Macetnya sama saja, hanya sensornya yang bertambah.'] },
+        { v: 'student', dim: 'sust', hi: ['hopeful', 'Udaranya lebih bersih daripada cerita ayah saya.'], lo: ['protest', 'Hemat sekarang, tapi siapa yang membayar sepuluh tahun lagi?'] }
+      ],
+      work: [
+        { v: 'worker', dim: 'human', hi: ['relieved', 'Saya dilatih ulang, bukan digantikan.'], lo: ['protest', 'Pekerjaan saya hilang dan tidak ada yang menyiapkan saya.'] },
+        { v: 'student', dim: 'inov', hi: ['hopeful', 'Keterampilan yang saya pelajari masih dibutuhkan tahun ini.'], lo: ['confused', 'Saya tidak tahu harus belajar apa untuk bertahan.'] },
+        { v: 'elder', dim: 'resp', hi: ['relieved', 'Keputusan siapa yang dirumahkan masih ditandatangani manusia.'], lo: ['confused', 'Algoritma memutuskan, dan tidak ada yang bisa saya ajak bicara.'] }
+      ],
+      civ: [
+        { v: 'student', dim: 'resp', hi: ['hopeful', 'Ada aturan yang bisa saya pakai kalau sistemnya salah.'], lo: ['protest', 'Kalau AI keliru, tidak ada yang mau bertanggung jawab.'] },
+        { v: 'elder', dim: 'human', hi: ['relieved', 'Hal-hal penting masih diputuskan oleh orang.'], lo: ['confused', 'Hidup saya diatur aturan yang tidak saya mengerti.'] },
+        { v: 'worker', dim: 'inov', hi: ['hopeful', 'Aturannya jelas, jadi kami berani mencoba hal baru.'], lo: ['confused', 'Semua harus izin dulu. Tidak ada yang bergerak.'] }
+      ]
+    };
+    const list = V[id] || V.school;
+    return list.map(c => {
+      const val = bal[c.dim] ?? 50;
+      const good = val >= 50;
+      const [expr, text] = good ? c.hi : c.lo;
+      const color = expr === 'protest' ? C.gold : expr === 'confused' ? C.steel : C.green;
+      const vo = 'citizen_' + (V[id] ? id : 'school') + '_' + c.v + '_' + (good ? 'hi' : 'lo');
+      return { variant: c.v, expr, text, color, border: this.hex(color, .32), bg: this.hex(color, .07), role: { student: 'PELAJAR · 2045', worker: 'PEKERJA · 2045', elder: 'WARGA SENIOR · 2045' }[c.v], play: () => this.sayAside(vo) };
+    });
+  }
+  dialogueFor(S) {
+    const C = this.C, hx = (h, a) => this.hex(h, a);
+    const NEXA_ST = { 'MENGANALISIS': 'thinking', 'MENGHITUNG ULANG': 'thinking', 'AFIRMASI': 'success', 'WASPADA': 'warning' };
+    const MENTOR_EX = { 'KHAWATIR': 'concerned', 'REFLEKTIF': 'questioning', 'MENDORONG': 'explaining', 'BANGGA': 'proud' };
+    const vc = window.NexaVoiceConfig || null;
+    const sub = id => { const l = vc && vc.get(id); return l ? l.subtitle : null; };
+    const nara = (vo, state) => { const s = state || 'BERBICARA'; return { name: 'NARA-01', color: C.cyan, glow: hx(C.cyan, .5), isNara: true, vo, text: sub(vo) || vo, state: s, nexaState: NEXA_ST[s] || 'idle' }; };
+    const kaia = (vo, state) => { const s = state || 'MENDORONG'; return { name: 'KAIA', color: C.gold, glow: hx(C.gold, .5), isKaia: true, vo, text: sub(vo) || vo, state: s, mentorExpr: MENTOR_EX[s] || 'neutral' }; };
+    const orion = (vo, state) => ({ name: 'ORION', color: C.green, glow: hx(C.green, .5), isOrion: true, vo, text: sub(vo) || vo, state: state || 'MENGUSULKAN' });
+    const done = Object.keys(S.completed).length;
+    const scripts = {
+      objective: [nara('nexa_intro_01'), nara('nexa_intro_02'), kaia('mentor_intro', 'REFLEKTIF')],
+      hub: done === 0 ? [nara('nexa_hub_01'), nara('nexa_hub_02', 'MENGANALISIS')] : done < 3 ? [nara('nexa_hub_progress_01', 'MENGANALISIS')] : done === 3 ? [kaia('mentor_unlock', 'REFLEKTIF')] : [nara('nexa_hub_complete_01', 'AFIRMASI')],
+      school: [nara('nexa_module_school_01'), kaia('mentor_explanation'), kaia('mentor_explanation_02', 'KHAWATIR')],
+      city: [nara('nexa_module_city_01'), orion('orion_offer_01'), orion('orion_offer_02', 'MENGHITUNG ULANG')],
+      work: [nara('nexa_module_work_01'), nara('nexa_module_work_02', 'MENGANALISIS')],
+      civ: [kaia('mentor_reflection', 'REFLEKTIF'), nara('nexa_module_future_01')],
+      result: [nara('nexa_decision_01', 'MENGANALISIS'), kaia('mentor_explanation_03')],
+      profile: [nara('nexa_ending_01', 'AFIRMASI')],
+      summary: [nara('nexa_ending_02'), kaia('mentor_debrief')],
+      reflection: [kaia('mentor_reflection_02', 'MENDORONG')]
+    };
+    const script = scripts[S.screen] || [];
+    script.forEach((l, i) => { if (script[i + 1]) l.voNext = script[i + 1].vo; });
+    const dlg = script[S.dlgIdx] || nara('');
+    return { script, dlg, show: !S.dlgHidden && S.dlgIdx < script.length && !['opening', 'tutorial'].includes(S.screen) };
+  }
+
+  renderVals() {
+    const S = this.state, scr = S.screen, C = this.C, hex = (h, a) => this.hex(h, a);
+    const bal = this.balanceFrom(S.deltas), prev = S.prevBalance || bal;
+    const doneCount = Object.keys(S.completed).length;
+    const civUnlocked = !!(S.completed.school && S.completed.city && S.completed.work);
+    const fmt = d => d === 0 ? '±0' : d > 0 ? '+' + d : '' + d;
+    const dims = [['inov', 'Inovasi', C.cyan], ['human', 'Kemanusiaan', C.gold], ['sust', 'Keberlanjutan', C.green], ['resp', 'Tanggung Jawab', C.lilac]];
+    const balanceList = dims.map(([k, label, color]) => { const d = bal[k] - prev[k]; return { key: k, label, color, value: bal[k], delta: fmt(d), deltaColor: d > 0 ? C.green : d < 0 ? C.gold : C.steel, trend: bal[k] >= 60 ? 'kuat' : bal[k] >= 45 ? 'seimbang' : 'tertinggal' }; });
+    const chips = d => dims.map(([k, label, color]) => { const v = Math.round(d[k] || 0); return { label, delta: fmt(v), color: v > 0 ? color : v < 0 ? C.gold : C.steel }; });
+    const fbColor = (v, inv) => { const good = inv ? 100 - v : v; return good >= 60 ? C.green : good >= 40 ? C.cyan : C.gold; };
+
+    // modules + pathway
+    const defs = [
+      { id: 'school', num: '01', short: 'Smart School', name: 'Smart School 2045', desc: 'Rancang peran AI di ruang belajar.', color: C.cyan, delay: '0s', badge: 'PERANCANG BELAJAR' },
+      { id: 'city', num: '02', short: 'AI City', name: 'AI City 2045', desc: 'Kota efisien vs privasi warga, bersama ORION.', color: C.green, delay: '1.5s', badge: 'PERANCANG KOTA' },
+      { id: 'work', num: '03', short: 'Future Work', name: 'Future Work 2045', desc: 'Alokasikan energi ke keterampilan masa depan.', color: C.violet, delay: '3s', badge: 'PERANCANG KETERAMPILAN' },
+      { id: 'civ', num: '04', short: 'Konstitusi', name: 'Human + AI Civilization', desc: 'Tulis Konstitusi AI NEXA.', color: C.gold, delay: '4.5s', badge: 'PENJAGA NILAI' }
+    ];
+    const openModule = d => {
+      const locked = d.id === 'civ' && !civUnlocked;
+      if (locked) { this.fireEvent('lock_' + Date.now(), { color: C.gold, title: 'Ruang Konstitusi masih terkunci', text: 'Selesaikan Smart School, AI City, dan Future Work lebih dulu — konstitusi ditulis dari pengalaman.' }); return; }
+      this.go(d.id);
+    };
+    const mod = d => {
+      const done = !!S.completed[d.id], locked = d.id === 'civ' && !civUnlocked;
+      return Object.assign({}, d, {
+        open: () => openModule(d), earned: done,
+        status: locked ? 'TERKUNCI' : done ? 'SELESAI' : 'SIAP', cursor: locked ? 'not-allowed' : 'pointer', opacity: locked ? '.55' : '1',
+        chipBg: done ? hex(C.green, .18) : hex(C.steel, .15), chipFg: done ? C.green : C.steel,
+        border: done ? d.color : hex(d.color, locked ? .25 : .45), glow: hex(d.color, done ? .35 : .15), glowHover: hex(d.color, locked ? .15 : .6)
+      });
+    };
+    const progressSteps = defs.map(d => {
+      const done = !!S.completed[d.id], locked = d.id === 'civ' && !civUnlocked, active = scr === d.id;
+      return {
+        label: d.short, title: d.name + (locked ? ' (terkunci)' : done ? ' (selesai)' : ''), open: () => openModule(d),
+        mark: done ? '✓' : locked ? '·' : d.num, cursor: locked ? 'not-allowed' : 'pointer',
+        border: active ? d.color : done ? hex(C.green, .45) : 'rgba(145,164,184,.25)',
+        bg: active ? hex(d.color, .14) : done ? hex(C.green, .08) : 'transparent',
+        fg: active ? C.white : done ? C.green : C.steel,
+        dotBorder: done ? C.green : active ? d.color : 'rgba(145,164,184,.4)',
+        dotBg: done ? hex(C.green, .2) : 'transparent', dotFg: done ? C.green : active ? d.color : C.steel
+      };
+    });
+    const badgeDefs = { school: { k: 'BLJ', title: 'Perancang Belajar', c: C.cyan }, city: { k: 'KOTA', title: 'Perancang Kota', c: C.green }, work: { k: 'SKIL', title: 'Perancang Keterampilan', c: C.violet }, civ: { k: 'NILAI', title: 'Penjaga Nilai', c: C.gold } };
+    const earnedBadges = Object.keys(S.completed).map(id => Object.assign({ glow: hex(badgeDefs[id].c, .25) }, badgeDefs[id]));
+    const lightsPool = [{ x: '30%', y: '36%', c: C.cyan }, { x: '64%', y: '58%', c: C.violet }, { x: '42%', y: '44%', c: C.green }, { x: '70%', y: '40%', c: C.gold }, { x: '36%', y: '62%', c: C.cyan }, { x: '55%', y: '30%', c: C.green }];
+
+    // tutorial
+    const tutSteps = [
+      { title: 'Geser parameter, dunia berubah', body: 'Setiap modul punya panel parameter. Saat kamu menggeser, simulasi berubah saat itu juga — dan chip di bawah memperlihatkan akibatnya pada Future Balance sebelum kamu mengunci.', cta: 'LANJUT ›', isSlider: true, canBack: false },
+      { title: 'Sumber daya selalu terbatas', body: 'Di Future Work kamu membagi 12 unit energi ke 7 keterampilan. Tidak cukup untuk semua — memilih berarti melepaskan sesuatu.', cta: 'LANJUT ›', isAlloc: true, canBack: true },
+      { title: 'Keputusan punya sudut pandang', body: 'Di Ruang Konstitusi kamu memilih posisi pada enam prinsip. Tidak ada pilihan yang salah — setiap posisi membentuk dunia yang berbeda.', cta: 'LANJUT ›', isDecision: true, canBack: true },
+      { title: 'Future Balance adalah rapormu', body: 'Empat dimensi ini bergerak setiap kali kamu mengunci sebuah desain. Tujuannya bukan angka tertinggi, tetapi keseimbangan yang bisa kamu pertanggungjawabkan.', cta: 'MASUK KE LAB ›', isBalance: true, canBack: true }
+    ];
+    const tut = tutSteps[Math.min(S.tutStep, 3)];
+    const tutDots = tutSteps.map((_, i) => ({ w: i === S.tutStep ? '26px' : '8px', bg: i === S.tutStep ? C.cyan : i < S.tutStep ? hex(C.cyan, .45) : 'rgba(145,164,184,.25)' }));
+    const demoGuide = 60, demoSyn = S.demoVal * (demoGuide / 100);
+    const demoOptsRaw = [
+      { label: 'AI, karena cepat dan konsisten', lean: 'ai', fb: 'Sistem jadi sangat cepat — tetapi saat AI keliru, tidak jelas siapa yang menjawab. Tanggung jawab turun.' },
+      { label: 'Manusia, dengan analisis dari AI', lean: 'bal', fb: 'Lebih lambat, tetapi setiap keputusan bisa dijelaskan dan dipertanggungjawabkan. Tanggung jawab naik.' },
+      { label: 'Dewan manusia dengan hak veto', lean: 'hum', fb: 'Kendali manusia kuat dan sah, tetapi proses panjang bisa memperlambat inovasi.' }
+    ];
+
+    // school
+    const s = S.school, sf = this.schoolFb(s), sd = this.schoolDeltas(sf, s);
+    const setSchool = k => e => { const v = +e.target.value; const school = Object.assign({}, this.state.school, { [k]: v }); this.setState({ school }); this.sfx('slider', v); this.checkSchoolEvents(this.schoolFb(school)); };
+    const schoolParams = [['ai', 'Keterlibatan AI'], ['guru', 'Interaksi guru'], ['personal', 'Personalisasi'], ['mandiri', 'Kemandirian siswa'], ['sosial', 'Belajar sosial'], ['kreatif', 'Dukungan kreativitas']].map(([k, label]) => ({ key: k, label, value: s[k], onChange: setSchool(k) }));
+    const schoolFeedback = [{ label: 'Efisiensi belajar', value: sf.efisiensi }, { label: 'Keterlibatan siswa', value: sf.keterlibatan }, { label: 'Interaksi manusia', value: sf.interaksi }, { label: 'Kreativitas', value: sf.kreativitas }, { label: 'Ketergantungan pada AI', value: sf.ketergantungan, inv: true }].map(f => Object.assign(f, { pct: f.value + '%', color: fbColor(f.value, f.inv) }));
+    const students = Array.from({ length: 18 }, (_, i) => {
+      const col = i % 6, row = (i / 6) | 0, spread = 1 - s.sosial / 250;
+      const x = 300 + (col - 2.5) * 88 * spread + ((i * 13) % 7 - 3) * 2, y = 150 + row * 62 + ((i * 7) % 5 - 2) * 3, mix = s.ai / 100;
+      const PAL = [C.cyan, '#7657FF', C.green, C.gold];
+      return {
+        x: Math.round(x), y: Math.round(y), halo: 10 + s.ai * .2, haloOp: .08 + s.ai * .003,
+        spark: sf.kreativitas > 55 ? 12 + (sf.kreativitas - 55) * .15 : 0,
+        linkOp: Math.max(0, s.guru / 100 * .7 - (i % 3) * .08),
+        fill: mix > .6 ? C.cyan : mix > .35 ? '#4FC7E8' : C.green,
+        deskX: Math.round(x - 21 - row * 3), deskY: y + 10, deskW: 42 + row * 6,
+        scrX: Math.round(x - 10 - row), scrY: y + 12, scrW: 20 + row * 2,
+        scrOp: (.14 + s.ai * .0068).toFixed(2), scrFill: s.personal > 55 ? PAL[i % 4] : C.cyan,
+        chairY: y + 21 + row * 2
+      };
+    });
+    const peerLinks = []; for (let i = 0; i < 18; i += 2) { const j = (i + 1) % 6 === 0 ? i - 5 : i + 1; peerLinks.push({ x1: students[i].x, y1: students[i].y, x2: students[j].x, y2: students[j].y, op: s.sosial / 100 * .8 }); }
+
+    // city
+    const c = S.city, cf = this.cityFb(c), cd = this.cityDeltas(cf, c);
+    const setCity = k => e => { const v = +e.target.value; const city = Object.assign({}, this.state.city, { [k]: v }); this.setState({ city }); this.sfx('slider', v); this.checkCityEvents(this.cityFb(city)); };
+    const cityParams = [['pengawasan', 'Tingkat pengawasan'], ['transparansi', 'Transparansi publik'], ['data', 'Penggunaan data warga'], ['sustain', 'Sistem keberlanjutan'], ['otomasi', 'Tingkat otomatisasi'], ['akses', 'Aksesibilitas'], ['darurat', 'Respons darurat']].map(([k, label]) => ({ key: k, label, value: c[k], onChange: setCity(k) }));
+    const cityFeedback = [{ label: 'Efisiensi', value: cf.efisiensi }, { label: 'Keamanan', value: cf.keamanan }, { label: 'Privasi', value: cf.privasi }, { label: 'Keberlanjutan', value: cf.keberlanjutan }, { label: 'Kepercayaan publik', value: cf.kepercayaan }].map(f => Object.assign(f, { pct: f.value + '%', color: fbColor(f.value) }));
+    // profil siluet kota (bukan urutan naik-turun, supaya tidak terbaca sebagai grafik batang)
+    const SKY = [34, 52, 28, 61, 45, 88, 38, 70, 30, 57, 95, 42, 66, 33, 78, 48, 100, 36, 59, 26, 71, 44, 85, 31, 63, 39, 54, 29];
+    const buildings = Array.from({ length: 28 }, (_, i) => { const h = 22 + SKY[i] * .56, col = c.sustain > 55 ? C.green : c.otomasi > 60 ? C.cyan : '#4FC7E8'; return { h: h + '%', c: col, glow: (4 + c.otomasi * .16) + 'px', winOp: .3 + c.otomasi * .006, sensor: ((i * 7) % 10) < c.pengawasan / 10 }; });
+
+    // work
+    const w = S.work, used = Object.values(w).reduce((a, b) => a + b, 0), left = 12 - used, wf = this.workFb(w), wd = this.workDeltas(wf, w);
+    const setWork = (k, dir) => () => {
+      const cur = this.state.work, u = Object.values(cur).reduce((a, b) => a + b, 0);
+      if (dir > 0 && u >= 12) { this.toast('Energi habis — kurangi keterampilan lain dulu.', C.gold); return; }
+      if (dir < 0 && cur[k] <= 0) return;
+      const work = Object.assign({}, cur, { [k]: cur[k] + dir });
+      this.setState({ work }); this.sfx('unit'); this.checkWorkEvents(this.workFb(work), work);
+    };
+    const skillDefs = [['tech', 'Teknologi', 50, 0, C.cyan], ['kreatif', 'Kreativitas', 15, 30, C.violet], ['empati', 'Empati', 85, 30, C.gold], ['komunikasi', 'Komunikasi', 12, 82, C.green], ['kritis', 'Berpikir kritis', 50, 52, C.cyan], ['adaptif', 'Adaptabilitas', 88, 82, C.violet], ['lifelong', 'Belajar seumur hidup', 50, 100, C.green]];
+    const skills = skillDefs.map(([k, label, x, y, col]) => { const px = 34 + w[k] * 3.2; return { key: k, label, x: x + '%', y: y + '%', px: x, py: y, c: col, cA: hex(col, .55), cB: hex(col, .12), units: w[k], size: px + 'px', tf: `translate(-50%,-${(px / 2).toFixed(0)}px)`, glow: (8 + w[k] * 4) + 'px', inc: setWork(k, 1), dec: setWork(k, -1), drop: e => { e.preventDefault(); if (this.dragKey === 'pool') setWork(k, 1)(); this.dragKey = null; } }; });
+    const skillLinks = [[0, 1], [0, 2], [1, 4], [2, 4], [1, 3], [2, 5], [4, 6], [3, 6], [5, 6]].map(([a, b]) => ({ x1: skills[a].px, y1: skills[a].py, x2: skills[b].px, y2: skills[b].py, op: .15 + Math.min(1, (w[skillDefs[a][0]] + w[skillDefs[b][0]]) / 6) * .6 }));
+    const energyUnits = Array.from({ length: 12 }, (_, i) => { const avail = i < left; return { drag: avail ? 'true' : 'false', onDragStart: e => { this.dragKey = 'pool'; try { e.dataTransfer.setData('text/plain', 'unit'); } catch (x) { } }, bg: avail ? C.violet : 'rgba(118,87,255,.1)', border: avail ? C.violet : 'rgba(118,87,255,.3)', glow: avail ? C.violet : 'transparent', cursor: avail ? 'grab' : 'default' }; });
+    const workFeedback = [{ label: 'Ketahanan kerja', value: wf.ketahanan }, { label: 'Inovasi', value: wf.inovasi }, { label: 'Risiko ketimpangan', value: wf.ketimpangan, inv: true }, { label: 'Relevansi manusia', value: wf.relevansi }, { label: 'Ketergantungan otomasi', value: wf.otomasi, inv: true }].map(f => Object.assign(f, { pct: f.value + '%', color: fbColor(f.value, f.inv) }));
+
+    // civ
+    const civDefs = this.civDefs(), civPicked = civDefs.filter(p => S.civ[p.key] != null).length, cvd = this.civDeltas(S.civ);
+    const regVo = civPicked === 0 ? 'regulator_wait' : civPicked >= 6 ? 'regulator_ready' : 'regulator_count_' + civPicked;
+    const principles = civDefs.map((p, i) => {
+      const sel = S.civ[p.key], selColor = sel != null ? p.opts[sel].color : null;
+      return { num: '0' + (i + 1), q: p.q, border: selColor ? hex(selColor, .7) : 'rgba(255,200,87,.3)', glow: selColor ? hex(selColor, .25) : 'transparent', state: sel != null ? 'DIPILIH' : 'BELUM', stateColor: sel != null ? C.lilac : C.steel, opts: p.opts.map((o, j) => ({ label: o.label, pick: () => { const before = civDefs.filter(q => this.state.civ[q.key] != null).length; this.setState({ civ: Object.assign({}, this.state.civ, { [p.key]: j }) }); this.sfx('click'); const n = civDefs.filter(q => (q.key === p.key ? true : this.state.civ[q.key] != null)).length; if (n > before) this.sayAside(n >= 6 ? 'regulator_ready' : 'regulator_count_' + n); this.toast(n >= 6 ? 'Enam prinsip lengkap — segel siap dikunci.' : `Prinsip tercatat · ${n}/6 segmen segel terbentuk.`, n >= 6 ? C.green : C.gold); }, border: sel === j ? o.color : 'rgba(145,164,184,.25)', bg: sel === j ? hex(o.color, .16) : 'transparent', fg: sel === j ? C.white : '#C9D4E0' })) };
+    });
+    const sealSegs = civDefs.map((p, i) => { const a0 = (-90 + i * 60 + 4) * Math.PI / 180, a1 = (-90 + (i + 1) * 60 - 4) * Math.PI / 180, r = 78, sel = S.civ[p.key]; return { d: `M ${100 + r * Math.cos(a0)} ${100 + r * Math.sin(a0)} A ${r} ${r} 0 0 1 ${100 + r * Math.cos(a1)} ${100 + r * Math.sin(a1)}`, c: sel != null ? p.opts[sel].color : C.steel, op: sel != null ? 1 : .18 }; });
+    const lean = civDefs.reduce((a, p) => { const i = S.civ[p.key]; if (i != null) a[p.opts[i].lean]++; return a; }, { ai: 0, bal: 0, hum: 0 });
+    const sealCoreColor = lean.ai > lean.hum && lean.ai >= lean.bal ? C.cyan : lean.hum > lean.ai && lean.hum >= lean.bal ? C.gold : C.lilac;
+
+    // result / ending
+    const R = S.result || {}, names = { school: 'SMART SCHOOL 2045', city: 'AI CITY 2045', work: 'FUTURE WORK 2045', civ: 'KONSTITUSI AI' };
+    const E = this.ending(bal, S.civ);
+    const endingPath = doneCount === 0 ? 'Belum ada modul selesai. Dunia ini masih berupa kemungkinan.' : `Inovasi ${bal.inov} · Kemanusiaan ${bal.human} · Keberlanjutan ${bal.sust} · Tanggung Jawab ${bal.resp}. ${E.notes.join(' ')} Tidak ada satu jawaban benar — ini dunia yang lahir dari trade-off di ${doneCount} modul.`;
+    const allTradeoffs = ['school', 'city', 'work', 'civ'].flatMap(id => (S.results[id] ? S.results[id].tradeoffs.slice(0, 2).map(t => Object.assign({ mod: names[id].split(' ')[0] }, t)) : []));
+    const civSummary = civDefs.map(p => { const i = S.civ[p.key]; return { q: p.q, a: i != null ? p.opts[i].label : '— belum diputuskan', color: i != null ? p.opts[i].color : C.steel }; });
+    const discussion = {
+      dominance: ['Kota dan sekolah sangat efisien. Hal apa yang hilang ketika manusia jarang perlu memutuskan sendiri?', 'Siapa yang bertanggung jawab jika AI salah dalam dunia ini?', 'Jika kamu hanya boleh mengubah satu parameter, mana yang akan kamu ubah dan mengapa?'],
+      resistance: ['Privasi dan kendali manusia terjaga. Siapa yang mungkin dirugikan karena inovasi melambat?', 'Apakah "aman" selalu berarti "adil"? Beri contoh dari simulasi.', 'Bagian mana dari AI yang tetap layak dipakai meski kita berhati-hati?'],
+      harmony: ['Keseimbangan ini disebut rapuh. Peristiwa apa yang bisa merusaknya dalam 5 tahun?', 'Prinsip konstitusi mana yang paling penting untuk menjaga harmoni? Mengapa?', 'Apakah semua orang di dunia ini merasakan harmoni yang sama? Siapa yang mungkin tidak?'],
+      fragile: ['Inovasi tinggi tetapi tanggung jawab rendah. Ceritakan satu skenario ketika ini menjadi masalah nyata.', 'Apa bedanya "AI yang bisa dijelaskan" dengan "AI yang benar"?', 'Aturan apa yang akan kamu tambahkan pertama kali?'],
+      uneven: ['Dimensi mana yang tertinggal di dunia ini, dan keputusan mana yang menyebabkannya?', 'Apakah lebih baik semua dimensi sedang, atau beberapa tinggi dan beberapa rendah? Mengapa?', 'Jika kelas ini merancang ulang bersama, kompromi apa yang harus disepakati?']
+    }[E.key];
+
+    const D = this.dialogueFor(S);
+    const inLab = ['hub', 'school', 'city', 'work', 'civ', 'result', 'profile', 'summary', 'reflection'].includes(scr);
+    const titles = { hub: 'ORBITAL LAB', school: 'MODUL 01 · SMART SCHOOL', city: 'MODUL 02 · AI CITY', work: 'MODUL 03 · FUTURE WORK', civ: 'MODUL 04 · KONSTITUSI', result: 'KONSEKUENSI', profile: 'FUTURE PROFILE', summary: 'HASIL AKHIR', reflection: 'REFLEKSI' };
+
+    return {
+      isOpening: scr === 'opening', isObjective: scr === 'objective', isTutorial: scr === 'tutorial', isHub: scr === 'hub',
+      isSchool: scr === 'school', isCity: scr === 'city', isWork: scr === 'work', isCiv: scr === 'civ',
+      isResult: scr === 'result', isProfile: scr === 'profile', isSummary: scr === 'summary', isReflection: scr === 'reflection',
+      headerFull: ['opening', 'objective', 'tutorial'].includes(scr), headerCompact: inLab,
+      inLab, screenTitle: titles[scr] || '', doneCount, badgeCount: earnedBadges.length,
+      progressSteps, progressPct: Math.round(doneCount / 4 * 100) + '%',
+      armAudio: () => { if (!this.audio) this.ensureAudio(); else if (this.audio.ctx.state === 'suspended') this.audio.ctx.resume(); },
+      // flow
+      toObjective: () => this.go('objective'), toTutorial: () => this.go('tutorial', { tutStep: 0 }),
+      toHub: () => this.go('hub'), toProfile: () => { this.go('profile'); if (doneCount === 4) this.sfx('ending'); },
+      toSummary: () => this.go('summary'), toReflection: () => this.go('reflection'),
+      hasSave: S.hasSave, saveDone: S.saveDone,
+      startNew: () => this.resetAll('hub'),
+      continueSave: () => {
+        try {
+          const sv = JSON.parse(localStorage.getItem(this.SAVE_KEY)) || {}, DF = this.DEFAULTS;
+          const school = Object.assign({}, DF.school, sv.school), city = Object.assign({}, DF.city, sv.city), work = Object.assign({}, DF.work, sv.work), civ = sv.civ || {};
+          const committed = {};
+          if (sv.completed) { ['school', 'city', 'work', 'civ'].forEach(k => { if (sv.completed[k]) committed[k] = { school, city, work, civ }[k]; }); }
+          this.setState({ completed: sv.completed || {}, deltas: sv.deltas || {}, results: sv.results || {}, school, city, work, civ, committed, fired: sv.fired || {}, prevBalance: null, event: null });
+        } catch (e) { }
+        this.go('hub');
+      },
+      restart: () => this.resetAll('objective'),
+      // tutorial
+      tut, tutDots, tutNext: () => { if (S.tutStep >= 3) this.resetAll('hub'); else { this.setState({ tutStep: S.tutStep + 1 }); this.sfx('click'); } },
+      tutBack: () => { this.setState({ tutStep: Math.max(0, S.tutStep - 1) }); this.sfx('click'); },
+      demoVal: S.demoVal, setDemo: e => { this.setState({ demoVal: +e.target.value }); this.sfx('slider', +e.target.value); },
+      demoHalo: (52 + S.demoVal * .8) + 'px', demoFill: S.demoVal > 60 ? C.cyan : S.demoVal > 35 ? '#4FC7E8' : C.green,
+      demoD1: fmt(Math.round((S.demoVal - 50) * .3)), demoD2: fmt(Math.round((50 - S.demoVal) * .14)),
+      demoUnits: S.demoUnits, demoNode: (38 + S.demoUnits * 7) + 'px', demoNodeGlow: (8 + S.demoUnits * 6) + 'px',
+      demoInc: () => { if (S.demoUnits >= 6) { this.toast('Energi demo habis.', C.gold); return; } this.setState({ demoUnits: S.demoUnits + 1 }); this.sfx('unit'); },
+      demoDec: () => { if (S.demoUnits <= 0) return; this.setState({ demoUnits: S.demoUnits - 1 }); this.sfx('unit'); },
+      demoDrop: e => { e.preventDefault(); if (this.dragKey === 'demo' && S.demoUnits < 6) { this.setState({ demoUnits: S.demoUnits + 1 }); this.sfx('unit'); } this.dragKey = null; },
+      demoPool: Array.from({ length: 6 }, (_, i) => { const avail = i < 6 - S.demoUnits; return { drag: avail ? 'true' : 'false', onDragStart: e => { this.dragKey = 'demo'; try { e.dataTransfer.setData('text/plain', 'u'); } catch (x) { } }, bg: avail ? C.violet : 'rgba(118,87,255,.1)', border: avail ? C.violet : 'rgba(118,87,255,.3)', glow: avail ? C.violet : 'transparent', cursor: avail ? 'grab' : 'default' }; }),
+      demoOpts: demoOptsRaw.map((o, i) => ({ label: o.label, pick: () => { this.setState({ demoPick: i }); this.sfx('click'); }, border: S.demoPick === i ? (o.lean === 'ai' ? C.cyan : o.lean === 'bal' ? C.lilac : C.gold) : 'rgba(145,164,184,.25)', bg: S.demoPick === i ? hex(o.lean === 'ai' ? C.cyan : o.lean === 'bal' ? C.lilac : C.gold, .16) : 'transparent', fg: S.demoPick === i ? C.white : '#C9D4E0' })),
+      demoOptFeedback: S.demoPick == null ? 'Pilih satu untuk melihat konsekuensinya.' : demoOptsRaw[S.demoPick].fb,
+      demoDims: dims.map(([k, label, color]) => ({ label, c: color, t: { inov: 'efisiensi & kemampuan baru', human: 'interaksi, privasi, agensi', sust: 'dampak jangka panjang', resp: 'transparansi & kepercayaan' }[k] })),
+      // settings
+      settingsOpen: S.settingsOpen, toggleSettings: () => this.setState({ settingsOpen: !S.settingsOpen }),
+      toggleMute: () => this.setState({ muted: !S.muted }, () => { this.applyVolumes(); if (this.VM) this.VM.setMuted(this.state.muted); if (this.state.muted) this.stopSpeech(); }),
+      muteGlyph: S.muted ? '◌' : '◉', muteLabel: S.muted ? 'Bunyikan' : 'Bisukan semua',
+      toggleSubs: () => this.setState({ subs: !S.subs }, () => { if (this.VM) this.VM.enableSubtitle(this.state.subs); }), subsOn: S.subs, subsColor: S.subs ? C.cyan : C.steel, subsLabel: S.subs ? 'Subtitle: aktif' : 'Subtitle: mati',
+      musicPct: S.musicVol, voicePct: S.voiceVol, sfxPct: S.sfxVol,
+      setMusic: e => this.setState({ musicVol: +e.target.value }, () => this.applyVolumes()),
+      setVoice: e => this.setState({ voiceVol: +e.target.value }, () => { if (this.VM) this.VM.setVolume(this.state.voiceVol / 100); }),
+      setSfx: e => this.setState({ sfxVol: +e.target.value }, () => this.applyVolumes()),
+      hasFeedback: !!S.feedback, feedback: S.feedback || {},
+      hasEvent: !!S.event, event: S.event || {}, closeEvent: () => { this.stopAside('nexa_event_'); this.setState({ event: null }); },
+      // objective
+      objectives: [
+        { n: '01', h: 'Literasi AI', t: 'Memahami cara sistem AI bekerja, apa yang dioptimalkannya, dan data siapa yang dipakainya.', c: C.cyan, border: hex(C.cyan, .35), bg: hex(C.cyan, .08) },
+        { n: '02', h: 'Keputusan bertanggung jawab', t: 'Melatih menimbang manfaat dan risiko teknologi sebelum menerapkannya.', c: C.lilac, border: hex(C.violet, .35), bg: hex(C.violet, .08) },
+        { n: '03', h: 'Berpikir konsekuensi', t: 'Melihat bahwa setiap keputusan punya trade-off — tidak ada pilihan tanpa harga.', c: C.gold, border: hex(C.gold, .35), bg: hex(C.gold, .08) },
+        { n: '04', h: 'Keterampilan masa depan', t: 'Mengenali kemampuan manusia yang tetap penting di dunia yang serba otomatis.', c: C.green, border: hex(C.green, .35), bg: hex(C.green, .08) }
+      ],
+      pathway: [{ label: 'Cara Bermain', c: C.steel, border: 'rgba(145,164,184,.35)', sep: '→' }, { label: 'Orbital Lab', c: C.cyan, border: hex(C.cyan, .4), sep: '→' }, { label: 'Modul 01–03', c: C.green, border: hex(C.green, .4), sep: '→' }, { label: 'Konstitusi', c: C.gold, border: hex(C.gold, .4), sep: '→' }, { label: 'Hasil Akhir', c: C.lilac, border: hex(C.violet, .4), sep: '→' }, { label: 'Refleksi Kelas', c: C.steel, border: 'rgba(145,164,184,.35)', sep: '' }],
+      // hub
+      ringInov: (bal.inov / 100 * 603).toFixed(0), ringHuman: (bal.human / 100 * 553).toFixed(0), ringSust: (bal.sust / 100 * 503).toFixed(0), ringResp: (bal.resp / 100 * 452).toFixed(0),
+      balanceList, modulesLeft: [mod(defs[0]), mod(defs[2])], modulesRight: [mod(defs[1]), mod(defs[3])],
+      earthLights: lightsPool.slice(0, Math.floor(doneCount * 1.5)),
+      worldStateLabel: doneCount === 0 ? 'MENUNGGU DESAIN' : doneCount < 4 ? 'BERKEMBANG' : 'TERBENTUK',
+      radarPoints: this.radar(bal), radarPrevPoints: this.radar(prev), earnedBadges,
+      // school screen
+      schoolParams, schoolFeedback, students, peerLinks,
+      schoolMode: sf.ketergantungan > 65 ? 'MODE: AI-CENTRIC' : sf.interaksi > 65 ? 'MODE: HUMAN-CENTRIC' : (sf.kreativitas > 65 && s.ai > 55) ? 'MODE: AUGMENTED' : 'MODE: HYBRID',
+      teacherR: 13 + s.guru * .05, aiX: 300 + (s.ai - 50) * 3 - 15, aiCx: 300 + (s.ai - 50) * 3, aiOp: .2 + s.ai * .008,
+      schoolDeltaChips: chips(sd),
+      schoolRealLife: sf.ketergantungan > 60 ? 'Saat kamu memakai AI untuk PR, tanyakan dulu: apakah aku bisa menjelaskan jawabannya tanpa AI?' : sf.interaksi > 60 ? 'Belajar bersama teman dan bertanya pada guru adalah hal yang belum bisa digantikan aplikasi mana pun.' : 'AI paling berguna saat kamu sudah tahu apa yang ingin kamu capai — bukan saat kamu menyerahkan tujuannya.',
+      finishSchool: () => {
+        const t = [];
+        if (sf.efisiensi > 60 && sf.interaksi < 55) t.push({ up: 'Efisiensi', down: 'Interaksi manusia', upColor: C.cyan, downColor: C.gold });
+        if (sf.interaksi > 60 && sf.efisiensi < 55) t.push({ up: 'Kemanusiaan', down: 'Kecepatan belajar', upColor: C.gold, downColor: C.cyan });
+        if (sf.ketergantungan > 60) t.push({ up: 'Kenyamanan', down: 'Kemandirian berpikir', upColor: C.cyan, downColor: C.lilac });
+        if (sf.kreativitas > 60) t.push({ up: s.ai > 55 ? 'Kreativitas terbantu AI' : 'Kreativitas', down: 'Standarisasi', upColor: C.violet, downColor: C.steel });
+        if (s.personal > 65 && s.sosial < 40) t.push({ up: 'Personalisasi', down: 'Belajar bersama', upColor: C.cyan, downColor: C.green });
+        if (!t.length) t.push({ up: 'Keseimbangan', down: 'Keunggulan ekstrem', upColor: C.green, downColor: C.steel });
+        this.complete('school', sd, {
+          id: 'school', tradeoffs: t.slice(0, 4), badge: 'PERANCANG BELAJAR',
+          reflection: sf.ketergantungan > 60 ? 'Sekolahmu sangat efisien, tetapi siswa jarang berpikir tanpa bantuan AI. Apa yang terjadi saat AI-nya tidak tersedia?' : (s.ai > 60 && sf.kreativitas > 60) ? 'AI di sekolahmu bekerja seperti mitra: kuat karena guru dan siswa yang mengarahkan. Kreativitas justru tumbuh.' : sf.interaksi > 60 ? 'Sekolahmu menjaga hubungan manusia. Pastikan AI tetap membantu siswa yang butuh dukungan berbeda.' : 'Sekolahmu menyeimbangkan AI dan manusia. Keseimbangan ini perlu dirawat saat teknologi berubah.',
+          takeaway: 'Dalam model simulasi ini, AI tidak otomatis mematikan kreativitas — yang menentukan adalah siapa yang mengarahkan. AI yang dipandu guru dan kemandirian siswa cenderung memperkuat; AI yang menggantikan keduanya cenderung menciptakan ketergantungan. Di dunia nyata, hubungan ini juga dipengaruhi banyak faktor lain.'
+        });
+      },
+      // city screen
+      cityParams, cityFeedback, buildings, heatOp: c.pengawasan / 130, trafficOp: .15 + c.otomasi * .006,
+      orionState: c.data > 70 ? 'MENGOPTIMALKAN' : c.transparansi > 70 ? 'TRANSPARAN' : 'MENGHITUNG ULANG',
+      orionScale: (1 + c.data / 250).toFixed(2), cityDeltaChips: chips(cd),
+      cityRealLife: cf.privasi < 40 ? 'Setiap aplikasi yang kamu pasang meminta izin data. Membaca izin itu adalah bentuk kecil dari keputusan yang kamu buat di sini.' : cf.kepercayaan > 60 ? 'Layanan publik yang menjelaskan cara kerjanya lebih mudah dipercaya — itu berlaku di kota maupun di sekolahmu.' : 'Kota pintar bukan soal jumlah sensor, tetapi soal siapa yang boleh melihat datanya dan untuk apa.',
+      finishCity: () => {
+        const t = [];
+        if (cf.efisiensi > 60 && cf.privasi < 50) t.push({ up: 'Efisiensi', down: 'Privasi', upColor: C.cyan, downColor: C.gold });
+        if (cf.keamanan > 60 && cf.privasi < 50) t.push({ up: 'Keamanan', down: 'Kebebasan', upColor: C.green, downColor: C.gold });
+        if (cf.keberlanjutan > 60) t.push({ up: 'Keberlanjutan', down: 'Kenyamanan jangka pendek', upColor: C.green, downColor: C.steel });
+        if (cf.kepercayaan > 60) t.push({ up: 'Kepercayaan publik', down: 'Kecepatan sistem', upColor: C.lilac, downColor: C.cyan });
+        if (cf.privasi > 65 && cf.efisiensi < 45) t.push({ up: 'Privasi', down: 'Efisiensi kota', upColor: C.gold, downColor: C.cyan });
+        if (!t.length) t.push({ up: 'Keseimbangan', down: 'Keunggulan ekstrem', upColor: C.green, downColor: C.steel });
+        this.complete('city', cd, {
+          id: 'city', tradeoffs: t.slice(0, 4), badge: 'PERANCANG KOTA',
+          reflection: cf.privasi < 40 ? 'ORION mendapat semua data yang ia minta. Kota lebih lancar, tetapi warga mulai merasa diawasi. Siapa yang menjaga penjaga?' : cf.kepercayaan > 60 ? 'Wargamu percaya pada sistem karena mereka bisa melihat cara kerjanya. Transparansi adalah infrastruktur juga.' : 'Kotamu berjalan, tetapi belum ada yang menonjol. Trade-off mana yang ingin kamu tegaskan?',
+          takeaway: 'Setiap sistem optimasi punya tujuan yang dipilih seseorang. Dalam simulasi ini terlihat bahwa menentukan apa yang dioptimalkan — dan data siapa yang dipakai — adalah keputusan nilai, bukan semata keputusan teknis.'
+        });
+      },
+      // work screen
+      skills, skillLinks, energyUnits, energyLeft: left, workFeedback, workDeltaChips: chips(wd),
+      allowDrop: e => e.preventDefault(), dropToPool: e => { e.preventDefault(); this.dragKey = null; },
+      workMode: used === 0 ? 'MENUNGGU ALOKASI' : w.tech >= 5 ? 'FOKUS: TEKNOLOGI' : (w.empati + w.komunikasi) >= 5 ? 'FOKUS: MANUSIA' : (w.adaptif + w.lifelong) >= 5 ? 'FOKUS: ADAPTIF' : 'FOKUS: CAMPURAN',
+      energyHint: left === 12 ? 'Seret kotak ungu ke sebuah keterampilan, atau tekan + pada node.' : left > 0 ? `${left} unit belum dialokasikan. Kunci desain saat semua terpakai.` : 'Semua energi terpakai. Kunci desain untuk melihat konsekuensinya.',
+      workLockDisabled: left > 0, workLockOpacity: left > 0 ? '.45' : '1',
+      workLockLabel: left > 0 ? `ALOKASIKAN ${left} UNIT LAGI` : 'KUNCI EKOSISTEM KETERAMPILAN ›',
+      workRealLife: w.tech >= 5 && (w.empati + w.komunikasi) <= 1 ? 'Keahlian teknis membuka pintu, tetapi kerja nyata hampir selalu dilakukan bersama orang lain.' : wf.ketahanan > 65 ? 'Kebiasaan belajar hal baru setiap tahun lebih berguna daripada satu keahlian yang sempurna hari ini.' : 'Pikirkan satu keterampilan yang ingin kamu latih tahun ini — dan mengapa mesin sulit menggantikannya.',
+      finishWork: () => {
+        if (left > 0) { this.toast(`Masih ada ${left} unit energi yang belum dialokasikan.`, C.gold); return; }
+        const t = [];
+        if (wf.inovasi > 60 && wf.ketimpangan > 50) t.push({ up: 'Inovasi', down: 'Kesetaraan akses', upColor: C.cyan, downColor: C.gold });
+        if (wf.ketahanan > 60) t.push({ up: 'Ketahanan kerja', down: 'Spesialisasi mendalam', upColor: C.green, downColor: C.steel });
+        if (wf.relevansi > 60 && wf.inovasi < 50) t.push({ up: 'Relevansi manusia', down: 'Kecepatan inovasi', upColor: C.gold, downColor: C.cyan });
+        if (wf.otomasi > 60) t.push({ up: 'Produktivitas', down: 'Tinjauan kritis', upColor: C.cyan, downColor: C.lilac });
+        if (!t.length) t.push({ up: 'Portofolio seimbang', down: 'Keunggulan tunggal', upColor: C.green, downColor: C.steel });
+        this.complete('work', wd, {
+          id: 'work', tradeoffs: t.slice(0, 4), badge: 'PERANCANG KETERAMPILAN',
+          reflection: w.tech >= 5 && w.empati + w.komunikasi <= 1 ? 'Kamu membangun tenaga kerja yang sangat teknis. Siapa yang akan memimpin, bernegosiasi, dan merawat dalam dunia itu?' : wf.ketahanan > 65 ? 'Tenaga kerjamu lentur: saat pekerjaan berubah, orang-orangnya ikut berubah. Itu jarang terjadi tanpa disengaja.' : wf.ketimpangan > 60 ? 'Inovasi tumbuh, tetapi tidak semua orang ikut. Bagaimana pelatihan bisa menjangkau yang tertinggal?' : 'Portofolio keterampilanmu cukup merata. Adakah satu keterampilan yang menurutmu paling sulit diotomatisasi?',
+          takeaway: 'Dalam model ini, keterampilan yang paling sulit digantikan otomatisasi adalah empati, komunikasi, dan adaptabilitas — dan pemerataan akses pelatihan ikut menentukan siapa yang tertinggal. Model ini penyederhanaan; dunia kerja nyata lebih beragam.'
+        });
+      },
+      // civ screen
+      regExpr: civPicked === 6 ? 'acknowledging' : civPicked >= 4 ? 'pressing' : civPicked >= 2 ? 'skeptical' : 'formal',
+      regVo, regLine: (window.NexaVoiceConfig && window.NexaVoiceConfig.get(regVo) || {}).subtitle || '', playReg: () => this.sayAside(regVo),
+      principles, civPicked, sealSegs, sealCoreR: civPicked === 6 ? 52 : 40, sealCoreOp: civPicked === 6 ? 1 : .15 + civPicked * .08, sealCoreColor,
+      sealReading: civPicked === 0 ? 'Segel masih kosong. Setiap prinsip yang kamu pilih menjadi satu segmen.' : civPicked < 6 ? `${civPicked} dari 6 segmen terbentuk. Sejauh ini condong ${lean.ai > lean.hum ? 'memberi ruang pada AI' : lean.hum > lean.ai ? 'menjaga kendali manusia' : 'seimbang'}.` : `Segel lengkap: ${lean.ai} prinsip condong AI, ${lean.bal} seimbang, ${lean.hum} condong manusia.`,
+      civDeltaChips: chips(cvd), civLockDisabled: civPicked < 6, civLockOpacity: civPicked < 6 ? '.45' : '1',
+      civLockLabel: civPicked < 6 ? `PUTUSKAN ${6 - civPicked} PRINSIP LAGI` : 'SEGEL KONSTITUSI ›',
+      finishCiv: () => {
+        if (civPicked < 6) { this.toast(`Masih ada ${6 - civPicked} prinsip yang belum diputuskan.`, C.gold); return; }
+        const t = [];
+        if (lean.ai >= 3) t.push({ up: 'Kecepatan keputusan', down: 'Akuntabilitas manusia', upColor: C.cyan, downColor: C.lilac });
+        if (lean.hum >= 3) t.push({ up: 'Kendali manusia', down: 'Kecepatan sistem', upColor: C.gold, downColor: C.cyan });
+        if (lean.bal >= 3) t.push({ up: 'Tanggung jawab', down: 'Otonomi AI', upColor: C.lilac, downColor: C.green });
+        if (S.civ.p2 === 1) t.push({ up: 'Kepemilikan data individu', down: 'Kemudahan layanan', upColor: C.gold, downColor: C.cyan });
+        if (S.civ.p5 === 0) t.push({ up: 'Kesederhanaan', down: 'Transparansi', upColor: C.cyan, downColor: C.lilac });
+        this.complete('civ', cvd, {
+          id: 'civ', tradeoffs: t.slice(0, 4), badge: 'PENJAGA NILAI',
+          reflection: lean.ai >= 4 ? 'Konstitusimu memberi AI ruang gerak luas. Sistem akan cepat — tetapi saat salah, siapa yang menjawab?' : lean.hum >= 4 ? 'Konstitusimu menempatkan manusia di hampir setiap keputusan. Aman, tetapi apakah manusia sanggup meninjau semuanya?' : 'Konstitusimu mencari jalan tengah: AI bekerja dalam batas yang bisa dijelaskan dan dipertanyakan.',
+          takeaway: 'Konstitusi AI pada dasarnya adalah pernyataan nilai: siapa yang bertanggung jawab, siapa yang memiliki data, dan kapan manusia harus hadir. Simulasi ini menunjukkan satu kemungkinan akibat dari pilihanmu — teknologinya bisa berubah, nilainya yang perlu dibahas bersama.'
+        });
+      },
+      // result
+      resultModuleName: names[R.id] || '', resultBadge: R.badge || '', tradeoffs: R.tradeoffs || [], reflection: R.reflection || '', takeaway: R.takeaway || '',
+      resultCitizens: this.citizenVoices(R.id, bal),
+      reopenModule: () => this.go(R.id || 'hub'),
+      resultNext: () => { if (R.id === 'civ') { this.go('profile'); this.sfx('ending'); } else this.go('hub'); },
+      resultNextLabel: R.id === 'civ' ? 'LIHAT DUNIA YANG TERBENTUK ›' : 'KEMBALI KE LAB ›',
+      // profile / summary / reflection
+      endingCitizens: this.endingVoices(bal),
+      endingTitle: E.title, endingColor: E.color, endingGlow: hex(E.color, .18), endingFill: hex(E.color, .22), endingDesc: E.desc, archetype: E.archetype, endingVariant: E.variant, endingPath,
+      profileCta: doneCount < 4 ? 'LANJUTKAN SIMULASI ›' : 'HASIL AKHIR & DISKUSI ›',
+      profileNext: () => this.go(doneCount < 4 ? 'hub' : 'summary'),
+      allTradeoffs, civSummary, discussion,
+      reflectFields: [
+        { label: 'Satu hal yang berubah dalam caraku memandang AI:', value: S.reflectA, placeholder: 'Tulis satu kalimat…', onChange: e => this.setState({ reflectA: e.target.value, copied: false }) },
+        { label: 'Jika aku merancang ulang, yang akan kuubah lebih dulu:', value: S.reflectB, placeholder: 'Tulis satu kalimat…', onChange: e => this.setState({ reflectB: e.target.value, copied: false }) }
+      ],
+      copyLabel: S.copied ? 'TERSALIN ✓' : 'SALIN RINGKASAN UNTUK GURU',
+      copySummary: () => {
+        const txt = `NEXA — Profil Future Architect\nHasil: ${E.title} (${E.archetype})\nInovasi ${bal.inov} · Kemanusiaan ${bal.human} · Keberlanjutan ${bal.sust} · Tanggung Jawab ${bal.resp}\nModul selesai: ${doneCount}/4\n\nRefleksi 1: ${S.reflectA || '-'}\nRefleksi 2: ${S.reflectB || '-'}`;
+        try { navigator.clipboard.writeText(txt); } catch (e) { }
+        this.setState({ copied: true }); this.sfx('click'); this.toast('Ringkasan disalin ke papan klip.', C.green);
+      },
+      // dialogue
+      showDialogue: D.show, dlg: D.dlg,
+      nextDlg: () => { this.stopSpeech(); this.setState({ dlgIdx: S.dlgIdx + 1 }); },
+      skipDlg: () => { this.stopSpeech(); this.setState({ dlgHidden: true }); },
+      replayDlg: () => this.speak(D.dlg),
+      subVisible: S.subs === false ? D.dlg.text : (S.subVisible || ''),
+      subPending: S.subs === false ? '' : (S.subPending != null ? S.subPending : D.dlg.text),
+      voSpeaking: !!S.voSpeaking,
+      voBadge: S.voSource === 'audio' ? 'VO' : S.voSource === 'none' ? 'TEKS' : 'TEKS+SFX',
+      voColor: S.voSource === 'audio' ? C.green : C.steel,
+      voBorder: S.voSource === 'audio' ? hex(C.green, .45) : 'rgba(145,164,184,.3)',
+      voTitle: S.voSource === 'audio' ? 'Voice over terekam sedang diputar' : 'Belum ada file suara untuk baris ini — subtitle dan SFX yang dipakai',
+      dlgNextLabel: S.dlgIdx + 1 < D.script.length ? 'LANJUT ›' : 'MULAI'
+    };
+  }
+}
+</script>
 </body>
 </html>

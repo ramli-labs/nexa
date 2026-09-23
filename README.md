@@ -27,7 +27,7 @@ Tidak ada jawaban benar atau salah. Gim menilai *trade-off*, bukan skor.
 
 ## Menjalankan secara lokal
 
-Jalankan lewat server HTTP lokal dari folder proyek. Jangan dibuka lewat `file://`, karena runtime membaca ulang `index.html` dengan `fetch`.
+Gim bisa dibuka langsung dengan klik dua kali `index.html` (file://) di Chrome, Edge, Firefox, dan Safari, atau lewat server HTTP lokal:
 
 ```bash
 python3 -m http.server 8000
@@ -91,6 +91,8 @@ nexa/
 ├── tools/
 │   ├── buat-suara.py           # Generator suara (edge-tts + ffmpeg) dari naskah di voice-config.js
 │   ├── siapkan-offline.py      # Dipakai workflow: isi daftar cache & versi di service-worker.js
+│   ├── buat-zip-lomba.py       # Paket ZIP Festival Biru Putih (dist/), lengkap dengan pemeriksaan
+│   ├── uji-main.js             # Uji main penuh otomatis (Playwright) di Chrome/Firefox/Safari
 │   └── cek-audio.py            # Cek voice-config.js ↔ berkas audio ↔ pemakaian di index.html
 └── .github/workflows/pages.yml # Deploy ke GitHub Pages
 ```
@@ -103,6 +105,20 @@ nexa/
 - Gaya per elemen memang ditulis inline. Hanya gaya global yang dipisah ke `css/main.css`.
 
 ---
+
+## Paket lomba (Festival Biru Putih 2026)
+
+```bash
+python3 tools/buat-zip-lomba.py --panduan "Panduan.pdf" --video "Demo.mp4"
+# hasil: dist/NEXA-FestivalBiruPutih.zip
+```
+
+Isi ZIP: `index.html` di root beserta semua asetnya, ditambah PDF panduan dan MP4 video demonstrasi. Skrip ini:
+- membuang yang dilarang panduan lomba: halaman pengalih `game.html`, service worker, manifest PWA, dan tag pratinjau berisi URL eksternal;
+- memeriksa sendiri: satu halaman (SPA), semua rujukan lokal ada, tidak ada URL eksternal yang dimuat, ukuran web ≤ 25 MB dan total ≤ 150 MB, serta video ≤ 3 menit.
+
+Uji paketnya seperti juri: ekstrak, lalu jalankan
+`node tools/uji-main.js <chromium|firefox|webkit> "file://…/index.html"`.
 
 ## Offline
 

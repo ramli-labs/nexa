@@ -30,7 +30,6 @@ html.nx-has-dlg [data-screen-label]{padding-bottom:calc(var(--nx-dlg-h,110px) + 
   .nx-inst>div img{height:16px!important}
 
   .nx-tools{gap:6px!important}
-  .nx-tools>button{width:34px!important;height:34px!important;padding:0!important}
   .nx-chip{padding:3px!important}
   .nx-chip-text{display:none}
 
@@ -43,4 +42,11 @@ html.nx-has-dlg [data-screen-label]{padding-bottom:calc(var(--nx-dlg-h,110px) + 
   .nx-dlg-btns{flex-direction:row!important}
   .nx-dlg-btns>button{flex:2;min-height:38px!important}
   .nx-dlg-sub{flex:1.4}
+}
+
+/* ── Layar sentuh (HP/tablet): target sentuh minimal 44×44 px ── */
+@media (pointer:coarse){
+  .nx-tools{flex-wrap:wrap}
+  .nx-tools>button{min-width:44px!important;height:44px!important}
+  .nx-dlg-btns button,.nx-dlg-sub button{min-height:44px!important;min-width:44px!important}
 }

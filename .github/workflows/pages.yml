@@ -1,8 +1,8 @@
 # ============================================================
 # NEXA: publikasi ke GitHub Pages
 #
-# Yang di-upload HANYA berkas aplikasi. Folder `docs/` dan `tools/`
-# sengaja TIDAK ikut.
+# Yang di-upload HANYA berkas aplikasi. Folder `docs/`, `tools/`, dan
+# `guru/` sengaja TIDAK ikut.
 #
 # Sekali saja di GitHub: Settings > Pages > Build and deployment >
 # Source: "GitHub Actions". Selama Source masih "Deploy from a branch",
@@ -44,11 +44,11 @@ jobs:
           echo "--- isi yang akan dipublikasikan ---"
           find _site -maxdepth 2 | sort
 
-      - name: Pastikan docs/ dan tools/ tidak ikut
+      - name: Pastikan docs/, tools/, dan guru/ tidak ikut
         run: |
           set -e
-          if [ -d _site/docs ] || [ -d _site/tools ]; then
-            echo "GAGAL: folder docs/ atau tools/ ikut ter-upload."
+          if [ -d _site/docs ] || [ -d _site/tools ] || [ -d _site/guru ]; then
+            echo "GAGAL: folder docs/, tools/, atau guru/ ikut ter-upload."
             exit 1
           fi
           echo "OK: hanya berkas aplikasi yang dipublikasikan."

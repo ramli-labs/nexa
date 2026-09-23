@@ -21,6 +21,8 @@ Teknologi: **HTML/CSS/JS statis**. Tidak ada build step, backend, atau dependens
 
 Tidak ada jawaban benar atau salah. Gim menilai *trade-off*, bukan skor.
 
+**Guru:** tujuan pembelajaran, skenario kelas, cara membaca hasil siswa, dan pertanyaan diskusi ada di [`guru/panduan-guru.md`](guru/panduan-guru.md).
+
 ---
 
 ## Menjalankan secara lokal
@@ -42,7 +44,7 @@ Audio baru bisa diputar setelah ada satu interaksi pengguna (kebijakan autoplay 
 2. Sekali saja di GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
    Setelah itu workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) jalan otomatis setiap ada push. Workflow ini:
    - menjalankan `tools/cek-audio.py`, dan build gagal kalau ada audio yang hilang atau yatim;
-   - hanya mengunggah berkas aplikasi (`index.html`, `game.html`, `manifest.json`, `service-worker.js`, `css/`, `js/`, `assets/`). Folder `docs/` dan `tools/` tidak ikut;
+   - hanya mengunggah berkas aplikasi (`index.html`, `game.html`, `manifest.json`, `service-worker.js`, `css/`, `js/`, `assets/`). Folder `docs/`, `tools/`, dan `guru/` tidak ikut;
    - mengisi daftar cache offline dan versinya (ID commit) lewat `tools/siapkan-offline.py`.
 3. Situs tersedia di `https://ramli-labs.github.io/nexa/`.
 
@@ -82,6 +84,8 @@ nexa/
 │       ├── orion/              # ORION, 2 berkas (ElevenLabs asli)
 │       ├── citizen/            # Warga: pelajar, pekerja, warga senior, 30 berkas (edge-tts)
 │       └── regulator/          # Delegasi Regulator, 7 berkas (edge-tts)
+├── guru/
+│   └── panduan-guru.md         # Panduan guru (tidak ikut dipublikasikan)
 ├── docs/
 │   └── audio.md                # Suara per tokoh, pemilihan suara & QA, naskah lengkap 78 baris
 ├── tools/

@@ -42,7 +42,7 @@ Audio baru bisa diputar setelah ada satu interaksi pengguna (kebijakan autoplay 
 2. Sekali saja di GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
    Setelah itu workflow [`.github/workflows/pages.yml`](.github/workflows/pages.yml) jalan otomatis setiap ada push. Workflow ini:
    - menjalankan `tools/cek-audio.py`, dan build gagal kalau ada audio yang hilang atau yatim;
-   - hanya mengunggah berkas aplikasi (`index.html`, `manifest.json`, `css/`, `js/`, `assets/`). Folder `docs/` dan `tools/` tidak ikut.
+   - hanya mengunggah berkas aplikasi (`index.html`, `game.html`, `manifest.json`, `css/`, `js/`, `assets/`). Folder `docs/` dan `tools/` tidak ikut.
 3. Situs tersedia di `https://ramli-labs.github.io/nexa/`.
 
 > Selama Source masih **"Deploy from a branch"**, seluruh isi repo tetap disajikan apa adanya dan langkah deploy di workflow akan gagal. Semua path di proyek ini relatif, jadi kedua cara sama-sama bisa menampilkan gim.
@@ -55,6 +55,7 @@ Audio baru bisa diputar setelah ada satu interaksi pengguna (kebijakan autoplay 
 nexa/
 ├── index.html                  # Satu-satunya halaman: template semua layar (di dalam <x-dc>)
 │                               #   + logika gim (class Component di <script data-dc-script>)
+├── game.html                   # Pengalih alamat lama (…/game.html → …/)
 ├── manifest.json               # PWA manifest (ikon, warna)
 ├── css/
 │   └── main.css                # Gaya global: reset, animasi nx-*, slider, fokus, reduced-motion

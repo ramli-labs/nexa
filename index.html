@@ -18,6 +18,7 @@
   <script defer src="js/voice-config.js"></script>
   <script defer src="js/voice-manager.js"></script>
   <script defer src="js/bgm.js"></script>
+  <script defer src="js/tata-letak.js"></script>
 </head>
 <body>
 <x-dc>
@@ -30,7 +31,7 @@
 <!-- ══════ HEADER INSTITUSIONAL ══════ -->
 <sc-if value="{{ headerFull }}" hint-placeholder-val="{{ true }}">
 <div style="position:relative;z-index:25;background:#FFFFFF;border-bottom:1px solid rgba(7,20,38,.1);box-shadow:0 2px 10px rgba(7,20,38,.14)">
-  <div style="max-width:1500px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+  <div class="nx-inst" style="max-width:1500px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
     <img src="assets/images/logo-kemendikdasmen.png" alt="Kementerian Pendidikan Dasar dan Menengah" style="height:56px;width:auto;display:block;flex:none">
     <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
       <img src="assets/images/logo-pendidikan-bermutu.png" alt="Pendidikan Bermutu Untuk Semua" style="height:34px;width:auto;display:block">
@@ -42,7 +43,7 @@
 </sc-if>
 <sc-if value="{{ headerCompact }}" hint-placeholder-val="{{ false }}">
 <div style="position:relative;z-index:25;background:#FFFFFF;border-bottom:1px solid rgba(7,20,38,.1);box-shadow:0 1px 6px rgba(7,20,38,.12)">
-  <div style="max-width:1500px;margin:0 auto;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+  <div class="nx-inst" style="max-width:1500px;margin:0 auto;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <img src="assets/images/logo-kemendikdasmen.png" alt="Kementerian Pendidikan Dasar dan Menengah" style="height:36px;width:auto;display:block;flex:none">
     <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
       <img src="assets/images/logo-pendidikan-bermutu.png" alt="Pendidikan Bermutu Untuk Semua" style="height:20px;width:auto;display:block">
@@ -249,10 +250,10 @@
       <div style="flex:1;min-width:60px;height:3px;border-radius:2px;background:rgba(145,164,184,.18);overflow:hidden"><div style="height:100%;width:{{ progressPct }};background:linear-gradient(90deg,#17D9FF,#35F2A1);box-shadow:0 0 10px #35F2A1;transition:width .8s ease"></div></div>
       <span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;color:#35F2A1;letter-spacing:.1em">{{ progressPct }}</span>
     </div>
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="display:flex;align-items:center;gap:9px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(245,248,252,.05);border:1px solid rgba(145,164,184,.22)">
+    <div class="nx-tools" style="display:flex;align-items:center;gap:8px">
+      <div class="nx-chip" style="display:flex;align-items:center;gap:9px;padding:5px 12px 5px 5px;border-radius:999px;background:rgba(245,248,252,.05);border:1px solid rgba(145,164,184,.22)">
         <div style="width:26px;height:26px;border-radius:50%;background:conic-gradient(#17D9FF,#7657FF,#35F2A1,#FFC857,#17D9FF);padding:2px;flex:none"><div style="width:100%;height:100%;border-radius:50%;background:#071426;display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:9px">FA</div></div>
-        <div><div style="font-size:11.5px;font-weight:600">Future Architect</div><div style="font-size:9.5px;color:#91A4B8;letter-spacing:.08em;white-space:nowrap">{{ doneCount }}/4 MODUL · {{ badgeCount }} LENCANA</div></div>
+        <div class="nx-chip-text"><div style="font-size:11.5px;font-weight:600">Future Architect</div><div style="font-size:9.5px;color:#91A4B8;letter-spacing:.08em;white-space:nowrap">{{ doneCount }}/4 MODUL · {{ badgeCount }} LENCANA</div></div>
       </div>
       <button onClick="{{ toggleMute }}" title="Bunyikan / bisukan" aria-label="Suara" style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.04);color:#91A4B8;cursor:pointer;font-size:14px" style-hover="border-color:#17D9FF;color:#17D9FF">{{ muteGlyph }}</button>
       <button onClick="{{ toggleSubs }}" title="Subtitle" style="height:38px;padding:0 12px;border-radius:999px;border:1px solid rgba(145,164,184,.25);background:rgba(245,248,252,.04);color:{{ subsColor }};cursor:pointer;font-size:11px;letter-spacing:.14em" style-hover="border-color:#17D9FF">CC</button>
@@ -823,20 +824,20 @@
 
 <!-- ══════ DIALOGUE ══════ -->
 <sc-if value="{{ showDialogue }}" hint-placeholder-val="{{ false }}">
-<div style="position:fixed;left:0;right:0;bottom:16px;z-index:22;display:flex;justify-content:center;padding:0 20px;pointer-events:none">
-<div style="pointer-events:auto;width:min(880px,100%);display:flex;align-items:stretch;gap:11px;animation:nx-in .5s ease both">
-  <div style="width:72px;flex:none;border-radius:20px;background:rgba(7,20,38,.9);border:1px solid {{ dlg.color }};display:grid;place-items:center;box-shadow:0 0 24px {{ dlg.glow }};overflow:hidden">
+<div class="nx-dlg-wrap" style="position:fixed;left:0;right:0;bottom:16px;z-index:22;display:flex;justify-content:center;padding:0 20px;pointer-events:none">
+<div class="nx-dlg" style="pointer-events:auto;width:min(880px,100%);display:flex;align-items:stretch;gap:11px;animation:nx-in .5s ease both">
+  <div class="nx-dlg-ava" style="width:72px;flex:none;border-radius:20px;background:rgba(7,20,38,.9);border:1px solid {{ dlg.color }};display:grid;place-items:center;box-shadow:0 0 24px {{ dlg.glow }};overflow:hidden">
     <sc-if value="{{ dlg.isNara }}" hint-placeholder-val="{{ true }}"><x-import component-from-global-scope="nexa-avatar" from="./js/nexa-visuals.js" state="{{ dlg.nexaState }}" size="64" hint-size="64px,64px"></x-import></sc-if>
     <sc-if value="{{ dlg.isOrion }}" hint-placeholder-val="{{ false }}"><div style="width:36px;height:36px;border-radius:50%;border:1px solid #35F2A1;background-image:radial-gradient(circle,#35F2A1 1.5px,transparent 2px);background-size:10px 10px;animation:nx-spin 10s linear infinite;box-shadow:0 0 18px rgba(53,242,161,.6)"></div></sc-if>
     <sc-if value="{{ dlg.isKaia }}" hint-placeholder-val="{{ false }}"><div style="width:72px;align-self:end;display:grid;place-items:end center;overflow:hidden"><x-import component-from-global-scope="mentor-avatar" from="./js/nexa-visuals.js" expression="{{ dlg.mentorExpr }}" size="78" hint-size="78px,88px"></x-import></div></sc-if>
   </div>
-  <div style="flex:1;min-width:0;border-radius:20px;background:rgba(7,20,38,.93);border:1px solid rgba(145,164,184,.28);backdrop-filter:blur(14px);padding:12px 17px;display:flex;flex-direction:column;justify-content:center;gap:5px">
+  <div class="nx-dlg-text" style="flex:1;min-width:0;border-radius:20px;background:rgba(7,20,38,.93);border:1px solid rgba(145,164,184,.28);backdrop-filter:blur(14px);padding:12px 17px;display:flex;flex-direction:column;justify-content:center;gap:5px">
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.28em;color:{{ dlg.color }}">{{ dlg.name }}</span><span style="font-size:10px;letter-spacing:.12em;color:#91A4B8;padding:2px 8px;border:1px solid rgba(145,164,184,.3);border-radius:999px">{{ dlg.state }}</span><span title="{{ voTitle }}" style="display:flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.2em;color:{{ voColor }};padding:2px 8px;border:1px solid {{ voBorder }};border-radius:999px"><span style="width:5px;height:5px;border-radius:50%;background:{{ voColor }}"></span>{{ voBadge }}</span></div>
-    <sc-if value="{{ subsOn }}" hint-placeholder-val="{{ true }}"><div style="font-size:clamp(13.5px,1.15vw,16px);line-height:1.5;text-wrap:pretty"><span>{{ subVisible }}</span><sc-if value="{{ voSpeaking }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:2px;height:1em;margin:0 2px -2px;background:{{ dlg.color }};animation:nx-pulse .7s infinite"></span></sc-if><span style="color:rgba(145,164,184,.4)">{{ subPending }}</span></div></sc-if>
+    <sc-if value="{{ subsOn }}" hint-placeholder-val="{{ true }}"><div class="nx-dlg-line" style="font-size:clamp(13.5px,1.15vw,16px);line-height:1.5;text-wrap:pretty"><span>{{ subVisible }}</span><sc-if value="{{ voSpeaking }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;width:2px;height:1em;margin:0 2px -2px;background:{{ dlg.color }};animation:nx-pulse .7s infinite"></span></sc-if><span style="color:rgba(145,164,184,.4)">{{ subPending }}</span></div></sc-if>
   </div>
-  <div style="display:flex;flex-direction:column;gap:5px;justify-content:center">
+  <div class="nx-dlg-btns" style="display:flex;flex-direction:column;gap:5px;justify-content:center">
     <button onClick="{{ nextDlg }}" style="background:{{ dlg.color }};color:#071426;border:none;border-radius:12px;padding:10px 14px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:11px;letter-spacing:.14em;cursor:pointer;min-height:40px">{{ dlgNextLabel }}</button>
-    <div style="display:flex;gap:5px">
+    <div class="nx-dlg-sub" style="display:flex;gap:5px">
       <button onClick="{{ replayDlg }}" title="Putar ulang suara" aria-label="Putar ulang" style="flex:1;background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:10px;padding:7px 8px;font-size:12px;cursor:pointer;min-height:36px" style-hover="color:#17D9FF;border-color:#17D9FF">↻</button>
       <button onClick="{{ skipDlg }}" style="flex:2;background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.3);border-radius:10px;padding:7px 10px;font-size:10.5px;letter-spacing:.08em;cursor:pointer;min-height:36px" style-hover="color:#17D9FF;border-color:#17D9FF">LEWATI</button>
     </div>

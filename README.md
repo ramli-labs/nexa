@@ -64,6 +64,7 @@ nexa/
 │   ├── voice-config.js         # Registri 78 baris suara: id, tokoh, berkas, subtitle, durasi
 │   ├── voice-manager.js        # Pemutar suara + subtitle per kata + fallback tanpa audio
 │   ├── bgm.js                  # Musik latar prosedural: pad + progresi akor pelan per suasana layar
+│   ├── tata-letak.js           # Ruang bawah layar mengikuti tinggi kotak dialog
 │   └── vendor/
 │       ├── dc-runtime.js       # Mesin template (berkas hasil generate, jangan diedit)
 │       ├── react.production.min.js
@@ -122,5 +123,5 @@ nexa/
 ## Catatan teknis
 
 - Diuji di Chromium versi terkini dengan satu kali main penuh dari Opening sampai Refleksi, tanpa error JavaScript maupun berkas 404. Peringatan console `<line> attribute x2: Expected length, "{{ ... }}"` saat halaman dimuat itu normal: muncul sekilas sebelum template SVG terisi.
-- Lebar layar minimum yang nyaman ±920 px. Di layar HP, kotak dialog menutupi kontrol modul sampai ditutup dengan **LEWATI**.
+- Responsif dari HP (360 px) sampai desktop. Di layar ≤640 px, header logo menjadi satu baris, chip profil diringkas, dan kotak dialog menjadi panel ringkas di bawah layar. Ruang bawah setiap layar mengikuti tinggi dialog (`js/tata-letak.js`), jadi tidak ada tombol yang tertutup.
 - Menghormati `prefers-reduced-motion`.

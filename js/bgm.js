@@ -27,7 +27,7 @@
   var SCREEN_MOOD = {
     opening: 'intro', objective: 'intro', tutorial: 'intro', hub: 'lab', result: 'lab',
     school: 'school', city: 'city', work: 'work', civ: 'civ',
-    profile: 'ending', summary: 'ending', reflection: 'ending'
+    profile: 'ending', quiz: 'lab', summary: 'ending', reflection: 'ending'
   };
   var STYLES = {
     lembut:   { bells: 0,    pluck: 0 },

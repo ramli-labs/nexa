@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Panduan Penggunaan NEXA</title>
+<style>
+  @page { size: A4; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "DejaVu Sans", system-ui, sans-serif; color: #17202c; font-size: 10.5pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 26pt; margin: 0; color: #0b2a4a; letter-spacing: .02em; }
+  h2 { font-size: 15pt; color: #0b2a4a; margin: 22px 0 8px; padding-bottom: 4px; border-bottom: 2px solid #17a9d1; page-break-after: avoid; }
+  h3 { font-size: 11.5pt; color: #0b2a4a; margin: 14px 0 4px; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.5pt; page-break-inside: auto; }
+  th, td { border: 1px solid #c9d3de; padding: 5px 7px; vertical-align: top; text-align: left; }
+  th { background: #eaf4fa; color: #0b2a4a; }
+  tr { page-break-inside: avoid; }
+  figure { margin: 10px 0 14px; page-break-inside: avoid; }
+  figure img { width: 100%; border: 1px solid #c9d3de; border-radius: 6px; display: block; }
+  figcaption { font-size: 8.5pt; color: #56657a; margin-top: 4px; }
+  .cover { height: 250mm; display: flex; flex-direction: column; justify-content: center; page-break-after: always; }
+  .cover .tag { display: inline-block; font-size: 9pt; letter-spacing: .2em; color: #17a9d1; font-weight: 700; }
+  .cover .sub { font-size: 13pt; color: #3a4b60; margin-top: 6px; }
+  .cover img { width: 100%; border-radius: 8px; margin: 22px 0; border: 1px solid #c9d3de; }
+  .meta td:first-child { width: 32%; font-weight: 600; background: #f6f9fc; }
+  .note { background: #fff7e0; border-left: 4px solid #e6a700; padding: 8px 12px; margin: 10px 0; font-size: 9.5pt; }
+  .ok { background: #e9f8f1; border-left: 4px solid #1f9d6a; padding: 8px 12px; margin: 10px 0; font-size: 9.5pt; }
+  .flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; font-size: 9pt; }
+  .flow span { padding: 4px 9px; border: 1px solid #17a9d1; border-radius: 999px; background: #eef8fc; }
+  .flow b { color: #17a9d1; }
+  .two { display: flex; gap: 12px; } .two > * { flex: 1; }
+  .pb { page-break-before: always; }
+  kbd { font-family: inherit; border: 1px solid #aab6c4; border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: #f6f9fc; font-size: 9pt; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="tag">FESTIVAL BIRU PUTIH 2026 · KATEGORI GIM EDUKASI</div>
+  <h1>NEXA — Navigating the Future with AI</h1>
+  <div class="sub">Panduan Penggunaan (User Guide)</div>
+  <img src="gambar/01-laman-muka.png" alt="Laman muka NEXA">
+  <table class="meta">
+    <tr><td>Pengembang</td><td>Ramli Jainal Muttaqin, S.Pd. — SMP Labschool Jakarta</td></tr>
+    <tr><td>Mata pelajaran</td><td>Koding dan Kecerdasan Artifisial (KKA) / Informatika</td></tr>
+    <tr><td>Fase / kelas</td><td>Fase D (Kelas VII–IX SMP)</td></tr>
+    <tr><td>Versi dokumen</td><td>{{TANGGAL}}</td></tr>
+  </table>
+</section>
+
+<h2>1. Identitas karya</h2>
+<table class="meta">
+  <tr><td>Judul</td><td>NEXA — Navigating the Future with AI</td></tr>
+  <tr><td>Deskripsi</td><td>NEXA adalah gim simulasi literasi AI untuk siswa SMP. Pemain berperan sebagai <i>Future Architect</i> tahun 2045 yang merancang peran AI di sekolah, kota, dan dunia kerja, lalu menyusun konstitusi AI. Setiap keputusan langsung terlihat dampaknya pada <i>Future Balance</i>, memunculkan peristiwa dan tanggapan warga, lalu diakhiri Uji Pemahaman dan refleksi. Siswa belajar bahwa setiap penerapan AI punya <i>trade-off</i>.</td></tr>
+  <tr><td>Mata pelajaran</td><td>Koding dan Kecerdasan Artifisial (KKA) / Informatika</td></tr>
+  <tr><td>Fase / kelas</td><td>Fase D (Kelas VII–IX)</td></tr>
+  <tr><td>Topik</td><td>Literasi dan etika kecerdasan artifisial: cara kerja sistem AI, data dan privasi, dampak AI pada pekerjaan, serta tata kelola AI</td></tr>
+  <tr><td>Durasi</td><td>± 40 menit (1 sesi kelas)</td></tr>
+  <tr><td>Jenis gamifikasi</td><td>Simulasi tematik, tantangan berbasis peristiwa, pemecahan masalah, dan kuis (Uji Pemahaman)</td></tr>
+  <tr><td>Pengembang</td><td>Ramli Jainal Muttaqin, S.Pd. — SMP Labschool Jakarta</td></tr>
+</table>
+
+<h2>2. Tujuan pembelajaran</h2>
+<p>Tujuan berikut tampil di laman muka dan di layar "Tujuan Pembelajaran". Setelah bermain, peserta didik mampu:</p>
+<table>
+  <tr><th style="width:6%">No</th><th style="width:26%">Tujuan</th><th>Uraian</th></tr>
+  <tr><td>01</td><td>Literasi AI</td><td>Memahami cara sistem AI bekerja, apa yang dioptimalkannya, dan data siapa yang dipakainya.</td></tr>
+  <tr><td>02</td><td>Keputusan bertanggung jawab</td><td>Melatih menimbang manfaat dan risiko teknologi sebelum menerapkannya.</td></tr>
+  <tr><td>03</td><td>Berpikir konsekuensi</td><td>Melihat bahwa setiap keputusan punya trade-off; tidak ada pilihan tanpa harga.</td></tr>
+  <tr><td>04</td><td>Keterampilan masa depan</td><td>Mengenali kemampuan manusia yang tetap penting di dunia yang serba otomatis.</td></tr>
+</table>
+
+<h3>Pemetaan kurikulum (draf)</h3>
+<div class="note"><b>Draf untuk diperiksa pengembang:</b> sesuaikan nama elemen dan rumusan CP dengan dokumen CP resmi yang berlaku di sekolah.</div>
+<table>
+  <tr><th style="width:30%">Elemen kurikulum</th><th>Tujuan pembelajaran di NEXA</th><th style="width:22%">Aktivitas</th><th style="width:11%">Level</th></tr>
+  <tr><td>KKA · Literasi dan etika kecerdasan artifisial</td><td>Menjelaskan bahwa sistem AI mengoptimalkan tujuan yang ditetapkan manusia dan bergantung pada data.</td><td>Modul 01–02, Uji soal 2–3</td><td>C2–C4</td></tr>
+  <tr><td>KKA · Literasi dan etika kecerdasan artifisial; Informatika · Dampak sosial informatika</td><td>Menganalisis trade-off penerapan AI (efisiensi vs privasi, bantuan AI vs kemandirian) dengan mengubah parameter simulasi dan membaca dampaknya.</td><td>Modul 01–03, layar Konsekuensi</td><td>C4</td></tr>
+  <tr><td>Informatika · Dampak sosial informatika</td><td>Mengidentifikasi keterampilan manusia yang tetap relevan di tengah otomatisasi.</td><td>Modul 03, Uji soal 4</td><td>C2–C4</td></tr>
+  <tr><td>KKA · Literasi dan etika kecerdasan artifisial</td><td>Mengevaluasi sikap dan aturan penggunaan AI yang bertanggung jawab (transparansi, akuntabilitas, verifikasi).</td><td>Modul 04, Uji soal 5</td><td>C5</td></tr>
+  <tr><td>KKA · Pemanfaatan kecerdasan artifisial</td><td>Merancang prinsip tata kelola AI (konstitusi) dan mempertanggungjawabkan pilihannya dalam refleksi.</td><td>Modul 04, Refleksi</td><td>C6</td></tr>
+</table>
+
+<h2>3. Kebutuhan dan cara membuka</h2>
+<table class="meta">
+  <tr><td>Perangkat</td><td>Laptop/komputer, tablet, atau HP. Tampilan optimal pada layar 16:9 (mis. 1280×720 atau 1920×1080); tata letak otomatis menyesuaikan HP.</td></tr>
+  <tr><td>Browser</td><td>Chrome, Edge, Firefox, atau Safari versi terbaru. Tidak perlu plugin.</td></tr>
+  <tr><td>Internet</td><td>Tidak diperlukan. Semua aset (gambar, suara, pustaka) ada di dalam paket.</td></tr>
+  <tr><td>Suara</td><td>Disarankan memakai speaker atau earphone. Suara mulai berbunyi setelah klik pertama (aturan browser).</td></tr>
+  <tr><td>Penyimpanan</td><td>Progres dan jawaban refleksi tersimpan otomatis di browser perangkat itu saja. Tidak ada data yang dikirim ke mana pun.</td></tr>
+</table>
+<h3>Langkah membuka</h3>
+<ol>
+  <li><b>Ekstrak</b> seluruh isi berkas ZIP ke satu folder. Jangan membuka <code>index.html</code> langsung dari jendela pratinjau ZIP.</li>
+  <li>Klik dua kali <code>index.html</code>. Gim terbuka di browser bawaan.</li>
+  <li>Klik <b>MULAI</b>.</li>
+</ol>
+
+<h2>4. Struktur dan alur gim</h2>
+<div class="flow"><span>Laman Muka</span><b>→</b><span>Tujuan Pembelajaran</span><b>→</b><span>Panduan (Cara Bermain)</span><b>→</b><span>Menu: Orbital Lab</span><b>→</b><span>Misi 01–03 (urutan bebas)</span><b>→</b><span>Misi 04 (terbuka setelah 3 misi)</span><b>→</b><span>Future Profile</span><b>→</b><span>Evaluasi: Uji Pemahaman</span><b>→</b><span>Hasil Akhir</span><b>→</b><span>Refleksi</span></div>
+<p>Setiap misi diakhiri layar <b>Konsekuensi</b>. Dari sana pemain kembali ke Orbital Lab, atau memilih <b>SESUAIKAN LAGI</b> untuk mengubah desain. Chip modul di bawah bar atas dan bilah persentase menjadi <b>indikator progres</b>.</p>
+
+<h3>4.1 Laman muka dan tujuan</h3>
+<div class="two">
+  <figure><img src="gambar/01-laman-muka.png"><figcaption>Laman muka: judul, tujuan pembelajaran, tombol MULAI dan CARA BERMAIN, serta tautan Kredit &amp; keterangan AI.</figcaption></figure>
+  <figure><img src="gambar/02-tujuan.png"><figcaption>Tujuan Pembelajaran dan jalur misi. NARA-01 (AI pemandu) mulai berbicara di kotak dialog.</figcaption></figure>
+</div>
+
+<h3>4.2 Panduan (Cara Bermain)</h3>
+<figure><img src="gambar/03-tutorial.png"><figcaption>Empat langkah tutorial dengan contoh interaktif dan narasi suara. Tombol LANJUT/KEMBALI; bisa dilewati.</figcaption></figure>
+
+<h3>4.3 Menu: Orbital Lab</h3>
+<figure><img src="gambar/04-orbital-lab.png"><figcaption>Pilih misi. Future Balance (4 angka di kanan atas) mulai dari 50. Misi 04 terkunci sampai tiga misi pertama selesai.</figcaption></figure>
+
+<h2>5. Misi dan cara bermain</h2>
+<table>
+  <tr><th style="width:22%">Misi</th><th style="width:30%">Interaksi</th><th>Yang dipelajari</th></tr>
+  <tr><td>01 · Smart School 2045</td><td>Menggeser 6 slider parameter kelas.</td><td>AI yang dipandu guru dan kemandirian siswa memperkuat kreativitas; AI yang menggantikan keduanya menciptakan ketergantungan.</td></tr>
+  <tr><td>02 · AI City 2045</td><td>Mengatur 7 kebijakan kota bersama ORION.</td><td>Makin banyak data warga dipakai, makin efisien kota dan makin kecil privasinya; transparansi menjaga kepercayaan.</td></tr>
+  <tr><td>03 · Future Work 2045</td><td>Membagi 12 unit energi ke 7 keterampilan (tombol + / −).</td><td>Sumber daya terbatas; keterampilan yang paling manusiawi paling sulit digantikan mesin.</td></tr>
+  <tr><td>04 · Konstitusi AI</td><td>Memilih satu posisi pada 6 prinsip.</td><td>Aturan teknologi adalah pernyataan nilai: siapa bertanggung jawab, siapa memiliki data, kapan manusia harus hadir.</td></tr>
+</table>
+<p><b>Umpan balik instan:</b> saat parameter diubah, visual simulasi, panel <i>Dampak Langsung</i>, dan chip Future Balance langsung berubah. Keputusan ekstrem memicu <b>pop-up peristiwa</b> yang dibacakan NARA-01. Tombol <b>KUNCI</b> menyimpan desain dan membuka layar Konsekuensi.</p>
+<div class="two">
+  <figure><img src="gambar/05-modul-01.png"><figcaption>Misi 01 · Smart School: slider parameter dan dampak langsung.</figcaption></figure>
+  <figure><img src="gambar/06-peristiwa.png"><figcaption>Pop-up peristiwa saat ketergantungan pada AI terlalu tinggi.</figcaption></figure>
+</div>
+<div class="two">
+  <figure><img src="gambar/08-modul-02.png"><figcaption>Misi 02 · AI City bersama ORION.</figcaption></figure>
+  <figure><img src="gambar/09-modul-03.png"><figcaption>Misi 03 · Future Work: alokasi 12 unit energi.</figcaption></figure>
+</div>
+<div class="two">
+  <figure><img src="gambar/10-modul-04.png"><figcaption>Misi 04 · Konstitusi: 6 prinsip; Delegasi Regulator bereaksi dengan suara.</figcaption></figure>
+  <figure><img src="gambar/07-konsekuensi.png"><figcaption>Layar Konsekuensi: refleksi, literasi AI, dan kutipan warga (tombol ▶ untuk mendengarkan).</figcaption></figure>
+</div>
+
+<h2>6. Evaluasi, skor, dan penghargaan</h2>
+<table>
+  <tr><th style="width:24%">Komponen</th><th>Penjelasan</th></tr>
+  <tr><td>Future Balance</td><td>Empat dimensi (Inovasi, Kemanusiaan, Keberlanjutan, Tanggung Jawab), masing-masing 0–100, mulai dari 50. Berubah setiap misi dikunci.</td></tr>
+  <tr><td>Lencana</td><td>Satu lencana per misi (Perancang Belajar, Perancang Kota, Perancang Keterampilan, Penjaga Nilai), ditambah lencana <b>Paham AI</b> bila skor Uji Pemahaman ≥ 80.</td></tr>
+  <tr><td>Uji Pemahaman</td><td>5 soal pilihan ganda (satu per konsep inti). Setiap jawaban langsung diberi tanda <b>TEPAT / BELUM TEPAT</b> beserta pembahasan. Skor 0–100 dengan predikat: ≥ 80 <i>Pemahaman kuat</i>, 60–79 <i>Pemahaman cukup</i>, &lt; 60 <i>Perlu diulang</i>. Bisa diulang.</td></tr>
+  <tr><td>Hasil akhir</td><td>Arketipe dunia (Optimizer, Guardian, Balancer, Accelerator, atau Explorer) dari Future Balance, ditambah skor Uji Pemahaman, trade-off utama, dan ringkasan konstitusi.</td></tr>
+  <tr><td>Refleksi</td><td>Dua pertanyaan isian dan tombol <b>SALIN RINGKASAN UNTUK GURU</b> (hasil, Future Balance, skor uji, jawaban refleksi).</td></tr>
+</table>
+<div class="two">
+  <figure><img src="gambar/12-uji-umpan-balik.png"><figcaption>Uji Pemahaman: umpan balik dan pembahasan langsung setelah menjawab.</figcaption></figure>
+  <figure><img src="gambar/13-uji-skor.png"><figcaption>Skor, predikat, lencana, dan rekap per soal.</figcaption></figure>
+</div>
+<div class="two">
+  <figure><img src="gambar/11-profil.png"><figcaption>Future Profile: arketipe dunia yang terbentuk.</figcaption></figure>
+  <figure><img src="gambar/14-hasil-akhir.png"><figcaption>Hasil Akhir: Future Balance, evaluasi, skor uji, trade-off, konstitusi.</figcaption></figure>
+</div>
+<figure><img src="gambar/15-refleksi.png" style="width:60%"><figcaption>Refleksi dan diskusi kelas.</figcaption></figure>
+
+<h2>7. Tombol dan kontrol</h2>
+<table>
+  <tr><th style="width:20%">Tombol</th><th>Fungsi</th></tr>
+  <tr><td>MULAI / LANJUTKAN</td><td>Memulai gim / melanjutkan progres yang tersimpan.</td></tr>
+  <tr><td>LANJUT (kotak dialog)</td><td>Baris dialog berikutnya.</td></tr>
+  <tr><td>↻</td><td>Memutar ulang suara baris dialog.</td></tr>
+  <tr><td>LEWATI</td><td>Menutup kotak dialog.</td></tr>
+  <tr><td>◉</td><td>Membunyikan / membisukan semua suara.</td></tr>
+  <tr><td>CC</td><td>Menyalakan / mematikan subtitle.</td></tr>
+  <tr><td>⚙</td><td>Pengaturan: volume musik, suara tokoh, efek; cara bermain; kredit.</td></tr>
+  <tr><td>◈</td><td>Membuka Future Profile.</td></tr>
+  <tr><td>Chip modul</td><td>Berpindah ke misi yang sudah terbuka.</td></tr>
+  <tr><td>▶ (kartu warga, regulator)</td><td>Mendengarkan kutipan warga atau pernyataan Delegasi Regulator.</td></tr>
+  <tr><td>RANCANG ULANG</td><td>Menghapus progres dan mulai dari awal.</td></tr>
+</table>
+<div class="two">
+  <figure><img src="gambar/16-pengaturan.png"><figcaption>Panel Pengaturan (⚙).</figcaption></figure>
+  <figure><img src="gambar/18-hp.png" style="width:48%;margin:0 auto"><figcaption>Tampilan di HP: kotak dialog ringkas, tombol ≥ 44 px.</figcaption></figure>
+</div>
+
+<h2>8. Kredit dan keterangan AI</h2>
+<p>Sesuai Ketentuan Umum butir 3e, penggunaan AI dicantumkan di dalam gim (tautan <b>Kredit &amp; keterangan AI</b> di laman muka dan di panel Pengaturan) dan dirinci di <b>Dokumen Desain dan Prompting NEXA</b>.</p>
+<figure><img src="gambar/17-kredit.png"><figcaption>Panel Kredit &amp; keterangan AI.</figcaption></figure>
+
+<h2>9. Pemecahan masalah</h2>
+<table>
+  <tr><th style="width:32%">Masalah</th><th>Solusi</th></tr>
+  <tr><td>Layar kosong atau gambar tidak muncul</td><td>Pastikan seluruh isi ZIP sudah diekstrak ke satu folder, lalu buka <code>index.html</code> dari folder itu.</td></tr>
+  <tr><td>Suara tidak terdengar</td><td>Klik sekali di halaman, periksa tombol ◉ (bisu), volume di ⚙, dan volume perangkat.</td></tr>
+  <tr><td>Ingin mengulang dari awal</td><td>Tekan <b>RANCANG ULANG</b> di layar Profil atau Refleksi.</td></tr>
+  <tr><td>Progres hilang</td><td>Progres tersimpan per browser dan perangkat. Gunakan browser dan perangkat yang sama, dan jangan memakai mode penyamaran.</td></tr>
+  <tr><td>Tombol salin gagal</td><td>Gim akan memberi tahu. Tulis ulang jawaban refleksi secara manual.</td></tr>
+</table>
+</body>
+</html>

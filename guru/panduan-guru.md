@@ -20,7 +20,7 @@ Tautan gim: **https://ramli-labs.github.io/nexa/**
 
 NEXA adalah simulasi literasi AI untuk siswa SMP. Siswa berperan sebagai **Future Architect** di tahun 2045 dan merancang peran AI di empat bidang. Setiap keputusan langsung terlihat akibatnya pada **Future Balance**, empat dimensi dunia yang terbentuk.
 
-> NEXA bukan kuis. **Tidak ada jawaban benar atau salah.** Yang dinilai adalah kemampuan menimbang trade-off dan mempertanggungjawabkan pilihan.
+> Di keempat misi **tidak ada jawaban benar atau salah**; yang dilatih adalah menimbang trade-off dan mempertanggungjawabkan pilihan. Pemahaman konsepnya diukur di akhir lewat **Uji Pemahaman** (5 soal dengan pembahasan).
 
 Tokoh dalam gim:
 - **NARA-01:** AI pemandu.
@@ -127,6 +127,19 @@ Dihitung dari Future Balance di akhir permainan. Aturan di bawah dicek berurutan
 | Human–AI Harmony | **Balancer** | Semua dimensi ≥ 55 | Teknologi mendukung manusia; keseimbangan yang harus terus dirawat. |
 | Masa Depan Belum Seimbang | **Explorer** | Selain di atas | Beberapa dimensi kuat, yang lain tertinggal. |
 
+### Uji Pemahaman
+Setelah Future Profile, siswa mengerjakan 5 soal pilihan ganda, satu per konsep inti:
+
+| Soal | Konsep | Kunci |
+|---|---|---|
+| 1 | Modul 01: AI yang menggantikan guru dan kemandirian siswa → ketergantungan | C |
+| 2 | Modul 02: data warga ↑ → efisiensi ↑, privasi ↓ | A |
+| 3 | Transparansi → keputusan bisa diperiksa dan dipertanyakan (akuntabilitas) | D |
+| 4 | Modul 03: empati dan komunikasi paling sulit digantikan otomatisasi | B |
+| 5 | Modul 04: memverifikasi rekomendasi AI dan menanggung keputusan | C |
+
+Setiap jawaban langsung diberi tanda TEPAT / BELUM TEPAT dan pembahasan. Skor 0–100: ≥ 80 *Pemahaman kuat* (dapat lencana **Paham AI**), 60–79 *cukup*, < 60 *perlu diulang*. Siswa boleh mengulang; ringkasan untuk guru mencatat skor terakhir dan jumlah percobaan.
+
 Arketipe **bukan nilai**. Balancer tidak "lebih benar" daripada Guardian. Yang penting adalah apakah siswa bisa menjelaskan keputusan mana yang membawanya ke hasil itu.
 
 ### Ringkasan yang dikirim siswa
@@ -137,6 +150,7 @@ NEXA — Profil Future Architect
 Hasil: MASA DEPAN BELUM SEIMBANG (EXPLORER)
 Inovasi 50 · Kemanusiaan 75 · Keberlanjutan 54 · Tanggung Jawab 87
 Modul selesai: 4/4
+Uji Pemahaman: 80/100 (Pemahaman kuat, percobaan ke-1)
 
 Refleksi 1: <satu hal yang berubah dalam caranya memandang AI>
 Refleksi 2: <yang akan diubah lebih dulu jika merancang ulang>

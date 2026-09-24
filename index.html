@@ -87,6 +87,12 @@
     <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:clamp(10px,1.6vw,13px);letter-spacing:.3em;color:#91A4B8;animation:nx-in 1s .8s ease both">NAVIGATING THE FUTURE WITH AI</div>
     <div style="display:inline-block;margin-top:18px;padding:8px 22px;border:1px solid rgba(53,242,161,.5);border-radius:999px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.28em;color:#35F2A1;animation:nx-in 1s 1.1s ease both">DESIGN THE FUTURE</div>
     <p style="font-size:clamp(15px,1.7vw,20px);line-height:1.55;color:#C9D4E0;margin:26px auto 0;max-width:680px;text-wrap:pretty;animation:nx-in 1s 1.3s ease both">Tahun 2045. Kecerdasan buatan hadir di sekolah, pekerjaan, kota, dan keputusan manusia. Kamu adalah <strong style="color:#F5F8FC">Future Architect</strong> — dan masa depan dirancang oleh pilihanmu.</p>
+    <div style="margin:20px auto 0;max-width:760px;animation:nx-in 1s 1.3s ease both">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.28em;color:#91A4B8;margin-bottom:10px">TUJUAN PEMBELAJARAN</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">
+        <sc-for list="{{ objectives }}" as="o" hint-placeholder-count="4"><span title="{{ o.t }}" style="display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid {{ o.border }};background:{{ o.bg }};font-size:13px;color:#E4ECF5"><span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;color:{{ o.c }}">{{ o.n }}</span>{{ o.h }}</span></sc-for>
+      </div>
+    </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px;animation:nx-in 1s 1.5s ease both">
       <button onClick="{{ toObjective }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:17px 38px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:14px;letter-spacing:.2em;cursor:pointer;box-shadow:0 0 30px rgba(23,217,255,.45);min-height:52px" style-hover="box-shadow:0 0 44px rgba(23,217,255,.8);transform:translateY(-2px)">MULAI ›</button>
       <sc-if value="{{ hasSave }}" hint-placeholder-val="{{ false }}">
@@ -95,6 +101,7 @@
       <button onClick="{{ toTutorial }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.35);border-radius:999px;padding:16px 24px;font-size:13px;letter-spacing:.12em;cursor:pointer;min-height:52px" style-hover="border-color:#17D9FF;color:#17D9FF">CARA BERMAIN</button>
     </div>
     <div style="font-size:12px;color:#91A4B8;margin-top:26px;letter-spacing:.05em">Gim edukasi literasi AI · SMP · 1 sesi kelas ± 40 menit</div>
+    <div style="font-size:11.5px;color:#91A4B8;margin-top:8px;line-height:1.5">Suara tokoh, gambar, dan musik dibuat dengan bantuan AI · <button onClick="{{ openCredits }}" style="background:none;border:none;color:#B8A6FF;text-decoration:underline;cursor:pointer;font-size:11.5px;padding:10px 4px;min-height:44px">Kredit &amp; keterangan AI</button></div>
   </div>
 </div>
 </sc-if>
@@ -293,9 +300,36 @@
     <button onClick="{{ toggleSubs }}" style="flex:1;padding:10px;border-radius:10px;border:1px solid rgba(145,164,184,.3);background:transparent;color:#F5F8FC;font-size:12px;cursor:pointer;min-height:42px">{{ subsLabel }}</button>
   </div>
   <button onClick="{{ toTutorial }}" style="padding:10px;border-radius:10px;border:1px solid rgba(53,242,161,.4);background:transparent;color:#35F2A1;font-size:12px;cursor:pointer;min-height:42px">Buka cara bermain</button>
-  <div style="font-size:11px;color:#91A4B8;line-height:1.5">Suara karakter memakai sintesis suara peramban sebagai pengganti rekaman final. Musik & efek disintesis langsung — tanpa berkas eksternal.</div>
+  <button onClick="{{ openCredits }}" style="padding:10px;border-radius:10px;border:1px solid rgba(184,166,255,.45);background:transparent;color:#B8A6FF;cursor:pointer;font-size:12px;min-height:44px" style-hover="background:rgba(184,166,255,.12)">Kredit &amp; keterangan AI</button>
+  <div style="font-size:11px;color:#91A4B8;line-height:1.5">Suara tokoh dibuat dengan teknologi AI (text-to-speech). Musik latar dan efek suara disintesis langsung di peramban, tanpa berkas musik.</div>
 </div>
 </sc-if>
+</sc-if>
+
+<!-- ══════ KREDIT & KETERANGAN AI ══════ -->
+<sc-if value="{{ creditsOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;z-index:40;background:rgba(3,10,20,.72);display:grid;place-items:center;padding:16px" role="dialog" aria-modal="true" aria-label="Kredit dan keterangan AI">
+  <div style="width:min(660px,100%);max-height:88vh;overflow-y:auto;padding:22px 24px;border-radius:22px;background:#0a1b31;border:1px solid rgba(184,166,255,.35);box-shadow:0 20px 60px rgba(0,0,0,.5)">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:12px;letter-spacing:.28em;color:#B8A6FF">KREDIT &amp; KETERANGAN AI</div>
+      <button onClick="{{ closeCredits }}" aria-label="Tutup" style="width:44px;height:44px;border-radius:50%;border:1px solid rgba(145,164,184,.35);background:transparent;color:#C9D4E0;cursor:pointer;font-size:16px">×</button>
+    </div>
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:22px;font-weight:800;margin:10px 0 2px">NEXA</div>
+    <div style="font-size:12.5px;color:#91A4B8;margin-bottom:12px">Navigating the Future with AI · Gim edukasi literasi AI untuk SMP</div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">PENGEMBANG</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Ramli Jainal Muttaqin, S.Pd.<br>SMP Labschool Jakarta</div></div>
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10.5px;letter-spacing:.24em;color:#35F2A1;margin:14px 0 4px">KETERANGAN PENGGUNAAN AI</div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">SUARA TOKOH</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Dibuat oleh AI (text-to-speech). KAIA dan ORION: ElevenLabs. NARA-01, warga, dan Delegasi Regulator: suara neural Microsoft (edge-tts).</div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">GAMBAR</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Karakter, latar, dan ikon digambar dengan kode (SVG) yang disusun dengan bantuan AI (Claude, Anthropic). Tidak ada foto.</div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">MUSIK &amp; EFEK</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Disintesis langsung di peramban (Web Audio). Kode musiknya disusun dengan bantuan AI (Claude, Anthropic).</div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">KODE PROGRAM</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Dikembangkan dengan bantuan AI (Claude, Anthropic), lalu diuji dan disusun oleh pengembang.</div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">DOKUMEN</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Dokumen desain &amp; prompting (PDF) disertakan dalam paket karya.</div></div>
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10.5px;letter-spacing:.24em;color:#FFC857;margin:14px 0 4px">ASET &amp; LISENSI</div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">LOGO</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Kemendikdasmen (Tut Wuri Handayani), Pendidikan Bermutu untuk Semua, RAMAH, dan Sobat SMP: milik Kementerian Pendidikan Dasar dan Menengah.</div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">PUSTAKA</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">React 18.3.1 dan React DOM, © Meta Platforms, Inc., lisensi MIT. Mesin template dc-runtime (dihasilkan otomatis oleh alat pembuat prototipe).</div></div>
+    <div style="display:flex;gap:10px;padding:8px 0;border-top:1px solid rgba(145,164,184,.14)"><div style="flex:none;width:118px;font-size:11px;letter-spacing:.08em;color:#91A4B8">FONT</div><div style="flex:1;min-width:0;font-size:13px;line-height:1.55;color:#DCE6F0">Font bawaan perangkat; tidak ada font atau aset yang diunduh dari luar.</div></div>
+    <div style="margin-top:14px;padding:12px 14px;border-radius:14px;background:rgba(245,248,252,.04);font-size:12px;line-height:1.55;color:#C9D4E0">Semua peristiwa, angka proyeksi, dan kutipan warga di dalam gim adalah skenario hipotetis untuk belajar, bukan data dunia nyata.</div>
+  </div>
+</div>
 </sc-if>
 
 <!-- ══════ FEEDBACK TOAST ══════ -->
@@ -754,6 +788,62 @@
 </sc-if>
 
 <!-- ══════ 11 ENDING SUMMARY ══════ -->
+<!-- ══════ 10b UJI PEMAHAMAN ══════ -->
+<sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ false }}">
+<div style="padding:24px 20px 170px;display:grid;place-items:center;animation:nx-in .9s ease both" data-screen-label="10b Uji Pemahaman">
+  <div style="width:min(860px,100%)">
+    <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.3em;color:#B8A6FF">UJI PEMAHAMAN · EVALUASI</div>
+    <sc-if value="{{ quizActive }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap">
+        <h1 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:800;font-size:clamp(20px,2.6vw,30px);margin:0">Soal {{ quizNum }} dari {{ quizTotal }}</h1>
+        <div style="display:flex;gap:6px;align-items:center" aria-label="Kemajuan soal"><sc-for list="{{ quizDots }}" as="d" hint-placeholder-count="5"><span style="width:{{ d.w }};height:10px;border-radius:999px;background:{{ d.bg }};transition:width .3s"></span></sc-for></div>
+      </div>
+      <div style="font-size:12px;letter-spacing:.12em;color:#91A4B8;margin-top:6px">{{ quizModul }}</div>
+      <div style="margin-top:14px;padding:20px 22px;border-radius:20px;background:rgba(7,20,38,.82);border:1px solid rgba(184,166,255,.3)">
+        <p style="font-size:clamp(15px,1.4vw,18px);line-height:1.55;margin:0 0 16px;text-wrap:pretty">{{ quizQ }}</p>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ quizOpts }}" as="o" hint-placeholder-count="4">
+            <button onClick="{{ o.pick }}" disabled="{{ quizAnswered }}" style="display:flex;align-items:center;gap:12px;text-align:left;padding:11px 14px;border-radius:14px;border:1px solid {{ o.border }};background:{{ o.bg }};color:{{ o.fg }};font-size:14.5px;line-height:1.45;cursor:pointer;min-height:48px" style-hover="border-color:#17D9FF">
+              <span style="flex:none;width:28px;height:28px;border-radius:50%;border:1px solid {{ o.border }};display:grid;place-items:center;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;color:{{ o.markColor }}">{{ o.key }}</span>
+              <span style="flex:1">{{ o.label }}</span>
+              <span style="flex:none;font-size:17px;font-weight:700;color:{{ o.markColor }}">{{ o.mark }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ quizAnswered }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="margin-top:14px;padding:14px 16px;border-radius:14px;background:{{ quizVerdictBg }};border:1px solid {{ quizVerdictBorder }}">
+            <div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.24em;color:{{ quizVerdictColor }}">{{ quizVerdict }}</div>
+            <div style="font-size:13.5px;line-height:1.6;color:#DCE6F0;margin-top:6px;text-wrap:pretty">{{ quizWhy }}</div>
+          </div>
+          <div style="margin-top:14px;display:flex;justify-content:flex-end">
+            <button onClick="{{ quizNext }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:14px 24px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;cursor:pointer;min-height:50px">{{ quizNextLabel }}</button>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+    <sc-if value="{{ quizDone }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin-top:14px">
+        <div style="flex:none;width:156px;height:156px;border-radius:50%;border:2px solid {{ quizGradeColor }};display:grid;place-items:center;text-align:center;box-shadow:0 0 40px {{ quizGradeGlow }}">
+          <div><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:46px;font-weight:800;line-height:1;color:{{ quizGradeColor }}">{{ quizScoreNum }}</div><div style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:11px;letter-spacing:.2em;color:#91A4B8;margin-top:6px">/ 100</div></div>
+        </div>
+        <div style="flex:1 1 280px;min-width:0">
+          <h1 style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:800;font-size:clamp(22px,3vw,34px);margin:0 0 8px">{{ quizGrade }}</h1>
+          <p style="font-size:14.5px;line-height:1.6;color:#C9D4E0;margin:0">Kamu menjawab tepat {{ quizRight }} dari {{ quizTotal }} soal. Skor ini tercatat di Hasil Akhir dan di ringkasan untuk guru.</p>
+          <sc-if value="{{ quizBadge }}" hint-placeholder-val="{{ false }}"><div style="display:inline-block;margin-top:12px;padding:6px 14px;border-radius:999px;border:1px solid #B8A6FF;color:#B8A6FF;font-size:11px;letter-spacing:.16em">LENCANA BARU · PAHAM AI</div></sc-if>
+        </div>
+      </div>
+      <div style="margin-top:18px;padding:16px 18px;border-radius:18px;background:rgba(7,20,38,.78);border:1px solid rgba(145,164,184,.22);display:flex;flex-direction:column;gap:7px">
+        <sc-for list="{{ quizRecap }}" as="r" hint-placeholder-count="5"><div style="display:flex;gap:10px;font-size:13.5px"><span style="width:18px;font-weight:700;color:{{ r.color }}">{{ r.mark }}</span><span style="color:#C9D4E0">{{ r.text }}</span></div></sc-for>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+        <button onClick="{{ quizToSummary }}" style="background:linear-gradient(90deg,#17D9FF,#7657FF);color:#071426;border:none;border-radius:999px;padding:14px 24px;font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.18em;cursor:pointer;min-height:50px">HASIL AKHIR &amp; DISKUSI ›</button>
+        <button onClick="{{ quizRetry }}" style="background:transparent;color:#91A4B8;border:1px solid rgba(145,164,184,.35);border-radius:999px;padding:14px 22px;font-size:12px;letter-spacing:.14em;cursor:pointer;min-height:50px" style-hover="color:#17D9FF;border-color:#17D9FF">ULANGI UJI</button>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
 <sc-if value="{{ isSummary }}" hint-placeholder-val="{{ false }}">
 <div style="padding:24px 20px 170px;animation:nx-in 1s ease both" data-screen-label="11 Ending Summary">
   <div style="width:min(1140px,100%);margin:0 auto">
@@ -769,6 +859,12 @@
         <div style="font-size:13.5px;line-height:1.55;color:#C9D4E0;text-wrap:pretty">{{ endingDesc }}</div>
         <div style="margin-top:12px;display:flex;gap:7px;flex-wrap:wrap">
           <sc-for list="{{ earnedBadges }}" as="b" hint-placeholder-count="4"><span style="font-size:10.5px;padding:4px 10px;border-radius:999px;border:1px solid {{ b.c }};color:{{ b.c }}">{{ b.title }}</span></sc-for>
+        </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(145,164,184,.18);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:10px;letter-spacing:.24em;color:#B8A6FF">UJI PEMAHAMAN</span>
+          <span style="font-family:Orbitron,Bahnschrift,system-ui,sans-serif;font-size:18px;font-weight:700;color:{{ quizGradeColor }}">{{ quizScoreShort }}</span>
+          <span style="font-size:12.5px;color:#C9D4E0">{{ quizGrade }}</span>
+          <button onClick="{{ toQuiz }}" style="margin-left:auto;background:transparent;color:#B8A6FF;border:1px solid rgba(184,166,255,.45);border-radius:999px;padding:8px 14px;font-size:11px;letter-spacing:.12em;cursor:pointer;min-height:40px" style-hover="background:rgba(184,166,255,.12)">{{ quizCta }}</button>
         </div>
       </div>
       <div style="flex:1 1 280px;padding:18px;border-radius:18px;background:rgba(7,20,38,.78);border:1px solid rgba(23,217,255,.3)">
@@ -885,19 +981,21 @@ class Component extends DCLogic {
     return {
       completed: {}, deltas: {}, results: {}, prevBalance: null, result: null, civ: {}, fired: {}, event: null, committed: {},
       school: Object.assign({}, D.school), city: Object.assign({}, D.city), work: Object.assign({}, D.work),
-      hasSave: false, saveDone: 0, dlgIdx: 0, dlgHidden: false, settingsOpen: false, feedback: null
+      hasSave: false, saveDone: 0, dlgIdx: 0, dlgHidden: false, settingsOpen: false, feedback: null,
+      quizAns: [], quizIdx: 0, quizScore: null, quizTries: 0
     };
   }
   state = Object.assign({
     screen: 'opening', muted: false, subs: true, musicVol: 40, voiceVol: 80, sfxVol: 60,
     subVisible: '', subPending: null, voSpeaking: false, voSource: null,
-    tutStep: 0, demoVal: 50, demoUnits: 2, demoPick: null, reflectA: '', reflectB: '', copied: false
+    tutStep: 0, demoVal: 50, demoUnits: 2, demoPick: null, reflectA: '', reflectB: '', copied: false, creditsOpen: false
   }, {
     completed: {}, deltas: {}, results: {}, prevBalance: null, result: null, civ: {}, fired: {}, event: null, committed: {},
     school: { ai: 50, guru: 50, personal: 50, mandiri: 50, sosial: 50, kreatif: 50 },
     city: { pengawasan: 50, transparansi: 50, data: 50, sustain: 50, otomasi: 50, akses: 50, darurat: 50 },
     work: { tech: 0, kreatif: 0, empati: 0, komunikasi: 0, kritis: 0, adaptif: 0, lifelong: 0 },
-    hasSave: false, saveDone: 0, dlgIdx: 0, dlgHidden: false, settingsOpen: false, feedback: null
+    hasSave: false, saveDone: 0, dlgIdx: 0, dlgHidden: false, settingsOpen: false, feedback: null,
+    quizAns: [], quizIdx: 0, quizScore: null, quizTries: 0
   });
   timers = []; audio = null; lastDlgKey = ''; lastScreen = ''; dragKey = null; fbTimer = null;
 
@@ -933,7 +1031,7 @@ class Component extends DCLogic {
       localStorage.setItem(this.REFLECT_KEY, JSON.stringify({ a: S.reflectA, b: S.reflectB }));
       if (Object.keys(S.completed).length > 0) {
         const D = this.DEFAULTS, K = S.committed;
-        localStorage.setItem(this.SAVE_KEY, JSON.stringify({ completed: S.completed, deltas: S.deltas, results: S.results, fired: S.fired, school: K.school || D.school, city: K.city || D.city, work: K.work || D.work, civ: K.civ || {} }));
+        localStorage.setItem(this.SAVE_KEY, JSON.stringify({ completed: S.completed, deltas: S.deltas, results: S.results, fired: S.fired, school: K.school || D.school, city: K.city || D.city, work: K.work || D.work, civ: K.civ || {}, quizScore: S.quizScore, quizTries: S.quizTries }));
       }
     } catch (e) { }
   }
@@ -943,7 +1041,7 @@ class Component extends DCLogic {
     this.setState(Object.assign(this.freshProgress(), { screen: toScreen }));
     this.sfx('click');
   }
-  go(screen, extra) { this.setState(Object.assign({ screen, dlgIdx: 0, dlgHidden: false, settingsOpen: false }, extra || {})); this.sfx('click'); }
+  go(screen, extra) { this.setState(Object.assign({ screen, dlgIdx: 0, dlgHidden: false, settingsOpen: false, creditsOpen: false }, extra || {})); this.sfx('click'); }
   clamp(v) { return Math.max(0, Math.min(100, Math.round(v))); }
   hex(h, a) { const n = parseInt(h.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; }
   toast(text, color) {
@@ -1096,6 +1194,72 @@ class Component extends DCLogic {
       { key: 'p6', q: 'Apa tanggung jawab manusia saat memakai AI?', opts: [o('Mengikuti rekomendasi AI apa adanya', { inov: 3, resp: -6, human: -3 }, 'ai'), o('Memverifikasi dan menanggung akibat', { resp: 6, human: 3 }, 'bal'), o('Menghindari AI dalam kerja penting', { human: 2, inov: -6, sust: -2 }, 'hum')] }
     ].map(p => ({ key: p.key, q: p.q, opts: ORD[p.key].map(i => p.opts[i]) }));
   }
+  // ───────── Uji Pemahaman: 5 soal, kunci (a) & pembahasan (why) merujuk ke model simulasi ─────────
+  quizDefs() {
+    return [
+      { modul: 'Modul 01 · Smart School', q: 'Di Smart School, Keterlibatan AI dinaikkan ke 100 sementara Kemandirian siswa diturunkan ke 0. Apa akibat yang paling mungkin?',
+        opts: ['Kreativitas siswa otomatis naik', 'Interaksi dengan guru ikut naik', 'Ketergantungan pada AI naik tajam', 'Tidak ada perubahan berarti'], a: 2,
+        why: 'AI yang menggantikan guru dan kemandirian siswa menciptakan ketergantungan. Di simulasi, ketergantungan naik di atas 90 dan memicu peristiwa "Server AI sekolah padam dua hari", sementara kreativitas justru turun. AI paling berguna saat dipandu guru dan siswa yang tetap berpikir sendiri.' },
+      { modul: 'Modul 02 · AI City', q: 'ORION meminta akses data warga yang lebih luas dan pengawasan yang lebih ketat agar kota makin efisien. Trade-off apa yang terjadi?',
+        opts: ['Efisiensi kota naik, tetapi privasi warga turun', 'Efisiensi dan privasi sama-sama naik', 'Privasi naik karena sistem lebih aman', 'Tidak ada yang dikorbankan karena AI netral'], a: 0,
+        why: 'Semakin banyak data warga yang dipakai, semakin efisien kotanya dan semakin kecil privasinya. Sistem AI tidak netral: ia mengoptimalkan apa pun yang kita perintahkan. Karena itu keputusan tentang data adalah keputusan tentang nilai.' },
+      { modul: 'Modul 02 & 04 · Transparansi', q: 'Mengapa sistem AI yang dipakai untuk layanan publik sebaiknya menjelaskan alasan setiap keputusannya?',
+        opts: ['Agar AI bekerja lebih cepat', 'Agar sistem tidak perlu diawasi manusia lagi', 'Agar data warga tidak perlu dikumpulkan', 'Agar warga bisa memahami, memeriksa, dan mempertanyakan keputusan itu'], a: 3,
+        why: 'Keputusan yang bisa dijelaskan bisa diperiksa dan dipertanyakan, jadi ada akuntabilitas. Di AI City, transparansi publik menaikkan kepercayaan warga; di Konstitusi, prinsip "alasan tiap keputusan dijelaskan" menaikkan Tanggung Jawab.' },
+      { modul: 'Modul 03 · Future Work', q: 'Menurut simulasi Future Work, keterampilan mana yang paling sulit digantikan oleh otomatisasi?',
+        opts: ['Mengetik dan menghitung dengan cepat', 'Empati dan komunikasi', 'Menghafal data dalam jumlah besar', 'Mengikuti prosedur yang sama berulang-ulang'], a: 1,
+        why: 'Mesin unggul pada tugas yang berulang dan terukur. Keterampilan yang paling manusiawi, seperti empati, komunikasi, dan berpikir kritis, justru paling sulit digantikan. Di simulasi, empati dan komunikasi menaikkan relevansi pekerja dan menekan ketimpangan.' },
+      { modul: 'Modul 04 · Tanggung Jawab', q: 'Aplikasi AI menyarankan sebuah jawaban untuk tugasmu, dan ternyata jawaban itu keliru. Sikap mana yang paling bertanggung jawab?',
+        opts: ['Tetap memakainya karena AI selalu lebih tahu', 'Menyalahkan AI sepenuhnya jika nilaimu turun', 'Memeriksa ulang dengan sumber lain dan bertanggung jawab atas jawaban yang kamu kumpulkan', 'Berhenti memakai teknologi apa pun'], a: 2,
+        why: 'AI bisa keliru, dan pemakainya tetap bertanggung jawab: memverifikasi, lalu memutuskan. Di Konstitusi, prinsip "memverifikasi dan menanggung akibat" menaikkan Tanggung Jawab, sedangkan "mengikuti rekomendasi AI apa adanya" menurunkannya.' }
+    ];
+  }
+  quizVals(S) {
+    const C = this.C, hex = (h, a) => this.hex(h, a), QZ = this.quizDefs(), n = QZ.length;
+    const i = Math.min(S.quizIdx, n - 1), d = QZ[i], picked = S.quizAns[i], answered = picked != null, right = picked === d.a;
+    const g = this.quizGrade(S.quizScore);
+    return {
+      quizActive: S.quizIdx < n, quizDone: S.quizIdx >= n,
+      quizNum: i + 1, quizTotal: n, quizModul: d.modul, quizQ: d.q,
+      quizOpts: d.opts.map((label, j) => {
+        const isA = j === d.a, isP = j === picked, col = !answered ? null : isA ? C.green : isP ? C.gold : null;
+        return { label, key: 'ABCD'[j], pick: () => this.quizPick(j), border: col || 'rgba(145,164,184,.3)', bg: col ? hex(col, .12) : 'rgba(7,20,38,.6)', mark: !answered ? '' : isA ? '✓' : isP ? '✗' : '', markColor: col || C.steel, fg: answered && !isA && !isP ? '#91A4B8' : '#E4ECF5' };
+      }),
+      quizAnswered: answered,
+      quizVerdict: right ? 'TEPAT' : 'BELUM TEPAT', quizVerdictColor: right ? C.green : C.gold,
+      quizVerdictBg: hex(right ? C.green : C.gold, .08), quizVerdictBorder: hex(right ? C.green : C.gold, .35),
+      quizWhy: d.why, quizNextLabel: i < n - 1 ? 'SOAL BERIKUTNYA ›' : 'LIHAT SKOR ›', quizNext: () => this.quizNext(),
+      quizDots: QZ.map((q, k) => ({ w: k === i && S.quizIdx < n ? '26px' : '10px', bg: S.quizAns[k] == null ? (k === i ? C.cyan : 'rgba(145,164,184,.3)') : S.quizAns[k] === q.a ? C.green : C.gold })),
+      quizScoreNum: S.quizScore == null ? '—' : S.quizScore, quizScoreShort: S.quizScore == null ? '—' : S.quizScore + '/100',
+      quizGrade: g.text, quizGradeColor: g.color, quizGradeGlow: hex(g.color, .35),
+      quizRight: QZ.filter((q, k) => S.quizAns[k] === q.a).length,
+      quizRecap: QZ.map((q, k) => { const ok = S.quizAns[k] === q.a; return { mark: ok ? '✓' : '✗', color: ok ? C.green : C.gold, text: q.modul }; }),
+      quizBadge: S.quizScore != null && S.quizScore >= 80,
+      quizRetry: () => { this.setState({ quizIdx: 0, quizAns: [], quizScore: null }); this.sfx('click'); },
+      toQuiz: () => this.go('quiz', { quizIdx: 0, quizAns: [] }), quizCta: S.quizScore == null ? 'KERJAKAN ›' : 'ULANGI UJI',
+      quizToSummary: () => this.go('summary')
+    };
+  }
+  quizGrade(score) {
+    const C = this.C;
+    if (score == null) return { text: 'Belum dikerjakan', color: C.steel };
+    return score >= 80 ? { text: 'Pemahaman kuat', color: C.green } : score >= 60 ? { text: 'Pemahaman cukup', color: C.gold } : { text: 'Perlu diulang', color: C.gold };
+  }
+  quizPick(j) {
+    const S = this.state, QZ = this.quizDefs(), i = S.quizIdx;
+    if (i >= QZ.length || S.quizAns[i] != null) return;
+    const ans = S.quizAns.slice(); ans[i] = j;
+    this.setState({ quizAns: ans });
+    this.sfx(j === QZ[i].a ? 'lock' : 'unit');
+  }
+  quizNext() {
+    const S = this.state, QZ = this.quizDefs(), i = S.quizIdx;
+    if (S.quizAns[i] == null) return;
+    if (i < QZ.length - 1) { this.setState({ quizIdx: i + 1 }); this.sfx('click'); return; }
+    const right = QZ.filter((d, k) => S.quizAns[k] === d.a).length;
+    this.setState({ quizIdx: QZ.length, quizScore: Math.round(right / QZ.length * 100), quizTries: (S.quizTries || 0) + 1 });
+    this.sfx('ending');
+  }
   civDeltas(civ) { const out = { inov: 0, human: 0, sust: 0, resp: 0 }; this.civDefs().forEach(p => { const i = civ[p.key]; if (i == null) return; const d = p.opts[i].d; for (const k in out) out[k] += d[k] || 0; }); return out; }
   ending(b, civ) {
     const C = this.C, all = Object.values(b);
@@ -1229,6 +1393,7 @@ class Component extends DCLogic {
       civ: [kaia('mentor_reflection', 'REFLEKTIF'), nara('nexa_module_future_01')],
       result: [nara('nexa_decision_01', 'MENGANALISIS'), kaia('mentor_explanation_03')],
       profile: [nara('nexa_ending_01', 'AFIRMASI')],
+      quiz: [nara('nexa_quiz_01')],
       summary: [nara('nexa_ending_02'), kaia('mentor_debrief')],
       reflection: [kaia('mentor_reflection_02', 'MENDORONG')]
     };
@@ -1284,6 +1449,7 @@ class Component extends DCLogic {
     });
     const badgeDefs = { school: { k: 'BLJ', title: 'Perancang Belajar', c: C.cyan }, city: { k: 'KOTA', title: 'Perancang Kota', c: C.green }, work: { k: 'SKIL', title: 'Perancang Keterampilan', c: C.violet }, civ: { k: 'NILAI', title: 'Penjaga Nilai', c: C.gold } };
     const earnedBadges = Object.keys(S.completed).map(id => Object.assign({ glow: hex(badgeDefs[id].c, .25) }, badgeDefs[id]));
+    if (S.quizScore != null && S.quizScore >= 80) earnedBadges.push({ k: 'PAHAM', title: 'Paham AI (Uji Pemahaman ≥ 80)', c: C.lilac, glow: hex(C.lilac, .25) });
     const lightsPool = [{ x: '30%', y: '36%', c: C.cyan }, { x: '64%', y: '58%', c: C.violet }, { x: '42%', y: '44%', c: C.green }, { x: '70%', y: '40%', c: C.gold }, { x: '36%', y: '62%', c: C.cyan }, { x: '55%', y: '30%', c: C.green }];
 
     // tutorial
@@ -1374,13 +1540,13 @@ class Component extends DCLogic {
     }[E.key];
 
     const D = this.dialogueFor(S);
-    const inLab = ['hub', 'school', 'city', 'work', 'civ', 'result', 'profile', 'summary', 'reflection'].includes(scr);
-    const titles = { hub: 'ORBITAL LAB', school: 'MODUL 01 · SMART SCHOOL', city: 'MODUL 02 · AI CITY', work: 'MODUL 03 · FUTURE WORK', civ: 'MODUL 04 · KONSTITUSI', result: 'KONSEKUENSI', profile: 'FUTURE PROFILE', summary: 'HASIL AKHIR', reflection: 'REFLEKSI' };
+    const inLab = ['hub', 'school', 'city', 'work', 'civ', 'result', 'profile', 'quiz', 'summary', 'reflection'].includes(scr);
+    const titles = { hub: 'ORBITAL LAB', school: 'MODUL 01 · SMART SCHOOL', city: 'MODUL 02 · AI CITY', work: 'MODUL 03 · FUTURE WORK', civ: 'MODUL 04 · KONSTITUSI', result: 'KONSEKUENSI', profile: 'FUTURE PROFILE', quiz: 'UJI PEMAHAMAN', summary: 'HASIL AKHIR', reflection: 'REFLEKSI' };
 
     return {
       isOpening: scr === 'opening', isObjective: scr === 'objective', isTutorial: scr === 'tutorial', isHub: scr === 'hub',
       isSchool: scr === 'school', isCity: scr === 'city', isWork: scr === 'work', isCiv: scr === 'civ',
-      isResult: scr === 'result', isProfile: scr === 'profile', isSummary: scr === 'summary', isReflection: scr === 'reflection',
+      isResult: scr === 'result', isProfile: scr === 'profile', isQuiz: scr === 'quiz', isSummary: scr === 'summary', isReflection: scr === 'reflection',
       headerFull: ['opening', 'objective', 'tutorial'].includes(scr), headerCompact: inLab,
       inLab, screenTitle: titles[scr] || '', doneCount, badgeCount: earnedBadges.length,
       progressSteps, progressPct: Math.round(doneCount / 4 * 100) + '%',
@@ -1397,7 +1563,7 @@ class Component extends DCLogic {
           const school = Object.assign({}, DF.school, sv.school), city = Object.assign({}, DF.city, sv.city), work = Object.assign({}, DF.work, sv.work), civ = sv.civ || {};
           const committed = {};
           if (sv.completed) { ['school', 'city', 'work', 'civ'].forEach(k => { if (sv.completed[k]) committed[k] = { school, city, work, civ }[k]; }); }
-          this.setState({ completed: sv.completed || {}, deltas: sv.deltas || {}, results: sv.results || {}, school, city, work, civ, committed, fired: sv.fired || {}, prevBalance: null, event: null });
+          this.setState({ completed: sv.completed || {}, deltas: sv.deltas || {}, results: sv.results || {}, school, city, work, civ, committed, fired: sv.fired || {}, prevBalance: null, event: null, quizScore: sv.quizScore ?? null, quizTries: sv.quizTries || 0 });
         } catch (e) { }
         this.go('hub');
       },
@@ -1418,6 +1584,7 @@ class Component extends DCLogic {
       demoDims: dims.map(([k, label, color]) => ({ label, c: color, t: { inov: 'efisiensi & kemampuan baru', human: 'interaksi, privasi, agensi', sust: 'dampak jangka panjang', resp: 'transparansi & kepercayaan' }[k] })),
       // settings
       settingsOpen: S.settingsOpen, toggleSettings: () => this.setState({ settingsOpen: !S.settingsOpen }),
+      creditsOpen: !!S.creditsOpen, openCredits: () => { this.setState({ creditsOpen: true, settingsOpen: false }); this.sfx('click'); }, closeCredits: () => this.setState({ creditsOpen: false }),
       toggleMute: () => this.setState({ muted: !S.muted }, () => { this.applyVolumes(); if (this.VM) this.VM.setMuted(this.state.muted); if (this.state.muted) this.stopSpeech(); }),
       muteGlyph: S.muted ? '◌' : '◉', muteLabel: S.muted ? 'Bunyikan' : 'Bisukan semua',
       toggleSubs: () => this.setState({ subs: !S.subs }, () => { if (this.VM) this.VM.enableSubtitle(this.state.subs); }), subsOn: S.subs, subsColor: S.subs ? C.cyan : C.steel, subsLabel: S.subs ? 'Subtitle: aktif' : 'Subtitle: mati',
@@ -1532,8 +1699,9 @@ class Component extends DCLogic {
       // profile / summary / reflection
       endingCitizens: this.endingVoices(bal),
       endingTitle: E.title, endingColor: E.color, endingGlow: hex(E.color, .18), endingFill: hex(E.color, .22), endingDesc: E.desc, archetype: E.archetype, endingVariant: E.variant, endingPath,
-      profileCta: doneCount < 4 ? 'LANJUTKAN SIMULASI ›' : 'HASIL AKHIR & DISKUSI ›',
-      profileNext: () => this.go(doneCount < 4 ? 'hub' : 'summary'),
+      ...this.quizVals(S),
+      profileCta: doneCount < 4 ? 'LANJUTKAN SIMULASI ›' : S.quizScore == null ? 'UJI PEMAHAMAN ›' : 'HASIL AKHIR & DISKUSI ›',
+      profileNext: () => doneCount < 4 ? this.go('hub') : S.quizScore == null ? this.go('quiz', { quizIdx: 0, quizAns: [] }) : this.go('summary'),
       allTradeoffs, civSummary, discussion,
       reflectFields: [
         { label: 'Satu hal yang berubah dalam caraku memandang AI:', value: S.reflectA, placeholder: 'Tulis satu kalimat…', onChange: e => this.setState({ reflectA: e.target.value, copied: false }) },
@@ -1541,7 +1709,7 @@ class Component extends DCLogic {
       ],
       copyLabel: S.copied ? 'TERSALIN ✓' : 'SALIN RINGKASAN UNTUK GURU',
       copySummary: () => {
-        const txt = `NEXA — Profil Future Architect\nHasil: ${E.title} (${E.archetype})\nInovasi ${bal.inov} · Kemanusiaan ${bal.human} · Keberlanjutan ${bal.sust} · Tanggung Jawab ${bal.resp}\nModul selesai: ${doneCount}/4\n\nRefleksi 1: ${S.reflectA || '-'}\nRefleksi 2: ${S.reflectB || '-'}`;
+        const txt = `NEXA — Profil Future Architect\nHasil: ${E.title} (${E.archetype})\nInovasi ${bal.inov} · Kemanusiaan ${bal.human} · Keberlanjutan ${bal.sust} · Tanggung Jawab ${bal.resp}\nModul selesai: ${doneCount}/4\nUji Pemahaman: ${S.quizScore == null ? 'belum dikerjakan' : S.quizScore + '/100 (' + this.quizGrade(S.quizScore).text + ', percobaan ke-' + S.quizTries + ')'}\n\nRefleksi 1: ${S.reflectA || '-'}\nRefleksi 2: ${S.reflectB || '-'}`;
         // Clipboard API bisa ditolak (izin, file://, browser lama): coba cara lama, dan beri tahu jujur bila gagal.
         const legacy = () => { try { const ta = document.createElement('textarea'); ta.value = txt; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return ok; } catch (e) { return false; } };
         const done = ok => { this.setState({ copied: ok }); this.toast(ok ? 'Ringkasan disalin ke papan klip.' : 'Browser menolak menyalin otomatis. Tulis ulang jawabanmu atau minta bantuan guru.', ok ? C.green : C.gold); };

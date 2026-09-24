@@ -17,9 +17,9 @@ Teknologi: **HTML/CSS/JS statis**. Tidak ada build step, backend, atau dependens
    - `Modul 03 · Future Work 2045`: alokasi 12 unit energi ke keterampilan masa depan
    - `Modul 04 · Human + AI Civilization`: pilih 6 prinsip konstitusi AI (terbuka setelah 3 modul lain selesai)
 3. Setiap modul berakhir di layar **Konsekuensi**: perubahan *Future Balance* (Inovasi, Kemanusiaan, Keberlanjutan, Tanggung Jawab) dan tanggapan warga.
-4. **Future Profile → Ringkasan Akhir → Refleksi & Diskusi Kelas**. Ada tombol "Salin ringkasan untuk guru".
+4. **Future Profile → Uji Pemahaman (5 soal, skor & pembahasan) → Ringkasan Akhir → Refleksi & Diskusi Kelas**. Ada tombol "Salin ringkasan untuk guru".
 
-Tidak ada jawaban benar atau salah. Gim menilai *trade-off*, bukan skor.
+Di keempat misi tidak ada jawaban benar atau salah: yang dilatih adalah menimbang *trade-off*. Pemahaman konsep diukur di akhir lewat Uji Pemahaman.
 
 **Guru:** tujuan pembelajaran, skenario kelas, cara membaca hasil siswa, dan pertanyaan diskusi ada di [`guru/panduan-guru.md`](guru/panduan-guru.md).
 
@@ -65,7 +65,7 @@ nexa/
 │   └── main.css                # Gaya global: reset, animasi nx-*, slider, fokus, reduced-motion
 ├── js/
 │   ├── nexa-visuals.js         # Karakter & latar SVG prosedural (web components), SFX, musik sintesis
-│   ├── voice-config.js         # Registri 78 baris suara: id, tokoh, berkas, subtitle, durasi
+│   ├── voice-config.js         # Registri 79 baris suara: id, tokoh, berkas, subtitle, durasi
 │   ├── voice-manager.js        # Pemutar suara + subtitle per kata + fallback tanpa audio
 │   ├── bgm.js                  # Musik latar prosedural: pad + progresi akor pelan per suasana layar
 │   ├── tata-letak.js           # Ruang bawah layar mengikuti tinggi kotak dialog
@@ -87,12 +87,14 @@ nexa/
 ├── guru/
 │   └── panduan-guru.md         # Panduan guru (tidak ikut dipublikasikan)
 ├── docs/
-│   └── audio.md                # Suara per tokoh, pemilihan suara & QA, naskah lengkap 78 baris
+│   ├── lomba/                  # Sumber PDF lomba: panduan-penggunaan.html, dokumen-desain-prompting.html
+│   └── audio.md                # Suara per tokoh, pemilihan suara & QA, naskah lengkap 79 baris
 ├── tools/
 │   ├── buat-suara.py           # Generator suara (edge-tts + ffmpeg) dari naskah di voice-config.js
 │   ├── siapkan-offline.py      # Dipakai workflow: isi daftar cache & versi di service-worker.js
 │   ├── buat-zip-lomba.py       # Paket ZIP Festival Biru Putih (dist/), lengkap dengan pemeriksaan
 │   ├── uji-main.js             # Uji main penuh otomatis (Playwright) di Chrome/Firefox/Safari
+│   ├── buat-pdf-lomba.js       # PDF panduan penggunaan & dokumen prompting (dari docs/lomba/)
 │   └── cek-audio.py            # Cek voice-config.js ↔ berkas audio ↔ pemakaian di index.html
 └── .github/workflows/pages.yml # Deploy ke GitHub Pages
 ```
@@ -109,7 +111,9 @@ nexa/
 ## Paket lomba (Festival Biru Putih 2026)
 
 ```bash
-python3 tools/buat-zip-lomba.py --panduan "Panduan.pdf" --video "Demo.mp4"
+node tools/buat-pdf-lomba.js      # dist/Panduan Penggunaan NEXA.pdf + Dokumen Desain dan Prompting NEXA.pdf
+python3 tools/buat-zip-lomba.py --panduan "dist/Panduan Penggunaan NEXA.pdf" \
+  --prompting "dist/Dokumen Desain dan Prompting NEXA.pdf" --video "Demo.mp4"
 # hasil: dist/NEXA-FestivalBiruPutih.zip
 ```
 
@@ -142,7 +146,7 @@ Setelah NEXA dibuka sekali saat online, seluruh situs (±6,7 MB, termasuk semua 
 ## Audio
 
 - Musik latar (`js/bgm.js`) dan SFX dibangkitkan di browser (Web Audio), jadi tidak ada berkas musik. Musik memakai pad lembut dengan akor yang berganti pelan dan lonceng sesekali, sekitar 13 dB di bawah suara tokoh pada volume bawaan. Detailnya ada di [`docs/audio.md`](docs/audio.md#musik-latar).
-- Voice-over: **78 baris, semuanya bersuara.** Ini mencakup kotak dialog, narasi tutorial, pop-up peristiwa, kutipan warga (tombol ▶ di kartu), dan Delegasi Regulator.
+- Voice-over: **79 baris, semuanya bersuara.** Ini mencakup kotak dialog, narasi tutorial, pop-up peristiwa, kutipan warga (tombol ▶ di kartu), dan Delegasi Regulator.
   - KAIA dan ORION memakai rekaman ElevenLabs asli.
   - NARA-01, warga, dan regulator dibuat dengan edge-tts.
   - Alasan pemilihan suara, hasil QA, dan naskah lengkap ada di [`docs/audio.md`](docs/audio.md).

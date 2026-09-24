@@ -13,7 +13,8 @@ manifest PWA beserta ikonnya, tag pratinjau tautan (URL absolut ke github.io),
 dan gambar pratinjau tautan.
 
 Pakai (dari akar repo):
-    python3 tools/buat-zip-lomba.py --panduan "Panduan.pdf" --video "Demo.mp4"
+    node tools/buat-pdf-lomba.js                              # PDF ke dist/ (dipakai otomatis)
+    python3 tools/buat-zip-lomba.py --video "Demo.mp4"
     python3 tools/buat-zip-lomba.py            # tanpa PDF/video: hanya untuk uji, diberi peringatan
 Hasil: dist/NEXA-FestivalBiruPutih.zip
 """
@@ -109,8 +110,13 @@ def check(dst, problems, notes):
 def main():
     ap = argparse.ArgumentParser(description='Buat ZIP NEXA untuk Festival Biru Putih 2026.')
     ap.add_argument('--panduan', help='PDF panduan penggunaan (wajib untuk pengumpulan)')
+    ap.add_argument('--prompting', help='PDF dokumen desain & prompting (wajib bila memakai aset AI)')
     ap.add_argument('--video', help='MP4 video demonstrasi, maks. 3 menit (wajib untuk pengumpulan)')
     args = ap.parse_args()
+    # Bawaan: PDF hasil tools/buat-pdf-lomba.js di dist/, bila ada.
+    for attr, name in (('panduan', 'Panduan Penggunaan NEXA.pdf'), ('prompting', 'Dokumen Desain dan Prompting NEXA.pdf')):
+        if not getattr(args, attr) and os.path.isfile(os.path.join(DIST, name)):
+            setattr(args, attr, os.path.join(DIST, name))
 
     if subprocess.call([sys.executable, os.path.join(ROOT, 'tools', 'cek-audio.py')], stdout=subprocess.DEVNULL):
         sys.exit('cek-audio.py gagal: perbaiki audio dulu (jalankan tools/cek-audio.py).')
@@ -124,6 +130,7 @@ def main():
 
         extra = []
         for flag, path, name, ext in (('--panduan', args.panduan, 'Panduan Penggunaan NEXA.pdf', '.pdf'),
+                                      ('--prompting', args.prompting, 'Dokumen Desain dan Prompting NEXA.pdf', '.pdf'),
                                       ('--video', args.video, 'Video Demonstrasi NEXA.mp4', '.mp4')):
             if not path:
                 warnings.append('Belum ada %s (wajib untuk pengumpulan, pakai %s).' % (name, flag))

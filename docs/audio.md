@@ -1,6 +1,6 @@
 # Audio NEXA — suara, naskah, dan cara membuat ulang
 
-Status per 23 September 2026. **Semua 78 baris suara sudah punya audio** dan semuanya terpakai di gim. Cek ulang kapan saja:
+Status per 23 September 2026. **Semua 79 baris suara sudah punya audio** dan semuanya terpakai di gim. Cek ulang kapan saja:
 
 ```bash
 python3 tools/cek-audio.py
@@ -14,7 +14,7 @@ Musik latar (`js/bgm.js`) dan SFX tidak berupa berkas. Keduanya dibangkitkan di 
 
 | Tokoh | Baris | Sumber | Setelan |
 |---|---|---|---|
-| NARA-01 | 31 | edge-tts `id-ID-ArdiNeural` | tempo +10%; highpass 90 Hz, high-shelf +2 dB, plate tipis ("rasa AI") |
+| NARA-01 | 32 | edge-tts `id-ID-ArdiNeural` | tempo +10%; highpass 90 Hz, high-shelf +2 dB, plate tipis ("rasa AI") |
 | KAIA | 8 | **ElevenLabs, rekaman asli** | tidak diubah |
 | ORION | 2 | **ElevenLabs, rekaman asli** | tidak diubah |
 | Warga: Pelajar | 10 | edge-tts `id-ID-GadisNeural` | tempo +10%, nada +20 Hz (lebih muda) |
@@ -28,7 +28,7 @@ Emosi tiap baris (protes, bingung, lega, dan seterusnya) diberi geseran kecil te
 
 | Bagian | Cara diputar |
 |---|---|
-| Kotak dialog (NARA-01, KAIA, ORION) | otomatis per baris; tombol ↻ untuk mengulang |
+| Kotak dialog (NARA-01, KAIA, ORION), termasuk pengantar Uji Pemahaman | otomatis per baris; tombol ↻ untuk mengulang |
 | Tutorial (4 langkah) | otomatis setiap pindah langkah, maju maupun mundur |
 | Pop-up peristiwa (13) | otomatis saat pop-up muncul. Pop-up tetap terbuka sampai narasi selesai (minimal 7 detik); tombol × ikut menghentikan narasinya |
 | Kartu warga di Konsekuensi (24) dan Ringkasan Akhir (6) | tombol **▶** di tiap kartu. Sengaja tidak otomatis supaya tidak bertabrakan dengan dialog di layar yang sama |
@@ -152,15 +152,16 @@ git show 12d0f51:assets/audio/voice/nexa/hub_01.mp3 > hub_01_elevenlabs.mp3
 
 ---
 
-## Naskah lengkap (78 baris)
+## Naskah lengkap (79 baris)
 
 Dibuat dari `js/voice-config.js`. Durasi = durasi berkas sebenarnya.
 
-### NARA-01 (31)
+### NARA-01 (32)
 
 | ID | Berkas | Kapan | Durasi | Teks |
 |---|---|---|---|---|
 | `nexa_intro_01` | `nexa/intro_01.mp3` | Tujuan Pembelajaran | 2,0 s | Selamat datang di NEXA Simulation Lab. |
+| `nexa_quiz_01` | `nexa/quiz_01.mp3` | Uji Pemahaman | 6,4 s | Sebelum melihat hasil akhir, uji pemahamanmu. Ada lima soal, dan setiap jawaban punya pembahasan. |
 | `nexa_intro_02` | `nexa/intro_02.mp3` | Tujuan Pembelajaran | 4,7 s | Di sini, kamu tidak hanya mempelajari masa depan. Kamu akan merancangnya. |
 | `nexa_hub_01` | `nexa/hub_01.mp3` | Orbital Lab · kunjungan pertama | 5,0 s | Empat simulasi telah disiapkan. Simulasi keempat terbuka setelah tiga lainnya selesai. |
 | `nexa_hub_02` | `nexa/hub_02.mp3` | Orbital Lab · kunjungan pertama | 5,0 s | Setiap simulasi menunjukkan tantangan masa depan yang berbeda. Pilih satu untuk memulai. |

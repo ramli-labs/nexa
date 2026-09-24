@@ -85,7 +85,7 @@
   }
 
   var LINES = [
-    /* ───────────────────────── NEXA / NARA-01 · 31 baris ───────────────── */
+    /* ───────────────────────── NEXA / NARA-01 · 32 baris ───────────────── */
     L('nexa_intro_01', 'NEXA', 'calm', 'intro_01.mp3',
       'Selamat datang di NEXA Simulation Lab.', 2.0, 'Tujuan Pembelajaran'),
     L('nexa_intro_02', 'NEXA', 'calm', 'intro_02.mp3',
@@ -114,6 +114,8 @@
       'Saya dapat menghitung kemungkinan masa depan. Kamu yang memutuskan masa depan mana yang layak dibangun.', 5.5, 'Future Profile'),
     L('nexa_ending_02', 'NEXA', 'calm', 'ending_02.mp3',
       'Simulasi selesai. Dunia ini hanya satu dari banyak kemungkinan — dan kamu yang memilihnya.', 5.4, 'Hasil Akhir'),
+    L('nexa_quiz_01', 'NEXA', 'informative', 'quiz_01.mp3',
+      'Sebelum melihat hasil akhir, uji pemahamanmu. Ada lima soal, dan setiap jawaban punya pembahasan.', 6.4, 'Uji Pemahaman'),
     // peristiwa (pop-up) & tutorial
     L('nexa_event_s1', 'NEXA', 'warning', 'event_s1.mp3',
       'Server AI sekolah padam dua hari. Model memproyeksikan sebagian besar siswa kesulitan menyelesaikan tugas tanpa bantuan AI. Guru mengusulkan kembali ke kelas diskusi.', 10.2, 'Peristiwa · Modul 01'),

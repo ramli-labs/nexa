@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Dokumen Desain dan Prompting NEXA</title>
+<style>
+  @page { size: A4; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "DejaVu Sans", system-ui, sans-serif; color: #17202c; font-size: 10.5pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 22pt; margin: 0 0 4px; color: #0b2a4a; }
+  h2 { font-size: 14pt; color: #0b2a4a; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 2px solid #7657ff; page-break-after: avoid; }
+  h3 { font-size: 11pt; color: #0b2a4a; margin: 12px 0 4px; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.3pt; }
+  th, td { border: 1px solid #c9d3de; padding: 4px 7px; vertical-align: top; text-align: left; }
+  th { background: #f0edff; color: #0b2a4a; }
+  tr { page-break-inside: avoid; }
+  .meta td:first-child { width: 30%; font-weight: 600; background: #f6f9fc; }
+  .isi { background: #fff7e0; border: 1px dashed #e6a700; padding: 8px 12px; margin: 8px 0; font-size: 9.5pt; }
+  .quote { background: #f6f9fc; border-left: 4px solid #7657ff; padding: 6px 12px; margin: 6px 0; font-size: 9.5pt; font-style: italic; }
+  .small { font-size: 8.8pt; }
+  .pb { page-break-before: always; }
+  code { font-size: 9pt; background: #f2f4f7; padding: 0 3px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div style="font-size:9pt;letter-spacing:.2em;color:#7657ff;font-weight:700">FESTIVAL BIRU PUTIH 2026 · KATEGORI GIM EDUKASI</div>
+<h1>Dokumen Desain dan Prompting NEXA</h1>
+<p>Dokumen ini memenuhi <b>Ketentuan Umum butir 3e</b> panduan Festival Biru Putih 2026: aset yang dibuat dengan AI diberi keterangan (di dalam gim: panel <i>Kredit &amp; keterangan AI</i>) dan disertai dokumen desain/prompting.</p>
+<table class="meta">
+  <tr><td>Judul karya</td><td>NEXA — Navigating the Future with AI</td></tr>
+  <tr><td>Pengembang</td><td>Ramli Jainal Muttaqin, S.Pd. — SMP Labschool Jakarta</td></tr>
+  <tr><td>Versi dokumen</td><td>{{TANGGAL}}</td></tr>
+</table>
+
+<h2>1. Ringkasan penggunaan AI</h2>
+<table>
+  <tr><th style="width:22%">Alat AI</th><th style="width:30%">Dipakai untuk</th><th>Bagian karya</th></tr>
+  <tr><td>ElevenLabs (text-to-speech)</td><td>Suara tokoh KAIA (mentor) dan ORION (AI kota)</td><td>10 berkas suara di <code>assets/audio/voice/mentor/</code> dan <code>orion/</code></td></tr>
+  <tr><td>Suara neural Microsoft lewat edge-tts (text-to-speech)</td><td>Suara NARA-01, warga (pelajar, pekerja, warga senior), dan Delegasi Regulator</td><td>69 berkas suara di <code>assets/audio/voice/nexa/</code>, <code>citizen/</code>, dan <code>regulator/</code></td></tr>
+  <tr><td>Claude (Anthropic)</td><td>Penyusunan dan perbaikan kode program, ilustrasi karakter/latar dalam bentuk kode SVG, musik latar prosedural, pengujian otomatis, dan draf dokumen</td><td><code>index.html</code>, <code>js/</code>, <code>css/</code>, <code>tools/</code>, dokumen panduan</td></tr>
+</table>
+<p>Tidak ada gambar raster (foto) buatan AI di dalam gim: semua karakter, latar, dan ikon digambar dengan kode SVG. Logo institusi adalah milik Kementerian Pendidikan Dasar dan Menengah.</p>
+
+<h2>2. Desain gim (ringkas)</h2>
+<table class="meta">
+  <tr><td>Konsep</td><td>Pemain menjadi <i>Future Architect</i> tahun 2045 dan merancang peran AI. Tidak ada jawaban tunggal di misi; yang dilatih adalah menimbang <i>trade-off</i>. Pemahaman konsep diukur di Uji Pemahaman.</td></tr>
+  <tr><td>Alur</td><td>Laman Muka → Tujuan → Cara Bermain → Orbital Lab → Misi 01–03 → Misi 04 → Future Profile → Uji Pemahaman → Hasil Akhir → Refleksi</td></tr>
+  <tr><td>Model simulasi</td><td>Setiap misi punya rumus sederhana dan transparan (mis. ketergantungan pada AI naik saat keterlibatan AI tinggi dan kemandirian siswa rendah; privasi turun saat pengawasan dan penggunaan data naik). Rumus ada di kode (<code>schoolFb</code>, <code>cityFb</code>, <code>workFb</code>, <code>civDefs</code>).</td></tr>
+  <tr><td>Tokoh</td><td>NARA-01 (AI pemandu), KAIA (mentor), ORION (AI kota), Warga 2045, Delegasi Regulator</td></tr>
+  <tr><td>Evaluasi</td><td>Future Balance (4 dimensi), lencana, arketipe akhir, Uji Pemahaman (5 soal, skor 0–100, pembahasan per soal), refleksi</td></tr>
+</table>
+
+<h2>3. Prompt dan parameter per jenis aset</h2>
+
+<h3>3.1 Suara tokoh (text-to-speech)</h3>
+<p>"Prompt" untuk text-to-speech adalah <b>teks naskah</b> ditambah <b>parameter suara</b>. Naskah lengkap ada di Lampiran A. Parameter yang dipakai:</p>
+<table>
+  <tr><th style="width:20%">Tokoh</th><th style="width:28%">Suara</th><th>Parameter</th></tr>
+  <tr><td>NARA-01</td><td>edge-tts <code>id-ID-ArdiNeural</code></td><td>tempo +10%; efek: highpass 90 Hz, high-shelf +2 dB, reverb plate tipis</td></tr>
+  <tr><td>Warga: pelajar</td><td>edge-tts <code>id-ID-GadisNeural</code></td><td>tempo +10%, nada +20 Hz</td></tr>
+  <tr><td>Warga: pekerja</td><td>edge-tts <code>su-ID-JajangNeural</code></td><td>normal</td></tr>
+  <tr><td>Warga: warga senior</td><td>edge-tts <code>su-ID-TutiNeural</code></td><td>tempo −12%, nada −15 Hz</td></tr>
+  <tr><td>Delegasi Regulator</td><td>edge-tts <code>su-ID-JajangNeural</code></td><td>tempo −8%, nada −12 Hz, gema aula</td></tr>
+  <tr><td>KAIA, ORION</td><td>ElevenLabs</td><td class="isi">[Isi oleh pengembang: nama voice dan pengaturan ElevenLabs yang dipakai.]</td></tr>
+</table>
+<p class="small">Emosi tiap baris diberi geseran kecil tempo/nada. Beberapa kata dieja ulang agar terdengar benar (mis. "AI" dibacakan "é-ai"). Kekerasan semua berkas disamakan ke −22 LUFS. Alat pembuatnya: <code>tools/buat-suara.py</code>.</p>
+
+<h3>3.2 Musik latar</h3>
+<p>Musik tidak berupa berkas. Musik dibangkitkan langsung di browser oleh kode <code>js/bgm.js</code>. Spesifikasi desain yang dipakai:</p>
+<div class="quote">Pad lembut (gelombang sine dan triangle) dengan progresi empat akor yang berganti tiap 8–12 detik, crossfade panjang, lowpass, reverb, dan lonceng sesekali pada nada akor dengan jarak acak. Tiap layar punya suasana sendiri. Volume sekitar 13 dB di bawah suara tokoh supaya tidak mengganggu fokus.</div>
+
+<h3>3.3 Kode program, tampilan, dan ilustrasi SVG</h3>
+<p><b>(a) Prototipe awal.</b></p>
+<div class="isi">[Isi oleh pengembang: alat dan prompt yang dipakai saat membuat prototipe awal NEXA (konsep, tampilan, karakter SVG, naskah dialog).]</div>
+<p><b>(b) Sesi pengembangan dengan Claude (September 2026).</b> Prompt pengembang, dikutip apa adanya:</p>
+<table>
+  <tr><th style="width:5%">No</th><th style="width:45%">Prompt pengembang</th><th>Hasil</th></tr>
+  <tr><td>1</td><td class="quote">cek gim edukasi nexa</td><td>Pemeriksaan menyeluruh: struktur, aset, error, uji main otomatis.</td></tr>
+  <tr><td>2</td><td class="quote">bisa ga anda rapikan seperti sigap atau adil? strukturnya, trus laporkan apa yg belum audionya, yg ga kepakai hapus aja</td><td>Struktur folder dirapikan; audio yang tidak dipakai dihapus; laporan audio.</td></tr>
+  <tr><td>3</td><td class="quote">jadi audio yg blm ada apa? bisa anda lengkapi semua?</td><td>Daftar audio yang belum ada.</td></tr>
+  <tr><td>4</td><td class="quote">anda yang buat, tapi dimiripin bisa? kalau tidak mirip diubah menjadi suara yang anda bisa buat saja</td><td>Pemilihan suara text-to-speech (diukur kemiripan dan kejelasannya), pembuatan suara baru, penyambungan ke gim.</td></tr>
+  <tr><td>5</td><td class="quote">sudah masuk, tapi BGMnya menurut saya agak annoying, apa bisa diganti ?</td><td>Musik latar baru (§3.2); pengembang memilih gaya dari pratinjau.</td></tr>
+  <tr><td>6</td><td class="quote">gas lanjut</td><td>Tampilan HP/tablet, mode tanpa internet, pratinjau tautan, panduan guru.</td></tr>
+  <tr><td>7</td><td class="quote">(mengunggah panduan Festival Biru Putih 2026) ini … semua yang bisa anda buat</td><td>Perbaikan agar sesuai ketentuan lomba: berjalan dari berkas lokal, tanpa error console, paket ZIP, tujuan di laman muka, Uji Pemahaman, panel Kredit &amp; keterangan AI, dokumen PDF.</td></tr>
+</table>
+
+<h3>3.4 Uji Pemahaman</h3>
+<p>Lima soal disusun dari konsep yang diajarkan tiap misi dan dicocokkan dengan rumus simulasi, supaya pembahasannya sesuai dengan yang dialami pemain. Soal dan kunci diperiksa pengembang sebagai guru mata pelajaran.</p>
+<div class="isi">[Isi oleh pengembang: catatan peninjauan soal, mis. "Soal diperiksa dan disetujui pada tanggal …".]</div>
+
+<h2>4. Peran pengembang (verifikasi manusia)</h2>
+<ul>
+  <li>Menentukan konsep, tujuan pembelajaran, dan sasaran pengguna (siswa SMP).</li>
+  <li>Mendengarkan dan menyetujui suara tokoh serta memilih gaya musik latar dari pratinjau.</li>
+  <li>Meninjau isi Uji Pemahaman dan pemetaan kurikulum.</li>
+  <li>Menguji gim di perangkat, lalu memutuskan versi yang dikirim.</li>
+</ul>
+<p class="small">Pengujian otomatis juga dijalankan: alur 19 layar dimainkan di Chrome, Firefox, dan Safari (WebKit), pada ukuran laptop, tablet, dan HP, dibuka langsung dari berkas (file://), tanpa error console (<code>tools/uji-main.js</code>).</p>
+
+<h2 class="pb">Lampiran A. Naskah suara ({{JUMLAH_BARIS}} baris)</h2>
+<table class="small">
+  <tr><th style="width:4%">No</th><th style="width:10%">Tokoh</th><th style="width:11%">Alat</th><th style="width:22%">Kapan diputar</th><th>Teks (prompt text-to-speech)</th></tr>
+  {{NASKAH}}
+</table>
+</body>
+</html>

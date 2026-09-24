@@ -32,7 +32,7 @@ if (!url) { console.error('Pakai: node tools/uji-main.js <browser> <url> [lebar]
   await p.goto(url);
   await p.waitForTimeout(2500);
   const seen = [], ck = {};
-  const scr = () => p.evaluate(() => { const e = [...document.querySelectorAll('[data-screen-label]')].find(x => x.offsetParent !== null); return e ? e.dataset.screenLabel.slice(0, 2) : '?'; });
+  const scr = () => p.evaluate(() => { const e = [...document.querySelectorAll('[data-screen-label]')].find(x => x.offsetParent !== null); return e ? e.dataset.screenLabel.split(' ')[0] : '?'; });
   const click = async re => {
     for (const bt of await p.$$('button:visible:enabled')) {
       const t = (await bt.innerText()).trim();
@@ -69,15 +69,29 @@ if (!url) { console.error('Pakai: node tools/uji-main.js <browser> <url> [lebar]
     await click(/KUNCI EKOSISTEM/); await click(/KEMBALI KE LAB/); await click(/Konstitusi/);
     for (const t of ['Manusia, dengan analisis', 'Individu; layanan', 'Urusan yang menyangkut', 'Dalam batas yang', 'Alasan tiap keputusan', 'Memverifikasi dan']) await click(new RegExp('^' + t));
     ck.regulator = await vm();
-    await click(/SEGEL KONSTITUSI/); await click(/LIHAT DUNIA/); await click(/HASIL AKHIR/); await click(/REFLEKSI/);
+    await click(/SEGEL KONSTITUSI/); await click(/LIHAT DUNIA/); await click(/UJI PEMAHAMAN/);
+    ck.uji_suara = await vm();
+    // Soal 1 sengaja salah (cek umpan balik), soal 2-5 benar -> skor 80
+    const answers = [/^A\s*Kreativitas siswa/, /^A\s*Efisiensi kota naik/, /^D\s*Agar warga bisa memahami/, /^B\s*Empati dan komunikasi/, /^C\s*Memeriksa ulang/];
+    for (let k = 0; k < answers.length; k++) {
+      await click(answers[k]);
+      const verdict = await p.evaluate(() => { const e = [...document.querySelectorAll('[role=status]')].map(x => x.innerText).find(t => /TEPAT/.test(t)); return e ? e.split('\n')[0] : null; });
+      if (k === 0) ck.umpan_balik_salah = verdict;
+      await click(k < answers.length - 1 ? /SOAL BERIKUTNYA/ : /LIHAT SKOR/);
+    }
+    ck.skor = await p.evaluate(() => /Kamu menjawab tepat 4 dari 5/.test(document.body.innerText) ? 80 : null);
+    ck.lencana = await p.evaluate(() => /LENCANA BARU · PAHAM AI/.test(document.body.innerText));
+    await click(/HASIL AKHIR/);
+    ck.skor_di_ringkasan = await p.evaluate(() => /UJI PEMAHAMAN\s*80\/100/.test(document.body.innerText));
+    await click(/REFLEKSI/);
     await p.fill('textarea >> nth=0', 'AI perlu diawasi manusia.');
     await click(/SALIN RINGKASAN/); await p.waitForTimeout(600);
     ck.salin = await p.evaluate(() => [...document.querySelectorAll('button')].some(b => /TERSALIN/.test(b.innerText)));
   } catch (e) { errs.push('ALUR: ' + e.message.slice(0, 120)); }
 
-  const expected = '01>02>03>04>05>09>04>06>09>04>07>09>04>08>09>10>11>12';
+  const expected = '01>02>03>04>05>09>04>06>09>04>07>09>04>08>09>10>10b>11>12';
   const path = seen.join('>');
-  const okVoice = ck.tutorial === 'nexa_tutorial_1' && ck.peristiwa === 'nexa_event_s1' && /^citizen_school_/.test(ck.kartu || '') && ck.regulator === 'regulator_ready';
+  const okVoice = ck.tutorial === 'nexa_tutorial_1' && ck.peristiwa === 'nexa_event_s1' && /^citizen_school_/.test(ck.kartu || '') && ck.regulator === 'regulator_ready' && ck.uji_suara === 'nexa_quiz_01' && ck.umpan_balik_salah === 'BELUM TEPAT' && ck.skor === 80 && ck.lencana && ck.skor_di_ringkasan;
   const pass = path === expected && okVoice && errs.length === 0;
   console.log(`${pass ? 'LULUS' : 'GAGAL'}  ${br} ${W}x${H} ${url.startsWith('file:') ? 'file' : 'http'}`);
   console.log('  layar :', path, path === expected ? '(lengkap)' : '(DIHARAPKAN ' + expected + ')');

@@ -7,6 +7,8 @@ Mengikuti ketentuan teknis panduan (BAB III):
 - berjalan saat dibuka langsung dari berkas (file://) maupun dari server;
 - ukuran web disarankan <= 25 MB, total ZIP (dengan panduan & video) <= 150 MB;
 - wajib menyertakan panduan penggunaan (PDF) dan video demonstrasi (MP4, <= 3 menit).
+Ikut disertakan juga: pemetaan CP/TP, dokumen desain & prompting, atribusi aset (PDF),
+dan BACA-SAYA.txt (tautan versi daring + cara membuka).
 
 Yang dibuang dari versi web: game.html (pengalih), service worker & js/offline.js,
 manifest PWA beserta ikonnya, tag pratinjau tautan (URL absolut ke github.io),
@@ -14,8 +16,8 @@ dan gambar pratinjau tautan.
 
 Pakai (dari akar repo):
     node tools/buat-pdf-lomba.js                              # PDF ke dist/ (dipakai otomatis)
-    python3 tools/buat-zip-lomba.py --video "Demo.mp4"
-    python3 tools/buat-zip-lomba.py            # tanpa PDF/video: hanya untuk uji, diberi peringatan
+    node tools/rekam-demo.js                                  # video ke dist/ (dipakai otomatis)
+    python3 tools/buat-zip-lomba.py
 Hasil: dist/NEXA-FestivalBiruPutih.zip
 """
 import argparse
@@ -111,10 +113,14 @@ def main():
     ap = argparse.ArgumentParser(description='Buat ZIP NEXA untuk Festival Biru Putih 2026.')
     ap.add_argument('--panduan', help='PDF panduan penggunaan (wajib untuk pengumpulan)')
     ap.add_argument('--prompting', help='PDF dokumen desain & prompting (wajib bila memakai aset AI)')
+    ap.add_argument('--cp', help='PDF pemetaan CP dan TP')
+    ap.add_argument('--atribusi', help='PDF atribusi aset')
     ap.add_argument('--video', help='MP4 video demonstrasi, maks. 3 menit (wajib untuk pengumpulan)')
     args = ap.parse_args()
-    # Bawaan: PDF hasil tools/buat-pdf-lomba.js di dist/, bila ada.
-    for attr, name in (('panduan', 'Panduan Penggunaan NEXA.pdf'), ('prompting', 'Dokumen Desain dan Prompting NEXA.pdf')):
+    # Bawaan: PDF hasil tools/buat-pdf-lomba.js dan video hasil tools/rekam-demo.js di dist/, bila ada.
+    for attr, name in (('panduan', 'Panduan Penggunaan NEXA.pdf'), ('prompting', 'Dokumen Desain dan Prompting NEXA.pdf'),
+                       ('cp', 'Pemetaan CP dan TP NEXA.pdf'), ('atribusi', 'Atribusi Aset NEXA.pdf'),
+                       ('video', 'Video Demonstrasi NEXA.mp4')):
         if not getattr(args, attr) and os.path.isfile(os.path.join(DIST, name)):
             setattr(args, attr, os.path.join(DIST, name))
 
@@ -131,6 +137,8 @@ def main():
         extra = []
         for flag, path, name, ext in (('--panduan', args.panduan, 'Panduan Penggunaan NEXA.pdf', '.pdf'),
                                       ('--prompting', args.prompting, 'Dokumen Desain dan Prompting NEXA.pdf', '.pdf'),
+                                      ('--cp', args.cp, 'Pemetaan CP dan TP NEXA.pdf', '.pdf'),
+                                      ('--atribusi', args.atribusi, 'Atribusi Aset NEXA.pdf', '.pdf'),
                                       ('--video', args.video, 'Video Demonstrasi NEXA.mp4', '.mp4')):
             if not path:
                 warnings.append('Belum ada %s (wajib untuk pengumpulan, pakai %s).' % (name, flag))
@@ -138,14 +146,21 @@ def main():
                 problems.append('%s bukan berkas %s: %s' % (flag, ext, path))
             else:
                 extra.append((path, name))
+        durasi = 'maks. 3 menit'
         if args.video and os.path.isfile(args.video):
             try:
                 dur = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
                                                      '-of', 'default=nw=1:nk=1', args.video]))
                 if dur > 180:
                     problems.append('Video %.0f detik (maksimal 3 menit).' % dur)
+                durasi = '%d menit %d detik' % divmod(round(dur), 60)
             except (OSError, subprocess.CalledProcessError, ValueError):
                 warnings.append('Durasi video tidak bisa diperiksa (ffprobe tidak ada).')
+        # BACA-SAYA.txt: tautan versi daring dan cara membuka, untuk juri.
+        baca = open(os.path.join(ROOT, 'docs', 'lomba', 'BACA-SAYA.txt'), encoding='utf-8').read().replace('{{DURASI_VIDEO}}', durasi)
+        baca_path = os.path.join(tmp, 'BACA-SAYA.txt')
+        open(baca_path, 'w', encoding='utf-8', newline='\r\n').write(baca)
+        extra.append((baca_path, 'BACA-SAYA.txt'))
 
         if problems:
             print('GAGAL:')

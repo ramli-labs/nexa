@@ -63,9 +63,10 @@
   <tr><td>Warga: pekerja</td><td>edge-tts <code>su-ID-JajangNeural</code></td><td>normal</td></tr>
   <tr><td>Warga: warga senior</td><td>edge-tts <code>su-ID-TutiNeural</code></td><td>tempo −12%, nada −15 Hz</td></tr>
   <tr><td>Delegasi Regulator</td><td>edge-tts <code>su-ID-JajangNeural</code></td><td>tempo −8%, nada −12 Hz, gema aula</td></tr>
-  <tr><td>KAIA, ORION</td><td>ElevenLabs</td><td class="isi">[Isi oleh pengembang: nama voice dan pengaturan ElevenLabs yang dipakai.]</td></tr>
+  <tr><td>KAIA</td><td>ElevenLabs <i>Voice Design</i></td><td>Brief suara: <i>"An Indonesian woman in her forties. Warm, professional, guiding — a teacher students actually trust. Natural chest resonance, audible gentle breath between clauses, unhurried. Never presentational, never advertising-bright, never condescending."</i> Stability 0,5 · Similarity 0,8 · Style 0,35 · Speed 0,9</td></tr>
+  <tr><td>ORION</td><td>ElevenLabs <i>Voice Design</i></td><td>Brief suara: <i>"A low, masculine synthetic optimizer voice. Efficient, persuasive, faintly cold — utterly certain it is helping. Flat affect, fast delivery, clipped sentence ends. Polite corporate register in Indonesian. No menace in the performance; the menace is in the content."</i> Stability 0,75 · Similarity 0,85 · Style 0,1 · Speed 1,08</td></tr>
 </table>
-<p class="small">Emosi tiap baris diberi geseran kecil tempo/nada. Beberapa kata dieja ulang agar terdengar benar (mis. "AI" dibacakan "é-ai"). Kekerasan semua berkas disamakan ke −22 LUFS. Alat pembuatnya: <code>tools/buat-suara.py</code>.</p>
+<p class="small">Brief dan setelan ElevenLabs diambil dari dokumen produksi awal NEXA (15 September 2026). Rekaman KAIA dan ORION dipakai apa adanya; tanda asal C2PA "Eleven Labs Inc." masih melekat di setiap berkas. Untuk suara edge-tts: emosi tiap baris diberi geseran kecil tempo/nada. Beberapa kata dieja ulang agar terdengar benar (mis. "AI" dibacakan "é-ai"). Kekerasan semua berkas disamakan ke −22 LUFS. Alat pembuatnya: <code>tools/buat-suara.py</code>.</p>
 
 <h3>3.2 Musik latar</h3>
 <p>Musik tidak berupa berkas. Musik dibangkitkan langsung di browser oleh kode <code>js/bgm.js</code>. Spesifikasi desain yang dipakai:</p>
@@ -73,7 +74,15 @@
 
 <h3>3.3 Kode program, tampilan, dan ilustrasi SVG</h3>
 <p><b>(a) Prototipe awal.</b></p>
-<div class="isi">[Isi oleh pengembang: alat dan prompt yang dipakai saat membuat prototipe awal NEXA (konsep, tampilan, karakter SVG, naskah dialog).]</div>
+<p>Prototipe awal (versi 2.1, 14–15 September 2026) dibuat pengembang dengan {{ALAT_PROTOTIPE}}, yang menghasilkan halaman templat <code>.dc.html</code> beserta mesin templatnya (kini <code>js/vendor/dc-runtime.js</code>). Semua visual dibangun dengan kode; tidak ada gambar yang dibangkitkan. Spesifikasi desain berikut dipakai sebagai acuan gaya:</p>
+<div class="quote">clean sci-fi, optimistic advanced future, cyan (#17D9FF) and violet (#7657FF) light on deep navy (#071426), translucent holographic panels, soft volumetric glow, key light upper-left in accent colour, warm white rim light, cinematic lighting, no text, no neon clutter, no dystopian mood, educational simulation game concept art</div>
+<table>
+  <tr><th style="width:18%">Tokoh</th><th>Spesifikasi karakter</th></tr>
+  <tr><td>NARA-01</td><td class="quote">Elegant holographic AI presence, semi-abstract figure: a luminous warm-white core suspended inside a tall floating cyan diamond of polarised glass, two thin tilted orbital rings of cyan and violet light, a minimal energy mask suggesting a calm serene face, geometric light structures, self-illuminated, graceful and approachable, not a robot, no mechanical joints, memorable simple silhouette</td></tr>
+  <tr><td>KAIA</td><td class="quote">Young Indonesian woman future architect in her late twenties, warm confident approachable smile, minimalist futuristic collarless long outer layer in warm white and soft grey matte technical fabric with very subtle emissive seams, thin smart glasses, holding a translucent holographic tablet, warm golden key light from upper left, white rim light, clearly human and welcoming</td></tr>
+  <tr><td>ORION</td><td class="quote">City-scale artificial intelligence visualised as a vast luminous sphere composed of thousands of connected green-cyan light nodes and thin connection lines, hovering above a futuristic city, distributed network intelligence, completely faceless, no body, no limbs, calm not threatening</td></tr>
+</table>
+<p class="small">Aturan desain yang ikut ditetapkan: di Smart School guru selalu hadir dan aktif (tidak digantikan AI); Ruang Konstitusi tidak boleh menyerupai ruang sidang; tanpa nuansa distopia.</p>
 <p><b>(b) Sesi pengembangan dengan Claude (September 2026).</b> Prompt pengembang, dikutip apa adanya:</p>
 <table>
   <tr><th style="width:5%">No</th><th style="width:45%">Prompt pengembang</th><th>Hasil</th></tr>
@@ -87,8 +96,8 @@
 </table>
 
 <h3>3.4 Uji Pemahaman</h3>
-<p>Lima soal disusun dari konsep yang diajarkan tiap misi dan dicocokkan dengan rumus simulasi, supaya pembahasannya sesuai dengan yang dialami pemain. Soal dan kunci diperiksa pengembang sebagai guru mata pelajaran.</p>
-<div class="isi">[Isi oleh pengembang: catatan peninjauan soal, mis. "Soal diperiksa dan disetujui pada tanggal …".]</div>
+<p>Lima soal disusun dari konsep yang diajarkan tiap misi dan dicocokkan dengan rumus simulasi, supaya pembahasannya sesuai dengan yang dialami pemain.</p>
+<p>Soal, kunci, dan pembahasan ditinjau dan disetujui pengembang pada {{TANGGAL_TINJAU_SOAL}}.</p>
 
 <h2>4. Peran pengembang (verifikasi manusia)</h2>
 <ul>

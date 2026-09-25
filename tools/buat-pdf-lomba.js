@@ -5,12 +5,13 @@
    1. Mengambil tangkapan layar terbaru langsung dari gim (file://index.html,
       1280x720 = 16:9, plus satu tampilan HP 390x844).
    2. Mengisi naskah suara dari js/voice-config.js.
-   3. Mencetak docs/lomba/panduan-penggunaan.html dan
-      docs/lomba/dokumen-desain-prompting.html ke PDF di dist/.
+   3. Mencetak dokumen di docs/lomba/ (panduan, desain & prompting, pemetaan
+      CP/TP, atribusi aset, surat pernyataan) ke PDF di dist/. Isian yang
+      hanya diketahui pengembang diambil dari docs/lomba/isian.json.
 
    Persiapan: npm i --no-save playwright@1 && npx playwright install chromium
    Pakai (dari akar repo):  node tools/buat-pdf-lomba.js
-   Hasil: dist/Panduan Penggunaan NEXA.pdf, dist/Dokumen Desain dan Prompting NEXA.pdf
+   Hasil: dist/*.pdf (lima berkas)
 ============================================================================ */
 const fs = require('fs'), path = require('path'), { chromium } = require('playwright');
 const ROOT = path.resolve(__dirname, '..'), DIST = path.join(ROOT, 'dist'), WORK = path.join(DIST, 'pdf-src');
@@ -80,16 +81,29 @@ function naskah() {
   console.log('Mengambil tangkapan layar…'); await shots(b);
   const n = naskah();
   const tanggal = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-  const jobs = [['panduan-penggunaan.html', 'Panduan Penggunaan NEXA.pdf'], ['dokumen-desain-prompting.html', 'Dokumen Desain dan Prompting NEXA.pdf']];
-  for (const [src, out] of jobs) {
+  // Isian yang hanya bisa diberikan pengembang (docs/lomba/isian.json), mis. {"ALAT_PROTOTIPE": "…"}.
+  const isianPath = path.join(ROOT, 'docs', 'lomba', 'isian.json');
+  const isian = fs.existsSync(isianPath) ? JSON.parse(fs.readFileSync(isianPath, 'utf8')) : {};
+  // [sumber, PDF, surat?] — surat memakai margin dari CSS-nya sendiri dan tanpa footer.
+  const jobs = [['panduan-penggunaan.html', 'Panduan Penggunaan NEXA.pdf'], ['dokumen-desain-prompting.html', 'Dokumen Desain dan Prompting NEXA.pdf'],
+    ['pemetaan-cp-tp.html', 'Pemetaan CP dan TP NEXA.pdf'], ['atribusi-aset.html', 'Atribusi Aset NEXA.pdf'],
+    ['surat-pernyataan.html', 'Lampiran 1 - Surat Pernyataan (NEXA, ADIL, SIGAP).pdf', true]];
+  const kosong = [];
+  for (const [src, out, surat] of jobs) {
+    // Surat pernyataan berisi data pribadi dan sengaja tidak ada di repo (lihat .gitignore).
+    if (!fs.existsSync(path.join(ROOT, 'docs', 'lomba', src))) { console.log('Lewati (tidak ada di repo):', src); continue; }
     let html = fs.readFileSync(path.join(ROOT, 'docs', 'lomba', src), 'utf8')
-      .replace(/\{\{NASKAH\}\}/g, n.rows).replace(/\{\{JUMLAH_BARIS\}\}/g, String(n.count)).replace(/\{\{TANGGAL\}\}/g, tanggal);
+      .replace(/\{\{NASKAH\}\}/g, n.rows).replace(/\{\{JUMLAH_BARIS\}\}/g, String(n.count)).replace(/\{\{TANGGAL\}\}/g, tanggal)
+      .replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => isian[k] || m);
+    for (const m of html.matchAll(/\{\{([A-Z_]+)\}\}/g)) kosong.push(src + ': ' + m[1]);
     const file = path.join(WORK, src); fs.writeFileSync(file, html);
     const p = await b.newPage(); await p.goto('file://' + file); await p.waitForTimeout(500);
-    await p.pdf({ path: path.join(DIST, out), format: 'A4', printBackground: true, margin: { top: '16mm', bottom: '16mm', left: '15mm', right: '15mm' },
+    await p.pdf(surat ? { path: path.join(DIST, out), format: 'A4', printBackground: true, preferCSSPageSize: true } : {
+      path: path.join(DIST, out), format: 'A4', printBackground: true, margin: { top: '16mm', bottom: '16mm', left: '15mm', right: '15mm' },
       displayHeaderFooter: true, headerTemplate: '<span></span>',
       footerTemplate: '<div style="font-size:8px;width:100%;text-align:center;color:#667">NEXA · ' + out.replace('.pdf', '') + ' · hal. <span class="pageNumber"></span>/<span class="totalPages"></span></div>' });
     await p.close(); console.log('OK:', path.relative(ROOT, path.join(DIST, out)));
   }
+  if (kosong.length) { console.error('BELUM DIISI (tambahkan ke docs/lomba/isian.json):\n  ' + kosong.join('\n  ')); process.exitCode = 1; }
   await b.close();
 })().catch(e => { console.error('GAGAL:', e.message); process.exit(1); });

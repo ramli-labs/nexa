@@ -79,7 +79,7 @@ nexa/
 │   ├── images/                 # favicon.svg, icon-192/512/maskable-512.png, logo-*.png (header institusi),
 │   │                           #   og-nexa.jpg (gambar pratinjau tautan 1200×630)
 │   └── audio/voice/
-│       ├── nexa/               # NARA-01, 31 berkas (edge-tts)
+│       ├── nexa/               # NARA-01, 32 berkas (edge-tts)
 │       ├── mentor/             # KAIA, 8 berkas (ElevenLabs asli)
 │       ├── orion/              # ORION, 2 berkas (ElevenLabs asli)
 │       ├── citizen/            # Warga: pelajar, pekerja, warga senior, 30 berkas (edge-tts)
@@ -87,14 +87,16 @@ nexa/
 ├── guru/
 │   └── panduan-guru.md         # Panduan guru (tidak ikut dipublikasikan)
 ├── docs/
-│   ├── lomba/                  # Sumber PDF lomba: panduan-penggunaan.html, dokumen-desain-prompting.html
+│   ├── lomba/                  # Sumber berkas lomba: panduan, desain & prompting, pemetaan CP/TP,
+│   │                           #   atribusi aset, surat pernyataan (HTML → PDF), BACA-SAYA.txt, isian.json
 │   └── audio.md                # Suara per tokoh, pemilihan suara & QA, naskah lengkap 79 baris
 ├── tools/
 │   ├── buat-suara.py           # Generator suara (edge-tts + ffmpeg) dari naskah di voice-config.js
 │   ├── siapkan-offline.py      # Dipakai workflow: isi daftar cache & versi di service-worker.js
 │   ├── buat-zip-lomba.py       # Paket ZIP Festival Biru Putih (dist/), lengkap dengan pemeriksaan
 │   ├── uji-main.js             # Uji main penuh otomatis (Playwright) di Chrome/Firefox/Safari
-│   ├── buat-pdf-lomba.js       # PDF panduan penggunaan & dokumen prompting (dari docs/lomba/)
+│   ├── buat-pdf-lomba.js       # Semua PDF lomba (dari docs/lomba/)
+│   ├── rekam-demo.js           # Video demonstrasi ≤ 3 menit, lengkap dengan suara gim
 │   └── cek-audio.py            # Cek voice-config.js ↔ berkas audio ↔ pemakaian di index.html
 └── .github/workflows/pages.yml # Deploy ke GitHub Pages
 ```
@@ -111,13 +113,26 @@ nexa/
 ## Paket lomba (Festival Biru Putih 2026)
 
 ```bash
-node tools/buat-pdf-lomba.js      # dist/Panduan Penggunaan NEXA.pdf + Dokumen Desain dan Prompting NEXA.pdf
-python3 tools/buat-zip-lomba.py --panduan "dist/Panduan Penggunaan NEXA.pdf" \
-  --prompting "dist/Dokumen Desain dan Prompting NEXA.pdf" --video "Demo.mp4"
-# hasil: dist/NEXA-FestivalBiruPutih.zip
+node tools/buat-pdf-lomba.js      # 5 PDF di dist/ (isian pengembang dari docs/lomba/isian.json)
+python3 -m http.server 8765 &     # video harus direkam lewat HTTP
+node tools/rekam-demo.js          # dist/Video Demonstrasi NEXA.mp4
+python3 tools/buat-zip-lomba.py   # dist/NEXA-FestivalBiruPutih.zip
 ```
 
-Isi ZIP: `index.html` di root beserta semua asetnya, ditambah PDF panduan dan MP4 video demonstrasi. Skrip ini:
+| Berkas | Sumber | Masuk ZIP |
+|---|---|---|
+| Gim (`index.html` + `css/`, `js/`, `assets/`) | repo | ya |
+| Video Demonstrasi NEXA.mp4 | `tools/rekam-demo.js` | ya |
+| Panduan Penggunaan NEXA.pdf | `docs/lomba/panduan-penggunaan.html` | ya |
+| Pemetaan CP dan TP NEXA.pdf | `docs/lomba/pemetaan-cp-tp.html` | ya |
+| Dokumen Desain dan Prompting NEXA.pdf | `docs/lomba/dokumen-desain-prompting.html` | ya |
+| Atribusi Aset NEXA.pdf | `docs/lomba/atribusi-aset.html` | ya |
+| BACA-SAYA.txt (tautan daring, cara membuka) | `docs/lomba/BACA-SAYA.txt` | ya |
+| Lampiran 1 - Surat Pernyataan (NEXA, ADIL, SIGAP).pdf | `docs/lomba/surat-pernyataan.html`: satu surat untuk ketiga karya, **hanya di lokal** (berisi data pribadi, ada di `.gitignore`); dilewati bila tidak ada | tidak, diunggah terpisah setelah ditandatangani |
+
+Video direkam dari gim sungguhan: gambar dari Playwright, suaranya (musik, efek, dan suara tokoh) direkam dari dalam halaman, lalu keduanya digabung dengan ffmpeg.
+
+Skrip ZIP:
 - membuang yang dilarang panduan lomba: halaman pengalih `game.html`, service worker, manifest PWA, dan tag pratinjau berisi URL eksternal;
 - memeriksa sendiri: satu halaman (SPA), semua rujukan lokal ada, tidak ada URL eksternal yang dimuat, ukuran web ≤ 25 MB dan total ≤ 150 MB, serta video ≤ 3 menit.
 

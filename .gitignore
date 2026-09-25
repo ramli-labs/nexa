@@ -26,3 +26,6 @@ package-lock.json
 
 # Cache Python
 __pycache__/
+
+# Surat pernyataan berisi data pribadi (NIK, NUPTK, WhatsApp): hanya di lokal, jangan di-commit
+docs/lomba/surat-pernyataan.html

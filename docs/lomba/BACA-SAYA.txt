@@ -1,0 +1,26 @@
+NEXA — Navigating the Future with AI
+Gim Edukasi Literasi AI · Koding dan Kecerdasan Artifisial / Informatika Fase D (Kelas VII–IX)
+Festival Biru Putih 2026 · Kategori: Gim Edukasi
+
+========================================================================
+COBA LANGSUNG (DARING, TANPA MENGUNDUH)
+  https://ramli-labs.github.io/nexa/
+  Dapat dibuka di laptop, tablet, maupun ponsel.
+========================================================================
+
+MENJALANKAN DARI BERKAS INI (LURING)
+  1. Ekstrak seluruh isi ZIP ke satu folder.
+  2. Buka index.html di peramban (Chrome, Edge, Firefox, atau Safari).
+  3. Gim langsung berjalan tanpa internet. Klik MULAI.
+  Suara mulai terdengar setelah klik pertama (aturan peramban).
+
+ISI PAKET
+  index.html                                  Gim (berkas utama)
+  css/, js/, assets/                          Tampilan, program, gambar, dan suara gim
+  Video Demonstrasi NEXA.mp4                  Video demonstrasi ({{DURASI_VIDEO}})
+  Panduan Penggunaan NEXA.pdf                 Panduan penggunaan
+  Pemetaan CP dan TP NEXA.pdf                 Pemetaan Capaian & Tujuan Pembelajaran
+  Dokumen Desain dan Prompting NEXA.pdf       Keterangan penggunaan AI, prompt, naskah suara
+  Atribusi Aset NEXA.pdf                      Sumber dan lisensi seluruh aset
+
+Pembuat: Ramli Jainal Muttaqin, S.Pd. — SMP Labschool Jakarta

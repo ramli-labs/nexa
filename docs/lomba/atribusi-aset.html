@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Atribusi Aset NEXA</title>
+<style>
+  @page { size: A4; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "DejaVu Sans", system-ui, sans-serif; color: #17202c; font-size: 10.5pt; line-height: 1.5; margin: 0; }
+  h1 { font-size: 22pt; margin: 0 0 4px; color: #0b2a4a; }
+  h2 { font-size: 14pt; color: #0b2a4a; margin: 20px 0 8px; padding-bottom: 4px; border-bottom: 2px solid #1f9d6a; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9.3pt; }
+  th, td { border: 1px solid #c9d3de; padding: 4px 7px; vertical-align: top; text-align: left; }
+  th { background: #e9f8f1; color: #0b2a4a; }
+  tr { page-break-inside: avoid; }
+  .meta td:first-child { width: 30%; font-weight: 600; background: #f6f9fc; }
+  .small { font-size: 8.8pt; color: #3a4b60; }
+  code { font-size: 8.8pt; background: #f2f4f7; padding: 0 3px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div style="font-size:9pt;letter-spacing:.2em;color:#1f9d6a;font-weight:700">FESTIVAL BIRU PUTIH 2026 · KATEGORI GIM EDUKASI</div>
+<h1>Atribusi Aset NEXA</h1>
+<p>Sumber dan lisensi seluruh aset yang ada di dalam paket gim. Rincian prompt dan parameter aset buatan AI ada di <b>Dokumen Desain dan Prompting NEXA</b>.</p>
+<table class="meta">
+  <tr><td>Judul karya</td><td>NEXA — Navigating the Future with AI</td></tr>
+  <tr><td>Pengembang</td><td>Ramli Jainal Muttaqin, S.Pd. — SMP Labschool Jakarta</td></tr>
+  <tr><td>Versi dokumen</td><td>{{TANGGAL}}</td></tr>
+</table>
+
+<h2>1. Ringkasan</h2>
+<table>
+  <tr><th style="width:34%">Kriteria</th><th>Keadaan</th></tr>
+  <tr><td>Aset atau URL eksternal saat gim berjalan</td><td>Tidak ada. Semua berkas ada di dalam paket; gim berjalan tanpa internet.</td></tr>
+  <tr><td>Foto, ilustrasi, atau musik stok pihak ketiga</td><td>Tidak ada.</td></tr>
+  <tr><td>Gambar buatan AI (raster)</td><td>Tidak ada. Karakter, latar, dan ikon digambar dengan kode SVG/CSS.</td></tr>
+  <tr><td>Aset buatan AI</td><td>{{JUMLAH_BARIS}} berkas suara tokoh (text-to-speech). Diberi keterangan di panel <i>Kredit &amp; keterangan AI</i> di dalam gim.</td></tr>
+  <tr><td>Aset milik pihak lain</td><td>Empat logo institusi dan pustaka React (lisensi MIT).</td></tr>
+</table>
+
+<h2>2. Logo institusi</h2>
+<p>Dipakai tanpa perubahan warna atau proporsi, hanya diskalakan, untuk menandai konteks festival pendidikan. Seluruh hak ada pada Kementerian Pendidikan Dasar dan Menengah Republik Indonesia.</p>
+<table>
+  <tr><th style="width:38%">Berkas</th><th>Logo</th><th style="width:22%">Posisi</th></tr>
+  <tr><td><code>assets/images/logo-kemendikdasmen.png</code></td><td>Kemendikdasmen (Tut Wuri Handayani)</td><td>Header kiri</td></tr>
+  <tr><td><code>assets/images/logo-pendidikan-bermutu.png</code></td><td>Pendidikan Bermutu untuk Semua</td><td>Header kanan</td></tr>
+  <tr><td><code>assets/images/logo-ramah.png</code></td><td>RAMAH</td><td>Header kanan</td></tr>
+  <tr><td><code>assets/images/logo-sobat-smp.png</code></td><td>Sobat SMP</td><td>Header kanan</td></tr>
+</table>
+
+<h2>3. Suara tokoh</h2>
+<table>
+  <tr><th style="width:20%">Tokoh</th><th style="width:10%">Berkas</th><th style="width:30%">Alat</th><th>Lisensi / keterangan</th></tr>
+  <tr><td>KAIA (mentor)</td><td>8</td><td>ElevenLabs (text-to-speech)</td><td>Dibuat pengembang dengan akun ElevenLabs. Berkas membawa tanda asal C2PA "Eleven Labs Inc." (<i>trainedAlgorithmicMedia</i>).</td></tr>
+  <tr><td>ORION (AI kota)</td><td>2</td><td>ElevenLabs (text-to-speech)</td><td>Sama seperti KAIA.</td></tr>
+  <tr><td>NARA-01 (AI pemandu)</td><td>32</td><td>Suara neural Microsoft lewat edge-tts</td><td rowspan="3">Dibuat dengan <code>tools/buat-suara.py</code> dari naskah milik pengembang. Suara: <code>id-ID-ArdiNeural</code>, <code>id-ID-GadisNeural</code>, <code>su-ID-JajangNeural</code>, <code>su-ID-TutiNeural</code>. Dipakai untuk karya pendidikan non-komersial.</td></tr>
+  <tr><td>Warga 2045</td><td>30</td><td>Suara neural Microsoft lewat edge-tts</td></tr>
+  <tr><td>Delegasi Regulator</td><td>7</td><td>Suara neural Microsoft lewat edge-tts</td></tr>
+</table>
+<p class="small">Naskah seluruh baris suara ditulis untuk NEXA dan dilampirkan di Dokumen Desain dan Prompting (Lampiran A).</p>
+
+<h2>4. Musik dan efek suara</h2>
+<p>Tidak ada berkas musik. Musik latar (<code>js/bgm.js</code>) dan efek suara (<code>js/nexa-visuals.js</code>) dibangkitkan langsung di browser dengan Web Audio API. Kodenya disusun dengan bantuan AI (Claude, Anthropic).</p>
+
+<h2>5. Grafik, karakter, dan ikon</h2>
+<table>
+  <tr><th style="width:34%">Aset</th><th>Asal</th></tr>
+  <tr><td>Karakter NARA-01, KAIA, ORION, warga, regulator</td><td>Digambar dengan kode SVG prosedural di <code>js/nexa-visuals.js</code>, disusun dengan bantuan AI (Claude, Anthropic).</td></tr>
+  <tr><td>Latar tiap misi, Bumi holografis, radar Future Balance, segel konstitusi, lencana</td><td>SVG dan CSS di <code>index.html</code> dan <code>css/main.css</code>.</td></tr>
+  <tr><td>Ikon aplikasi (<code>favicon.svg</code>)</td><td>Dibuat untuk NEXA.</td></tr>
+</table>
+
+<h2>6. Huruf</h2>
+<p>Tidak ada berkas huruf yang disertakan atau diunduh. Gim memakai huruf bawaan perangkat (<code>system-ui</code>, Segoe UI, Helvetica, Arial). Nama Orbitron dan Inter ada di urutan pilihan huruf, tetapi hanya dipakai bila sudah terpasang di perangkat pemain.</p>
+
+<h2>7. Pustaka perangkat lunak</h2>
+<table>
+  <tr><th style="width:38%">Berkas</th><th>Pustaka</th><th style="width:28%">Lisensi</th></tr>
+  <tr><td><code>js/vendor/react.production.min.js</code></td><td>React 18.3.1</td><td>MIT, © Meta Platforms, Inc.</td></tr>
+  <tr><td><code>js/vendor/react-dom.production.min.js</code></td><td>React DOM 18.3.1</td><td>MIT, © Meta Platforms, Inc.</td></tr>
+  <tr><td><code>js/vendor/dc-runtime.js</code></td><td>Mesin template dari alat pembuat prototipe, disesuaikan agar berjalan dari berkas lokal</td><td>Dihasilkan otomatis oleh alat prototipe</td></tr>
+</table>
+
+<h2>8. Konten naratif dan edukatif</h2>
+<p>Naskah dialog, soal Uji Pemahaman, teks peristiwa, kutipan warga, dan pertanyaan refleksi ditulis untuk NEXA dengan bantuan AI (Claude, Anthropic) lalu ditinjau pengembang. Semua peristiwa, angka proyeksi, dan kutipan warga adalah skenario hipotetis untuk belajar, bukan data dunia nyata; gim menandainya sebagai <i>proyeksi simulasi</i>.</p>
+</body>
+</html>

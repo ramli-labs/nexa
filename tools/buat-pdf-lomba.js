@@ -87,7 +87,7 @@ function naskah() {
   // [sumber, PDF, surat?] — surat memakai margin dari CSS-nya sendiri dan tanpa footer.
   const jobs = [['panduan-penggunaan.html', 'Panduan Penggunaan NEXA.pdf'], ['dokumen-desain-prompting.html', 'Dokumen Desain dan Prompting NEXA.pdf'],
     ['pemetaan-cp-tp.html', 'Pemetaan CP dan TP NEXA.pdf'], ['atribusi-aset.html', 'Atribusi Aset NEXA.pdf'],
-    ['surat-pernyataan.html', 'Lampiran 1 - Surat Pernyataan NEXA.pdf', true]];
+    ['surat-pernyataan.html', 'Lampiran 1 - Surat Pernyataan (NEXA, ADIL, SIGAP).pdf', true]];
   const kosong = [];
   for (const [src, out, surat] of jobs) {
     let html = fs.readFileSync(path.join(ROOT, 'docs', 'lomba', src), 'utf8')

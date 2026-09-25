@@ -90,6 +90,8 @@ function naskah() {
     ['surat-pernyataan.html', 'Lampiran 1 - Surat Pernyataan (NEXA, ADIL, SIGAP).pdf', true]];
   const kosong = [];
   for (const [src, out, surat] of jobs) {
+    // Surat pernyataan berisi data pribadi dan sengaja tidak ada di repo (lihat .gitignore).
+    if (!fs.existsSync(path.join(ROOT, 'docs', 'lomba', src))) { console.log('Lewati (tidak ada di repo):', src); continue; }
     let html = fs.readFileSync(path.join(ROOT, 'docs', 'lomba', src), 'utf8')
       .replace(/\{\{NASKAH\}\}/g, n.rows).replace(/\{\{JUMLAH_BARIS\}\}/g, String(n.count)).replace(/\{\{TANGGAL\}\}/g, tanggal)
       .replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => isian[k] || m);

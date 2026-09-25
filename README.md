@@ -128,7 +128,7 @@ python3 tools/buat-zip-lomba.py   # dist/NEXA-FestivalBiruPutih.zip
 | Dokumen Desain dan Prompting NEXA.pdf | `docs/lomba/dokumen-desain-prompting.html` | ya |
 | Atribusi Aset NEXA.pdf | `docs/lomba/atribusi-aset.html` | ya |
 | BACA-SAYA.txt (tautan daring, cara membuka) | `docs/lomba/BACA-SAYA.txt` | ya |
-| Lampiran 1 - Surat Pernyataan (NEXA, ADIL, SIGAP).pdf | `docs/lomba/surat-pernyataan.html` (satu surat untuk ketiga karya) | tidak, diunggah terpisah setelah ditandatangani |
+| Lampiran 1 - Surat Pernyataan (NEXA, ADIL, SIGAP).pdf | `docs/lomba/surat-pernyataan.html`: satu surat untuk ketiga karya, **hanya di lokal** (berisi data pribadi, ada di `.gitignore`); dilewati bila tidak ada | tidak, diunggah terpisah setelah ditandatangani |
 
 Video direkam dari gim sungguhan: gambar dari Playwright, suaranya (musik, efek, dan suara tokoh) direkam dari dalam halaman, lalu keduanya digabung dengan ffmpeg.
 
